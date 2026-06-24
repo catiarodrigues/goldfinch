@@ -1,0 +1,226 @@
+{
+  "name": "@catiarodrigues/goldfinch",
+  "version": "1.0.0",
+  "description": "Goldfinch - A React component library built on Base UI and Tailwind CSS v4",
+  "scripts": {
+    "test": "vitest run",
+    "build": "vite build",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "react",
+    "components",
+    "ui",
+    "design-system"
+  ],
+  "author": "Cátia Rodrigues",
+  "license": "ISC",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles": "./dist/styles/index.css",
+    "./utils": {
+      "types": "./dist/src/utils/cn.d.ts",
+      "import": "./dist/utils.js"
+    },
+    "./components/autocomplete": {
+      "types": "./dist/src/components/autocomplete/index.d.ts",
+      "import": "./dist/components/autocomplete.js"
+    },
+    "./components/badge": {
+      "types": "./dist/src/components/badge/index.d.ts",
+      "import": "./dist/components/badge.js"
+    },
+    "./components/banner": {
+      "types": "./dist/src/components/banner/index.d.ts",
+      "import": "./dist/components/banner.js"
+    },
+    "./components/breadcrumbs": {
+      "types": "./dist/src/components/breadcrumbs/index.d.ts",
+      "import": "./dist/components/breadcrumbs.js"
+    },
+    "./components/button": {
+      "types": "./dist/src/components/button/index.d.ts",
+      "import": "./dist/components/button.js"
+    },
+    "./components/checkbox": {
+      "types": "./dist/src/components/checkbox/index.d.ts",
+      "import": "./dist/components/checkbox.js"
+    },
+    "./components/clipboard-text": {
+      "types": "./dist/src/components/clipboard-text/index.d.ts",
+      "import": "./dist/components/clipboard-text.js"
+    },
+    "./components/collapsible": {
+      "types": "./dist/src/components/collapsible/index.d.ts",
+      "import": "./dist/components/collapsible.js"
+    },
+    "./components/combobox": {
+      "types": "./dist/src/components/combobox/index.d.ts",
+      "import": "./dist/components/combobox.js"
+    },
+    "./components/dialog": {
+      "types": "./dist/src/components/dialog/index.d.ts",
+      "import": "./dist/components/dialog.js"
+    },
+    "./components/dropdown": {
+      "types": "./dist/src/components/dropdown/index.d.ts",
+      "import": "./dist/components/dropdown.js"
+    },
+    "./components/empty": {
+      "types": "./dist/src/components/empty/index.d.ts",
+      "import": "./dist/components/empty.js"
+    },
+    "./components/field": {
+      "types": "./dist/src/components/field/index.d.ts",
+      "import": "./dist/components/field.js"
+    },
+    "./components/flow": {
+      "types": "./dist/src/components/flow/index.d.ts",
+      "import": "./dist/components/flow.js"
+    },
+    "./components/grid": {
+      "types": "./dist/src/components/grid/index.d.ts",
+      "import": "./dist/components/grid.js"
+    },
+    "./components/input": {
+      "types": "./dist/src/components/input/index.d.ts",
+      "import": "./dist/components/input.js"
+    },
+    "./components/input-group": {
+      "types": "./dist/src/components/input-group/index.d.ts",
+      "import": "./dist/components/input-group.js"
+    },
+    "./components/label": {
+      "types": "./dist/src/components/label/index.d.ts",
+      "import": "./dist/components/label.js"
+    },
+    "./components/layer-card": {
+      "types": "./dist/src/components/layer-card/index.d.ts",
+      "import": "./dist/components/layer-card.js"
+    },
+    "./components/link": {
+      "types": "./dist/src/components/link/index.d.ts",
+      "import": "./dist/components/link.js"
+    },
+    "./components/loader": {
+      "types": "./dist/src/components/loader/index.d.ts",
+      "import": "./dist/components/loader.js"
+    },
+    "./components/menubar": {
+      "types": "./dist/src/components/menubar/index.d.ts",
+      "import": "./dist/components/menubar.js"
+    },
+    "./components/meter": {
+      "types": "./dist/src/components/meter/index.d.ts",
+      "import": "./dist/components/meter.js"
+    },
+    "./components/pagination": {
+      "types": "./dist/src/components/pagination/index.d.ts",
+      "import": "./dist/components/pagination.js"
+    },
+    "./components/popover": {
+      "types": "./dist/src/components/popover/index.d.ts",
+      "import": "./dist/components/popover.js"
+    },
+    "./components/radio": {
+      "types": "./dist/src/components/radio/index.d.ts",
+      "import": "./dist/components/radio.js"
+    },
+    "./components/select": {
+      "types": "./dist/src/components/select/index.d.ts",
+      "import": "./dist/components/select.js"
+    },
+    "./components/sensitive-input": {
+      "types": "./dist/src/components/sensitive-input/index.d.ts",
+      "import": "./dist/components/sensitive-input.js"
+    },
+    "./components/sidebar": {
+      "types": "./dist/src/components/sidebar/index.d.ts",
+      "import": "./dist/components/sidebar.js"
+    },
+    "./components/surface": {
+      "types": "./dist/src/components/surface/index.d.ts",
+      "import": "./dist/components/surface.js"
+    },
+    "./components/switch": {
+      "types": "./dist/src/components/switch/index.d.ts",
+      "import": "./dist/components/switch.js"
+    },
+    "./components/table": {
+      "types": "./dist/src/components/table/index.d.ts",
+      "import": "./dist/components/table.js"
+    },
+    "./components/table-of-contents": {
+      "types": "./dist/src/components/table-of-contents/index.d.ts",
+      "import": "./dist/components/table-of-contents.js"
+    },
+    "./components/tabs": {
+      "types": "./dist/src/components/tabs/index.d.ts",
+      "import": "./dist/components/tabs.js"
+    },
+    "./components/text": {
+      "types": "./dist/src/components/text/index.d.ts",
+      "import": "./dist/components/text.js"
+    },
+    "./components/toast": {
+      "types": "./dist/src/components/toast/index.d.ts",
+      "import": "./dist/components/toast.js"
+    },
+    "./components/toolbar": {
+      "types": "./dist/src/components/toolbar/index.d.ts",
+      "import": "./dist/components/toolbar.js"
+    },
+    "./components/tooltip": {
+      "types": "./dist/src/components/tooltip/index.d.ts",
+      "import": "./dist/components/tooltip.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": [
+    "*.css",
+    "dist/styles/*.css"
+  ],
+  "devDependencies": {
+    "@chromatic-com/storybook": "^5.2.1",
+    "@storybook/addon-a11y": "10.4.5",
+    "@storybook/addon-docs": "10.4.5",
+    "@storybook/addon-vitest": "10.4.5",
+    "@storybook/react-vite": "10.4.5",
+    "@tailwindcss/vite": "^4.3.1",
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "^6.0.2",
+    "@vitest/browser-playwright": "^4.1.9",
+    "@vitest/coverage-v8": "^4.1.9",
+    "playwright": "^1.61.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "storybook": "10.4.5",
+    "tailwindcss": "^4.3.1",
+    "vite": "^8.0.16",
+    "vitest": "^4.1.9"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "dependencies": {
+    "@base-ui/react": "^1.5.0",
+    "@phosphor-icons/react": "^2.1.10",
+    "clsx": "^2.1.1",
+    "motion": "^12.41.0",
+    "tailwind-merge": "^3.6.0"
+  }
+}

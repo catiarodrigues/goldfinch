@@ -1,0 +1,26 @@
+{
+  "name": "goldfinch",
+  "version": "1.0.0",
+  "description": "Goldfinch — A React component library built on Base UI and Tailwind CSS v4",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Cátia Rodrigues",
+  "license": "ISC",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^11.5.2",
+      "onFail": "download"
+    }
+  },
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^25.9.3",
+    "oxlint": "^1.70.0",
+    "prettier": "^3.8.4",
+    "prettier-plugin-tailwindcss": "^0.8.0",
+    "typescript": "^6.0.3"
+  }
+}
