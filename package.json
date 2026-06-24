@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "Goldfinch — A React component library built on Base UI and Tailwind CSS v4",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "pnpm --filter @catiarodrigues/goldfinch-docs-astro dev",
+    "build": "pnpm --filter @catiarodrigues/goldfinch build",
+    "build:docs": "pnpm --filter @catiarodrigues/goldfinch-docs-astro build",
+    "typecheck": "pnpm --filter @catiarodrigues/goldfinch typecheck"
   },
   "keywords": [],
   "author": "Cátia Rodrigues",

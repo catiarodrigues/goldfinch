@@ -1,0 +1,9 @@
+---
+import DocLayout from "./DocLayout.astro";
+const { frontmatter } = Astro.props;
+---
+
+<DocLayout>
+  <slot name="head" slot="head" />
+  <slot />
+</DocLayout>

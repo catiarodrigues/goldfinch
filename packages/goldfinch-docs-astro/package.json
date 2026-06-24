@@ -1,0 +1,30 @@
+{
+  "name": "@catiarodrigues/goldfinch-docs-astro",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.3.14",
+    "@astrojs/react": "^4.2.1",
+    "@astrojs/sitemap": "^3.7.0",
+    "@catiarodrigues/goldfinch": "workspace:*",
+    "@phosphor-icons/react": "^2.1.10",
+    "astro": "^5.18.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.1",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "tailwindcss": "^4.3.1",
+    "typescript": "^6.0.3"
+  }
+}

@@ -4,7 +4,7 @@
   "description": "Goldfinch - A React component library built on Base UI and Tailwind CSS v4",
   "scripts": {
     "test": "vitest run",
-    "build": "vite build",
+    "build": "vite build && node scripts/copy-css.mjs",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "typecheck": "tsc --noEmit"
@@ -18,170 +18,170 @@
   "author": "Cátia Rodrigues",
   "license": "ISC",
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
   "types": "./dist/src/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/src/index.d.ts",
-      "import": "./dist/index.js"
+      "import": "./dist/index.mjs"
     },
     "./styles": "./dist/styles/index.css",
     "./utils": {
       "types": "./dist/src/utils/cn.d.ts",
-      "import": "./dist/utils.js"
+      "import": "./dist/utils.mjs"
     },
     "./components/autocomplete": {
       "types": "./dist/src/components/autocomplete/index.d.ts",
-      "import": "./dist/components/autocomplete.js"
+      "import": "./dist/components/autocomplete.mjs"
     },
     "./components/badge": {
       "types": "./dist/src/components/badge/index.d.ts",
-      "import": "./dist/components/badge.js"
+      "import": "./dist/components/badge.mjs"
     },
     "./components/banner": {
       "types": "./dist/src/components/banner/index.d.ts",
-      "import": "./dist/components/banner.js"
+      "import": "./dist/components/banner.mjs"
     },
     "./components/breadcrumbs": {
       "types": "./dist/src/components/breadcrumbs/index.d.ts",
-      "import": "./dist/components/breadcrumbs.js"
+      "import": "./dist/components/breadcrumbs.mjs"
     },
     "./components/button": {
       "types": "./dist/src/components/button/index.d.ts",
-      "import": "./dist/components/button.js"
+      "import": "./dist/components/button.mjs"
     },
     "./components/checkbox": {
       "types": "./dist/src/components/checkbox/index.d.ts",
-      "import": "./dist/components/checkbox.js"
+      "import": "./dist/components/checkbox.mjs"
     },
     "./components/clipboard-text": {
       "types": "./dist/src/components/clipboard-text/index.d.ts",
-      "import": "./dist/components/clipboard-text.js"
+      "import": "./dist/components/clipboard-text.mjs"
     },
     "./components/collapsible": {
       "types": "./dist/src/components/collapsible/index.d.ts",
-      "import": "./dist/components/collapsible.js"
+      "import": "./dist/components/collapsible.mjs"
     },
     "./components/combobox": {
       "types": "./dist/src/components/combobox/index.d.ts",
-      "import": "./dist/components/combobox.js"
+      "import": "./dist/components/combobox.mjs"
     },
     "./components/dialog": {
       "types": "./dist/src/components/dialog/index.d.ts",
-      "import": "./dist/components/dialog.js"
+      "import": "./dist/components/dialog.mjs"
     },
     "./components/dropdown": {
       "types": "./dist/src/components/dropdown/index.d.ts",
-      "import": "./dist/components/dropdown.js"
+      "import": "./dist/components/dropdown.mjs"
     },
     "./components/empty": {
       "types": "./dist/src/components/empty/index.d.ts",
-      "import": "./dist/components/empty.js"
+      "import": "./dist/components/empty.mjs"
     },
     "./components/field": {
       "types": "./dist/src/components/field/index.d.ts",
-      "import": "./dist/components/field.js"
+      "import": "./dist/components/field.mjs"
     },
     "./components/flow": {
       "types": "./dist/src/components/flow/index.d.ts",
-      "import": "./dist/components/flow.js"
+      "import": "./dist/components/flow.mjs"
     },
     "./components/grid": {
       "types": "./dist/src/components/grid/index.d.ts",
-      "import": "./dist/components/grid.js"
+      "import": "./dist/components/grid.mjs"
     },
     "./components/input": {
       "types": "./dist/src/components/input/index.d.ts",
-      "import": "./dist/components/input.js"
+      "import": "./dist/components/input.mjs"
     },
     "./components/input-group": {
       "types": "./dist/src/components/input-group/index.d.ts",
-      "import": "./dist/components/input-group.js"
+      "import": "./dist/components/input-group.mjs"
     },
     "./components/label": {
       "types": "./dist/src/components/label/index.d.ts",
-      "import": "./dist/components/label.js"
+      "import": "./dist/components/label.mjs"
     },
     "./components/layer-card": {
       "types": "./dist/src/components/layer-card/index.d.ts",
-      "import": "./dist/components/layer-card.js"
+      "import": "./dist/components/layer-card.mjs"
     },
     "./components/link": {
       "types": "./dist/src/components/link/index.d.ts",
-      "import": "./dist/components/link.js"
+      "import": "./dist/components/link.mjs"
     },
     "./components/loader": {
       "types": "./dist/src/components/loader/index.d.ts",
-      "import": "./dist/components/loader.js"
+      "import": "./dist/components/loader.mjs"
     },
     "./components/menubar": {
       "types": "./dist/src/components/menubar/index.d.ts",
-      "import": "./dist/components/menubar.js"
+      "import": "./dist/components/menubar.mjs"
     },
     "./components/meter": {
       "types": "./dist/src/components/meter/index.d.ts",
-      "import": "./dist/components/meter.js"
+      "import": "./dist/components/meter.mjs"
     },
     "./components/pagination": {
       "types": "./dist/src/components/pagination/index.d.ts",
-      "import": "./dist/components/pagination.js"
+      "import": "./dist/components/pagination.mjs"
     },
     "./components/popover": {
       "types": "./dist/src/components/popover/index.d.ts",
-      "import": "./dist/components/popover.js"
+      "import": "./dist/components/popover.mjs"
     },
     "./components/radio": {
       "types": "./dist/src/components/radio/index.d.ts",
-      "import": "./dist/components/radio.js"
+      "import": "./dist/components/radio.mjs"
     },
     "./components/select": {
       "types": "./dist/src/components/select/index.d.ts",
-      "import": "./dist/components/select.js"
+      "import": "./dist/components/select.mjs"
     },
     "./components/sensitive-input": {
       "types": "./dist/src/components/sensitive-input/index.d.ts",
-      "import": "./dist/components/sensitive-input.js"
+      "import": "./dist/components/sensitive-input.mjs"
     },
     "./components/sidebar": {
       "types": "./dist/src/components/sidebar/index.d.ts",
-      "import": "./dist/components/sidebar.js"
+      "import": "./dist/components/sidebar.mjs"
     },
     "./components/surface": {
       "types": "./dist/src/components/surface/index.d.ts",
-      "import": "./dist/components/surface.js"
+      "import": "./dist/components/surface.mjs"
     },
     "./components/switch": {
       "types": "./dist/src/components/switch/index.d.ts",
-      "import": "./dist/components/switch.js"
+      "import": "./dist/components/switch.mjs"
     },
     "./components/table": {
       "types": "./dist/src/components/table/index.d.ts",
-      "import": "./dist/components/table.js"
+      "import": "./dist/components/table.mjs"
     },
     "./components/table-of-contents": {
       "types": "./dist/src/components/table-of-contents/index.d.ts",
-      "import": "./dist/components/table-of-contents.js"
+      "import": "./dist/components/table-of-contents.mjs"
     },
     "./components/tabs": {
       "types": "./dist/src/components/tabs/index.d.ts",
-      "import": "./dist/components/tabs.js"
+      "import": "./dist/components/tabs.mjs"
     },
     "./components/text": {
       "types": "./dist/src/components/text/index.d.ts",
-      "import": "./dist/components/text.js"
+      "import": "./dist/components/text.mjs"
     },
     "./components/toast": {
       "types": "./dist/src/components/toast/index.d.ts",
-      "import": "./dist/components/toast.js"
+      "import": "./dist/components/toast.mjs"
     },
     "./components/toolbar": {
       "types": "./dist/src/components/toolbar/index.d.ts",
-      "import": "./dist/components/toolbar.js"
+      "import": "./dist/components/toolbar.mjs"
     },
     "./components/tooltip": {
       "types": "./dist/src/components/tooltip/index.d.ts",
-      "import": "./dist/components/tooltip.js"
+      "import": "./dist/components/tooltip.mjs"
     }
   },
   "files": [
