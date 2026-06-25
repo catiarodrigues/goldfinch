@@ -1,5 +1,5 @@
 import { Select as SelectBase } from "@base-ui/react/select";
-import { CaretUpDownIcon, CheckIcon } from "@phosphor-icons/react";
+import { CaretUpDownIcon } from "@phosphor-icons/react";
 import { forwardRef, useId } from "react";
 import type { ReactNode } from "react";
 import { cn } from "../../utils/cn";
@@ -42,7 +42,6 @@ export const GOLDFINCH_SELECT_STYLING = {
   },
   icons: {
     caret: { name: "ph-caret-up-down", size: 20 },
-    check: { name: "ph-check", size: 20 },
   },
   popup: {
     background: "bg-goldfinch-elevated",
@@ -585,17 +584,14 @@ function Option<T>({ children, value, disabled, className }: OptionProps<T>) {
       value={value}
       disabled={disabled}
       className={cn(
-        "group mx-1.5 flex cursor-pointer items-center justify-between gap-2 rounded px-2 py-1.5 text-base outline-none",
+        "group mx-1.5 flex cursor-pointer items-center gap-2 rounded px-2 py-1.5 text-base outline-none",
         "focus-visible:z-50 focus-visible:ring-2 focus-visible:ring-goldfinch-brand focus-visible:ring-inset",
-        "data-highlighted:bg-goldfinch-tint",
+        "data-highlighted:bg-goldfinch-tint data-[selected]:bg-goldfinch-tint",
         "data-[disabled]:pointer-events-none data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50",
         className,
       )}
     >
       <SelectBase.ItemText>{children}</SelectBase.ItemText>
-      <SelectBase.ItemIndicator>
-        <CheckIcon />
-      </SelectBase.ItemIndicator>
     </SelectBase.Item>
   );
 }

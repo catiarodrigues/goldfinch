@@ -9,8 +9,6 @@ import {
 } from "../../utils/portal-provider";
 import {
   CaretRightIcon as CaretRight,
-  CheckIcon,
-  CheckIcon as Check,
   type Icon,
 } from "@phosphor-icons/react";
 
@@ -180,20 +178,15 @@ const DropdownMenuItem = React.forwardRef<
   ) => {
     const LinkComponent = useLinkComponent();
 
-    // Build the inner content with icon, children, and selected indicator
+    // Build the inner content with icon and children
     const innerContent = React.useMemo(
       () => (
         <>
           {IconComponent && renderIconNode(IconComponent)}
           {children}
-          {selected && (
-            <span className="inline-flex">
-              <Check />
-            </span>
-          )}
         </>
       ),
-      [IconComponent, children, selected],
+      [IconComponent, children],
     );
 
     // Legacy href support (deprecated)
@@ -243,6 +236,7 @@ const DropdownMenuItem = React.forwardRef<
         data-goldfinch-part="item"
         className={cn(
           "relative flex cursor-default items-center rounded-md px-2 py-1.5 text-base outline-hidden select-none focus:text-goldfinch-default focus:ring-goldfinch-focus/50 focus-visible:ring-2 focus-visible:ring-goldfinch-brand data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-goldfinch-overlay",
+          selected && "bg-goldfinch-tint",
           inset && "pl-8",
           dropdownVariants({ variant }),
           className,
@@ -340,9 +334,7 @@ const DropdownMenuCheckboxItem = React.forwardRef<
     checked={checked}
     {...props}
   >
-    <DropdownMenuPrimitive.CheckboxItemIndicator className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center text-inherit">
-      <CheckIcon weight="bold" size={12} />
-    </DropdownMenuPrimitive.CheckboxItemIndicator>
+      <DropdownMenuPrimitive.CheckboxItemIndicator className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center bg-goldfinch-contrast rounded-sm" />
     {children}
   </DropdownMenuPrimitive.CheckboxItem>
 ));
@@ -425,10 +417,10 @@ const DropdownMenuRadioItemIndicator = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <DropdownMenuPrimitive.RadioItemIndicator
     ref={ref}
-    className={cn("ml-auto", className)}
+    className={cn("ml-auto flex items-center justify-center", className)}
     {...props}
   >
-    {children ?? <Check className="h-4 w-4" />}
+    {children ?? <span className="h-2 w-2 rounded-full bg-goldfinch-contrast" />}
   </DropdownMenuPrimitive.RadioItemIndicator>
 ));
 DropdownMenuRadioItemIndicator.displayName = "DropdownMenuRadioItemIndicator";
