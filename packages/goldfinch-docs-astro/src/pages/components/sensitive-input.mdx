@@ -1,0 +1,71 @@
+---
+title: Sensitive Input
+description: Masked input with a toggle to reveal secrets.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import LiveSensitiveInput from "../../components/demos/LiveSensitiveInput.astro";
+
+Collect API keys, tokens, and other secrets with the value masked by default and a toggle to reveal it on demand.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { SensitiveInput } from "@catiarodrigues/goldfinch";
+```
+
+Or as a compound sub-component:
+
+```tsx
+import { Input } from "@catiarodrigues/goldfinch";
+// Input.Sensitive is available as a sub-component
+```
+
+### Granular
+
+```tsx
+import { SensitiveInput } from "@catiarodrigues/goldfinch/components/sensitive-input";
+```
+
+## Usage
+
+```tsx
+import { SensitiveInput, Field } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  return (
+    <Field label="API Key">
+      <SensitiveInput placeholder="sk-..." aria-label="API Key" />
+    </Field>
+  );
+}
+```
+
+## Examples
+
+<LiveSensitiveInput title="Sensitive Input" />
+
+Use this component instead of a standard Input when the value should not be visible on screen by default.
+
+```tsx
+<SensitiveInput placeholder="sk-proj-..." aria-label="API Key" />
+```
+
+<Callout type="warning">
+  SensitiveInput masks the display but does not encrypt or secure the value in memory. Treat the value with appropriate security measures.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="SensitiveInput"
+  props={[
+    { name: "placeholder", type: "string", default: "—", description: "Placeholder text." },
+    { name: "disabled", type: "boolean", default: "false", description: "Disable the input." },
+    { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+  ]}
+/>

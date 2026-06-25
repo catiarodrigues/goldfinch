@@ -1,0 +1,87 @@
+---
+title: Table
+description: Structured data with compound table components.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import LiveTable from "../../components/demos/LiveTable.astro";
+
+Render tabular data using a compound component API — `Table.Header`, `Table.Head`, `Table.Body`, `Table.Row`, `Table.Cell` — with Goldfinch borders, spacing, and typography.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { Table } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { Table } from "@catiarodrigues/goldfinch/components/table";
+```
+
+## Usage
+
+```tsx
+import { Table } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  return (
+    <Table>
+      <Table.Header>
+        <Table.Row>
+          <Table.Head>Name</Table.Head>
+          <Table.Head>Role</Table.Head>
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>
+        <Table.Row>
+          <Table.Cell>Alice</Table.Cell>
+          <Table.Cell>Engineer</Table.Cell>
+        </Table.Row>
+      </Table.Body>
+    </Table>
+  );
+}
+```
+
+## Examples
+
+<LiveTable title="Table" />
+
+The compound components: `<Table.Header>` (`<thead>`), `<Table.Head>` (`<th>`), `<Table.Body>` (`<tbody>`), `<Table.Row>` (`<tr>`), and `<Table.Cell>` (`<td>`).
+
+```tsx
+<Table>
+  <Table.Header>
+    <Table.Row>
+      <Table.Head>Column</Table.Head>
+      <Table.Head>Column</Table.Head>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>Value</Table.Cell>
+      <Table.Cell>Value</Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>
+```
+
+<Callout type="info">
+  All table sub-components accept standard HTML attributes and `className` for custom styling.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="Table"
+  props={[
+    { name: "children", type: "ReactNode", default: "—", description: "Table content (Head, Body, etc.)." },
+    { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+  ]}
+/>

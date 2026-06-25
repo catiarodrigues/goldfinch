@@ -1,0 +1,81 @@
+---
+title: Modal
+description: Modal overlays for confirmations, forms, and detail views.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import { ModalDemo } from "../../components/demos/index.tsx";
+import LiveModal from "../../components/demos/LiveModal.astro";
+
+A modal overlay that captures focus and blocks page interaction until dismissed — use for confirmations, quick forms, or detail views.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { Modal } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { Modal } from "@catiarodrigues/goldfinch/components/modal";
+```
+
+## Usage
+
+```tsx
+import { Modal, Button } from "@catiarodrigues/goldfinch";
+import { useState } from "react";
+
+export default function Example() {
+  const [open, setOpen] = useState(false);
+  return (
+    <Modal.Root open={open} onOpenChange={setOpen}>
+      <Modal.Trigger>
+        <Button>Open Modal</Button>
+      </Modal.Trigger>
+      <Modal>
+        <Modal.Title>Hello</Modal.Title>
+        <Modal.Description>Modal content here.</Modal.Description>
+        <Modal.Close>
+          <Button>Close</Button>
+        </Modal.Close>
+      </Modal>
+    </Modal.Root>
+  );
+}
+```
+
+## Examples
+
+<LiveModal title="Modal" />
+
+Control the modal with `open` and `onOpenChange`. Provide a `title` for accessibility. Four sizes available: `sm`, `base`, `lg`, `xl`.
+
+```tsx
+<Modal size="sm">...</Modal>
+<Modal size="base">...</Modal>
+<Modal size="lg">...</Modal>
+<Modal size="xl">...</Modal>
+```
+
+<Callout type="warning">
+  Always provide a `title` for screen readers. The modal traps focus while open to meet accessibility standards.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="Modal"
+  props={[
+    { name: "open", type: "boolean", default: "—", description: "Controlled open state." },
+    { name: "onClose", type: "() => void", default: "—", description: "Called when the modal is dismissed." },
+    { name: "title", type: "ReactNode", default: "—", description: "Modal title." },
+    { name: "description", type: "ReactNode", default: "—", description: "Accessible description." },
+    { name: "size", type: '"sm" | "base" | "lg" | "xl"', default: '"base"', description: "Modal width." },
+  ]}
+/>

@@ -1,0 +1,66 @@
+---
+title: Popover
+description: Floating contextual panels anchored to a trigger.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import { PopoverDemo } from "../../components/demos/index.tsx";
+import LivePopover from "../../components/demos/LivePopover.astro";
+
+Display supplemental content — actions, filters, or details — in a floating panel anchored to a trigger element. Closes on click-outside or Escape.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { Popover } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { Popover } from "@catiarodrigues/goldfinch/components/popover";
+```
+
+## Usage
+
+```tsx
+import { Popover, Button } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  return (
+    <Popover content={<p className="p-2">Popover content here.</p>}>
+      <Button variant="ghost">Open</Button>
+    </Popover>
+  );
+}
+```
+
+## Examples
+
+<LivePopover title="Popover" />
+
+Pass the trigger as `children` and the floating content via the `content` prop. The popover handles positioning automatically.
+
+```tsx
+<Popover content={<div>Details go here.</div>}>
+  <Button>Trigger</Button>
+</Popover>
+```
+
+<Callout type="info">
+  Popover closes when the user clicks outside or presses Escape, making it ideal for contextual menus and tooltips.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="Popover"
+  props={[
+    { name: "content", type: "ReactNode", default: "—", description: "Popover content." },
+    { name: "children", type: "ReactNode", default: "—", description: "Trigger element." },
+  ]}
+/>

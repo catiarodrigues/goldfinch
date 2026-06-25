@@ -1,0 +1,72 @@
+---
+title: Page
+description: Max-width content container with page title, description, and breadcrumbs.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import { DemoFrame, PageDemo } from "../../components/demos/index.tsx";
+
+A centered, max-width layout wrapper with a built-in page header (title, description, breadcrumbs) — the outer shell for any page content.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { Page } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { Page } from "@catiarodrigues/goldfinch/components/page";
+```
+
+## Usage
+
+```tsx
+import { Page } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  return (
+    <Page size="base">
+      <Page.Breadcrumbs>Home / Dashboard</Page.Breadcrumbs>
+      <Page.Title>Dashboard</Page.Title>
+      <Page.Description>Overview of your project metrics.</Page.Description>
+      {/* Page content */}
+    </Page>
+  );
+}
+```
+
+## Example
+
+<DemoFrame title="Page">
+  <PageDemo />
+</DemoFrame>
+
+Choose a `size` to control the maximum width: `sm` (48rem), `base` (64rem), `lg` (80rem), or `full` (no constraint).
+
+```tsx
+<Page size="sm">Narrow content</Page>
+<Page size="base">Default width</Page>
+<Page size="lg">Wide content</Page>
+<Page size="full">Full width</Page>
+```
+
+<Callout type="info">
+  Page provides responsive padding — `px-4` on mobile, `px-6` on sm, `px-8` on lg — so content never touches the viewport edges.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="Page"
+  props={[
+    { name: "size", type: '"sm" | "base" | "lg" | "full"', default: '"base"', description: "Max-width constraint." },
+    { name: "children", type: "ReactNode", default: "—", description: "Page content." },
+    { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+  ]}
+/>

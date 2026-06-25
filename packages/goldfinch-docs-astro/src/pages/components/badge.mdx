@@ -1,0 +1,128 @@
+---
+title: Badge
+description: Compact inline labels for status, categorization, and metadata.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import { DemoFrame, BadgeSemanticVariantsDemo, BadgeColorVariantsDemo, BadgeDotDemo, BadgeInSentenceDemo, BadgeSizesDemo } from "../../components/demos/index.tsx";
+
+Displays a small label for status, categorization, or metadata.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { Badge } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { Badge } from "@catiarodrigues/goldfinch/components/badge";
+```
+
+## Usage
+
+```tsx
+import { Badge } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  return <Badge variant="secondary">New</Badge>;
+}
+```
+
+## Examples
+
+### Semantic variants
+
+<DemoFrame title="Semantic variants">
+  <BadgeSemanticVariantsDemo />
+</DemoFrame>
+
+```tsx
+<Badge variant="primary">Primary</Badge>
+<Badge variant="secondary">Secondary</Badge>
+<Badge variant="error">Error</Badge>
+<Badge variant="success">Success</Badge>
+<Badge variant="warning">Warning</Badge>
+<Badge variant="info">Info</Badge>
+<Badge variant="outline">Outline</Badge>
+<Badge variant="beta">Beta</Badge>
+```
+
+### Color variants
+
+Use these for product-specific labels where semantic colors don't fit.
+
+<DemoFrame title="Color variants">
+  <BadgeColorVariantsDemo />
+</DemoFrame>
+
+```tsx
+<Badge variant="neutral">Neutral</Badge>
+<Badge variant="red">Red</Badge>
+<Badge variant="green">Green</Badge>
+<Badge variant="orange">Orange</Badge>
+<Badge variant="teal">Teal</Badge>
+<Badge variant="blue">Blue</Badge>
+<Badge variant="purple">Purple</Badge>
+```
+
+### Dot badges
+
+Use `appearance="dot"` for a status indicator with a colored dot. Supported with `success`, `warning`, `error`, and `neutral` variants.
+
+<DemoFrame title="Dot badges">
+  <BadgeDotDemo />
+</DemoFrame>
+
+```tsx
+<Badge appearance="dot" variant="success">Healthy</Badge>
+<Badge appearance="dot" variant="warning">Warning</Badge>
+<Badge appearance="dot" variant="error">Error</Badge>
+<Badge appearance="dot" variant="neutral">Neutral</Badge>
+```
+
+### In a sentence
+
+Badges sit inline with text for labeling items in context.
+
+<DemoFrame title="In a sentence">
+  <BadgeInSentenceDemo />
+</DemoFrame>
+
+```tsx
+<p className="flex items-center gap-2">
+  Workers
+  <Badge variant="secondary">New</Badge>
+</p>
+```
+
+### Sizes
+
+Three sizes are available to fit different contexts — `sm` for tight inline placement, `md` as the default, and `lg` for standalone emphasis.
+
+<DemoFrame title="Sizes">
+  <BadgeSizesDemo />
+</DemoFrame>
+
+```tsx
+<Badge size="sm">SM</Badge>
+<Badge size="md">MD</Badge>
+<Badge size="lg">LG</Badge>
+```
+
+## API Reference
+
+<PropsTable
+  of="Badge"
+  props={[
+    { name: "variant", type: '"primary" | "secondary" | "error" | "warning" | "success" | "destructive" | "info" | "beta" | "outline" | "red" | "green" | "neutral" | "orange" | "purple" | "teal" | "teal-subtle" | "blue"', default: '"primary"', description: "Color variant. Use semantic variants (primary, success, error, etc.) for feedback; token variants (red, green, teal, etc.) for product labels." },
+    { name: "appearance", type: '"filled" | "dot"', default: '"filled"', description: "Visual appearance. `dot` adds a colored circle indicator. Only success, warning, error, and neutral show a dot." },
+    { name: "size", type: '"sm" | "md" | "lg"', default: '"md"', description: "Badge size — sm for inline, md for default, lg for standalone emphasis." },
+    { name: "className", type: "string", default: "—", description: "Additional CSS classes merged via cn()." },
+  ]}
+/>

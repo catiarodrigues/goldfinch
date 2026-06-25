@@ -1,0 +1,149 @@
+import { CheckIcon, CopyIcon } from "@phosphor-icons/react";
+import { useState } from "react";
+import { Button } from "../../components/button";
+import { cn } from "../../utils/cn";
+import { resolveVariant } from "../../utils/resolve-variant";
+
+/** EmptyState size variant definitions mapping sizes to their Tailwind classes. */
+export const GOLDFINCH_EMPTY_STATE_VARIANTS = {
+  size: {
+    sm: {
+      classes: "px-6 py-8 gap-4",
+      description: "Compact empty state for smaller containers",
+    },
+    base: {
+      classes: "px-10 py-16 gap-6",
+      description: "Default empty state size",
+    },
+    lg: {
+      classes: "px-12 py-20 gap-8",
+      description: "Large empty state for prominent placement",
+    },
+  },
+} as const;
+
+export const GOLDFINCH_EMPTY_STATE_DEFAULT_VARIANTS = {
+  size: "base",
+} as const;
+
+export type GoldfinchEmptyStateSize = keyof typeof GOLDFINCH_EMPTY_STATE_VARIANTS.size;
+
+export interface GoldfinchEmptyStateVariantsProps {
+  /**
+   * Size of the empty state container.
+   * - `"sm"` — Compact empty state for smaller containers
+   * - `"base"` — Default empty state size
+   * - `"lg"` — Large empty state for prominent placement
+   * @default "base"
+   */
+  size?: GoldfinchEmptyStateSize;
+}
+
+export function emptyStateVariants({
+  size = GOLDFINCH_EMPTY_STATE_DEFAULT_VARIANTS.size,
+}: GoldfinchEmptyStateVariantsProps = {}) {
+  return cn(
+    "flex w-full flex-col items-center rounded-xl border border-goldfinch-fill bg-goldfinch-control text-goldfinch-default",
+    resolveVariant(GOLDFINCH_EMPTY_STATE_VARIANTS.size, size, GOLDFINCH_EMPTY_STATE_DEFAULT_VARIANTS.size).classes,
+  );
+}
+
+/**
+ * Empty state component props.
+ *
+ * @example
+ * ```tsx
+ * <EmptyState
+ *   icon={<PackageIcon size={48} />}
+ *   title="No packages found"
+ *   description="Get started by installing your first package."
+ *   commandLine="npm install @catiarodrigues/goldfinch"
+ * />
+ * ```
+ */
+export interface EmptyStateProps extends GoldfinchEmptyStateVariantsProps {
+  /** Decorative icon displayed above the title (e.g. from `@phosphor-icons/react`). */
+  icon?: React.ReactNode;
+  /** Primary heading text for the empty state. */
+  title: string;
+  /** Secondary description text displayed below the title. */
+  description?: string;
+  /** Shell command displayed in a copyable code block. */
+  commandLine?: string;
+  /** Additional content (buttons, links) rendered below the description. */
+  contents?: React.ReactNode;
+  /** Additional CSS classes merged via `cn()`. */
+  className?: string;
+}
+
+/**
+ * Placeholder shown when a list, table, or page has no content to display.
+ *
+ * @example
+ * ```tsx
+ * <EmptyState title="No results found" description="Try adjusting your search." />
+ * ```
+ */
+export function EmptyState({
+  icon,
+  title,
+  description,
+  commandLine,
+  contents,
+  size = "base",
+  className,
+}: EmptyStateProps) {
+  const [emptyStateCopied, setEmptyStateCopied] = useState<boolean>(false);
+
+  return (
+    <div className={cn(emptyStateVariants({ size }), className)}>
+      {icon}
+      <h2 className="text-2xl font-semibold">{title}</h2>
+
+      {description && (
+        <p className="max-w-140 text-center text-goldfinch-subtle">{description}</p>
+      )}
+
+      {commandLine && (
+        <div
+          className={cn(
+            "group/cmd relative inline-flex h-10 max-w-8/10 transform-gpu items-center gap-2 rounded-lg font-mono shadow-sm",
+            "bg-goldfinch-overlay pr-2 pl-3",
+            "transition-all duration-300 hover:border-goldfinch-interact/80 hover:shadow-md",
+            "border border-goldfinch-fill/60",
+          )}
+        >
+          <span className="text-xs text-goldfinch-inactive select-none">$</span>
+          <span className="no-scrollbar overflow-scroll text-base whitespace-nowrap text-goldfinch-brand">
+            {commandLine}
+          </span>
+          <Button
+            className="group"
+            size="sm"
+            variant="ghost"
+            shape="square"
+            aria-label="Copy command"
+            onClick={async () => {
+              setEmptyStateCopied(true);
+              setTimeout(() => {
+                setEmptyStateCopied(false);
+              }, 1000);
+              await navigator.clipboard.writeText(commandLine);
+            }}
+          >
+            {emptyStateCopied ? (
+              <CheckIcon size={16} className="animate-bounce-in text-goldfinch-success" />
+            ) : (
+              <CopyIcon
+                size={16}
+                className="text-goldfinch-inactive group-hover:text-goldfinch-brand"
+              />
+            )}
+          </Button>
+        </div>
+      )}
+
+      {contents}
+    </div>
+  );
+}

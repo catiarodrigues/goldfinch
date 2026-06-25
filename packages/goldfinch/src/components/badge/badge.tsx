@@ -4,7 +4,7 @@ import { resolveVariant } from "../../utils/resolve-variant";
 
 /** Base styles applied to all badge variants. */
 export const GOLDFINCH_BADGE_BASE_STYLES =
-  "inline-flex w-fit flex-none shrink-0 items-center justify-self-start rounded-full px-2 py-0.5 text-xs font-medium whitespace-nowrap";
+  "inline-flex w-fit flex-none shrink-0 items-center justify-self-start rounded-full font-medium whitespace-nowrap";
 
 /** Badge variant definitions mapping variant names to their Tailwind classes and descriptions. */
 export const GOLDFINCH_BADGE_VARIANTS = {
@@ -94,6 +94,20 @@ export const GOLDFINCH_BADGE_VARIANTS = {
       description: "Outlined badge with a colored circle dot indicating status",
     },
   },
+  size: {
+    sm: {
+      classes: "text-xs px-1.5 py-0.5",
+      description: "Small badge",
+    },
+    md: {
+      classes: "text-sm px-2.5 py-0.5",
+      description: "Medium badge (default)",
+    },
+    lg: {
+      classes: "text-base px-3 py-1",
+      description: "Large badge",
+    },
+  },
   dotColor: {
     none: {
       classes: "",
@@ -121,22 +135,26 @@ export const GOLDFINCH_BADGE_VARIANTS = {
 export const GOLDFINCH_BADGE_DEFAULT_VARIANTS = {
   variant: "primary",
   appearance: "filled",
+  size: "md",
   dotColor: "none",
 } as const;
 
 // Derived types from GOLDFINCH_BADGE_VARIANTS
 export type GoldfinchBadgeVariant = keyof typeof GOLDFINCH_BADGE_VARIANTS.variant;
 export type GoldfinchBadgeAppearance = keyof typeof GOLDFINCH_BADGE_VARIANTS.appearance;
+export type GoldfinchBadgeSize = keyof typeof GOLDFINCH_BADGE_VARIANTS.size;
 export type GoldfinchBadgeDotColor = keyof typeof GOLDFINCH_BADGE_VARIANTS.dotColor;
 
 export interface GoldfinchBadgeVariantsProps {
   variant?: GoldfinchBadgeVariant;
   appearance?: GoldfinchBadgeAppearance;
+  size?: GoldfinchBadgeSize;
 }
 
 export function badgeVariants({
   variant = GOLDFINCH_BADGE_DEFAULT_VARIANTS.variant,
   appearance = GOLDFINCH_BADGE_DEFAULT_VARIANTS.appearance,
+  size = GOLDFINCH_BADGE_DEFAULT_VARIANTS.size,
 }: GoldfinchBadgeVariantsProps = {}) {
   const variantClasses = resolveVariant(
     GOLDFINCH_BADGE_VARIANTS.variant,
@@ -148,6 +166,11 @@ export function badgeVariants({
     appearance,
     GOLDFINCH_BADGE_DEFAULT_VARIANTS.appearance,
   ).classes;
+  const sizeClasses = resolveVariant(
+    GOLDFINCH_BADGE_VARIANTS.size,
+    size,
+    GOLDFINCH_BADGE_DEFAULT_VARIANTS.size,
+  ).classes;
   return cn(
     // Base styles (exported as GOLDFINCH_BADGE_BASE_STYLES for Figma plugin)
     GOLDFINCH_BADGE_BASE_STYLES,
@@ -155,6 +178,7 @@ export function badgeVariants({
     // so only apply variant classes when we're not in dot mode.
     appearance === "dot" ? "" : variantClasses,
     appearanceClasses,
+    sizeClasses,
   );
 }
 
@@ -201,6 +225,14 @@ export interface BadgeProps {
    * @default "filled"
    */
   appearance?: GoldfinchBadgeAppearance;
+  /**
+   * Size of the badge.
+   * - `"sm"` — Extra small, ideal for inline placement near text or icons
+   * - `"md"` — Default medium size
+   * - `"lg"` — Large badge for standalone display
+   * @default "md"
+   */
+  size?: GoldfinchBadgeSize;
   /** Additional CSS classes merged via `cn()`. */
   className?: string;
   /** Content rendered inside the badge. */
@@ -219,6 +251,7 @@ export interface BadgeProps {
 export function Badge({
   variant = GOLDFINCH_BADGE_DEFAULT_VARIANTS.variant,
   appearance = GOLDFINCH_BADGE_DEFAULT_VARIANTS.appearance,
+  size = GOLDFINCH_BADGE_DEFAULT_VARIANTS.size,
   className,
   children,
 }: BadgeProps) {
@@ -234,7 +267,7 @@ export function Badge({
       : "";
 
   return (
-    <span className={cn(badgeVariants({ variant, appearance }), className)}>
+    <span className={cn(badgeVariants({ variant, appearance, size }), className)}>
       {dotColor ? (
         <span
           aria-hidden="true"

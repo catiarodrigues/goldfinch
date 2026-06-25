@@ -14,9 +14,9 @@
   --color-goldfinch-fill: light-dark(#e5e5e5, #333333);
   --color-goldfinch-fill-hover: light-dark(#d9d9d9, #444444);
 
-  /* Brand colors - violet */
-  --color-goldfinch-brand: light-dark(#7c3aed, #a855f7);
-  --color-goldfinch-brand-hover: light-dark(#6d28d9, #c084fc);
+  /* Brand colors */
+  --color-goldfinch-brand: light-dark(#18181b, #f4f4f5);
+  --color-goldfinch-brand-hover: light-dark(#27272a, #ffffff);
 
   /* Borders */
   --color-goldfinch-line: light-dark(oklch(0% 0 0 / 0.1), oklch(100% 0 0 / 0.15));
@@ -38,7 +38,7 @@
   --text-color-goldfinch-subtle: light-dark(#666666, #999999);
   --text-color-goldfinch-inactive: light-dark(#bfbfbf, #555555);
   --text-color-goldfinch-placeholder: light-dark(#999999, #666666);
-  --text-color-goldfinch-brand: light-dark(#7c3aed, #a855f7);
+  --text-color-goldfinch-brand: light-dark(#18181b, #f4f4f5);
   --text-color-goldfinch-link: light-dark(#1a1a1a, #cccccc);
   --text-color-goldfinch-info: light-dark(#1e40af, #93c5fd);
   --text-color-goldfinch-success: light-dark(#15803d, #86efac);
@@ -95,8 +95,8 @@
     --color-goldfinch-interact: #d4d4d4;
     --color-goldfinch-fill: #e5e5e5;
     --color-goldfinch-fill-hover: #d9d9d9;
-    --color-goldfinch-brand: #7c3aed;
-    --color-goldfinch-brand-hover: #6d28d9;
+    --color-goldfinch-brand: #18181b;
+    --color-goldfinch-brand-hover: #27272a;
     --color-goldfinch-line: oklch(0% 0 0 / 0.1);
     --color-goldfinch-hairline: #e5e5e5;
     --color-goldfinch-shadow-edge: oklch(0% 0 0 / 0.12);
@@ -110,7 +110,7 @@
     --text-color-goldfinch-subtle: #666666;
     --text-color-goldfinch-inactive: #bfbfbf;
     --text-color-goldfinch-placeholder: #999999;
-    --text-color-goldfinch-brand: #7c3aed;
+    --text-color-goldfinch-brand: #18181b;
     --text-color-goldfinch-link: #1a1a1a;
     --text-color-goldfinch-badge-inverted: #ffffff;
     --text-color-goldfinch-badge-neutral-subtle: #333333;
@@ -156,8 +156,8 @@
     --color-goldfinch-interact: #555555;
     --color-goldfinch-fill: #333333;
     --color-goldfinch-fill-hover: #444444;
-    --color-goldfinch-brand: #a855f7;
-    --color-goldfinch-brand-hover: #c084fc;
+    --color-goldfinch-brand: #f4f4f5;
+    --color-goldfinch-brand-hover: #ffffff;
     --color-goldfinch-line: oklch(100% 0 0 / 0.15);
     --color-goldfinch-hairline: #333333;
     --color-goldfinch-shadow-edge: oklch(100% 0 0 / 0.1);
@@ -171,7 +171,7 @@
     --text-color-goldfinch-subtle: #999999;
     --text-color-goldfinch-inactive: #555555;
     --text-color-goldfinch-placeholder: #666666;
-    --text-color-goldfinch-brand: #a855f7;
+    --text-color-goldfinch-brand: #f4f4f5;
     --text-color-goldfinch-link: #cccccc;
     --text-color-goldfinch-badge-inverted: #000000;
     --text-color-goldfinch-badge-neutral-subtle: #cccccc;

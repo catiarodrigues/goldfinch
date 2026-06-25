@@ -1,0 +1,69 @@
+---
+title: Field
+description: Wrap form controls with label, help text, and validation.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import { DemoFrame, FieldDemo } from "../../components/demos/index.tsx";
+
+Wrap any input-like component with a label, optional description, and validation error display for consistent form layout.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { Field, Input } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { Field } from "@catiarodrigues/goldfinch/components/field";
+```
+
+## Usage
+
+```tsx
+import { Field, Input } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  return (
+    <Field label="Email" description="We'll never share your email.">
+      <Input type="email" placeholder="you@example.com" aria-label="Email" />
+    </Field>
+  );
+}
+```
+
+## Examples
+
+<DemoFrame title="Field">
+  <FieldDemo />
+</DemoFrame>
+
+Pass the input as children and provide `label` and optional `description`. Use `error` to show validation messages.
+
+```tsx
+<Field label="Email" description="We'll never share your email.">
+  <Input type="email" placeholder="you@example.com" />
+</Field>
+```
+
+<Callout type="warning">
+  When `required` is true, an asterisk is shown next to the label for accessibility.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="Field"
+  props={[
+    { name: "label", type: "ReactNode", default: "—", description: "Field label." },
+    { name: "description", type: "ReactNode", default: "—", description: "Helper text." },
+    { name: "error", type: "string | { message: ReactNode; match: FieldErrorMatch }", default: "—", description: "Validation error." },
+    { name: "required", type: "boolean", default: "true", description: "Show required indicator." },
+  ]}
+/>

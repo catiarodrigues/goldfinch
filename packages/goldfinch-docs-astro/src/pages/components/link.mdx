@@ -1,0 +1,62 @@
+---
+title: Link
+description: Consistent inline navigation with Goldfinch styling.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import { DemoFrame, LinkDemo } from "../../components/demos/index.tsx";
+
+Style anchor elements with Goldfinch's link tokens for consistent color, underline, and hover behavior.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { Link } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { Link } from "@catiarodrigues/goldfinch/components/link";
+```
+
+## Usage
+
+```tsx
+import { Link } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  return (
+    <Link href="https://example.com" target="_blank" rel="noopener noreferrer">
+      Visit Example
+    </Link>
+  );
+}
+```
+
+## Examples
+
+<DemoFrame title="Link">
+  <LinkDemo />
+</DemoFrame>
+
+Provide an `href` and children. The component renders an `<a>` tag with Goldfinch typography and color tokens.
+
+<Callout type="info">
+  For external links, consider adding `target="_blank"` and `rel="noopener noreferrer"` for security.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="Link"
+  props={[
+    { name: "href", type: "string", default: "—", description: "The URL to navigate to." },
+    { name: "children", type: "ReactNode", default: "—", description: "Link content." },
+    { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+  ]}
+/>

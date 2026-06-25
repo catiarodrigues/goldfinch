@@ -1,10 +1,12 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import Header from "../components/Header.astro";
 ---
 
 <BaseLayout>
   <div slot="head">
     <slot name="head" />
   </div>
+  <Header />
   <slot />
 </BaseLayout>

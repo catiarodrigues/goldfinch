@@ -1,0 +1,70 @@
+---
+title: Radio
+description: Single selection from mutually exclusive options.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import LiveRadio from "../../components/demos/LiveRadio.astro";
+
+Select exactly one item from a small set of choices — grouped via shared `name` for native browser mutual exclusivity.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { Radio } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { Radio } from "@catiarodrigues/goldfinch/components/radio";
+```
+
+## Usage
+
+```tsx
+import { Radio, Field } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  const [value, setValue] = useState("option-1");
+  return (
+    <Field label="Choose one">
+      <fieldset className="flex flex-col gap-2">
+        <Radio name="group" value="option-1" checked={value === "option-1"} onChange={(e) => setValue(e.target.value)} />
+        <Radio name="group" value="option-2" checked={value === "option-2"} onChange={(e) => setValue(e.target.value)} />
+      </fieldset>
+    </Field>
+  );
+}
+```
+
+## Examples
+
+<LiveRadio title="Radio" />
+
+Each radio button gets a `value`. Use `checked` and `onChange` to manage the selected state. Group radios with the same `name`.
+
+```tsx
+<Radio name="color" value="red" checked={color === "red"} onChange={handleChange} />
+<Radio name="color" value="blue" checked={color === "blue"} onChange={handleChange} />
+```
+
+<Callout type="info">
+  Radio buttons within a group should share the same `name` attribute so the browser enforces mutual exclusivity.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="Radio"
+  props={[
+    { name: "value", type: "string", default: "—", description: "The value of the radio button." },
+    { name: "checked", type: "boolean", default: "false", description: "Checked state." },
+    { name: "onChange", type: "(e: ChangeEvent<HTMLInputElement>) => void", default: "—", description: "Change callback." },
+    { name: "disabled", type: "boolean", default: "false", description: "Disable the radio." },
+  ]}
+/>

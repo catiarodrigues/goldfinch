@@ -1,0 +1,75 @@
+---
+title: Text
+description: Typography components mapped to Goldfinch text tokens.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import { DemoFrame, TextDemo } from "../../components/demos/index.tsx";
+
+Render headings, body copy, secondary text, monospace, and semantic color variants — each variant maps to the appropriate HTML element automatically.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { Text } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { Text } from "@catiarodrigues/goldfinch/components/text";
+```
+
+## Usage
+
+```tsx
+import { Text } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  return (
+    <div>
+      <Text variant="heading1">Heading 1</Text>
+      <Text variant="body">Body copy goes here.</Text>
+      <Text variant="secondary">Secondary / muted text.</Text>
+      <Text variant="mono">npm install</Text>
+    </div>
+  );
+}
+```
+
+## Examples
+
+<DemoFrame title="Text">
+  <TextDemo />
+</DemoFrame>
+
+Choose from variants like `heading1`, `heading2`, `heading3`, `body`, `secondary`, `mono`, etc. The component renders the corresponding HTML element.
+
+```tsx
+<Text variant="heading1">Page Title</Text>
+<Text variant="heading2">Section Title</Text>
+<Text variant="body">Regular paragraph text.</Text>
+<Text variant="mono">Monospaced content</Text>
+<Text variant="success">Saved successfully</Text>
+<Text variant="error">Invalid input</Text>
+```
+
+<Callout type="info">
+  The `variant` maps to semantic HTML elements — `heading1` renders `<h1>`, `body` renders `<p>`, and `secondary` renders `<p>` with muted styling.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="Text"
+  props={[
+    { name: "variant", type: '"heading1" | "heading2" | "heading3" | "body" | "secondary" | "success" | "error" | "mono" | "mono-secondary"', default: '"body"', description: "Typography variant." },
+    { name: "size", type: '"xs" | "sm" | "base" | "lg"', default: '"base"', description: "Text size (applies to copy variants like body, secondary)." },
+    { name: "children", type: "ReactNode", default: "—", description: "Text content." },
+    { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+  ]}
+/>

@@ -1,0 +1,19 @@
+---
+import { TabsDemo } from "../demos/index.tsx";
+
+export interface Props {
+  title?: string;
+}
+const { title = "Tabs" } = Astro.props;
+---
+
+<div class="not-prose rounded-lg border border-goldfinch-hairline overflow-hidden my-6">
+  {title && (
+    <div class="px-4 py-2 border-b border-goldfinch-hairline bg-goldfinch-base">
+      <span class="text-xs font-medium text-goldfinch-subtle">{title}</span>
+    </div>
+  )}
+  <div class="p-6">
+    <TabsDemo client:load />
+  </div>
+</div>

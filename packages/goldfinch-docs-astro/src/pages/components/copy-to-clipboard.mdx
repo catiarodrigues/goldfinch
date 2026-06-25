@@ -1,0 +1,60 @@
+---
+title: Copy to Clipboard
+description: One-click copy of code snippets, tokens, and identifiers.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import { CopyToClipboardDemo } from "../../components/demos/index.tsx";
+import LiveCopyToClipboard from "../../components/demos/LiveCopyToClipboard.astro";
+
+Display a read-only value alongside a copy button — perfect for API tokens, install commands, and shareable IDs.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { CopyToClipboard } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { CopyToClipboard } from "@catiarodrigues/goldfinch/components/copy-to-clipboard";
+```
+
+## Usage
+
+```tsx
+import { CopyToClipboard } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  return <CopyToClipboard text="npm install @catiarodrigues/goldfinch" />;
+}
+```
+
+## Examples
+
+<LiveCopyToClipboard title="Copy to Clipboard" />
+
+Pass the text to copy via the `text` prop.
+
+```tsx
+<CopyToClipboard text="npm install @catiarodrigues/goldfinch" />
+```
+
+<Callout type="info">
+  Clipboard access requires a secure context (HTTPS or localhost).
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="CopyToClipboard"
+  props={[
+    { name: "text", type: "string", default: "—", description: "The text to copy to clipboard." },
+    { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+  ]}
+/>

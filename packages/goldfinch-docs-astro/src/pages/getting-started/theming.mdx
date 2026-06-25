@@ -1,0 +1,75 @@
+---
+title: Theming
+description: Override Goldfinch design tokens via CSS custom properties.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+
+Goldfinch uses **CSS custom properties** (variables) for all visual tokens. You can override any token to create your own theme.
+
+## How it works
+
+The library defines tokens at three levels:
+
+1. **`@theme`** — Tailwind CSS v4 theme tokens, used in utility classes like `bg-goldfinch-surface`
+2. **`:root`** — Light mode default values
+3. **`[data-mode="dark"]`** — Dark mode overrides
+
+## Override a token
+
+To customize a color, redeclare the variable with higher specificity:
+
+```css
+:root {
+  --color-goldfinch-brand: #2563eb;
+  --color-goldfinch-brand-hover: #1d4ed8;
+}
+```
+
+
+## Token reference
+
+Below are the main token categories. All tokens follow the naming convention `--{category}-goldfinch-{name}`.
+
+### Surface hierarchy
+
+| Token | Purpose |
+|-------|---------|
+| `--color-goldfinch-canvas` | Page background |
+| `--color-goldfinch-base` | Subtle base surface (code blocks, inputs) |
+| `--color-goldfinch-tint` | Hover/tint surface |
+| `--color-goldfinch-surface` | Elevated surface (cards, dialogs) |
+| `--color-goldfinch-elevated` | Higher elevation (popovers, dropdowns) |
+| `--color-goldfinch-control` | Control surface (fields, buttons) |
+
+### Text colors
+
+| Token | Purpose |
+|-------|---------|
+| `--text-color-goldfinch-default` | Primary text |
+| `--text-color-goldfinch-strong` | Strong/high emphasis text |
+| `--text-color-goldfinch-subtle` | Secondary/subtle text |
+| `--text-color-goldfinch-inverse` | Text on brand backgrounds |
+| `--text-color-goldfinch-link` | Link text |
+| `--text-color-goldfinch-brand` | Brand-colored text |
+
+### Brand colors
+
+| Token | Light | Dark |
+|-------|-------|------|
+| `--color-goldfinch-brand` | `#18181b` | `#f4f4f5` |
+
+| `--color-goldfinch-brand-hover` | `#27272a` | `#ffffff` |
+### Semantic feedback
+
+| Token | Uses |
+|-------|------|
+| `--color-goldfinch-info` | Informational elements |
+| `--color-goldfinch-success` | Success states |
+| `--color-goldfinch-warning` | Warning states |
+| `--color-goldfinch-danger` | Error/destructive states |
+
+<Callout type="info">
+  Goldfinch uses `light-dark()` in the `@theme` block so Tailwind utility classes automatically switch between light and dark values. The `data-mode` attribute on `<html>` controls which mode is active.
+</Callout>

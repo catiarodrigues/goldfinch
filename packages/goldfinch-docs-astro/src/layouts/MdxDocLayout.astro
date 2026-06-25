@@ -1,9 +1,19 @@
 ---
 import DocLayout from "./DocLayout.astro";
-const { frontmatter } = Astro.props;
+const { frontmatter, headings } = Astro.props;
+const title = frontmatter?.title || "Component";
+const description = frontmatter?.description || "";
 ---
 
-<DocLayout>
-  <slot name="head" slot="head" />
+<DocLayout headings={headings}>
+  <div slot="head">
+    <slot name="head" />
+  </div>
+
+  <h1 class="text-goldfinch-strong text-3xl font-bold tracking-tight">{title}</h1>
+  {description && (
+    <p class="lead mb-8">{description}</p>
+  )}
+
   <slot />
 </DocLayout>

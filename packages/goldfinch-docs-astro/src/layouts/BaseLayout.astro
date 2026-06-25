@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import { ViewTransitions } from "astro:transitions";
 ---
 
 <!doctype html>
@@ -8,10 +9,26 @@ import "../styles/global.css";
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
+    <ViewTransitions />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <slot name="head" />
+
+    <script>
+      (function() {
+        var stored = localStorage.getItem('goldfinch-theme');
+        if (stored === 'light' || stored === 'dark') {
+          document.documentElement.dataset.mode = stored;
+        } else {
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          document.documentElement.dataset.mode = prefersDark ? 'dark' : 'light';
+        }
+      })();
+    </script>
   </head>
-  <body>
+  <body class="bg-goldfinch-canvas text-goldfinch-default antialiased">
     <slot />
   </body>
 </html>

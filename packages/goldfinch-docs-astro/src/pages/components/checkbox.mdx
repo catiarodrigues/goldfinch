@@ -1,0 +1,63 @@
+---
+title: Checkbox
+description: Multi-select with binary and indeterminate states.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import LiveCheckbox from "../../components/demos/LiveCheckbox.astro";
+
+Toggle individual items on or off in multi-select forms with support for an indeterminate "some selected" state.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { Checkbox } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { Checkbox } from "@catiarodrigues/goldfinch/components/checkbox";
+```
+
+## Usage
+
+```tsx
+import { Checkbox } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  return <Checkbox defaultChecked aria-label="Accept terms" />;
+}
+```
+
+## Examples
+
+<LiveCheckbox title="Checkbox" />
+
+Use `checked` and `onCheckedChange` for controlled mode, or `defaultChecked` for uncontrolled mode.
+
+```tsx
+<Checkbox defaultChecked aria-label="Accept terms" />
+<Checkbox indeterminate aria-label="Some selected" />
+```
+
+<Callout type="info">
+  The indeterminate state is visual only — the checkbox does not fire a change event when toggled from indeterminate.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="Checkbox"
+  props={[
+    { name: "defaultChecked", type: "boolean", default: "false", description: "Initial checked state." },
+    { name: "checked", type: "boolean", default: "—", description: "Controlled checked state." },
+    { name: "onCheckedChange", type: "(checked: boolean) => void", default: "—", description: "Change callback." },
+    { name: "disabled", type: "boolean", default: "false", description: "Disable the checkbox." },
+    { name: "indeterminate", type: "boolean", default: "false", description: "Show an indeterminate state." },
+  ]}
+/>

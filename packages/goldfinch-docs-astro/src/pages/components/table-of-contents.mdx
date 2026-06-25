@@ -1,0 +1,80 @@
+---
+title: Table of Contents
+description: Navigable page outline with compound sub-components.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import { DemoFrame, TableOfContentsDemo } from "../../components/demos/index.tsx";
+
+Build a navigable outline of page sections using compound sub-components — `Title`, `List`, `Item`, and `Group` for hierarchical structure.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { TableOfContents } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { TableOfContents } from "@catiarodrigues/goldfinch/components/table-of-contents";
+```
+
+## Usage
+
+```tsx
+import { TableOfContents } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  return (
+    <TableOfContents>
+      <TableOfContents.Title>On this page</TableOfContents.Title>
+      <TableOfContents.List>
+        <TableOfContents.Item>
+          <a href="#installation">Installation</a>
+        </TableOfContents.Item>
+        <TableOfContents.Group>
+          <TableOfContents.Item>
+            <a href="#usage">Usage</a>
+          </TableOfContents.Item>
+        </TableOfContents.Group>
+      </TableOfContents.List>
+    </TableOfContents>
+  );
+}
+```
+
+## Examples
+
+<DemoFrame title="Table of Contents">
+  <TableOfContentsDemo />
+</DemoFrame>
+
+Compose the table of contents using `TableOfContents.Title`, `.List`, `.Item`, and `.Group` sub-components.
+
+```tsx
+<TableOfContents>
+  <TableOfContents.Title>Contents</TableOfContents.Title>
+  <TableOfContents.List>
+    <TableOfContents.Item><a href="#section-1">Section 1</a></TableOfContents.Item>
+    <TableOfContents.Item><a href="#section-2">Section 2</a></TableOfContents.Item>
+  </TableOfContents.List>
+</TableOfContents>
+```
+
+<Callout type="info">
+  TableOfContents is a compound component — you build the outline structure using its exported sub-components.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="TableOfContents"
+  props={[
+    { name: "children", type: "ReactNode", default: "—", description: "TableOfContents.Title, .List, .Item, .Group components." },
+  ]}
+/>

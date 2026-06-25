@@ -1,0 +1,63 @@
+---
+title: Menubar
+description: Horizontal bar of icon buttons with tooltips.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import { DemoFrame, MenubarDemo } from "../../components/demos/index.tsx";
+
+A horizontal navigation bar of icon buttons with tooltips — familiar for desktop-style toolbar interfaces.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { MenuBar } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { MenuBar } from "@catiarodrigues/goldfinch/components/menubar";
+```
+
+## Usage
+
+```tsx
+import { MenuBar } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  const items = [
+    { icon: <BoldIcon />, tooltip: "Bold", onClick: () => {} },
+    { icon: <ItalicIcon />, tooltip: "Italic", onClick: () => {} },
+  ];
+  return <MenuBar options={items} isActive={1} />;
+}
+```
+
+## Examples
+
+<DemoFrame title="Menubar">
+  <MenubarDemo />
+</DemoFrame>
+
+Provide an `options` array where each item has an `icon`, `tooltip`, and `onClick` handler. Use `isActive` to highlight the current selection.
+
+<Callout type="info">
+  Menubar supports keyboard navigation with arrow keys between options.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="Menubar"
+  props={[
+    { name: "options", type: "MenuOptionProps[]", default: "—", description: "Array of icon button configs." },
+    { name: "isActive", type: "number | boolean | string", default: "—", description: "Currently active value." },
+    { name: "optionIds", type: "boolean", default: "false", description: "Match by option.id instead of index." },
+    { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+  ]}
+/>

@@ -1,0 +1,83 @@
+---
+title: Toggle
+description: Binary on/off switch for settings and preferences.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import LiveToggle from "../../components/demos/LiveToggle.astro";
+
+Switch a binary setting between on and off with an animated thumb. Supports both controlled and uncontrolled usage.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { Toggle } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { Toggle } from "@catiarodrigues/goldfinch/components/toggle";
+```
+
+## Usage
+
+```tsx
+import { Toggle, Field } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  const [enabled, setEnabled] = useState(false);
+  return (
+    <Toggle
+      label="Enable notifications"
+      checked={enabled}
+      onCheckedChange={setEnabled}
+    />
+  );
+}
+```
+
+## Examples
+
+<LiveToggle title="Toggle" />
+
+Use `checked` and `onCheckedChange` for controlled mode, or `defaultChecked` for uncontrolled mode. The toggle animates between states.
+
+```tsx
+<Toggle label="Dark mode" defaultChecked />
+<Toggle label="Notifications" checked={notif} onCheckedChange={setNotif} />
+```
+
+Compound sub-components are also available for grouped toggles:
+- **`Toggle.Item`** — a labeled toggle inside a group
+- **`Toggle.Group`** — wraps multiple toggles with a legend
+- **`Toggle.Legend`** — accessible legend for a toggle group
+
+```tsx
+<Toggle.Group legend="Preferences">
+  <Toggle.Item label="Email notifications" />
+  <Toggle.Item label="SMS notifications" />
+</Toggle.Group>
+```
+
+<Callout type="info">
+  Always pair a Toggle with a visible label so users understand what setting it controls.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="Toggle"
+  props={[
+    { name: "defaultChecked", type: "boolean", default: "false", description: "Initial state." },
+    { name: "checked", type: "boolean", default: "—", description: "Controlled checked state." },
+    { name: "onCheckedChange", type: "(checked: boolean) => void", default: "—", description: "Change callback." },
+    { name: "disabled", type: "boolean", default: "false", description: "Disable the toggle." },
+    { name: "size", type: '"sm" | "base" | "lg"', default: '"base"', description: "Toggle size." },
+    { name: "variant", type: '"default" | "neutral"', default: '"default"', description: "Visual variant." },
+  ]}
+/>

@@ -31,17 +31,13 @@
       "types": "./dist/src/utils/cn.d.ts",
       "import": "./dist/utils.mjs"
     },
-    "./components/autocomplete": {
-      "types": "./dist/src/components/autocomplete/index.d.ts",
-      "import": "./dist/components/autocomplete.mjs"
-    },
     "./components/badge": {
       "types": "./dist/src/components/badge/index.d.ts",
       "import": "./dist/components/badge.mjs"
     },
-    "./components/banner": {
-      "types": "./dist/src/components/banner/index.d.ts",
-      "import": "./dist/components/banner.mjs"
+    "./components/alert": {
+      "types": "./dist/src/components/alert/index.d.ts",
+      "import": "./dist/components/alert.mjs"
     },
     "./components/breadcrumbs": {
       "types": "./dist/src/components/breadcrumbs/index.d.ts",
@@ -55,41 +51,37 @@
       "types": "./dist/src/components/checkbox/index.d.ts",
       "import": "./dist/components/checkbox.mjs"
     },
-    "./components/clipboard-text": {
-      "types": "./dist/src/components/clipboard-text/index.d.ts",
-      "import": "./dist/components/clipboard-text.mjs"
+    "./components/copy-to-clipboard": {
+      "types": "./dist/src/components/copy-to-clipboard/index.d.ts",
+      "import": "./dist/components/copy-to-clipboard.mjs"
     },
     "./components/collapsible": {
       "types": "./dist/src/components/collapsible/index.d.ts",
       "import": "./dist/components/collapsible.mjs"
     },
-    "./components/combobox": {
-      "types": "./dist/src/components/combobox/index.d.ts",
-      "import": "./dist/components/combobox.mjs"
-    },
-    "./components/dialog": {
-      "types": "./dist/src/components/dialog/index.d.ts",
-      "import": "./dist/components/dialog.mjs"
+    "./components/modal": {
+      "types": "./dist/src/components/modal/index.d.ts",
+      "import": "./dist/components/modal.mjs"
     },
     "./components/dropdown": {
       "types": "./dist/src/components/dropdown/index.d.ts",
       "import": "./dist/components/dropdown.mjs"
     },
-    "./components/empty": {
-      "types": "./dist/src/components/empty/index.d.ts",
-      "import": "./dist/components/empty.mjs"
+    "./components/empty-state": {
+      "types": "./dist/src/components/empty-state/index.d.ts",
+      "import": "./dist/components/empty-state.mjs"
     },
     "./components/field": {
       "types": "./dist/src/components/field/index.d.ts",
       "import": "./dist/components/field.mjs"
     },
-    "./components/flow": {
-      "types": "./dist/src/components/flow/index.d.ts",
-      "import": "./dist/components/flow.mjs"
-    },
     "./components/grid": {
       "types": "./dist/src/components/grid/index.d.ts",
       "import": "./dist/components/grid.mjs"
+    },
+    "./components/top-navigation": {
+      "types": "./dist/src/components/top-navigation/index.d.ts",
+      "import": "./dist/components/top-navigation.mjs"
     },
     "./components/input": {
       "types": "./dist/src/components/input/index.d.ts",
@@ -103,25 +95,29 @@
       "types": "./dist/src/components/label/index.d.ts",
       "import": "./dist/components/label.mjs"
     },
-    "./components/layer-card": {
-      "types": "./dist/src/components/layer-card/index.d.ts",
-      "import": "./dist/components/layer-card.mjs"
+    "./components/page": {
+      "types": "./dist/src/components/page/index.d.ts",
+      "import": "./dist/components/page.mjs"
+    },
+    "./components/card": {
+      "types": "./dist/src/components/card/index.d.ts",
+      "import": "./dist/components/card.mjs"
     },
     "./components/link": {
       "types": "./dist/src/components/link/index.d.ts",
       "import": "./dist/components/link.mjs"
     },
-    "./components/loader": {
-      "types": "./dist/src/components/loader/index.d.ts",
-      "import": "./dist/components/loader.mjs"
+    "./components/spinner": {
+      "types": "./dist/src/components/spinner/index.d.ts",
+      "import": "./dist/components/spinner.mjs"
     },
     "./components/menubar": {
       "types": "./dist/src/components/menubar/index.d.ts",
       "import": "./dist/components/menubar.mjs"
     },
-    "./components/meter": {
-      "types": "./dist/src/components/meter/index.d.ts",
-      "import": "./dist/components/meter.mjs"
+    "./components/progress": {
+      "types": "./dist/src/components/progress/index.d.ts",
+      "import": "./dist/components/progress.mjs"
     },
     "./components/pagination": {
       "types": "./dist/src/components/pagination/index.d.ts",
@@ -147,13 +143,9 @@
       "types": "./dist/src/components/sidebar/index.d.ts",
       "import": "./dist/components/sidebar.mjs"
     },
-    "./components/surface": {
-      "types": "./dist/src/components/surface/index.d.ts",
-      "import": "./dist/components/surface.mjs"
-    },
-    "./components/switch": {
-      "types": "./dist/src/components/switch/index.d.ts",
-      "import": "./dist/components/switch.mjs"
+    "./components/toggle": {
+      "types": "./dist/src/components/toggle/index.d.ts",
+      "import": "./dist/components/toggle.mjs"
     },
     "./components/table": {
       "types": "./dist/src/components/table/index.d.ts",

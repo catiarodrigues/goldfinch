@@ -1,0 +1,74 @@
+---
+title: Progress
+description: Visualize completion or measurement on a 0-100 scale.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import { DemoFrame, ProgressDemo, ProgressSizesDemo } from "../../components/demos/index.tsx";
+
+Communicate task completion or metric values with an accessible bar — fully customizable label and display value.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { Progress } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { Progress } from "@catiarodrigues/goldfinch/components/progress";
+```
+
+## Usage
+
+```tsx
+import { Progress } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  return <Progress label="Upload progress" value={65} />;
+}
+```
+
+## Examples
+
+<DemoFrame title="Progress">
+  <ProgressDemo />
+</DemoFrame>
+
+Use `value` to set the current progress (0–100). The `label` prop is required for accessibility.
+
+```tsx
+<Progress label="Upload progress" value={65} />
+<Progress label="Download progress" value={100} showValue={false} />
+```
+
+<DemoFrame title="With custom label">
+  <ProgressSizesDemo />
+</DemoFrame>
+
+Use `customValue` to override the percentage display with a custom string.
+
+```tsx
+<Progress label="Upload" value={50} customValue="Halfway there" />
+```
+
+<Callout type="warning">
+  The `label` prop is required for screen reader accessibility.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="Progress"
+  props={[
+    { name: "label", type: "string", default: "—", description: "Accessible label for the progress (required)." },
+    { name: "value", type: "number", default: "—", description: "Current value (0-100)." },
+    { name: "customValue", type: "string", default: "—", description: "Custom display text override for the value." },
+    { name: "showValue", type: "boolean", default: "true", description: "Whether to show the value label." },
+  ]}
+/>

@@ -3,6 +3,7 @@ import {
   cloneElement,
   isValidElement,
   useEffect,
+  useMemo,
   useState,
   type PropsWithChildren,
   type ReactElement,
@@ -10,7 +11,7 @@ import {
 } from "react";
 import { CheckIcon, CopyIcon } from "@phosphor-icons/react";
 import { Button } from "../../components/button";
-import { SkeletonLine } from "../../components/loader/skeleton-line";
+import { SkeletonLine } from "../../components/spinner/skeleton-line";
 import { useLinkComponent } from "../../utils/link-provider";
 import { cn } from "../../utils/cn";
 import { resolveVariant } from "../../utils/resolve-variant";
@@ -176,11 +177,18 @@ function Clipboard({ text }: { text: string }) {
   );
 }
 
+export interface BreadcrumbItem {
+  label: string;
+  href?: string;
+  icon?: React.ReactNode;
+}
+
 /**
  * Breadcrumbs component props.
  *
  * @example
  * ```tsx
+ * // With compound children
  * <Breadcrumbs>
  *   <Breadcrumbs.Link href="/">Home</Breadcrumbs.Link>
  *   <Breadcrumbs.Separator />
@@ -188,6 +196,12 @@ function Clipboard({ text }: { text: string }) {
  *   <Breadcrumbs.Separator />
  *   <Breadcrumbs.Current>Current Page</Breadcrumbs.Current>
  * </Breadcrumbs>
+ *
+ * // With items prop
+ * <Breadcrumbs items={[
+ *   { label: "Home", href: "/" },
+ *   { label: "Current" },
+ * ]} />
  * ```
  */
 export interface BreadcrumbsProps
@@ -195,6 +209,11 @@ export interface BreadcrumbsProps
     GoldfinchBreadcrumbsVariantsProps {
   /** Additional CSS classes merged via `cn()`. */
   className?: string;
+  /**
+   * Convenience array of breadcrumb items. Alternative to using compound children.
+   * The last item without an `href` is rendered as the current page.
+   */
+  items?: BreadcrumbItem[];
 }
 
 /**
@@ -214,8 +233,35 @@ export function Breadcrumb({
   children,
   size = "base",
   className,
+  items,
 }: BreadcrumbsProps) {
-  const childArray = Children.toArray(children);
+  const renderedChildren = useMemo(() => {
+    if (items && !children) {
+      return items.flatMap((item, index) => {
+        const elements: ReactNode[] = [];
+        if (index > 0) {
+          elements.push(<Separator key={`sep-${index}`} />);
+        }
+        if (item.href) {
+          elements.push(
+            <Link key={item.label} href={item.href} icon={item.icon}>
+              {item.label}
+            </Link>,
+          );
+        } else {
+          elements.push(
+            <Current key={item.label} icon={item.icon}>
+              {item.label}
+            </Current>,
+          );
+        }
+        return elements;
+      });
+    }
+    return children;
+  }, [items, children]);
+
+  const childArray = Children.toArray(renderedChildren);
   const mobileChildren = getMobileBreadcrumbChildren(childArray);
 
   return (

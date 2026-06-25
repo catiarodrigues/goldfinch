@@ -1,0 +1,70 @@
+---
+title: Toolbar
+description: Connected horizontal controls with keyboard nav.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import LiveToolbar from "../../components/demos/LiveToolbar.astro";
+
+Group related controls — buttons, inputs, and input groups — in a connected horizontal bar with `role="toolbar"` and arrow-key navigation.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { Toolbar } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { Toolbar } from "@catiarodrigues/goldfinch/components/toolbar";
+```
+
+## Usage
+
+```tsx
+import { Toolbar } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  return (
+    <Toolbar aria-label="Formatting">
+      <Toolbar.Button onClick={() => {}}>Bold</Toolbar.Button>
+      <Toolbar.Button onClick={() => {}}>Italic</Toolbar.Button>
+      <Toolbar.Input placeholder="Search..." aria-label="Search" />
+    </Toolbar>
+  );
+}
+```
+
+## Examples
+
+<LiveToolbar title="Toolbar" />
+
+Use `<Toolbar.Button>` for action buttons, `<Toolbar.Input>` for text inputs, and `<Toolbar.InputGroup>` for grouped input+button combos. All toolbar children inherit the toolbar's size and connected styling.
+
+```tsx
+<Toolbar aria-label="Formatting">
+  <Toolbar.Button>Bold</Toolbar.Button>
+  <Toolbar.Button>Italic</Toolbar.Button>
+  <Toolbar.Input placeholder="Search..." aria-label="Search" />
+</Toolbar>
+```
+
+<Callout type="info">
+  Toolbar uses `role="toolbar"` and supports keyboard navigation with arrow keys between controls.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="Toolbar"
+  props={[
+    { name: "children", type: "ReactNode", default: "—", description: "Toolbar controls." },
+    { name: "aria-label", type: "string", default: "—", description: "Accessible label." },
+    { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+  ]}
+/>

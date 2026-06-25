@@ -1,0 +1,74 @@
+---
+title: Alert
+description: Full-width message bars for timely updates, warnings, and errors.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import { DemoFrame, AlertDemo, AlertVariantsDemo } from "../../components/demos/index.tsx";
+
+Display prominent notices — release notes, system warnings, validation summaries — with optional icon, title, description, and action slot.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { Alert } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { Alert } from "@catiarodrigues/goldfinch/components/alert";
+```
+
+## Usage
+
+```tsx
+import { Alert } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  return (
+    <Alert title="Update available" description="A new version is ready to install." />
+  );
+}
+```
+
+## Examples
+
+<DemoFrame title="Alert">
+  <AlertDemo />
+</DemoFrame>
+
+<DemoFrame title="Variants">
+  <AlertVariantsDemo />
+</DemoFrame>
+
+Choose a variant that matches the urgency — `default` for general info, `alert` for time-sensitive callouts, `error` for failures, `secondary` for neutral messages.
+
+```tsx
+<Alert variant="default" title="Info" description="General information." />
+<Alert variant="alert" title="Warning" description="Time-sensitive notice." />
+<Alert variant="error" title="Error" description="Critical issue." />
+<Alert variant="secondary" title="Note" description="Neutral message." />
+```
+
+<Callout type="warning">
+  Alerts are persistent and should only be used for information that requires immediate attention.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="Alert"
+  props={[
+    { name: "variant", type: '"default" | "alert" | "error" | "secondary"', default: '"default"', description: "Visual style of the alert." },
+    { name: "title", type: "string", default: "—", description: "Primary heading text." },
+    { name: "description", type: "ReactNode", default: "—", description: "Secondary description text." },
+    { name: "icon", type: "ReactNode", default: "—", description: "Icon rendered before the alert content." },
+    { name: "action", type: "ReactNode", default: "—", description: "Action slot rendered at the trailing end." },
+    { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+  ]}
+/>

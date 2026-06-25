@@ -1,0 +1,67 @@
+---
+title: Installation
+description: Add Goldfinch to your React 19 + Tailwind v4 project.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+
+## Prerequisites
+
+Goldfinch requires **React 19** and **Tailwind CSS v4** in your project.
+
+## Install
+
+```bash
+npm install @catiarodrigues/goldfinch
+```
+
+Or using pnpm:
+
+```bash
+pnpm add @catiarodrigues/goldfinch
+```
+
+## Add the styles
+
+Import the Goldfinch stylesheet in your app entry point:
+
+```tsx
+import "@catiarodrigues/goldfinch/styles";
+```
+
+This injects all CSS variables and utility classes needed by the library.
+
+## Set up Tailwind CSS v4
+
+If your project doesn't use Tailwind v4 yet, install it:
+
+```bash
+npm install tailwindcss @tailwindcss/vite
+```
+
+Add the Vite plugin:
+
+```tsx
+// vite.config.ts
+import { defineConfig } from "vite";
+import tailwindcss from "@tailwindcss/vite";
+
+export default defineConfig({
+  plugins: [tailwindcss()],
+});
+```
+
+## Use a component
+
+```tsx
+import { Button } from "@catiarodrigues/goldfinch";
+
+export default function App() {
+  return <Button variant="brand">Click me</Button>;
+}
+```
+
+<Callout type="info">
+  Goldfinch components are tree-shakeable. Import exactly what you need — unused components are dropped by your bundler.
+</Callout>

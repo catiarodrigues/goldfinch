@@ -1,0 +1,70 @@
+---
+title: EmptyState
+description: Guide users when no data is available.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import { DemoFrame, EmptyStateDemo } from "../../components/demos/index.tsx";
+
+Turn empty lists and search results into opportunities — explain why data is missing and offer a clear next action.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { EmptyState } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { EmptyState } from "@catiarodrigues/goldfinch/components/empty-state";
+```
+
+## Usage
+
+```tsx
+import { EmptyState } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  return (
+    <EmptyState
+      title="No results"
+      description="Try adjusting your search or filters."
+    />
+  );
+}
+```
+
+## Examples
+
+<DemoFrame title="EmptyState">
+  <EmptyStateDemo />
+</DemoFrame>
+
+Provide a `title` and `description` to explain the empty state. Use the `action` slot to render a call-to-action button.
+
+```tsx
+<EmptyState
+  title="No results"
+  description="Try adjusting your search or filters."
+/>
+```
+
+<Callout type="info">
+  Empty states are an opportunity to guide users — always include a helpful message and a clear next action.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="EmptyState"
+  props={[
+    { name: "title", type: "string", default: "—", description: "Empty state title." },
+    { name: "description", type: "string", default: "—", description: "Empty state description." },
+    { name: "action", type: "ReactNode", default: "—", description: "Optional call-to-action." },
+  ]}
+/>

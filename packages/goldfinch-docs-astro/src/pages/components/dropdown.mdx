@@ -1,0 +1,71 @@
+---
+title: Dropdown
+description: Contextual action menus in a positioned overlay.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import { DropdownDemo } from "../../components/demos/index.tsx";
+import LiveDropdown from "../../components/demos/LiveDropdown.astro";
+
+Present a list of actions or links in a positioned overlay that opens on click.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { DropdownMenu } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { DropdownMenu } from "@catiarodrigues/goldfinch/components/dropdown";
+```
+
+## Usage
+
+```tsx
+import { DropdownMenu, Button } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  return (
+    <DropdownMenu>
+      <DropdownMenu.Trigger>
+        <Button variant="ghost">Actions</Button>
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Portal>
+        <DropdownMenu.Content align="start">
+          <DropdownMenu.Item onClick={() => {}}>Edit</DropdownMenu.Item>
+          <DropdownMenu.Item onClick={() => {}}>Duplicate</DropdownMenu.Item>
+          <DropdownMenu.Separator />
+          <DropdownMenu.Item onClick={() => {}} variant="danger">Delete</DropdownMenu.Item>
+        </DropdownMenu.Content>
+      </DropdownMenu.Portal>
+    </DropdownMenu>
+  );
+}
+```
+
+## Examples
+
+<LiveDropdown title="Dropdown" />
+
+Build the menu using compound sub-components: `DropdownMenu.Trigger`, `.Portal`, `.Content`, `.Item`, `.Separator`.
+
+<Callout type="info">
+  Dropdown items support keyboard navigation with arrow keys and Enter or Space to select.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="Dropdown"
+  props={[
+    { name: "label", type: "ReactNode", default: "—", description: "Trigger label." },
+    { name: "items", type: "DropdownItem[]", default: "—", description: "Menu items." },
+    { name: "disabled", type: "boolean", default: "false", description: "Disable the dropdown." },
+  ]}
+/>

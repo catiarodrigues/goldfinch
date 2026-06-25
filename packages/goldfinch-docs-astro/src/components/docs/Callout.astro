@@ -1,0 +1,48 @@
+---
+export interface Props {
+  type?: "info" | "warning" | "success" | "danger";
+}
+
+const { type = "info" } = Astro.props;
+
+const config: Record<string, { border: string; bg: string; icon: string }> = {
+  info: {
+    border: "border-goldfinch-info",
+    bg: "bg-goldfinch-tint",
+    icon: "i",
+  },
+  warning: {
+    border: "border-goldfinch-warning",
+    bg: "bg-goldfinch-tint",
+    icon: "!",
+  },
+  success: {
+    border: "border-goldfinch-success",
+    bg: "bg-goldfinch-tint",
+    icon: "\u2713",
+  },
+  danger: {
+    border: "border-goldfinch-danger",
+    bg: "bg-goldfinch-tint",
+    icon: "\u2717",
+  },
+};
+
+const c = config[type];
+---
+
+<div class={`not-prose rounded-lg border-l-4 ${c.border} ${c.bg} px-4 py-3 my-4`}>
+  <div class="flex items-start gap-3">
+    <span class="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full text-xs font-bold"
+      style={{
+        color: `var(--color-goldfinch-${type === "info" ? "info" : type === "warning" ? "warning" : type === "success" ? "success" : "danger"})`,
+        backgroundColor: `var(--color-goldfinch-${type === "info" ? "info" : type === "warning" ? "warning" : type === "success" ? "success" : "danger"})`,
+        opacity: "0.15",
+      }}
+    >
+    </span>
+    <div class="min-w-0 text-sm text-goldfinch-default">
+      <slot />
+    </div>
+  </div>
+</div>

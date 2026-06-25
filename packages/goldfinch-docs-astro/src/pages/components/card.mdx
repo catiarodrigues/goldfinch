@@ -1,0 +1,71 @@
+---
+title: Card
+description: Elevate content with shadow and padding.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import { DemoFrame, CardDemo } from "../../components/demos/index.tsx";
+
+Group related content in an elevated container that sits above the base surface — useful for cards, panels, and callout blocks.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { Card } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { Card } from "@catiarodrigues/goldfinch/components/card";
+```
+
+## Usage
+
+```tsx
+import { Card } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  return (
+    <Card className="p-6">
+      <h3 className="text-lg font-semibold">Card Title</h3>
+      <p className="text-goldfinch-muted">Card content goes here.</p>
+    </Card>
+  );
+}
+```
+
+## Examples
+
+<DemoFrame title="Card">
+  <CardDemo />
+</DemoFrame>
+
+Card applies a consistent elevation shadow and padding. Use it to group related content in a distinct visual container.
+
+For layered layouts, use the compound sub-components:
+
+```tsx
+<Card>
+  <Card.Secondary>Next Steps</Card.Secondary>
+  <Card.Primary>Get started with Goldfinch</Card.Primary>
+</Card>
+```
+
+<Callout type="info">
+  Card uses a medium elevation level by default. Nest within containers for layered layouts.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="Card"
+  props={[
+    { name: "children", type: "ReactNode", default: "—", description: "Card content." },
+    { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+  ]}
+/>

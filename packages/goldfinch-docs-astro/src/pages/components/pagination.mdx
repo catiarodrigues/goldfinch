@@ -1,0 +1,63 @@
+---
+title: Pagination
+description: Page navigation with smart ellipsis collapsing.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import { DemoFrame, PaginationDemo } from "../../components/demos/index.tsx";
+
+Navigate multi-page content with numbered page buttons, previous/next arrows, and automatic ellipsis for large page counts.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { Pagination } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { Pagination } from "@catiarodrigues/goldfinch/components/pagination";
+```
+
+## Usage
+
+```tsx
+import { Pagination } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  const [page, setPage] = useState(1);
+  return <Pagination current={page} total={20} onChange={setPage} />;
+}
+```
+
+## Examples
+
+<DemoFrame title="Pagination">
+  <PaginationDemo />
+</DemoFrame>
+
+Pass the `current` page, `total` pages, and an `onChange` callback. The component renders page buttons with previous and next arrows.
+
+```tsx
+<Pagination current={1} total={20} onChange={(page) => console.log(page)} />
+```
+
+<Callout type="info">
+  Pagination collapses page numbers with ellipsis when there are many pages to keep the UI compact.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="Pagination"
+  props={[
+    { name: "current", type: "number", default: "—", description: "Current page number." },
+    { name: "total", type: "number", default: "—", description: "Total number of pages." },
+    { name: "onChange", type: "(page: number) => void", default: "—", description: "Page change callback." },
+  ]}
+/>

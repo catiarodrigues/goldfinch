@@ -1,0 +1,65 @@
+---
+title: TopNavigation
+description: App-level top navigation bar.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import PropsTable from "../../components/docs/PropsTable.astro";
+import { DemoFrame, TopNavigationDemo } from "../../components/demos/index.tsx";
+
+A horizontal top bar for app-level navigation — brand logo, nav links, and right-aligned actions.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { TopNavigation } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { TopNavigation } from "@catiarodrigues/goldfinch/components/top-navigation";
+```
+
+## Usage
+
+```tsx
+import { TopNavigation, Button } from "@catiarodrigues/goldfinch";
+
+export default function AppBar() {
+  return (
+    <TopNavigation>
+      <TopNavigation.Logo>
+        <span className="text-lg font-bold">MyApp</span>
+      </TopNavigation.Logo>
+      <TopNavigation.Nav>
+        <TopNavigation.NavItem active>Dashboard</TopNavigation.NavItem>
+        <TopNavigation.NavItem>Settings</TopNavigation.NavItem>
+      </TopNavigation.Nav>
+      <TopNavigation.Actions>
+        <Button variant="ghost" size="sm">Log in</Button>
+      </TopNavigation.Actions>
+    </TopNavigation>
+  );
+}
+```
+
+## Example
+
+<DemoFrame title="TopNavigation">
+  <TopNavigationDemo />
+</DemoFrame>
+
+Use `TopNavigation.NavItem` with `active` for the current page. Actions are pushed to the right via `TopNavigation.Actions`.
+
+## API Reference
+
+<PropsTable
+  of="TopNavigation"
+  props={[
+    { name: "children", type: "ReactNode", default: "—", description: "Header content." },
+    { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+  ]}
+/>

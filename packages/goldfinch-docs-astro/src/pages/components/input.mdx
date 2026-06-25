@@ -1,0 +1,77 @@
+---
+title: Input
+description: Text fields with validation errors and accessible labels.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import { DemoFrame, InputDemo, InputVariantsDemo } from "../../components/demos/index.tsx";
+
+Collect alphanumeric text with built-in support for field labels, description text, and validation errors.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { Input } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { Input } from "@catiarodrigues/goldfinch/components/input";
+```
+
+## Usage
+
+```tsx
+import { Input, Field } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  return (
+    <Field label="Name" description="Enter your full name.">
+      <Input placeholder="John Doe" aria-label="Name" />
+    </Field>
+  );
+}
+```
+
+## Examples
+
+<DemoFrame title="Input">
+  <InputDemo />
+</DemoFrame>
+
+Use `error` to show error styling with a validation message. Set `type` to change the HTML input type (text, email, password, etc.).
+
+```tsx
+<Input placeholder="you@example.com" type="email" aria-label="Email" />
+<Input type="password" aria-label="Password" />
+```
+
+<DemoFrame title="Variants">
+  <InputVariantsDemo />
+</DemoFrame>
+
+The input ships as a standalone component but is designed to be wrapped in a `Field` for labels, descriptions, and validation. Compound sub-components are also available:
+
+- **`Input.Group`** — merges adjacent inputs/buttons visually
+- **`Input.Sensitive`** — masks content with a show/hide toggle (great for API keys or tokens)
+
+<Callout type="info">
+  Always pair an Input with a Field or Label component for accessibility.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="Input"
+  props={[
+    { name: "placeholder", type: "string", default: "—", description: "Placeholder text." },
+    { name: "error", type: "string", default: "—", description: "Error message text. Shows error styling when truthy." },
+    { name: "disabled", type: "boolean", default: "false", description: "Disable the input." },
+    { name: "type", type: "string", default: '"text"', description: "Input type attribute." },
+  ]}
+/>

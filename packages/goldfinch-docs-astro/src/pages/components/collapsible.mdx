@@ -1,0 +1,67 @@
+---
+title: Collapsible
+description: Expand or collapse content regions behind a trigger.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import { CollapsibleDemo } from "../../components/demos/index.tsx";
+import LiveCollapsible from "../../components/demos/LiveCollapsible.astro";
+
+Hide secondary content behind a trigger — ideal for settings panels, FAQ items, or long metadata sections.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { Collapsible } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { Collapsible } from "@catiarodrigues/goldfinch/components/collapsible";
+```
+
+## Usage
+
+```tsx
+import { Collapsible, Button } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  return (
+    <Collapsible>
+      <Collapsible.Trigger render={<Button variant="ghost" />}>
+        Toggle
+      </Collapsible.Trigger>
+      <Collapsible.Panel>
+        <div>Hidden content revealed.</div>
+      </Collapsible.Panel>
+    </Collapsible>
+  );
+}
+```
+
+## Examples
+
+<LiveCollapsible title="Collapsible" />
+
+Provide a `trigger` element and content children. Use `open` and `onOpenChange` for controlled state.
+
+<Callout type="info">
+  Collapsible uses an animated expand and collapse transition.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="Collapsible"
+  props={[
+    { name: "trigger", type: "ReactNode", default: "—", description: "The element that toggles the content." },
+    { name: "defaultOpen", type: "boolean", default: "false", description: "Initial open state." },
+    { name: "open", type: "boolean", default: "—", description: "Controlled open state." },
+    { name: "onOpenChange", type: "(open: boolean) => void", default: "—", description: "Open state change callback." },
+  ]}
+/>

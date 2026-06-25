@@ -82,9 +82,9 @@ export type GoldfinchGridGap = keyof typeof GOLDFINCH_GRID_VARIANTS.gap;
  * @example
  * ```tsx
  * <Grid variant="3up" gap="sm">
- *   <GridItem><Surface className="p-4">1</Surface></GridItem>
- *   <GridItem><Surface className="p-4">2</Surface></GridItem>
- *   <GridItem><Surface className="p-4">3</Surface></GridItem>
+ *   <GridItem className="p-4">1</GridItem>
+ *   <GridItem className="p-4">2</GridItem>
+ *   <GridItem className="p-4">3</GridItem>
  * </Grid>
  * ```
  */

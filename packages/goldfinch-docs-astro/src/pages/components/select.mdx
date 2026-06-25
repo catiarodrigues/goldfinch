@@ -1,0 +1,97 @@
+---
+title: Select
+description: Dropdown with items prop or compound options.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import LiveSelect from "../../components/demos/LiveSelect.astro";
+import LiveSelectItems from "../../components/demos/LiveSelectItems.astro";
+
+Choose from a predefined list — pass an array of `{ label, value }` objects via `items`, or compose custom option markup with `Select.Option` children.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { Select } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { Select } from "@catiarodrigues/goldfinch/components/select";
+```
+
+## Usage
+
+```tsx
+import { Select } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  const [value, setValue] = useState("option-1");
+  const options = [
+    { label: "Option 1", value: "option-1" },
+    { label: "Option 2", value: "option-2" },
+  ];
+  return (
+    <Select
+      items={options}
+      value={value}
+      onValueChange={setValue}
+      placeholder="Select an option"
+    />
+  );
+}
+```
+
+## Examples
+
+<LiveSelect title="Select" />
+
+Provide options via the `items` prop. Use `value` and `onValueChange` for controlled mode, or `defaultValue` for uncontrolled.
+
+```tsx
+<Select
+  items={[
+    { label: "Option 1", value: "1" },
+    { label: "Option 2", value: "2" },
+  ]}
+  placeholder="Choose..."
+/>
+```
+
+<LiveSelectItems title="Items" />
+
+For custom option markup, use the compound children API with `Select.Option`, `Select.Group`, `.GroupLabel`, and `.Separator`.
+
+```tsx
+<Select placeholder="Pick one">
+  <Select.Group>
+    <Select.GroupLabel>Fruits</Select.GroupLabel>
+    <Select.Option value="apple">Apple</Select.Option>
+    <Select.Option value="banana">Banana</Select.Option>
+  </Select.Group>
+</Select>
+```
+
+<Callout type="info">
+  Select items can be defined as an object map or an array of `{ label, value }` objects.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="Select"
+  props={[
+    { name: "items", type: "Record<string, SelectItemValue> | ReadonlyArray<{ label: ReactNode; value: T }>", default: "—", description: "Available options." },
+    { name: "placeholder", type: "string", default: "—", description: "Placeholder when nothing selected." },
+    { name: "value", type: "unknown", default: "—", description: "Controlled selected value." },
+    { name: "defaultValue", type: "unknown", default: "—", description: "Uncontrolled initial value." },
+    { name: "onValueChange", type: "(value: unknown) => void", default: "—", description: "Selection change callback." },
+    { name: "label", type: "ReactNode", default: "—", description: "Field label." },
+    { name: "disabled", type: "boolean", default: "false", description: "Disable the select." },
+  ]}
+/>

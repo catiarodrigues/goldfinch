@@ -4,7 +4,7 @@ import { forwardRef, useId } from "react";
 import type { ReactNode } from "react";
 import { cn } from "../../utils/cn";
 import { GOLDFINCH_INPUT_VARIANTS, type GoldfinchInputSize } from "../input/input";
-import { SkeletonLine } from "../loader";
+import { SkeletonLine } from "../spinner";
 import { Label } from "../label";
 import { Field, type FieldErrorMatch } from "../field/field";
 import {

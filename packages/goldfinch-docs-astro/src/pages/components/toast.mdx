@@ -1,0 +1,73 @@
+---
+title: Toast
+description: Auto-dismissing notification bar at viewport bottom.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import LiveToast from "../../components/demos/LiveToast.astro";
+
+Display brief, auto-dismissing notifications anchored to the bottom of the viewport. Supports programmatic show/dismiss via an imperative manager.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { Toast, createGoldfinchToastManager } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { Toast, createGoldfinchToastManager } from "@catiarodrigues/goldfinch/components/toast";
+```
+
+## Usage
+
+```tsx
+import { Toast, createGoldfinchToastManager, Button } from "@catiarodrigues/goldfinch";
+
+const toastManager = createGoldfinchToastManager();
+
+export default function Example() {
+  return (
+    <Toast toastManager={toastManager}>
+      <Button onClick={() => toastManager.show("Hello!")}>Show Toast</Button>
+    </Toast>
+  );
+}
+```
+
+## Examples
+
+<LiveToast title="Toast" />
+
+Wrap your application in Toast. Use the `toastManager` prop to use an external manager, or let it manage toasts internally.
+
+```tsx
+const manager = createGoldfinchToastManager();
+
+<Toast toastManager={manager}>
+  <App />
+</Toast>
+
+// Later, imperatively:
+manager.show("Notification message");
+```
+
+<Callout type="warning">
+  Only one Toast instance should be rendered in the application tree to avoid duplicate notifications.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="Toast"
+  props={[
+    { name: "children", type: "ReactNode", default: "—", description: "Application content." },
+    { name: "container", type: "PortalContainer", default: "—", description: "Portal target." },
+    { name: "toastManager", type: "return type of createGoldfinchToastManager()", default: "—", description: "External toast manager." },
+  ]}
+/>

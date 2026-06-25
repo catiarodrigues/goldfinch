@@ -3,19 +3,30 @@ import MainLayout from "../layouts/MainLayout.astro";
 ---
 
 <MainLayout>
-  <main class="mx-auto max-w-4xl px-4 py-16">
-    <h1 class="mb-4 text-4xl font-bold text-goldfinch-strong">Goldfinch</h1>
-    <p class="mb-8 text-lg text-goldfinch-subtle">
-      A React component library built on Base UI and Tailwind CSS v4.
-    </p>
-
-    <div class="flex gap-4">
-      <a
-        href="/components/button"
-        class="inline-flex items-center rounded-lg bg-goldfinch-brand px-4 py-2 text-sm font-medium text-goldfinch-inverse hover:bg-goldfinch-brand-hover"
-      >
-        Get Started
-      </a>
+  <main class="mx-auto max-w-4xl px-6 py-20">
+    <div class="text-center">
+      <h1 class="mb-3 text-5xl font-bold tracking-tight text-goldfinch-strong">
+        Goldfinch
+      </h1>
+      <p class="mx-auto mb-10 max-w-xl text-lg text-goldfinch-subtle">
+        A React component library built on{" "}
+        <a href="https://base-ui.com" class="text-goldfinch-link hover:underline">Base UI</a>{" "}
+        and Tailwind CSS v4. Accessible, composable, themeable.
+      </p>
+      <div class="flex items-center justify-center gap-4">
+        <a
+          href="/components/button"
+          class="inline-flex items-center rounded-lg bg-goldfinch-brand px-5 py-2.5 text-sm font-medium text-goldfinch-inverse hover:bg-goldfinch-brand-hover transition-colors"
+        >
+          Browse Components
+        </a>
+        <a
+          href="/getting-started/installation"
+          class="inline-flex items-center rounded-lg border border-goldfinch-hairline px-5 py-2.5 text-sm font-medium text-goldfinch-default hover:bg-goldfinch-base transition-colors"
+        >
+          Installation
+        </a>
+      </div>
     </div>
   </main>
 </MainLayout>

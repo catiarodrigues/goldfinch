@@ -1,0 +1,69 @@
+---
+title: Input Group
+description: Merge adjacent form controls into a unified group.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import { DemoFrame, InputGroupDemo } from "../../components/demos/index.tsx";
+
+Visually join an input with adjacent buttons — borders merge seamlessly for a single cohesive control.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { InputGroup } from "@catiarodrigues/goldfinch";
+```
+
+Or as a compound sub-component:
+
+```tsx
+import { Input } from "@catiarodrigues/goldfinch";
+// Input.Group is available as a sub-component
+```
+
+### Granular
+
+```tsx
+import { InputGroup } from "@catiarodrigues/goldfinch/components/input-group";
+```
+
+## Usage
+
+```tsx
+import { InputGroup, Input, Button } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  return (
+    <InputGroup>
+      <Button variant="secondary" onClick={() => alert("Search")}>Search</Button>
+      <Input placeholder="Search..." aria-label="Search" />
+    </InputGroup>
+  );
+}
+```
+
+## Examples
+
+<DemoFrame title="Input Group">
+  <InputGroupDemo />
+</DemoFrame>
+
+Place an Input alongside Button elements as children. The group merges their borders for a unified appearance.
+
+<Callout type="info">
+  InputGroup does not manage layout logic — it purely handles the visual merging of adjacent form controls.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="InputGroup"
+  props={[
+    { name: "children", type: "ReactNode", default: "—", description: "Input and button elements." },
+    { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+  ]}
+/>

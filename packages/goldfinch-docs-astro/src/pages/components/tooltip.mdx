@@ -1,0 +1,68 @@
+---
+title: Tooltip
+description: Contextual labels on hover, focus, or long-press.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import { TooltipDemo } from "../../components/demos/index.tsx";
+import LiveTooltip from "../../components/demos/LiveTooltip.astro";
+
+Annotate icons, buttons, and controls with concise labels that appear on hover (mouse) or focus (keyboard) and auto-position around the trigger.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { Tooltip } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { Tooltip } from "@catiarodrigues/goldfinch/components/tooltip";
+```
+
+## Usage
+
+```tsx
+import { Tooltip, Button } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  return (
+    <Tooltip label="Delete item">
+      <Button variant="ghost" aria-label="Delete">
+        <TrashIcon />
+      </Button>
+    </Tooltip>
+  );
+}
+```
+
+## Examples
+
+<LiveTooltip title="Tooltip" />
+
+Wrap the trigger element as `children` and provide the tooltip text via the `label` prop. The tooltip positions itself automatically.
+
+```tsx
+<Tooltip label="Settings">
+  <button aria-label="Settings"><GearIcon /></button>
+</Tooltip>
+```
+
+<Callout type="info">
+  Tooltips appear on hover for mouse users and on focus for keyboard users, ensuring accessibility across input methods.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="Tooltip"
+  props={[
+    { name: "label", type: "ReactNode", default: "—", description: "Tooltip content." },
+    { name: "children", type: "ReactNode", default: "—", description: "Trigger element." },
+  ]}
+/>

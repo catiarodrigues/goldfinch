@@ -7,6 +7,8 @@ import {
 } from "react";
 import { Input as BaseInput } from "@base-ui/react/input";
 import { Field, normalizeFieldError, type FieldErrorMatch } from "../field/field";
+import { InputGroup } from "../input-group/input-group";
+import { SensitiveInput } from "../sensitive-input/sensitive-input";
 
 /** Input size and variant definitions mapping names to their Tailwind classes. */
 export const GOLDFINCH_INPUT_VARIANTS = {
@@ -134,7 +136,7 @@ export function inputVariants({
   );
 }
 
-export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+const InputRoot = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const {
     className,
     size = "base",
@@ -218,7 +220,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   return input;
 });
 
-Input.displayName = "Input";
+InputRoot.displayName = "Input";
+
+export const Input = Object.assign(InputRoot, {
+  Group: InputGroup,
+  Sensitive: SensitiveInput,
+});
 
 /**
  * Input component props with accessibility guidance.

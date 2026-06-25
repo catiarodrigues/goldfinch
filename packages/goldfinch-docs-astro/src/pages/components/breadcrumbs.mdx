@@ -1,0 +1,71 @@
+---
+title: Breadcrumbs
+description: Navigate up the page hierarchy with linkable ancestors.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import { DemoFrame, BreadcrumbsDemo } from "../../components/demos/index.tsx";
+
+Show the user's current location within a page hierarchy and provide quick navigation back to parent sections.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { Breadcrumbs } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { Breadcrumbs } from "@catiarodrigues/goldfinch/components/breadcrumbs";
+```
+
+## Usage
+
+```tsx
+import { Breadcrumbs } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  const items = [
+    { label: "Home", href: "/" },
+    { label: "Products", href: "/products" },
+    { label: "Details" },
+  ];
+  return <Breadcrumbs items={items} />;
+}
+```
+
+## Examples
+
+<DemoFrame title="Breadcrumbs">
+  <BreadcrumbsDemo />
+</DemoFrame>
+
+Pass an array of items with `label` and optional `href`. The last item is rendered as plain text to indicate the current page.
+
+```tsx
+const items = [
+  { label: "Home", href: "#" },
+  { label: "Products", href: "#" },
+  { label: "Details" },
+];
+return <Breadcrumbs items={items} />;
+```
+
+<Callout type="info">
+  Omit the `href` on the last item to indicate the current page without making it a link.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="Breadcrumbs"
+  props={[
+    { name: "items", type: "BreadcrumbItem[]", default: "—", description: "Array of breadcrumb items with label and optional href." },
+    { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+  ]}
+/>

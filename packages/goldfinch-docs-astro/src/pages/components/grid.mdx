@@ -1,0 +1,72 @@
+---
+title: Grid
+description: Preset responsive grid layouts with configurable gaps.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import { DemoFrame, GridDemo } from "../../components/demos/index.tsx";
+
+Distribute content across preset responsive column layouts — from side-by-side to 6-column grids.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { Grid, GridItem } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { Grid, GridItem } from "@catiarodrigues/goldfinch/components/grid";
+```
+
+## Usage
+
+```tsx
+import { Grid, GridItem } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  return (
+    <Grid variant="3up" gap="base">
+      <GridItem className="p-4">1</GridItem>
+      <GridItem className="p-4">2</GridItem>
+      <GridItem className="p-4">3</GridItem>
+    </Grid>
+  );
+}
+```
+
+## Examples
+
+<DemoFrame title="Grid">
+  <GridDemo />
+</DemoFrame>
+
+Choose a `variant` for the column layout and `gap` for spacing between items.
+
+```tsx
+<Grid variant="2up" gap="base">
+  <GridItem>Left</GridItem>
+  <GridItem>Right</GridItem>
+</Grid>
+```
+
+<Callout type="info">
+  The grid is responsive — columns adjust at md, lg, and xl breakpoints depending on the variant.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="Grid"
+  props={[
+    { name: "variant", type: '"2up" | "side-by-side" | "2-1" | "1-2" | "3up" | "4up" | "6up" | "1-2-4up" | "1-3up"', default: "—", description: "Responsive column layout preset." },
+    { name: "gap", type: '"none" | "sm" | "base" | "lg"', default: '"base"', description: "Gap between grid items." },
+    { name: "children", type: "ReactNode", default: "—", description: "GridItem elements or content." },
+    { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+  ]}
+/>

@@ -1,0 +1,72 @@
+---
+title: Spinner
+description: Animated loading indicator in three sizes.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import { DemoFrame, SpinnerDemo, SpinnerSizesDemo } from "../../components/demos/index.tsx";
+
+Indicate ongoing processing with an animated spin animation — available in `sm`, `base`, and `lg` sizes for different contexts.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { Spinner } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { Spinner } from "@catiarodrigues/goldfinch/components/spinner";
+```
+
+## Usage
+
+```tsx
+import { Spinner, Button } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  return (
+    <Button disabled>
+      <Spinner size="sm" aria-label="Loading" />
+      Saving...
+    </Button>
+  );
+}
+```
+
+## Examples
+
+<DemoFrame title="Spinner">
+  <SpinnerDemo />
+</DemoFrame>
+
+Choose a size that fits the context — `sm` for inline use, `base` for buttons, and `lg` for full-page loading states.
+
+```tsx
+<Spinner size="sm" aria-label="Loading" />
+<Spinner size="base" aria-label="Loading" />
+<Spinner size="lg" aria-label="Loading" />
+```
+
+<DemoFrame title="Sizes">
+  <SpinnerSizesDemo />
+</DemoFrame>
+
+<Callout type="info">
+  Always provide an `aria-label` or visually hidden text for screen readers when using a standalone Spinner.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="Spinner"
+  props={[
+    { name: "size", type: '"sm" | "base" | "lg"', default: '"base"', description: "The size of the spinner." },
+    { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+  ]}
+/>

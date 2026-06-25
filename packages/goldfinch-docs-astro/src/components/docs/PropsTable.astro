@@ -1,0 +1,54 @@
+---
+export interface Prop {
+  name: string;
+  type: string;
+  default?: string;
+  description: string;
+  required?: boolean;
+}
+
+export interface Props {
+  of: string;
+  props: Prop[];
+}
+
+const { of: componentName, props } = Astro.props;
+---
+
+<div class="not-prose my-6 overflow-x-auto rounded-lg border border-goldfinch-hairline">
+  <table class="w-full text-sm">
+    <thead>
+      <tr class="border-b border-goldfinch-hairline bg-goldfinch-base">
+        <th class="px-4 py-2.5 text-left font-medium text-goldfinch-strong">Prop</th>
+        <th class="px-4 py-2.5 text-left font-medium text-goldfinch-strong">Type</th>
+        <th class="px-4 py-2.5 text-left font-medium text-goldfinch-strong">Default</th>
+        <th class="px-4 py-2.5 text-left font-medium text-goldfinch-strong">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {props.map((prop) => (
+        <tr class="border-b border-goldfinch-hairline last:border-none">
+          <td class="px-4 py-2.5">
+            <code class="text-xs font-medium text-goldfinch-strong">{prop.name}</code>
+            {prop.required && (
+              <span class="ml-1 text-xs text-goldfinch-danger">*</span>
+            )}
+          </td>
+          <td class="px-4 py-2.5">
+            <code class="text-xs text-goldfinch-default">{prop.type}</code>
+          </td>
+          <td class="px-4 py-2.5">
+            {prop.default ? (
+              <code class="text-xs text-goldfinch-subtle">{prop.default}</code>
+            ) : (
+              <span class="text-xs text-goldfinch-subtle">&mdash;</span>
+            )}
+          </td>
+          <td class="px-4 py-2.5 text-goldfinch-default">
+            {prop.description}
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

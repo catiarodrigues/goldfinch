@@ -1,0 +1,53 @@
+---
+title: Label
+description: Form label with optional indicator and tooltip.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import PropsTable from "../../components/docs/PropsTable.astro";
+import { DemoFrame } from "../../components/demos/index.tsx";
+import { Label } from "@catiarodrigues/goldfinch";
+
+A form label that can show an "(Optional)" indicator and an info tooltip.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { Label } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { Label } from "@catiarodrigues/goldfinch/components/label";
+```
+
+## Examples
+
+<DemoFrame title="Label">
+  <div className="flex flex-col gap-3">
+    <Label>Email</Label>
+    <Label showOptional>Middle Name</Label>
+    <Label tooltip="We'll use this to verify your account.">Phone</Label>
+  </div>
+</DemoFrame>
+
+```tsx
+<Label>Email</Label>
+<Label showOptional>Middle Name</Label>
+<Label tooltip="We'll use this to verify your account.">Phone</Label>
+```
+
+## API Reference
+
+<PropsTable
+  of="Label"
+  props={[
+    { name: "children", type: "ReactNode", default: "—", description: "Label text." },
+    { name: "showOptional", type: "boolean", default: "false", description: "Show an \"(Optional)\" suffix." },
+    { name: "tooltip", type: "string", default: "—", description: "Tooltip text shown on an info icon." },
+    { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+  ]}
+/>

@@ -19,7 +19,7 @@ pnpm add react react-dom @phosphor-icons/react
 ## Usage
 
 ```tsx
-import { Button, Input, Dialog } from "@catiarodrigues/goldfinch";
+import { Button, Input, Modal } from "@catiarodrigues/goldfinch";
 import "@catiarodrigues/goldfinch/styles";
 ```
 

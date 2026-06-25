@@ -1,0 +1,79 @@
+---
+title: Sidebar
+description: Vertical navigation with collapsible groups and sub-items.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import PropsTable from "../../components/docs/PropsTable.astro";
+import LiveSidebar from "../../components/demos/LiveSidebar.astro";
+
+Full-featured application sidebar with collapsible sections, nested menu items, active state tracking, keyboard navigation, and resizable panels.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { Sidebar } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { Sidebar } from "@catiarodrigues/goldfinch/components/sidebar";
+```
+
+## Usage
+
+```tsx
+import { Sidebar } from "@catiarodrigues/goldfinch";
+
+export default function Example() {
+  const items = [
+    { id: "dashboard", label: "Dashboard", icon: <DashboardIcon /> },
+    {
+      id: "settings",
+      label: "Settings",
+      icon: <SettingsIcon />,
+      items: [
+        { id: "profile", label: "Profile" },
+        { id: "account", label: "Account" },
+      ],
+    },
+  ];
+  return <Sidebar items={items} activeItemId="dashboard" onItemSelect={(id) => console.log(id)} />;
+}
+```
+
+## Examples
+
+<LiveSidebar title="Sidebar" />
+
+Define navigation items via the `items` prop. Track the active item with `activeItemId` and handle selection with `onItemSelect`.
+
+```tsx
+<Sidebar
+  items={[
+    { id: "home", label: "Home", icon: <HomeIcon /> },
+    { id: "settings", label: "Settings", icon: <GearIcon /> },
+  ]}
+  activeItemId="home"
+  onItemSelect={(id) => navigate(id)}
+/>
+```
+
+<Callout type="info">
+  Sidebar items can include icons, labels, and nested sub-items for hierarchical navigation.
+</Callout>
+
+## API Reference
+
+<PropsTable
+  of="Sidebar"
+  props={[
+    { name: "items", type: "SidebarItem[]", default: "—", description: "Navigation items." },
+    { name: "activeItemId", type: "string", default: "—", description: "ID of the active item." },
+    { name: "onItemSelect", type: "(id: string) => void", default: "—", description: "Item selection callback." },
+  ]}
+/>
