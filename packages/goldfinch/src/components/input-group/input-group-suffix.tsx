@@ -5,7 +5,7 @@ import { useInputGroupContext, INPUT_GROUP_SIZE } from "./context";
 export interface InputGroupSuffixProps {
   /** Additional CSS classes. */
   className?: string;
-  /** Suffix content (e.g., ".workers.dev"). */
+  /** Suffix content (e.g., ".app"). */
   children?: ReactNode;
 }
 

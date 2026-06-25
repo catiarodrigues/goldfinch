@@ -129,7 +129,7 @@ export function BadgeDotDemo() {
 export function BadgeInSentenceDemo() {
   return (
     <p className="flex items-center gap-2">
-      Workers
+      Users
       <Badge variant="secondary">New</Badge>
     </p>
   );

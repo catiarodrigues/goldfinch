@@ -97,8 +97,8 @@ export function linkVariants({
  *
  * @example External link
  * ```tsx
- * <Link href="https://cloudflare.com" target="_blank" rel="noopener noreferrer">
- *   Visit Cloudflare <Link.ExternalIcon />
+ * <Link href="https://example.com" target="_blank" rel="noopener noreferrer">
+ *   Visit Example <Link.ExternalIcon />
  * </Link>
  * ```
  *
@@ -128,8 +128,8 @@ export type LinkProps = useRender.ComponentProps<"a"> &
  *
  * @example External link with icon
  * ```tsx
- * <Link href="https://cloudflare.com" target="_blank" rel="noopener noreferrer">
- *   Visit Cloudflare <Link.ExternalIcon />
+ * <Link href="https://example.com" target="_blank" rel="noopener noreferrer">
+ *   Visit Example <Link.ExternalIcon />
  * </Link>
  * ```
  *

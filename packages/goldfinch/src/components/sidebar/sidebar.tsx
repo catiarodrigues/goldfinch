@@ -725,8 +725,8 @@ SidebarRoot.displayName = "Sidebar";
  * @example
  * ```tsx
  * <Sidebar.Header>
- *   <CloudflareLogo />
- *   <span>Design Engineering</span>
+ *   <AppLogo />
+ *   <span>My App</span>
  *   <Button shape="square" icon={CaretUpDownIcon} aria-label="Switch" />
  * </Sidebar.Header>
  * ```
@@ -1220,7 +1220,6 @@ SidebarMenuButton.displayName = "Sidebar.MenuButton";
 
 /**
  * Badge pill displayed inside a menu button (e.g., "Beta", "New").
- * Uses dashed border styling matching the Cloudflare design system.
  *
  * @example
  * ```tsx
@@ -1261,8 +1260,8 @@ SidebarMenuBadge.displayName = "Sidebar.MenuBadge";
  * @example
  * ```tsx
  * <Sidebar.MenuSub>
- *   <Sidebar.MenuSubButton active>Workers & Pages</Sidebar.MenuSubButton>
- *   <Sidebar.MenuSubButton>Durable Objects</Sidebar.MenuSubButton>
+ *   <Sidebar.MenuSubButton active>Overview</Sidebar.MenuSubButton>
+ *   <Sidebar.MenuSubButton>Settings</Sidebar.MenuSubButton>
  * </Sidebar.MenuSub>
  * ```
  */
@@ -1331,8 +1330,8 @@ export interface SidebarMenuSubButtonProps
  * @example Simple usage (auto-wrapped in `<li>`)
  * ```tsx
  * <Sidebar.MenuSub>
- *   <Sidebar.MenuSubButton active>Workers & Pages</Sidebar.MenuSubButton>
- *   <Sidebar.MenuSubButton href="/observability">Observability</Sidebar.MenuSubButton>
+ *   <Sidebar.MenuSubButton active>Overview</Sidebar.MenuSubButton>
+ *   <Sidebar.MenuSubButton href="/settings">Settings</Sidebar.MenuSubButton>
  * </Sidebar.MenuSub>
  * ```
  */

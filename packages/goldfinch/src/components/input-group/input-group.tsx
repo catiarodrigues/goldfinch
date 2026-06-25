@@ -76,8 +76,8 @@ export const GOLDFINCH_INPUT_GROUP_DEFAULT_VARIANTS = {
  * @example
  * ```tsx
  * <InputGroup>
- *   <InputGroup.Input placeholder="my-worker" />
- *   <InputGroup.Suffix>.workers.dev</InputGroup.Suffix>
+ *   <InputGroup.Input placeholder="my-app" />
+ *   <InputGroup.Suffix>.app</InputGroup.Suffix>
  * </InputGroup>
  * ```
  */
