@@ -6,34 +6,4 @@ layout: ../layouts/MdxDocLayout.astro
 
 import ComponentGrid from "../components/docs/ComponentGrid.astro";
 
-Goldfinch is a React component library built on [Base UI](https://base-ui.com/) and Tailwind CSS v4. Accessible, composable, themeable components with keyboard navigation, focus management, and ARIA attributes handled out of the box.
-
-## Features
-
-- **36+ components** — form controls, overlays, navigation, layout, and data display
-- **Accessible first** — built on Base UI with full ARIA support, keyboard navigation, and focus management
-- **Tree-shakeable** — granular imports via `@catiarodrigues/goldfinch/components/<name>`
-- **Themeable** — CSS custom properties via Tailwind v4, light and dark mode
-- **Compound components** — declarative APIs like `Select.Option`, `Page.Title`, `Checkbox.Group`
-- **Phosphor icons** — consistent icon set from `@phosphor-icons/react`
-
-## Quick start
-
-```bash
-pnpm add @catiarodrigues/goldfinch
-```
-
-```tsx
-import { Button } from "@catiarodrigues/goldfinch";
-import "@catiarodrigues/goldfinch/styles";
-
-export default function App() {
-  return <Button variant="brand">Click me</Button>;
-}
-```
-
-See [Installation](/getting-started/installation) for the full setup, including Tailwind config.
-
-## Components
-
 <ComponentGrid />

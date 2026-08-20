@@ -1,35 +1,68 @@
 ---
+import * as Demos from "../demos/index.tsx";
+
 interface ComponentDoc {
   href: string;
   title: string;
-  description: string;
+  Demo?: () => any;
 }
 
-const modules = import.meta.glob<{
-  frontmatter: { title: string; description: string };
-}>("../../pages/components/*.mdx", { eager: true });
+const modules = import.meta.glob<{ frontmatter: { title: string } }>(
+  "../../pages/components/*.mdx",
+  { eager: true },
+);
 
-const items: ComponentDoc[] = Object.entries(modules)
-  .map(([path, mod]) => ({
-    href: `/components/${path.split("/").pop()!.replace(/\.mdx$/, "")}`,
-    title: mod.frontmatter.title,
-    description: mod.frontmatter.description,
-  }))
+const toPascalCase = (slug: string) =>
+  slug
+    .split("-")
+    .map((part) => part[0].toUpperCase() + part.slice(1))
+    .join("");
+
+// A few full-page/full-width demos don't read at card size even scaled
+// down -- these use a compact GridPreview variant instead (see
+// components/demos/index.tsx). Everything else resolves automatically
+// from its slug.
+const gridOverrides: Record<string, string> = {
+  "top-navigation": "TopNavigationGridPreview",
+  sidebar: "SidebarGridPreview",
+  tabs: "TabsGridPreview",
+  page: "PageGridPreview",
+};
+
+const items: ComponentDoc[] = Object.keys(modules)
+  .map((path) => {
+    const slug = path.split("/").pop()!.replace(/\.mdx$/, "");
+    const demoName = gridOverrides[slug] ?? `${toPascalCase(slug)}Demo`;
+    return {
+      href: `/components/${slug}`,
+      title: modules[path].frontmatter.title,
+      Demo: (Demos as Record<string, () => any>)[demoName],
+    };
+  })
   .sort((a, b) => a.title.localeCompare(b.title));
 ---
 
-<div class="not-prose grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+<div class="not-prose grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
   {
-    items.map((item) => (
-      <a
-        href={item.href}
-        class="group rounded-lg border border-goldfinch-hairline bg-goldfinch-base p-4 transition-colors hover:border-goldfinch-line hover:bg-goldfinch-tint"
-      >
-        <h3 class="text-sm font-semibold text-goldfinch-strong">
-          {item.title}
-        </h3>
-        <p class="mt-1 text-sm text-goldfinch-subtle">{item.description}</p>
-      </a>
-    ))
+    items.map((item) => {
+      const Demo = item.Demo;
+      return (
+        <div class="flex flex-col overflow-hidden rounded-lg border border-goldfinch-hairline bg-goldfinch-base">
+          <div
+            class="flex h-36 items-center justify-center overflow-hidden bg-goldfinch-canvas p-4"
+            inert
+            aria-hidden="true"
+          >
+            <div class="scale-75">{Demo && <Demo />}</div>
+          </div>
+          <a
+            href={item.href}
+            class="border-t border-goldfinch-hairline px-4 py-2.5 text-sm font-medium text-goldfinch-strong transition-colors hover:bg-goldfinch-tint"
+          >
+            {item.title}
+          </a>
+        </div>
+      );
+    })
   }
 </div>
