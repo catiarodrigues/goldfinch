@@ -7,10 +7,19 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 import { playwright } from '@vitest/browser-playwright';
+import dts from 'vite-plugin-dts';
 const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [
+    react(),
+    tailwindcss(),
+    dts({
+      entryRoot: ".",
+      include: ["src/**/*.ts", "src/**/*.tsx"],
+      exclude: ["src/**/*.stories.tsx", "src/**/*.type-spec.tsx"],
+    }),
+  ],
   build: {
     lib: {
       entry: {
