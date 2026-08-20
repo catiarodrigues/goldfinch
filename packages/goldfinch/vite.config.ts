@@ -63,7 +63,6 @@ export default defineConfig({
         "clsx",
         "tailwind-merge",
         "@phosphor-icons/react",
-        "motion",
         "@base-ui/react",
         /^@base-ui\/react\//,
         "use-sync-external-store",
