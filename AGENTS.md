@@ -9,9 +9,9 @@ This file is _how the repo is put together_ and the stuff that's easy to acciden
 A pnpm monorepo with two packages: `@catiarodrigues/goldfinch`, a React component library
 built on [Base UI](https://base-ui.com/) primitives and Tailwind CSS v4 (36 components), and
 `@catiarodrigues/goldfinch-docs-astro`, an Astro docs site that consumes the library via
-`workspace:*` and renders one MDX page + live demo per component. The library is
-publish-ready (`exports` map, `files`, no `private` flag) but has never actually been
-published — the npm registry has no `@catiarodrigues/goldfinch`.
+`workspace:*` and renders one MDX page + live demo per component. The library is published
+to npm as `@catiarodrigues/goldfinch` (public scoped package) — see Publishing for what keeps
+that working.
 
 ## Structure
 
@@ -32,7 +32,8 @@ goldfinch/
 │   │   │   │   └── portal-provider.tsx                # GoldfinchPortalProvider/usePortalContainer -- Shadow DOM / custom portal target
 │   │   │   └── styles/index.css                    # Tailwind v4 @theme tokens (--color-goldfinch-*), light-dark()
 │   │   ├── scripts/copy-css.mjs                  # chained after `vite build` by the `build` script; copies styles into dist/styles/
-│   │   ├── vite.config.ts                       # one lib entry per component (see Anti-patterns) + Storybook/vitest browser test config
+│   │   ├── vite.config.ts                       # one lib entry per component + vite-plugin-dts (see Publishing) + Storybook/vitest browser test config
+│   │   ├── README.md / LICENSE                  # package-local copies -- npm packs only from this directory, not the monorepo root, see Publishing
 │   │   └── package.json                        # `exports` map -- one subpath per component, kept in sync with vite.config.ts entries
 │   └── goldfinch-docs-astro/                 # Astro docs site, private, not published
 │       └── src/
@@ -82,9 +83,9 @@ goldfinch/
 
 - **Never commit or push without explicit confirmation.** Stage the change and show the
   diff, then wait to be told to commit.
-- **Never publish to npm without explicit confirmation.** The package has never been
-  published; a first publish and a version bump are equally irreversible-feeling decisions —
-  don't make either unprompted.
+- **Never publish to npm or bump the version without explicit confirmation.** npm refuses to
+  let anyone republish over an existing version, so a publish is as irreversible as a push —
+  stage the version bump, show it, then wait to be told to run `npm publish`.
 - **Adding, removing, or renaming a component touches four places**: `src/components/<name>/`,
   `src/index.ts`, `package.json`'s `exports` map, and `vite.config.ts`'s `build.lib.entry`.
   These can silently drift; grep for the component name across all four before calling the
@@ -103,6 +104,24 @@ goldfinch/
 | Build a `pl-${n}` / `pr-${n}` Tailwind class string at runtime | Tailwind's JIT scanner only picks up literal class strings in source; a template-built class never gets CSS generated for it | keep spacing/padding values as static literal strings — see the comment in `input-group/context.ts` |
 | Assume `pnpm test` at the repo root runs the library's tests | root `package.json` has no `test` script | `pnpm --filter @catiarodrigues/goldfinch test` |
 | Add a new dependency for animation, ID generation, class-name merging, etc. | this repo actively prunes unused deps (see git history: an unused `motion` dependency and a hand-rolled UUID polyfill were both removed by audit) | check `cn.ts`, `resolve-variant.ts`, and installed deps first |
+| Remove the `dts()` plugin from `vite.config.ts`, or narrow its `include`/`exclude` without checking | it's the only thing that generates the `.d.ts` files every path in `package.json`'s `exports` map points at — without it the package still builds and publishes, but every TypeScript consumer's import breaks | run `pnpm build` and `npm pack --dry-run` after touching it, confirm `dist/src/**/*.d.ts` still exists for every export |
+| Delete `packages/goldfinch/README.md` or `LICENSE` as "duplicates" of the root files | `npm publish` packs only from `packages/goldfinch/`, not the monorepo root — removing these ships a tarball with no README or license even though the root copies still exist | keep both in sync with the root manually, they're intentionally duplicated |
+
+## Publishing
+
+`packages/goldfinch/package.json` publishes to npm as a public scoped package. Three things
+make that actually work correctly and are easy to silently break:
+
+- **`publishConfig: { "access": "public" }`** — required for any `@scope/name` package with
+  no paid npm org; without it `npm publish` fails outright (402).
+- **`prepublishOnly: "pnpm run build"`** — forces a fresh build before every publish. Without
+  it, `npm publish` ships whatever happens to be sitting in the gitignored `dist/`, which can
+  be stale (this bit the repo once: a build from before an unused-dependency audit almost got
+  published as current).
+- **`vite-plugin-dts`** (see Structure/Anti-patterns) — generates the `.d.ts` tree under
+  `dist/src/` that every subpath in `exports` and the root `types` field points at. Verify
+  with `npm pack --dry-run` from `packages/goldfinch/` after any build-config change; check
+  the tarball contents include `.d.ts` files, `README.md`, and `LICENSE`, not just `.mjs`.
 
 ## Commands
 
@@ -128,6 +147,7 @@ pnpm --filter @catiarodrigues/goldfinch build-storybook                 # static
 | Base UI (`@base-ui/react`) | `packages/goldfinch/src/components/*` | unstyled primitives underneath most interactive components |
 | Tailwind CSS v4 | both packages | `@theme` tokens in `packages/goldfinch/src/styles/index.css`, consumed via `@tailwindcss/vite` |
 | Vite | `packages/goldfinch/vite.config.ts` | ESM-only lib build (`formats: ["es"]`), one entry per component |
+| `vite-plugin-dts` | `packages/goldfinch/vite.config.ts` | generates the `.d.ts` tree the `exports` map depends on — see Publishing |
 | Storybook 10 + `@storybook/addon-vitest` | `packages/goldfinch/.storybook/`, `*.stories.tsx` | acts as both the component catalog and the test runner — see Conventions |
 | Astro 5 | `packages/goldfinch-docs-astro/` | MDX pages, `astro:transitions` (View Transitions), Shiki syntax highlighting |
 | clsx + tailwind-merge | `src/utils/cn.ts` | wrapped as `cn()`, used everywhere class lists are composed |
@@ -147,3 +167,8 @@ pnpm --filter @catiarodrigues/goldfinch build-storybook                 # static
   resolution — no build/publish step needed while iterating.
 - `dist/` (gitignored) is rebuilt by `pnpm build`; never hand-edit or commit anything under it.
 - `apps/*` is declared in `pnpm-workspace.yaml` but no `apps/` directory exists yet.
+- `homepage` in `packages/goldfinch/package.json` points at `goldfinch-ui.com`, the domain
+  configured as `site` in the docs site's `astro.config.mjs` — there's no deploy config
+  (Vercel/Netlify/Cloudflare) in the repo yet, so don't assume that domain is actually live.
+- The npm publish token lives in the user-level `~/.npmrc`, never in the repo — check
+  `git status`/`git diff` for anything credential-shaped before staging.
