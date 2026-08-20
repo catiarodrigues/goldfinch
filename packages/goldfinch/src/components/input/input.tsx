@@ -1,5 +1,4 @@
 import { cn } from "../../utils/cn";
-import { resolveVariant } from "../../utils/resolve-variant";
 import {
   forwardRef,
   type ComponentPropsWithoutRef,
@@ -7,134 +6,29 @@ import {
 } from "react";
 import { Input as BaseInput } from "@base-ui/react/input";
 import { Field, normalizeFieldError, type FieldErrorMatch } from "../field/field";
-import { InputGroup } from "../input-group/input-group";
-import { SensitiveInput } from "../sensitive-input/sensitive-input";
+import {
+  GOLDFINCH_INPUT_VARIANTS,
+  GOLDFINCH_INPUT_DEFAULT_VARIANTS,
+  inputVariants,
+  type GoldfinchInputSize,
+  type GoldfinchInputVariant,
+  type GoldfinchInputVariantsProps,
+} from "./input-variants";
 
-/** Input size and variant definitions mapping names to their Tailwind classes. */
-export const GOLDFINCH_INPUT_VARIANTS = {
-  size: {
-    xs: {
-      classes: "h-5 gap-1 rounded-sm px-1.5 text-xs",
-      description: "Extra small input for compact UIs",
-    },
-    sm: {
-      classes: "h-6.5 gap-1 rounded-md px-2 text-xs",
-      description: "Small input for secondary fields",
-    },
-    base: {
-      classes: "h-9 gap-1.5 rounded-lg px-3 text-base",
-      description: "Default input size",
-    },
-    lg: {
-      classes: "h-10 gap-2 rounded-lg px-4 text-base",
-      description: "Large input for prominent fields",
-    },
-  },
-  variant: {
-    default: {
-      classes: "focus:ring-goldfinch-focus/50 focus:ring-[1.5px]",
-      description: "Default input appearance",
-    },
-    error: {
-      classes: "!ring-goldfinch-danger focus:ring-goldfinch-danger/50 focus:ring-[1.5px]",
-      description: "Error state for validation failures",
-    },
-  },
-} as const;
-
-export const GOLDFINCH_INPUT_DEFAULT_VARIANTS = {
-  size: "base",
-  variant: "default",
-} as const;
-
-export const GOLDFINCH_INPUT_STYLING = {
-  dimensions: {
-    xs: { height: 20, paddingX: 6, fontSize: 12, borderRadius: 2, width: 160 },
-    sm: { height: 26, paddingX: 8, fontSize: 12, borderRadius: 6, width: 200 },
-    base: {
-      height: 36,
-      paddingX: 12,
-      fontSize: 16,
-      borderRadius: 8,
-      width: 280,
-    },
-    lg: { height: 40, paddingX: 16, fontSize: 16, borderRadius: 8, width: 320 },
-  },
-  baseTokens: {
-    background: "color-secondary",
-    text: "text-color-surface",
-    placeholder: "text-color-muted",
-    ring: "color-border",
-  },
-  stateTokens: {
-    focus: { ring: "color-active" },
-    error: { ring: "color-error" },
-    disabled: { opacity: 0.5, text: "text-color-muted" },
-  },
-} as const;
-
-// Derived types from GOLDFINCH_INPUT_VARIANTS
-export type GoldfinchInputSize = keyof typeof GOLDFINCH_INPUT_VARIANTS.size;
-export type GoldfinchInputVariant = keyof typeof GOLDFINCH_INPUT_VARIANTS.variant;
-
-export interface GoldfinchInputVariantsProps {
-  /**
-   * Input size.
-   * - `"xs"` — Extra small for compact UIs
-   * - `"sm"` — Small for secondary fields
-   * - `"base"` — Default size
-   * - `"lg"` — Large for prominent fields
-   * @default "base"
-   */
-  size?: GoldfinchInputSize;
-  /**
-   * Visual variant.
-   * - `"default"` — Standard input
-   * - `"error"` — Error state for validation failures
-   * @default "default"
-   */
-  variant?: GoldfinchInputVariant;
-  parentFocusIndicator?: boolean;
-  focusIndicator?: boolean;
-}
+// Re-exported so existing `../input/input` imports keep working — the variant
+// config lives in ./input-variants to avoid a circular import with
+// sensitive-input.tsx (which also needs it and is imported by this file).
+export {
+  GOLDFINCH_INPUT_VARIANTS,
+  GOLDFINCH_INPUT_DEFAULT_VARIANTS,
+  inputVariants,
+  type GoldfinchInputSize,
+  type GoldfinchInputVariant,
+  type GoldfinchInputVariantsProps,
+};
 
 // Omit native `size` attribute (number) to avoid conflict with our custom `size` variant
 type BaseInputProps = Omit<ComponentPropsWithoutRef<typeof BaseInput>, "size">;
-
-export function inputVariants({
-  variant = GOLDFINCH_INPUT_DEFAULT_VARIANTS.variant,
-  size = GOLDFINCH_INPUT_DEFAULT_VARIANTS.size,
-  parentFocusIndicator = false,
-  focusIndicator = false,
-}: GoldfinchInputVariantsProps = {}) {
-  return cn(
-    // Base styles
-    "border-0 bg-goldfinch-control text-goldfinch-default ring ring-goldfinch-line outline-none focus:outline-none",
-    // Disabled state and placeholder styles (using vanilla CSS class for Chrome compatibility)
-    "goldfinch-input-placeholder disabled:text-goldfinch-disabled",
-    // Apply size styles from GOLDFINCH_INPUT_VARIANTS
-    resolveVariant(
-      GOLDFINCH_INPUT_VARIANTS.size,
-      size,
-      GOLDFINCH_INPUT_DEFAULT_VARIANTS.size,
-    ).classes,
-    // Apply variant styles from GOLDFINCH_INPUT_VARIANTS
-    resolveVariant(
-      GOLDFINCH_INPUT_VARIANTS.variant,
-      variant,
-      GOLDFINCH_INPUT_DEFAULT_VARIANTS.variant,
-    ).classes,
-    // Focus state handling
-    parentFocusIndicator &&
-      (variant === "error"
-        ? "focus-within:ring-goldfinch-danger/50 focus-within:ring-[1.5px]"
-        : "focus-within:ring-goldfinch-focus/50 focus-within:ring-[1.5px]"),
-    focusIndicator &&
-      (variant === "error"
-        ? "focus:ring-goldfinch-danger/50 focus:ring-[1.5px]"
-        : "focus:ring-goldfinch-focus/50 focus:ring-[1.5px]"),
-  );
-}
 
 const InputRoot = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const {
@@ -222,10 +116,10 @@ const InputRoot = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 
 InputRoot.displayName = "Input";
 
-export const Input = Object.assign(InputRoot, {
-  Group: InputGroup,
-  Sensitive: SensitiveInput,
-});
+// `Input.Group` / `Input.Sensitive` are attached in ./index.ts, not here —
+// InputGroup and SensitiveInput both import this module's variant config, so
+// this module can't also import them at module scope without a cycle.
+export const Input = InputRoot;
 
 /**
  * Input component props with accessibility guidance.

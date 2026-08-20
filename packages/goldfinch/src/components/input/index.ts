@@ -1,4 +1,8 @@
-export { Input, inputVariants, type InputProps } from "./input";
+import { Input as InputBase } from "./input";
+import { InputGroup } from "../input-group";
+import { SensitiveInput } from "../sensitive-input/sensitive-input";
+
+export { inputVariants, type InputProps } from "./input";
 export { InputArea, Textarea, type InputAreaProps } from "./input-area";
 
 // Re-export InputGroup from its new dedicated directory so that the subpath
@@ -8,6 +12,19 @@ export {
   GOLDFINCH_INPUT_GROUP_VARIANTS,
   GOLDFINCH_INPUT_GROUP_DEFAULT_VARIANTS,
 } from "../input-group";
+
+/**
+ * Assembled here rather than in input.tsx: InputGroup and SensitiveInput both
+ * import input.tsx's variant config, so input.tsx can't also import them at
+ * module scope without a circular import.
+ */
+export const Input: typeof InputBase & {
+  Group: typeof InputGroup;
+  Sensitive: typeof SensitiveInput;
+} = Object.assign(InputBase, {
+  Group: InputGroup,
+  Sensitive: SensitiveInput,
+});
 
 // Backward-compatible type aliases — the old `input-group.tsx` exported these
 // names. External consumers importing from `@catiarodrigues/goldfinch/components/input`

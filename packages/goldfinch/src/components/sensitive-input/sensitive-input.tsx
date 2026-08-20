@@ -16,7 +16,7 @@ import {
   GOLDFINCH_INPUT_VARIANTS,
   type GoldfinchInputSize,
   type GoldfinchInputVariant,
-} from "../input/input";
+} from "../input/input-variants";
 import { Field, type FieldErrorMatch } from "../field/field";
 
 export const GOLDFINCH_SENSITIVE_INPUT_VARIANTS = GOLDFINCH_INPUT_VARIANTS;
