@@ -6,7 +6,7 @@ import {
   type PropsWithChildren,
 } from "react";
 import { cn } from "../../utils/cn";
-import { inputVariants } from "../input/input";
+import { inputVariants } from "../input/input-variants";
 import { Field } from "../field/field";
 import {
   InputGroupContext,
