@@ -86,6 +86,16 @@ export function ButtonShapeDemo() {
 }
 
 /* ---------- Badge ---------- */
+export function BadgeDemo() {
+  return (
+    <div className="flex flex-wrap items-center gap-2">
+      <Badge variant="success">Success</Badge>
+      <Badge variant="secondary">Secondary</Badge>
+      <Badge variant="outline">Outline</Badge>
+    </div>
+  );
+}
+
 export function BadgeSemanticVariantsDemo() {
   return (
     <div className="flex flex-wrap items-center gap-2">
@@ -264,6 +274,17 @@ export function FieldDemo() {
     <Field label="Email" description="We'll never share your email." error="">
       <Input type="email" placeholder="you@example.com" aria-label="Email" />
     </Field>
+  );
+}
+
+/* ---------- Label ---------- */
+export function LabelDemo() {
+  return (
+    <div className="flex flex-col gap-3">
+      <Label>Email</Label>
+      <Label showOptional>Middle Name</Label>
+      <Label tooltip="We'll use this to verify your account.">Phone</Label>
+    </div>
   );
 }
 
@@ -597,5 +618,67 @@ export function TooltipDemo() {
     <Tooltip content="This is a tooltip">
       <Button variant="ghost">Hover me</Button>
     </Tooltip>
+  );
+}
+
+/* ---------- Grid previews ----------
+ * Compact stand-ins for the Overview page's component grid, used only
+ * where the full doc-page demo (above) is too tall or too wide to read
+ * at card size. Doc pages keep using the full demos untouched.
+ */
+export function TopNavigationGridPreview() {
+  return (
+    <div style={{ width: 200 }}>
+      <TopNavigation>
+        <TopNavigation.Logo>
+          <span className="text-sm font-bold text-goldfinch-strong">Goldfinch</span>
+        </TopNavigation.Logo>
+      </TopNavigation>
+    </div>
+  );
+}
+
+export function SidebarGridPreview() {
+  return (
+    <div className="h-28 w-40 overflow-hidden rounded-lg border border-goldfinch-hairline">
+      <Sidebar.Provider defaultOpen>
+        <Sidebar collapsible="none">
+          <Sidebar.Content>
+            <Sidebar.Menu>
+              <Sidebar.MenuItem>
+                <Sidebar.MenuButton>Dashboard</Sidebar.MenuButton>
+              </Sidebar.MenuItem>
+              <Sidebar.MenuItem>
+                <Sidebar.MenuButton>Settings</Sidebar.MenuButton>
+              </Sidebar.MenuItem>
+            </Sidebar.Menu>
+          </Sidebar.Content>
+        </Sidebar>
+      </Sidebar.Provider>
+    </div>
+  );
+}
+
+export function TabsGridPreview() {
+  return (
+    <Tabs
+      tabs={[
+        { value: "preview", label: "Preview" },
+        { value: "code", label: "Code" },
+      ]}
+      variant="segmented"
+      value="preview"
+      onValueChange={() => {}}
+    />
+  );
+}
+
+export function PageGridPreview() {
+  return (
+    <div style={{ width: 200 }}>
+      <Page size="sm" className="p-0">
+        <Page.Title>Button</Page.Title>
+      </Page>
+    </div>
   );
 }
