@@ -1,5 +1,7 @@
 # Goldfinch
 
+[![npm](https://img.shields.io/npm/v/%40catiarodrigues%2Fgoldfinch.svg)](https://www.npmjs.com/package/@catiarodrigues/goldfinch)
+
 A React component library built on [Base UI](https://base-ui.com/) and Tailwind CSS v4. Accessible, composable, themeable components with keyboard navigation, focus management, and ARIA attributes handled out of the box.
 
 ## Features
