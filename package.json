@@ -1,6 +1,7 @@
 {
   "name": "goldfinch",
   "version": "1.0.0",
+  "private": true,
   "description": "Goldfinch — A React component library built on Base UI and Tailwind CSS v4",
   "scripts": {
     "dev": "pnpm --filter @catiarodrigues/goldfinch-docs-astro dev",
