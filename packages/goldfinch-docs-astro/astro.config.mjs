@@ -7,7 +7,7 @@ import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
   integrations: [mdx(), react(), sitemap()],
-  site: "https://goldfinch-ui.com/",
+  site: "https://goldfinch.catiarodrigues.dev/",
   markdown: {
     shikiConfig: {
       themes: { light: "github-light", dark: "vesper" },
