@@ -1,6 +1,6 @@
 {
   "name": "@catiarodrigues/goldfinch",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Goldfinch - A React component library built on Base UI and Tailwind CSS v4",
   "homepage": "https://goldfinch.catiarodrigues.dev/",
   "bugs": "https://github.com/catiarodrigues/goldfinch/issues",
