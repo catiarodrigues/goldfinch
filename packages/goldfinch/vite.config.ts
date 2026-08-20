@@ -18,6 +18,7 @@ export default defineConfig({
       entryRoot: ".",
       include: ["src/**/*.ts", "src/**/*.tsx"],
       exclude: ["src/**/*.stories.tsx", "src/**/*.type-spec.tsx"],
+      compilerOptions: { types: ["node"] },
     }),
   ],
   build: {
