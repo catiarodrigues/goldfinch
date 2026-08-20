@@ -29,7 +29,7 @@ pnpm add @catiarodrigues/goldfinch
 ### Peer Dependencies
 
 ```bash
-pnpm add react react-dom @phosphor-icons/react
+pnpm add react react-dom
 ```
 
 ## Usage
@@ -90,11 +90,24 @@ import { Button } from "@catiarodrigues/goldfinch/components/button";
 
 ## Documentation
 
-Browse interactive docs and live examples by running the docs site locally:
+Full docs, props tables, and live examples: **[goldfinch.catiarodrigues.dev](https://goldfinch.catiarodrigues.dev/)**
+
+To run the docs site locally instead:
 
 ```bash
 cd packages/goldfinch-docs-astro
 pnpm dev
+```
+
+## AI agent skill
+
+The package ships a [Claude Code skill](https://code.claude.com/docs/en/skills) with import
+conventions, compound-component APIs, and setup patterns, so an agent uses Goldfinch correctly
+instead of guessing. After installing, copy it into your project:
+
+```bash
+mkdir -p .claude/skills
+cp -r node_modules/@catiarodrigues/goldfinch/.claude/skills/goldfinch .claude/skills/goldfinch
 ```
 
 ## Development

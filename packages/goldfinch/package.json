@@ -189,7 +189,8 @@
   },
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    ".claude/skills"
   ],
   "sideEffects": [
     "*.css",
