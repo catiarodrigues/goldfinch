@@ -30,7 +30,7 @@ export default function ThemeToggle() {
     <button
       onClick={toggle}
       aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
-      class="flex items-center justify-center size-8 rounded-lg bg-goldfinch-base text-goldfinch-default hover:bg-goldfinch-tint transition-colors cursor-pointer border-none"
+      className="flex items-center justify-center size-8 rounded-lg bg-goldfinch-base text-goldfinch-default hover:bg-goldfinch-tint transition-colors cursor-pointer border-none"
     >
       {theme === "light" ? <Moon size={16} /> : <Sun size={16} />}
     </button>

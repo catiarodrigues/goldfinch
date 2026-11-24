@@ -38,6 +38,7 @@ import {
   TopNavigation,
   Page,
   useGoldfinchToastManager,
+  type TabsItem,
 } from "@catiarodrigues/goldfinch";
 import { useState, useCallback } from "react";
 import { Copy, Trash } from "@phosphor-icons/react";
@@ -185,13 +186,14 @@ export function BreadcrumbsDemo() {
 
 /* ---------- Checkbox ---------- */
 export function CheckboxDemo() {
+  const [subscribed, setSubscribed] = useState(true);
   return (
     <div className="flex flex-col gap-3">
       <Label>
         <Checkbox aria-label="Accept terms" /> Accept terms
       </Label>
       <Label>
-        <Checkbox defaultChecked aria-label="Subscribe" /> Subscribe
+        <Checkbox checked={subscribed} onCheckedChange={setSubscribed} aria-label="Subscribe" /> Subscribe
       </Label>
     </div>
   );
@@ -271,7 +273,7 @@ export function EmptyStateDemo() {
 /* ---------- Field ---------- */
 export function FieldDemo() {
   return (
-    <Field label="Email" description="We'll never share your email." error="">
+    <Field label="Email" description="We'll never share your email.">
       <Input type="email" placeholder="you@example.com" aria-label="Email" />
     </Field>
   );
@@ -291,7 +293,7 @@ export function LabelDemo() {
 /* ---------- Grid ---------- */
 export function GridDemo() {
   return (
-    <Grid columns={3} gap="base">
+    <Grid variant="3up" gap="base">
       <div className="rounded-lg bg-goldfinch-tint p-4 text-center text-sm">1</div>
       <div className="rounded-lg bg-goldfinch-tint p-4 text-center text-sm">2</div>
       <div className="rounded-lg bg-goldfinch-tint p-4 text-center text-sm">3</div>
@@ -383,7 +385,7 @@ export function ProgressSizesDemo() {
 /* ---------- Pagination ---------- */
 export function PaginationDemo() {
   const [page, setPage] = useState(1);
-  return <Pagination current={page} total={10} onChange={setPage} />;
+  return <Pagination page={page} setPage={setPage} perPage={10} totalCount={100} />;
 }
 
 /* ---------- Popover ---------- */
@@ -437,8 +439,8 @@ export function SensitiveInputDemo() {
 export function SidebarDemo() {
   return (
     <div className="w-64 rounded-lg border border-goldfinch-hairline overflow-hidden">
-      <Sidebar.Provider defaultOpen>
-        <Sidebar collapsible="none">
+      <Sidebar.Provider defaultOpen collapsible="none">
+        <Sidebar>
           <Sidebar.Header>Navigation</Sidebar.Header>
           <Sidebar.Content>
             <Sidebar.Menu>
@@ -543,9 +545,9 @@ export function TabsDemo() {
 export function TextDemo() {
   return (
     <div className="flex flex-col gap-2">
-      <Text variant="heading1">Heading 1</Text>
-      <Text variant="heading2">Heading 2</Text>
-      <Text variant="heading3">Heading 3</Text>
+      <Text variant="heading1" as="h1">Heading 1</Text>
+      <Text variant="heading2" as="h2">Heading 2</Text>
+      <Text variant="heading3" as="h3">Heading 3</Text>
       <Text variant="body">Body text</Text>
       <Text variant="secondary">Secondary text</Text>
     </div>
@@ -641,8 +643,8 @@ export function TopNavigationGridPreview() {
 export function SidebarGridPreview() {
   return (
     <div className="h-28 w-40 overflow-hidden rounded-lg border border-goldfinch-hairline">
-      <Sidebar.Provider defaultOpen>
-        <Sidebar collapsible="none">
+      <Sidebar.Provider defaultOpen collapsible="none">
+        <Sidebar>
           <Sidebar.Content>
             <Sidebar.Menu>
               <Sidebar.MenuItem>

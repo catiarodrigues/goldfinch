@@ -11,6 +11,9 @@ const config: StorybookConfig = {
     "@storybook/addon-a11y",
     "@storybook/addon-docs"
   ],
-  "framework": "@storybook/react-vite"
+  "framework": "@storybook/react-vite",
+  "features": {
+    "sidebarOnboardingChecklist": false
+  }
 };
 export default config;

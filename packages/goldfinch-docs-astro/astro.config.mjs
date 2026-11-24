@@ -15,6 +15,9 @@ export default defineConfig({
     },
   },
   vite: {
+    // @tailwindcss/vite resolves Vite 8 types, Astro 5 bundles Vite 6. Runtime is fine;
+    // drop this once Astro ships on Vite 8.
+    // @ts-expect-error -- Vite version mismatch in plugin types
     plugins: [tailwindcss()],
   },
 });
