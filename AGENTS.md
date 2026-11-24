@@ -184,7 +184,7 @@ pnpm --filter @catiarodrigues/goldfinch build-storybook                 # static
   resolution — no build/publish step needed while iterating.
 - `dist/` (gitignored) is rebuilt by `pnpm build`; never hand-edit or commit anything under it.
 - `apps/*` is declared in `pnpm-workspace.yaml` but no `apps/` directory exists yet.
-- `homepage` in `packages/goldfinch/package.json` points at `goldfinch-ui.com`, the domain
+- `homepage` in `packages/goldfinch/package.json` points at `goldfinch.catiarodrigues.dev`, the domain
   configured as `site` in the docs site's `astro.config.mjs` — there's no deploy config
   (Vercel/Netlify/Cloudflare) in the repo yet, so don't assume that domain is actually live.
 - The npm publish token lives in the user-level `~/.npmrc`, never in the repo — check
