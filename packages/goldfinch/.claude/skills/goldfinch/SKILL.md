@@ -13,20 +13,28 @@ don't add redundant `aria-*` unless overriding real custom behavior).
 
 ```bash
 pnpm add @catiarodrigues/goldfinch
+pnpm add -D tailwindcss @tailwindcss/vite
 ```
 
 Only real peer deps are `react`/`react-dom` (>=18) — `@phosphor-icons/react`, `@base-ui/react`,
 `clsx`, `tailwind-merge` all come along as regular dependencies, don't install them separately.
 
-Import the stylesheet **once**, at the app root:
+**Tailwind CSS v4 is required.** The stylesheet ships as Tailwind source (`@import "tailwindcss"`
++ `@theme` tokens), not compiled CSS — the consuming project's Tailwind build generates the
+utility classes. Add `tailwindcss()` from `@tailwindcss/vite` to `vite.config.ts` plugins, then
+put this in the app's main CSS file (once):
 
-```tsx
-import "@catiarodrigues/goldfinch/styles";
+```css
+@import "@catiarodrigues/goldfinch/styles";
+@source "../node_modules/@catiarodrigues/goldfinch/dist";
 ```
 
-The consuming project does **not** need Tailwind installed — all utility CSS is pre-built into
-that stylesheet. Tailwind is only relevant if the project wants to hand-write its own classes
-alongside Goldfinch's.
+- `@source` is mandatory: Tailwind v4 doesn't scan `node_modules`, so without it every
+  component renders unstyled. The path is relative to the CSS file — adjust it if the CSS file
+  isn't one level below the project root.
+- Don't add a second `@import "tailwindcss"`; the Goldfinch stylesheet already includes it.
+- Don't import the stylesheet from TS/TSX (`import "@catiarodrigues/goldfinch/styles"`):
+  `@source` can't go there, and TypeScript 6+ errors on that side-effect import.
 
 ## Imports
 

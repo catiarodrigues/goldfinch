@@ -22,15 +22,45 @@ A React component library built on [Base UI](https://base-ui.com/) and Tailwind 
 
 ## Installation
 
+Goldfinch needs **Tailwind CSS v4** in the consuming project: its stylesheet ships as Tailwind
+source (theme tokens + `@import "tailwindcss"`), and your Tailwind build generates the utility
+classes the components use.
+
 ```bash
 pnpm add @catiarodrigues/goldfinch
+pnpm add -D tailwindcss @tailwindcss/vite
 ```
 
-### Peer Dependencies
+React (`>=18`) is the only peer dependency.
 
-```bash
-pnpm add react react-dom
+### Set up the styles
+
+Add the Tailwind plugin to Vite:
+
+```ts
+// vite.config.ts
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
+
+export default defineConfig({
+  plugins: [react(), tailwindcss()],
+});
 ```
+
+Then, in your main CSS file (e.g. `src/index.css`, imported once from `main.tsx`):
+
+```css
+@import "@catiarodrigues/goldfinch/styles";
+@source "../node_modules/@catiarodrigues/goldfinch/dist";
+```
+
+- Don't add a separate `@import "tailwindcss"` — the Goldfinch stylesheet already includes it.
+- `@source` is required: Tailwind v4 skips `node_modules` when scanning for class names, so
+  without it the components render unstyled. The path is relative to the CSS file.
+- Import the stylesheet from CSS, not from a `.ts`/`.tsx` file — `@source` only works in CSS,
+  and TypeScript 6+ rejects the bare `import "@catiarodrigues/goldfinch/styles"` side-effect
+  import.
 
 ## Usage
 
@@ -38,7 +68,6 @@ pnpm add react react-dom
 
 ```tsx
 import { Button, Input, Modal } from "@catiarodrigues/goldfinch";
-import "@catiarodrigues/goldfinch/styles";
 ```
 
 ### Granular import (tree-shaking)
