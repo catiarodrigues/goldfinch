@@ -1,0 +1,98 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.7.0 # keep in sync with devEngines.packageManager
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Format
+        run: pnpm format:check
+
+      - name: Typecheck
+        run: |
+          pnpm typecheck
+          pnpm typecheck:docs
+
+      # Story tests run in a real Chromium via Playwright; a11y violations fail them.
+      - name: Install Playwright Chromium
+        run: pnpm --filter @catiarodrigues/goldfinch exec playwright install --with-deps chromium
+
+      - name: Story tests (interaction + a11y)
+        run: pnpm test
+
+      # build:docs builds the library first, so dist/ exists for the pack check.
+      - name: Build library and docs
+        run: pnpm build:docs
+
+      - name: Check published package contents
+        working-directory: packages/goldfinch
+        run: |
+          npm pack --dry-run 2>&1 | tee pack.txt
+          grep -q "dist/src/index.d.ts" pack.txt
+          grep -q "README.md" pack.txt
+          grep -q "LICENSE" pack.txt
+          grep -q "dist/styles/index.css" pack.txt
+
+  # Visual regression tests. Skipped until CHROMATIC_PROJECT_TOKEN is added as a
+  # repository secret (create the project at chromatic.com, sign in with GitHub).
+  visual:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+    steps:
+      - name: Skip without a Chromatic token
+        if: env.CHROMATIC_PROJECT_TOKEN == ''
+        run: echo "CHROMATIC_PROJECT_TOKEN not set; skipping visual tests."
+
+      - uses: actions/checkout@v4
+        if: env.CHROMATIC_PROJECT_TOKEN != ''
+        with:
+          fetch-depth: 0 # Chromatic compares against the baseline commit
+
+      - uses: pnpm/action-setup@v4
+        if: env.CHROMATIC_PROJECT_TOKEN != ''
+        with:
+          version: 11.7.0
+
+      - uses: actions/setup-node@v4
+        if: env.CHROMATIC_PROJECT_TOKEN != ''
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+        if: env.CHROMATIC_PROJECT_TOKEN != ''
+
+      - uses: chromaui/action@latest
+        if: env.CHROMATIC_PROJECT_TOKEN != ''
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          workingDir: packages/goldfinch
+          buildScriptName: build-storybook
+          exitZeroOnChanges: true # changes need review in Chromatic, not a red build

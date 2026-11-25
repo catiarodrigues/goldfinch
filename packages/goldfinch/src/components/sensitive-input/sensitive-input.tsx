@@ -193,8 +193,8 @@ export const SensitiveInput = forwardRef<HTMLInputElement, SensitiveInputProps>(
             document.execCommand("copy");
             setCopied(true);
             onCopy?.();
-          } catch (error) {
-            console.warn("Clipboard copy failed", error);
+          } catch (copyError) {
+            console.warn("Clipboard copy failed", copyError);
           } finally {
             document.body.removeChild(textarea);
             if (previousRange) {

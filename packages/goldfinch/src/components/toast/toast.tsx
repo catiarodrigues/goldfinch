@@ -248,13 +248,13 @@ function wrapManagerMethods<
       });
     },
 
-    promise: <T,>(
-      promise: Promise<T>,
+    promise: <R,>(
+      promise: Promise<R>,
       options: {
         loading: GoldfinchToastManagerAddOptions<any>;
         success:
           | GoldfinchToastManagerAddOptions<any>
-          | ((data: T) => GoldfinchToastManagerAddOptions<any>);
+          | ((data: R) => GoldfinchToastManagerAddOptions<any>);
         error:
           | GoldfinchToastManagerAddOptions<any>
           | ((error: Error) => GoldfinchToastManagerAddOptions<any>);
@@ -264,10 +264,10 @@ function wrapManagerMethods<
         loading: { ...options.loading },
         success:
           typeof options.success === "function"
-            ? (data: T) => ({
+            ? (data: R) => ({
                 ...(
                   options.success as (
-                    data: T,
+                    data: R,
                   ) => GoldfinchToastManagerAddOptions<any>
                 )(data),
               })

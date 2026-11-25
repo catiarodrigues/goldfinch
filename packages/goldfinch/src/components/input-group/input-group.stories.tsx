@@ -13,10 +13,10 @@ type Story = StoryObj<typeof InputGroup>;
 export const Default: Story = {
   render: () => (
     <InputGroup>
-      <InputGroup.Button variant="primary">
+      <InputGroup.Button variant="primary" aria-label="Search">
         <MagnifyingGlassIcon size={16} />
       </InputGroup.Button>
-      <InputGroup.Input placeholder="Search..." />
+      <InputGroup.Input placeholder="Search..." aria-label="Search query" />
     </InputGroup>
   ),
 };

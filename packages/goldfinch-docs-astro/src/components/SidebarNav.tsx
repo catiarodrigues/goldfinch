@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { List, X } from "@phosphor-icons/react";
-import { navigation, type NavSection } from "../data/navigation";
+import { navigation } from "../data/navigation";
 
 interface Props {
   currentPath: string;
@@ -42,8 +42,10 @@ export default function SidebarNav({ currentPath }: Props) {
       </button>
 
       {open && (
-        <div
-          className="fixed inset-0 z-40 bg-black/30 lg:hidden"
+        <button
+          type="button"
+          aria-label="Close navigation"
+          className="fixed inset-0 z-40 cursor-default border-none bg-black/30 p-0 lg:hidden"
           onClick={close}
         />
       )}

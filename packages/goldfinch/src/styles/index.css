@@ -37,7 +37,7 @@
   --text-color-goldfinch-strong: light-dark(#000000, #ffffff);
   --text-color-goldfinch-subtle: light-dark(#666666, #999999);
   --text-color-goldfinch-inactive: light-dark(#bfbfbf, #555555);
-  --text-color-goldfinch-placeholder: light-dark(#999999, #666666);
+  --text-color-goldfinch-placeholder: light-dark(#707070, #949494);
   --text-color-goldfinch-brand: light-dark(#18181b, #f4f4f5);
   --text-color-goldfinch-link: light-dark(#1a1a1a, #cccccc);
   --text-color-goldfinch-info: light-dark(#1e40af, #93c5fd);
@@ -79,7 +79,8 @@
   --color-goldfinch-component: light-dark(#000000, #ffffff);
 
   /* Input placeholder - vanilla CSS */
-  --color-goldfinch-input-placeholder: light-dark(#999999, #666666);
+  /* ≥4.5:1 (WCAG AA) on every control surface in both modes */
+  --color-goldfinch-input-placeholder: light-dark(#707070, #949494);
 }
 
 @layer base {
@@ -109,7 +110,7 @@
     --text-color-goldfinch-strong: #000000;
     --text-color-goldfinch-subtle: #666666;
     --text-color-goldfinch-inactive: #bfbfbf;
-    --text-color-goldfinch-placeholder: #999999;
+    --text-color-goldfinch-placeholder: #707070;
     --text-color-goldfinch-brand: #18181b;
     --text-color-goldfinch-link: #1a1a1a;
     --text-color-goldfinch-badge-inverted: #ffffff;
@@ -141,7 +142,7 @@
     --color-goldfinch-disabled: #bfbfbf;
     --color-goldfinch-binding: #000000;
     --color-goldfinch-component: #000000;
-    --color-goldfinch-input-placeholder: #999999;
+    --color-goldfinch-input-placeholder: #707070;
   }
 
   [data-mode="dark"] {
@@ -170,7 +171,7 @@
     --text-color-goldfinch-strong: #ffffff;
     --text-color-goldfinch-subtle: #999999;
     --text-color-goldfinch-inactive: #555555;
-    --text-color-goldfinch-placeholder: #666666;
+    --text-color-goldfinch-placeholder: #949494;
     --text-color-goldfinch-brand: #f4f4f5;
     --text-color-goldfinch-link: #cccccc;
     --text-color-goldfinch-badge-inverted: #000000;
@@ -202,7 +203,7 @@
     --color-goldfinch-disabled: #555555;
     --color-goldfinch-binding: #ffffff;
     --color-goldfinch-component: #ffffff;
-    --color-goldfinch-input-placeholder: #666666;
+    --color-goldfinch-input-placeholder: #949494;
   }
 }
 

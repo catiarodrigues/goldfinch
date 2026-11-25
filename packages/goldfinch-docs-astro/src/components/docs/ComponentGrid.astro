@@ -39,7 +39,7 @@ const items: ComponentDoc[] = Object.keys(modules)
       Demo: (Demos as Record<string, () => any>)[demoName],
     };
   })
-  .sort((a, b) => a.title.localeCompare(b.title));
+  .toSorted((a, b) => a.title.localeCompare(b.title));
 ---
 
 <div class="not-prose grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">

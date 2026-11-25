@@ -69,7 +69,10 @@ goldfinch/
 - Testing is Storybook stories run through `@storybook/addon-vitest` in a real Chromium via
   Playwright — there are no `*.test.ts` files. Stories without a `play` function are still
   exercised as render-smoke-tests. `pnpm exec playwright install` has to be run once locally
-  before `pnpm --filter @catiarodrigues/goldfinch test` will pass.
+  before `pnpm test` will pass. Every story is also an accessibility test: axe violations
+  fail it (`a11y.test: "error"` in `.storybook/preview.tsx`). Fix the violation rather than
+  excluding it — the one exclusion, Base UI's `[data-base-ui-focus-guard]` sentinels, is a
+  known axe false positive.
 - Compound components (`Select.Option`, `Modal.Title`, `Sidebar.MenuItem`, etc.) are matched
   at runtime by a static `displayName`, not `instanceof` or type — see
   `input-group/context.ts`'s `partitionChildren`/`detectFocusMode`, which does this
@@ -90,10 +93,11 @@ goldfinch/
   `src/index.ts`, `package.json`'s `exports` map, and `vite.config.ts`'s `build.lib.entry`.
   These can silently drift; grep for the component name across all four before calling the
   change done.
-- **Run `pnpm --filter @catiarodrigues/goldfinch typecheck` and
-  `pnpm --filter @catiarodrigues/goldfinch-docs-astro typecheck` before calling any change
-  done.** Neither package has a lint script wired up — typecheck is the only automated check
-  that actually runs (see Toolchain).
+- **Run `pnpm lint`, `pnpm format:check`, `pnpm typecheck`, `pnpm typecheck:docs` and
+  `pnpm test` before calling any change done.** CI (`.github/workflows/ci.yml`) runs exactly
+  these, plus the docs build and a check of the npm tarball's contents.
+- **Add a changeset (`pnpm changeset`) for every change a package user would notice** — a
+  fix, a new prop, a visual change. Releases are cut from them; see Publishing.
 
 ## Anti-patterns
 
@@ -102,7 +106,6 @@ goldfinch/
 | Add a component subpath to only `src/index.ts` or only `package.json`'s `exports` | the barrel and the exports map are meant to stay in lockstep; missing either breaks the barrel import or the granular `components/<name>` import respectively | update `src/index.ts`, `package.json` exports, and `vite.config.ts` lib entry together |
 | Index into a `GOLDFINCH_*_VARIANTS` object directly (`VARIANTS.size[key]`) | skips the dev-mode warning and safe fallback `resolveVariant()` provides for unknown/mistyped keys | call `resolveVariant(VARIANTS.size, key, DEFAULT)` |
 | Build a `pl-${n}` / `pr-${n}` Tailwind class string at runtime | Tailwind's JIT scanner only picks up literal class strings in source; a template-built class never gets CSS generated for it | keep spacing/padding values as static literal strings — see the comment in `input-group/context.ts` |
-| Assume `pnpm test` at the repo root runs the library's tests | root `package.json` has no `test` script | `pnpm --filter @catiarodrigues/goldfinch test` |
 | Add a new dependency for animation, ID generation, class-name merging, etc. | this repo actively prunes unused deps (see git history: an unused `motion` dependency and a hand-rolled UUID polyfill were both removed by audit) | check `cn.ts`, `resolve-variant.ts`, and installed deps first |
 | Remove the `dts()` plugin from `vite.config.ts`, or narrow its `include`/`exclude` without checking | it's the only thing that generates the `.d.ts` files every path in `package.json`'s `exports` map points at — without it the package still builds and publishes, but every TypeScript consumer's import breaks | run `pnpm build` and `npm pack --dry-run` after touching it, confirm `dist/src/**/*.d.ts` still exists for every export |
 | Delete `packages/goldfinch/README.md` or `LICENSE` as "duplicates" of the root files | `npm publish` packs only from `packages/goldfinch/`, not the monorepo root — removing these ships a tarball with no README or license even though the root copies still exist | keep both in sync with the root manually, they're intentionally duplicated |
@@ -110,6 +113,9 @@ goldfinch/
 | Tell consumers they can skip Tailwind, or show `import "@catiarodrigues/goldfinch/styles"` from a `.ts`/`.tsx` file | `dist/styles/index.css` is Tailwind source (`@import "tailwindcss"` + `@theme`), not compiled CSS — the consumer's Tailwind v4 build generates the utilities, and only finds goldfinch's classes via `@source` (v4 skips `node_modules`). The TS-side import also errors under TS 6+ (`noUncheckedSideEffectImports`, no types for the CSS export). 1.0.0–1.0.1 shipped docs claiming no Tailwind was needed | document the two-line CSS setup (`@import` the styles + `@source` goldfinch's `dist`) — keep the README (both copies), `.claude/skills/goldfinch/SKILL.md`, and the docs `installation.mdx` identical on this; if the build ever switches to compiled CSS, change all three together |
 
 ## Publishing
+
+To cut a release: `pnpm changeset version` (bumps the version from the pending changesets and
+writes `CHANGELOG.md`), commit that, then publish from a real terminal (2FA, see below).
 
 `packages/goldfinch/package.json` publishes to npm as a public scoped package. Three things
 make that actually work correctly and are easy to silently break:
@@ -159,11 +165,13 @@ not a dry run. Things that aren't obvious from the config alone:
 pnpm install
 pnpm dev                                                       # docs site dev server (root script filters to goldfinch-docs-astro)
 pnpm build                                                      # builds the component library
-pnpm build:docs                                                  # builds the docs site
-pnpm typecheck                                                    # tsc --noEmit for the library only
-
-pnpm --filter @catiarodrigues/goldfinch-docs-astro typecheck        # tsc --noEmit for the docs site (no root alias for this one)
-pnpm --filter @catiarodrigues/goldfinch test                         # vitest run via Storybook addon -- needs `pnpm exec playwright install` once
+pnpm build:docs                                                  # builds the library, then the docs site
+pnpm lint                                                         # oxlint; warnings fail
+pnpm format / pnpm format:check                                   # Prettier (sorts Tailwind classes)
+pnpm typecheck                                                    # tsc --noEmit for the library
+pnpm typecheck:docs                                               # tsc --noEmit for the docs site
+pnpm test                                                         # story tests (interaction + a11y) in Chromium -- needs `pnpm exec playwright install` once
+pnpm changeset                                                    # record a user-facing change for the next release
 pnpm --filter @catiarodrigues/goldfinch storybook                     # Storybook dev server, port 6006
 pnpm --filter @catiarodrigues/goldfinch build-storybook                 # static Storybook build
 ```
@@ -182,23 +190,24 @@ pnpm --filter @catiarodrigues/goldfinch build-storybook                 # static
 | Astro 5 | `packages/goldfinch-docs-astro/` | MDX pages, `astro:transitions` (View Transitions), Shiki syntax highlighting |
 | clsx + tailwind-merge | `src/utils/cn.ts` | wrapped as `cn()`, used everywhere class lists are composed |
 | `@phosphor-icons/react` | both packages | the only icon set used |
-| oxlint / prettier | root devDependencies | neither has an npm script anywhere in the repo — see Notes |
+| oxlint | root `.oxlintrc.json` | React, jsx-a11y, TypeScript, unicorn plugins; correctness = error, suspicious = warn, and `--deny-warnings` makes warnings fail |
+| Prettier | root `.prettierrc.json` | Astro + Tailwind plugins; `tailwindStylesheet` points at the library's `@theme` CSS so class sorting knows the custom tokens |
+| Changesets | `.changeset/` | versioning + `CHANGELOG.md`; the docs package is ignored (private) |
+| GitHub Actions | `.github/workflows/ci.yml` | `check` job on every push/PR; `visual` job (Chromatic) runs only once the `CHROMATIC_PROJECT_TOKEN` secret exists |
 
 ## Notes
 
-- **No lint or format command currently exists.** `oxlint` and `prettier` +
-  `prettier-plugin-tailwindcss` are installed as root devDependencies but neither is wired to
-  a script in any `package.json`. `.vscode/settings.json` sets `oxc.oxc-vscode` (the OXC
-  extension) as the default formatter on save, not Prettier — so it's unclear whether
-  Prettier is actually exercised anywhere right now. Don't assume `pnpm lint` or
-  `pnpm format` exists; ask before adding one.
+- The whole repo was reformatted with Prettier in one commit, listed in
+  `.git-blame-ignore-revs` — run `git config blame.ignoreRevsFile .git-blame-ignore-revs`
+  once so `git blame` skips it.
 - The docs site consumes the library via `workspace:*`, so changes to
   `packages/goldfinch/src` are visible in `pnpm dev` immediately through Vite's dev
   resolution — no build/publish step needed while iterating.
 - `dist/` (gitignored) is rebuilt by `pnpm build`; never hand-edit or commit anything under it.
 - `apps/*` is declared in `pnpm-workspace.yaml` but no `apps/` directory exists yet.
 - `homepage` in `packages/goldfinch/package.json` points at `goldfinch.catiarodrigues.dev`, the domain
-  configured as `site` in the docs site's `astro.config.mjs` — there's no deploy config
-  (Vercel/Netlify/Cloudflare) in the repo yet, so don't assume that domain is actually live.
+  configured as `site` in the docs site's `astro.config.mjs`. The docs deploy to Cloudflare
+  via `packages/goldfinch-docs-astro/wrangler.jsonc`; nothing in the repo proves the domain
+  is live, so check before linking to it.
 - The npm publish token lives in the user-level `~/.npmrc`, never in the repo — check
   `git status`/`git diff` for anything credential-shaped before staging.

@@ -13,8 +13,12 @@ type LinkComponentProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
 };
 
 const DefaultLinkComponent = forwardRef<HTMLAnchorElement, LinkComponentProps>(
-  function DefaultAnchor({ to, href, ...rest }, ref) {
-    return <a ref={ref} href={href ?? to ?? undefined} {...rest} />;
+  function DefaultAnchor({ to, href, children, ...rest }, ref) {
+    return (
+      <a ref={ref} href={href ?? to ?? undefined} {...rest}>
+        {children}
+      </a>
+    );
   },
 );
 

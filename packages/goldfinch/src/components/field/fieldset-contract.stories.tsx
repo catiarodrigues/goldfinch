@@ -26,6 +26,8 @@ const CASES: Record<string, CaseProps> = {
   match: { error: { message: "Required", match: "valueMissing" } },
 };
 
+const describedBy = (el: HTMLElement) => el.getAttribute("aria-describedby") ?? "";
+
 function contract(role: string, render: (props: CaseProps) => ReactNode): Story {
   return {
     render: () => (
@@ -41,7 +43,6 @@ function contract(role: string, render: (props: CaseProps) => ReactNode): Story 
       const canvas = within(canvasElement);
       const group = (id: string) =>
         within(canvas.getByTestId(id)).getByRole(role, { name: "Contact" });
-      const describedBy = (el: HTMLElement) => el.getAttribute("aria-describedby") ?? "";
 
       // legend: names the group, not invalid
       await expect(group("legend")).not.toHaveAttribute("data-invalid");

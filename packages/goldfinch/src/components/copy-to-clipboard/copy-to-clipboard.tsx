@@ -240,7 +240,7 @@ export const CopyToClipboard = forwardRef<HTMLDivElement, CopyToClipboardProps>(
       } catch (error) {
         console.warn("Clipboard copy failed", error);
       }
-    }, [text, onCopy, tooltip, copiedText, tooltipSide]);
+    }, [text, textToCopy, onCopy, tooltip, copiedText, tooltipSide]);
 
     const copyButton = (
       <Button

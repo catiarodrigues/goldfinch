@@ -322,8 +322,6 @@ function SidebarProvider({
 
   const sidebarWidthValue = resizable ? `${width}px` : SIDEBAR_WIDTH;
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps -- all values are
-  // either stable (props, setters) or derived from state that triggers re-render
   const contextValue = useMemo<SidebarContextValue>(
     () => ({
       state,
@@ -350,7 +348,12 @@ function SidebarProvider({
       contained,
       animationDuration,
     }),
-    [state, open, openMobile, isMobile, width, isResizing, isPeeking],
+    [
+      state, open, setOpen, openMobile, setOpenMobile, isMobile, toggleSidebar,
+      variant, side, collapsible, width, resizable, minWidth, maxWidth,
+      isResizing, setIsResizing, setWidth, isPeeking, peekable, startPeek,
+      stopPeek, contained, animationDuration,
+    ],
   );
 
   return (

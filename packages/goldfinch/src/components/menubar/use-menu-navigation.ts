@@ -64,12 +64,14 @@ export const useMenuNavigation = ({
       removeKeyListener();
     };
 
-    menuRef.current.addEventListener("focusin", handleFocusIn);
-    menuRef.current.addEventListener("focusout", handleFocusOut);
+    // Capture the node so cleanup detaches from the one we attached to.
+    const menu = menuRef.current;
+    menu.addEventListener("focusin", handleFocusIn);
+    menu.addEventListener("focusout", handleFocusOut);
 
     return () => {
-      menuRef.current?.removeEventListener("focusin", handleFocusIn);
-      menuRef.current?.removeEventListener("focusout", handleFocusOut);
+      menu.removeEventListener("focusin", handleFocusIn);
+      menu.removeEventListener("focusout", handleFocusOut);
       removeKeyListener();
     };
   }, [menuRef, direction]);

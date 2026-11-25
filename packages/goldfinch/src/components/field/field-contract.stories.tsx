@@ -42,6 +42,8 @@ const CASES: Record<string, CaseProps> = {
   match: { label: "Email", required: true, error: { message: "Required", match: "valueMissing" } },
 };
 
+const describedBy = (el: HTMLElement) => el.getAttribute("aria-describedby") ?? "";
+
 function Matrix({ render }: { render: (props: CaseProps) => ReactNode }) {
   return (
     <div className="flex flex-col gap-6">
@@ -67,7 +69,6 @@ function contract(role: string, render: (props: CaseProps) => ReactNode): Story 
         role === "label"
           ? within(canvas.getByTestId(id)).getByLabelText(/Email/, { selector: "input" })
           : within(canvas.getByTestId(id)).getByRole(role, { name: /Email/ });
-      const describedBy = (el: HTMLElement) => el.getAttribute("aria-describedby") ?? "";
 
       // label: named by its label, not invalid
       await expect(control("label")).not.toHaveAttribute("aria-invalid", "true");

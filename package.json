@@ -7,7 +7,13 @@
     "dev": "pnpm --filter @catiarodrigues/goldfinch-docs-astro dev",
     "build": "pnpm --filter @catiarodrigues/goldfinch build",
     "build:docs": "pnpm --filter @catiarodrigues/goldfinch-docs-astro build",
-    "typecheck": "pnpm --filter @catiarodrigues/goldfinch typecheck"
+    "typecheck": "pnpm --filter @catiarodrigues/goldfinch typecheck",
+    "typecheck:docs": "pnpm --filter @catiarodrigues/goldfinch-docs-astro typecheck",
+    "lint": "oxlint --deny-warnings",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "pnpm --filter @catiarodrigues/goldfinch test",
+    "changeset": "changeset"
   },
   "keywords": [],
   "author": "Cátia Rodrigues",
@@ -21,9 +27,11 @@
   },
   "type": "module",
   "devDependencies": {
+    "@changesets/cli": "^3.0.3",
     "@types/node": "^25.9.3",
     "oxlint": "^1.70.0",
     "prettier": "^3.8.4",
+    "prettier-plugin-astro": "^1.1.2",
     "prettier-plugin-tailwindcss": "^0.8.0",
     "typescript": "^6.0.3"
   }
