@@ -11,7 +11,7 @@ import Basic from "../../examples/popover/basic.tsx";
 import basicCode from "../../examples/popover/basic.tsx?raw";
 import usageCode from "../../examples/popover/usage.tsx?raw";
 
-Display supplemental content — actions, filters, or details — in a floating panel anchored to a trigger element. Closes on click-outside or Escape.
+A floating panel anchored to a trigger, for extra actions, filters or details. It closes on Escape or a click outside.
 
 ## Installation
 
@@ -37,29 +37,19 @@ import { Popover } from "@catiarodrigues/goldfinch/components/popover";
   <Basic client:visible />
 </ComponentExample>
 
-Pass the trigger as `children` and the floating content via the `content` prop. The popover handles positioning automatically.
+Compose it from `Popover.Trigger` and `Popover.Content`. It positions itself next to the trigger.
 
 <Callout type="info">
-  Popover closes when the user clicks outside or presses Escape, making it ideal
-  for contextual menus and tooltips.
+  For a list of actions, use DropdownMenu, which adds menu keyboard navigation.
+  For a short label, use Tooltip.
 </Callout>
 
 ## API Reference
 
-<PropsTable
-  of="Popover"
-  props={[
-    {
-      name: "content",
-      type: "ReactNode",
-      default: "—",
-      description: "Popover content.",
-    },
-    {
-      name: "children",
-      type: "ReactNode",
-      default: "—",
-      description: "Trigger element.",
-    },
-  ]}
-/>
+### Popover
+
+<PropsTable of="Popover" />
+
+### Popover.Content
+
+<PropsTable of="Popover.Content" />

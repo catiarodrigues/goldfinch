@@ -10,7 +10,7 @@ import Basic from "../../examples/label/basic.tsx";
 import basicCode from "../../examples/label/basic.tsx?raw";
 import usageCode from "../../examples/label/usage.tsx?raw";
 
-A form label that can show an "(Optional)" indicator and an info tooltip.
+A form label that can show "(optional)" and an info tooltip.
 
 ## Installation
 
@@ -38,32 +38,4 @@ import { Label } from "@catiarodrigues/goldfinch/components/label";
 
 ## API Reference
 
-<PropsTable
-  of="Label"
-  props={[
-    {
-      name: "children",
-      type: "ReactNode",
-      default: "—",
-      description: "Label text.",
-    },
-    {
-      name: "showOptional",
-      type: "boolean",
-      default: "false",
-      description: 'Show an "(Optional)" suffix.',
-    },
-    {
-      name: "tooltip",
-      type: "string",
-      default: "—",
-      description: "Tooltip text shown on an info icon.",
-    },
-    {
-      name: "className",
-      type: "string",
-      default: "—",
-      description: "Additional CSS classes.",
-    },
-  ]}
-/>
+<PropsTable of="Label" />

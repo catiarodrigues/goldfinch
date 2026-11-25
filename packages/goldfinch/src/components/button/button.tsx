@@ -47,10 +47,15 @@ export function buttonVariants({
 }
 
 export type ButtonProps = ComponentProps<typeof BaseButton> & {
+  /** Visual style. `secondary` is the default; use `primary` for the main action and `destructive` for actions that delete or can't be undone. */
   variant?: GoldfinchButtonVariant;
+  /** Button height and padding. */
   size?: GoldfinchButtonSize;
+  /** `square` makes the button as wide as it is tall, for icon-only buttons. */
   shape?: GoldfinchButtonShape;
+  /** Icon shown before the label. */
   icon?: ReactNode;
+  /** Shows a spinner and disables the button while an action runs. */
   loading?: boolean;
 };
 

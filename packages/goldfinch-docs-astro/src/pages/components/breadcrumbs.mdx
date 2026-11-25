@@ -11,7 +11,7 @@ import Basic from "../../examples/breadcrumbs/basic.tsx";
 import basicCode from "../../examples/breadcrumbs/basic.tsx?raw";
 import usageCode from "../../examples/breadcrumbs/usage.tsx?raw";
 
-Show the user's current location within a page hierarchy and provide quick navigation back to parent sections.
+Shows where the current page sits in the site's hierarchy, with links back to each parent.
 
 ## Installation
 
@@ -37,29 +37,13 @@ import { Breadcrumbs } from "@catiarodrigues/goldfinch/components/breadcrumbs";
   <Basic />
 </ComponentExample>
 
-Pass an array of items with `label` and optional `href`. The last item is rendered as plain text to indicate the current page.
+Pass `items`, each with a `label` and an optional `href`, or compose `Breadcrumb.Link`, `Breadcrumb.Separator` and `Breadcrumb.Current` yourself.
 
 <Callout type="info">
-  Omit the `href` on the last item to indicate the current page without making
-  it a link.
+  Leave `href` off the last item: it then renders as the current page instead of
+  a link.
 </Callout>
 
 ## API Reference
 
-<PropsTable
-  of="Breadcrumbs"
-  props={[
-    {
-      name: "items",
-      type: "BreadcrumbItem[]",
-      default: "—",
-      description: "Array of breadcrumb items with label and optional href.",
-    },
-    {
-      name: "className",
-      type: "string",
-      default: "—",
-      description: "Additional CSS classes.",
-    },
-  ]}
-/>
+<PropsTable of="Breadcrumbs" />

@@ -11,7 +11,7 @@ import Basic from "../../examples/sensitive-input/basic.tsx";
 import basicCode from "../../examples/sensitive-input/basic.tsx?raw";
 import usageCode from "../../examples/sensitive-input/usage.tsx?raw";
 
-Collect API keys, tokens, and other secrets with the value masked by default and a toggle to reveal it on demand.
+A field for API keys, tokens and other secrets. A saved value starts masked, and the eye button reveals it.
 
 ## Installation
 
@@ -44,35 +44,13 @@ import { SensitiveInput } from "@catiarodrigues/goldfinch/components/sensitive-i
   <Basic client:visible />
 </ComponentExample>
 
-Use this component instead of a standard Input when the value should not be visible on screen by default.
+Use it instead of Input when the value shouldn't be visible on screen by default.
 
 <Callout type="warning">
-  SensitiveInput masks the display but does not encrypt or secure the value in
-  memory. Treat the value with appropriate security measures.
+  SensitiveInput only hides the value on screen. It doesn't encrypt it or
+  protect it in memory.
 </Callout>
 
 ## API Reference
 
-<PropsTable
-  of="SensitiveInput"
-  props={[
-    {
-      name: "placeholder",
-      type: "string",
-      default: "—",
-      description: "Placeholder text.",
-    },
-    {
-      name: "disabled",
-      type: "boolean",
-      default: "false",
-      description: "Disable the input.",
-    },
-    {
-      name: "className",
-      type: "string",
-      default: "—",
-      description: "Additional CSS classes.",
-    },
-  ]}
-/>
+<PropsTable of="SensitiveInput" />

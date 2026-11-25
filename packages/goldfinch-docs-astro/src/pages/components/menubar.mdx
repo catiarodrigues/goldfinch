@@ -11,7 +11,7 @@ import Basic from "../../examples/menubar/basic.tsx";
 import basicCode from "../../examples/menubar/basic.tsx?raw";
 import usageCode from "../../examples/menubar/usage.tsx?raw";
 
-A horizontal navigation bar of icon buttons with tooltips — familiar for desktop-style toolbar interfaces.
+A row of icon buttons with tooltips, like a desktop app's toolbar.
 
 ## Installation
 
@@ -37,7 +37,7 @@ import { MenuBar } from "@catiarodrigues/goldfinch/components/menubar";
   <Basic client:visible />
 </ComponentExample>
 
-Provide an `options` array where each item has an `icon`, `tooltip`, and `onClick` handler. Use `isActive` to highlight the current selection.
+Provide an `options` array where each item has an `icon`, `tooltip`, and `onClick` handler. `isActive` is the index of the highlighted option.
 
 <Callout type="info">
   Menubar supports keyboard navigation with arrow keys between options.
@@ -45,32 +45,4 @@ Provide an `options` array where each item has an `icon`, `tooltip`, and `onClic
 
 ## API Reference
 
-<PropsTable
-  of="Menubar"
-  props={[
-    {
-      name: "options",
-      type: "MenuOptionProps[]",
-      default: "—",
-      description: "Array of icon button configs.",
-    },
-    {
-      name: "isActive",
-      type: "number | boolean | string",
-      default: "—",
-      description: "Currently active value.",
-    },
-    {
-      name: "optionIds",
-      type: "boolean",
-      default: "false",
-      description: "Match by option.id instead of index.",
-    },
-    {
-      name: "className",
-      type: "string",
-      default: "—",
-      description: "Additional CSS classes.",
-    },
-  ]}
-/>
+<PropsTable of="MenuBar" />

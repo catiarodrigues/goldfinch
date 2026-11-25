@@ -11,7 +11,7 @@ import Basic from "../../examples/tooltip/basic.tsx";
 import basicCode from "../../examples/tooltip/basic.tsx?raw";
 import usageCode from "../../examples/tooltip/usage.tsx?raw";
 
-Annotate icons, buttons, and controls with concise labels that appear on hover (mouse) or focus (keyboard) and auto-position around the trigger.
+A short label for an icon or control. It shows on hover and on keyboard focus.
 
 ## Installation
 
@@ -37,29 +37,12 @@ import { Tooltip } from "@catiarodrigues/goldfinch/components/tooltip";
   <Basic client:visible />
 </ComponentExample>
 
-Wrap the trigger element as `children` and provide the tooltip text via the `label` prop. The tooltip positions itself automatically.
+Pass the text as `content` and the trigger as children. A `<Button>` child becomes the trigger itself; anything else is wrapped in a focusable button.
 
 <Callout type="info">
-  Tooltips appear on hover for mouse users and on focus for keyboard users,
-  ensuring accessibility across input methods.
+  Touch screens have no hover, so keep essential information out of tooltips.
 </Callout>
 
 ## API Reference
 
-<PropsTable
-  of="Tooltip"
-  props={[
-    {
-      name: "label",
-      type: "ReactNode",
-      default: "—",
-      description: "Tooltip content.",
-    },
-    {
-      name: "children",
-      type: "ReactNode",
-      default: "—",
-      description: "Trigger element.",
-    },
-  ]}
-/>
+<PropsTable of="Tooltip" />

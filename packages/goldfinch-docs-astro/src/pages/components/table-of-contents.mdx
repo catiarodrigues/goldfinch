@@ -11,7 +11,7 @@ import Basic from "../../examples/table-of-contents/basic.tsx";
 import basicCode from "../../examples/table-of-contents/basic.tsx?raw";
 import usageCode from "../../examples/table-of-contents/usage.tsx?raw";
 
-Build a navigable outline of page sections using compound sub-components — `Title`, `List`, `Item`, and `Group` for hierarchical structure.
+An outline of a page's sections, built from `TableOfContents.Title`, `.List`, `.Item` and `.Group`.
 
 ## Installation
 
@@ -37,23 +37,18 @@ import { TableOfContents } from "@catiarodrigues/goldfinch/components/table-of-c
   <Basic />
 </ComponentExample>
 
-Compose the table of contents using `TableOfContents.Title`, `.List`, `.Item`, and `.Group` sub-components.
+Use `.Group` for a section with subsections, and `active` on the item for the section in view.
 
 <Callout type="info">
-  TableOfContents is a compound component — you build the outline structure
-  using its exported sub-components.
+  Items render links (`href`). Pass `render` to use your router's Link instead.
 </Callout>
 
 ## API Reference
 
-<PropsTable
-  of="TableOfContents"
-  props={[
-    {
-      name: "children",
-      type: "ReactNode",
-      default: "—",
-      description: "TableOfContents.Title, .List, .Item, .Group components.",
-    },
-  ]}
-/>
+### TableOfContents.Item
+
+<PropsTable of="TableOfContents.Item" />
+
+### TableOfContents.Group
+
+<PropsTable of="TableOfContents.Group" />

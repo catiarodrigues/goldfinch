@@ -11,7 +11,7 @@ import Basic from "../../examples/toast/basic.tsx";
 import basicCode from "../../examples/toast/basic.tsx?raw";
 import usageCode from "../../examples/toast/usage.tsx?raw";
 
-Display brief, auto-dismissing notifications anchored to the bottom of the viewport. Supports programmatic show/dismiss via an imperative manager.
+Short notifications that appear in the bottom-right corner and dismiss themselves after a few seconds.
 
 ## Installation
 
@@ -40,35 +40,10 @@ import {
   <Basic client:visible />
 </ComponentExample>
 
-Wrap your application in Toast. Use the `toastManager` prop to use an external manager, or let it manage toasts internally.
+Wrap your app in `Toasty`, then call `useGoldfinchToastManager()` inside it and `toast.add({ title, description })`. To show toasts from outside React, create a manager with `createGoldfinchToastManager()` and pass it to `Toasty` as `toastManager`.
 
-<Callout type="warning">
-  Only one Toast instance should be rendered in the application tree to avoid
-  duplicate notifications.
-</Callout>
+<Callout type="warning">Render one `Toasty` near the root of your app.</Callout>
 
 ## API Reference
 
-<PropsTable
-  of="Toast"
-  props={[
-    {
-      name: "children",
-      type: "ReactNode",
-      default: "—",
-      description: "Application content.",
-    },
-    {
-      name: "container",
-      type: "PortalContainer",
-      default: "—",
-      description: "Portal target.",
-    },
-    {
-      name: "toastManager",
-      type: "return type of createGoldfinchToastManager()",
-      default: "—",
-      description: "External toast manager.",
-    },
-  ]}
-/>
+<PropsTable of="Toasty" />

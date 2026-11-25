@@ -13,7 +13,7 @@ import Segmented from "../../examples/tabs/segmented.tsx";
 import segmentedCode from "../../examples/tabs/segmented.tsx?raw";
 import usageCode from "../../examples/tabs/usage.tsx?raw";
 
-Organize related content into switchable panels. Two visual modes: `segmented` (pill-style grouped tabs) and `underline` (classic tab bar).
+Switches between related views. There are two styles: `underline`, a classic tab bar, and `segmented`, a pill-shaped control.
 
 ## Installation
 
@@ -35,7 +35,7 @@ import { Tabs } from "@catiarodrigues/goldfinch/components/tabs";
 
 ## Examples
 
-Define tabs via the `tabs` prop array. Use `value` and `onValueChange` for controlled mode, or omit `value` for uncontrolled (it starts on the first tab).
+Define the tabs with the `tabs` array. Control the selection with `value` and `onValueChange`, or omit `value` to leave it uncontrolled; it then starts on the first tab.
 
 ### Underline
 
@@ -50,45 +50,10 @@ Define tabs via the `tabs` prop array. Use `value` and `onValueChange` for contr
 </ComponentExample>
 
 <Callout type="info">
-  The `segmented` variant renders tabs as a segmented control, while `underline`
-  uses underlined tab labels.
+  Tabs renders only the tab bar. Show each view's content yourself based on the
+  selected value, as the examples do.
 </Callout>
 
 ## API Reference
 
-<PropsTable
-  of="Tabs"
-  props={[
-    {
-      name: "tabs",
-      type: "TabsItem[]",
-      default: "—",
-      description: "Array of tab definitions.",
-    },
-    {
-      name: "value",
-      type: "string",
-      default: "—",
-      description:
-        "Controlled active value. Omit for uncontrolled; it starts on the first tab.",
-    },
-    {
-      name: "onValueChange",
-      type: "(value: string) => void",
-      default: "—",
-      description: "Tab change callback.",
-    },
-    {
-      name: "variant",
-      type: '"segmented" | "underline"',
-      default: '"segmented"',
-      description: "Visual style.",
-    },
-    {
-      name: "size",
-      type: '"base" | "sm"',
-      default: '"base"',
-      description: "Tab size.",
-    },
-  ]}
-/>
+<PropsTable of="Tabs" />

@@ -11,7 +11,7 @@ import Basic from "../../examples/sidebar/basic.tsx";
 import basicCode from "../../examples/sidebar/basic.tsx?raw";
 import usageCode from "../../examples/sidebar/usage.tsx?raw";
 
-Full-featured application sidebar with collapsible sections, nested menu items, active state tracking, keyboard navigation, and resizable panels.
+An application sidebar with menus, nested items, collapsible sections and optional resizing.
 
 ## Installation
 
@@ -37,35 +37,23 @@ import { Sidebar } from "@catiarodrigues/goldfinch/components/sidebar";
   <Basic client:visible />
 </ComponentExample>
 
-Define navigation items via the `items` prop. Track the active item with `activeItemId` and handle selection with `onItemSelect`.
+Wrap the layout in `Sidebar.Provider`, which holds the open state and settings such as `collapsible` and `resizable`. Inside `Sidebar`, build the navigation from `Sidebar.Menu`, `Sidebar.MenuItem` and `Sidebar.MenuButton`, and mark the current page with `active`. `Sidebar.Trigger` collapses and expands it.
 
 <Callout type="info">
-  Sidebar items can include icons, labels, and nested sub-items for hierarchical
-  navigation.
+  Menu buttons take an `icon`, which stays visible when the sidebar collapses to
+  icons. Nest items with `Sidebar.MenuSub`.
 </Callout>
 
 ## API Reference
 
-<PropsTable
-  of="Sidebar"
-  props={[
-    {
-      name: "items",
-      type: "SidebarItem[]",
-      default: "—",
-      description: "Navigation items.",
-    },
-    {
-      name: "activeItemId",
-      type: "string",
-      default: "—",
-      description: "ID of the active item.",
-    },
-    {
-      name: "onItemSelect",
-      type: "(id: string) => void",
-      default: "—",
-      description: "Item selection callback.",
-    },
-  ]}
-/>
+### Sidebar.Provider
+
+<PropsTable of="Sidebar.Provider" />
+
+### Sidebar
+
+<PropsTable of="Sidebar" />
+
+### Sidebar.MenuButton
+
+<PropsTable of="Sidebar.MenuButton" />

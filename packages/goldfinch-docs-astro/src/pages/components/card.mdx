@@ -11,7 +11,7 @@ import Basic from "../../examples/card/basic.tsx";
 import basicCode from "../../examples/card/basic.tsx?raw";
 import usageCode from "../../examples/card/usage.tsx?raw";
 
-Group related content in an elevated container that sits above the base surface — useful for cards, panels, and callout blocks.
+A container with a border and a light shadow for grouping related content, such as panels and callout blocks.
 
 ## Installation
 
@@ -37,31 +37,14 @@ import { Card } from "@catiarodrigues/goldfinch/components/card";
   <Basic />
 </ComponentExample>
 
-Card applies a consistent elevation shadow and padding. Use it to group related content in a distinct visual container.
+Card draws the background, border and shadow. It doesn't add padding, so set your own or use its parts.
 
-For layered layouts, use the compound sub-components:
+For layered layouts, use its parts:
 
 <Callout type="info">
-  Card uses a medium elevation level by default. Nest within containers for
-  layered layouts.
+  Card's shadow is light (`shadow-xs`), so cards can sit inside other surfaces.
 </Callout>
 
 ## API Reference
 
-<PropsTable
-  of="Card"
-  props={[
-    {
-      name: "children",
-      type: "ReactNode",
-      default: "—",
-      description: "Card content.",
-    },
-    {
-      name: "className",
-      type: "string",
-      default: "—",
-      description: "Additional CSS classes.",
-    },
-  ]}
-/>
+<PropsTable of="Card" />

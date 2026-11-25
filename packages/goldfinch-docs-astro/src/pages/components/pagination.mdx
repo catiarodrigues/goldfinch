@@ -11,7 +11,7 @@ import Basic from "../../examples/pagination/basic.tsx";
 import basicCode from "../../examples/pagination/basic.tsx?raw";
 import usageCode from "../../examples/pagination/usage.tsx?raw";
 
-Navigate multi-page content with numbered page buttons, previous/next arrows, and automatic ellipsis for large page counts.
+Moves through pages of results, with previous and next buttons and a field for jumping to a page number.
 
 ## Installation
 
@@ -37,35 +37,13 @@ import { Pagination } from "@catiarodrigues/goldfinch/components/pagination";
   <Basic client:visible />
 </ComponentExample>
 
-Pass the `current` page, `total` pages, and an `onChange` callback. The component renders page buttons with previous and next arrows.
+Pass `page` and `setPage`, plus `perPage` and `totalCount` so it can work out the last page and the range on screen.
 
 <Callout type="info">
-  Pagination collapses page numbers with ellipsis when there are many pages to
-  keep the UI compact.
+  To change the layout, compose it from `Pagination.Info`, `Pagination.PageSize`
+  and `Pagination.Controls`.
 </Callout>
 
 ## API Reference
 
-<PropsTable
-  of="Pagination"
-  props={[
-    {
-      name: "current",
-      type: "number",
-      default: "—",
-      description: "Current page number.",
-    },
-    {
-      name: "total",
-      type: "number",
-      default: "—",
-      description: "Total number of pages.",
-    },
-    {
-      name: "onChange",
-      type: "(page: number) => void",
-      default: "—",
-      description: "Page change callback.",
-    },
-  ]}
-/>
+<PropsTable of="Pagination" />

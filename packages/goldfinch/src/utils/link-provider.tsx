@@ -9,6 +9,7 @@ import {
 } from "react";
 
 type LinkComponentProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
+  /** Destination for router link components that take `to` instead of `href`. */
   to?: string;
 };
 

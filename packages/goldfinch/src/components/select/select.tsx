@@ -250,6 +250,7 @@ type SelectPropsGeneric<T, Multiple extends boolean | undefined = false> = Omit<
      * ```
      */
     renderValue?: (value: Multiple extends true ? T[] : T) => ReactNode;
+    /** Additional CSS classes for the trigger, merged via `cn()`. */
     className?: string;
     /**
      * Data structure of items rendered in the popup.
@@ -280,7 +281,9 @@ type SelectPropsGeneric<T, Multiple extends boolean | undefined = false> = Omit<
      * This prop will be removed in a future version.
      */
     hideLabel?: boolean;
+    /** Text shown in the trigger before a value is chosen. */
     placeholder?: string;
+    /** Shows a loading skeleton in the trigger and disables the select. */
     loading?: boolean;
     /** Tooltip content to display next to the label via an info icon */
     labelTooltip?: ReactNode;

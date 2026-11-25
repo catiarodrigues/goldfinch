@@ -11,7 +11,7 @@ import Basic from "../../examples/empty-state/basic.tsx";
 import basicCode from "../../examples/empty-state/basic.tsx?raw";
 import usageCode from "../../examples/empty-state/usage.tsx?raw";
 
-Turn empty lists and search results into opportunities — explain why data is missing and offer a clear next action.
+Fills the space when a list or search has nothing to show, saying why it's empty and what to do next.
 
 ## Installation
 
@@ -37,35 +37,12 @@ import { EmptyState } from "@catiarodrigues/goldfinch/components/empty-state";
   <Basic />
 </ComponentExample>
 
-Provide a `title` and `description` to explain the empty state. Use the `action` slot to render a call-to-action button.
+Explain the empty state with `title` and `description`. Put buttons or links in `contents`, and use `commandLine` for a shell command people can copy.
 
 <Callout type="info">
-  Empty states are an opportunity to guide users — always include a helpful
-  message and a clear next action.
+  Include a next step, such as a button that creates the first item.
 </Callout>
 
 ## API Reference
 
-<PropsTable
-  of="EmptyState"
-  props={[
-    {
-      name: "title",
-      type: "string",
-      default: "—",
-      description: "Empty state title.",
-    },
-    {
-      name: "description",
-      type: "string",
-      default: "—",
-      description: "Empty state description.",
-    },
-    {
-      name: "action",
-      type: "ReactNode",
-      default: "—",
-      description: "Optional call-to-action.",
-    },
-  ]}
-/>
+<PropsTable of="EmptyState" />

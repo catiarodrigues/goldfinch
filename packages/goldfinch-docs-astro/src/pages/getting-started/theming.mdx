@@ -6,15 +6,15 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 
-Goldfinch uses **CSS custom properties** (variables) for all visual tokens. You can override any token to create your own theme.
+Every colour Goldfinch uses is a CSS custom property, so you can theme it by overriding them.
 
 ## How it works
 
 The library defines tokens at three levels:
 
-1. **`@theme`** — Tailwind CSS v4 theme tokens, used in utility classes like `bg-goldfinch-surface`
-2. **`:root`** — Light mode default values
-3. **`[data-mode="dark"]`** — Dark mode overrides
+1. `@theme` registers the tokens with Tailwind, which creates utilities such as `bg-goldfinch-base`.
+2. `:root` sets the light-mode values.
+3. `[data-mode="dark"]` sets the dark-mode values.
 
 ## Override a token
 
@@ -38,7 +38,7 @@ Below are the main token categories. All tokens follow the naming convention `--
 | `--color-goldfinch-canvas`   | Page background                           |
 | `--color-goldfinch-base`     | Subtle base surface (code blocks, inputs) |
 | `--color-goldfinch-tint`     | Hover/tint surface                        |
-| `--color-goldfinch-surface`  | Elevated surface (cards, dialogs)         |
+| `--color-goldfinch-recessed` | Sunken surface, below the base            |
 | `--color-goldfinch-elevated` | Higher elevation (popovers, dropdowns)    |
 | `--color-goldfinch-control`  | Control surface (fields, buttons)         |
 
@@ -71,5 +71,5 @@ Below are the main token categories. All tokens follow the naming convention `--
 | `--color-goldfinch-danger`  | Error/destructive states |
 
 <Callout type="info">
-  Goldfinch uses `light-dark()` in the `@theme` block so Tailwind utility classes automatically switch between light and dark values. The `data-mode` attribute on `<html>` controls which mode is active.
+  Set `data-mode="dark"` on `<html>` to switch to dark mode. Without it, Goldfinch uses the light values.
 </Callout>

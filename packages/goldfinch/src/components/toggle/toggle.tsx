@@ -84,20 +84,31 @@ export type ToggleProps = Omit<
   ButtonHTMLAttributes<HTMLButtonElement>,
   "children"
 > & {
+  /** `default` shows a blue track when on; `neutral` a grey one. */
   variant?: ToggleVariant;
+  /** Visible label. Wraps the toggle in a Field. */
   label?: ReactNode;
+  /** Tooltip content shown next to the label via an info icon. */
   labelTooltip?: ReactNode;
   /** Helper text displayed below the toggle */
   description?: ReactNode;
   /** Field error: a message (always shown) or `{ message, match }` (shown on that validity failure) */
   error?: FieldErrorProp;
+  /** When explicitly `false`, shows "(optional)" after the label. */
   required?: boolean;
+  /** Places the switch before the label. Set `false` to put the label first. */
   controlFirst?: boolean;
+  /** Switch size. */
   size?: GoldfinchToggleSize;
+  /** Initial state when uncontrolled. */
   defaultChecked?: boolean;
+  /** Whether the toggle is on (controlled). */
   checked?: boolean;
+  /** Prevents interaction. */
   disabled?: boolean;
+  /** Called with the new state when the user flips the toggle. */
   onCheckedChange?: (checked: boolean) => void;
+  /** Marks the toggle as busy (`aria-busy`) while a change is being saved. */
   transitioning?: boolean;
 };
 
@@ -107,13 +118,19 @@ export interface ToggleLegendProps {
 }
 
 export interface ToggleGroupProps {
+  /** Legend naming the group. Omit it to pass a `Toggle.Legend` child instead. */
   legend?: string;
+  /** The group's `Toggle.Item`s. */
   children: ReactNode;
   /** Field error for the group: a message (always shown) or `{ message, match }` */
   error?: FieldErrorProp;
+  /** Helper text below the group, hidden while an error is showing. */
   description?: ReactNode;
+  /** Disables every toggle in the group. */
   disabled?: boolean;
+  /** Places each switch before its label. Set `false` to put labels first. */
   controlFirst?: boolean;
+  /** Additional CSS classes merged via `cn()`. */
   className?: string;
 }
 

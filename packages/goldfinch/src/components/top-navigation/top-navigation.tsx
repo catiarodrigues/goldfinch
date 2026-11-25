@@ -2,7 +2,9 @@ import { forwardRef, type ReactNode } from "react";
 import { cn } from "../../utils/cn";
 
 export interface TopNavigationProps {
+  /** `TopNavigation.Logo`, `.Nav` and `.Actions`. */
   children: ReactNode;
+  /** Additional CSS classes merged via `cn()`. */
   className?: string;
 }
 
@@ -48,8 +50,11 @@ function TopNavigationNav({ children, className }: TopNavigationNavProps) {
 }
 
 export interface TopNavigationNavItemProps {
+  /** The item's label or link. */
   children: ReactNode;
+  /** Highlights the item as the current page. */
   active?: boolean;
+  /** Additional CSS classes merged via `cn()`. */
   className?: string;
 }
 

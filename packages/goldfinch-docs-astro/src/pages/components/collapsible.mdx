@@ -11,7 +11,7 @@ import Basic from "../../examples/collapsible/basic.tsx";
 import basicCode from "../../examples/collapsible/basic.tsx?raw";
 import usageCode from "../../examples/collapsible/usage.tsx?raw";
 
-Hide secondary content behind a trigger — ideal for settings panels, FAQ items, or long metadata sections.
+Hides secondary content behind a trigger, for things like settings panels, FAQ answers or long metadata.
 
 ## Installation
 
@@ -37,40 +37,12 @@ import { Collapsible } from "@catiarodrigues/goldfinch/components/collapsible";
   <Basic client:visible />
 </ComponentExample>
 
-Provide a `trigger` element and content children. Use `open` and `onOpenChange` for controlled state.
+Put a trigger and a panel inside `Collapsible.Root`. `Collapsible.DefaultTrigger` and `Collapsible.DefaultPanel` come styled; `Trigger` and `Panel` are unstyled. Control it with `open` and `onOpenChange` on the root.
 
 <Callout type="info">
-  Collapsible uses an animated expand and collapse transition.
+  The default trigger's caret rotates when the panel opens.
 </Callout>
 
 ## API Reference
 
-<PropsTable
-  of="Collapsible"
-  props={[
-    {
-      name: "trigger",
-      type: "ReactNode",
-      default: "—",
-      description: "The element that toggles the content.",
-    },
-    {
-      name: "defaultOpen",
-      type: "boolean",
-      default: "false",
-      description: "Initial open state.",
-    },
-    {
-      name: "open",
-      type: "boolean",
-      default: "—",
-      description: "Controlled open state.",
-    },
-    {
-      name: "onOpenChange",
-      type: "(open: boolean) => void",
-      default: "—",
-      description: "Open state change callback.",
-    },
-  ]}
-/>
+<PropsTable of="Collapsible" />

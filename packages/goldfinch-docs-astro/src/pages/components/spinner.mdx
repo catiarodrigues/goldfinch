@@ -13,7 +13,7 @@ import Sizes from "../../examples/spinner/sizes.tsx";
 import sizesCode from "../../examples/spinner/sizes.tsx?raw";
 import usageCode from "../../examples/spinner/usage.tsx?raw";
 
-Indicate ongoing processing with an animated spin animation — available in `sm`, `base`, and `lg` sizes for different contexts.
+An animated indicator for work in progress, in `sm`, `base` and `lg` sizes.
 
 ## Installation
 
@@ -39,33 +39,17 @@ import { Spinner } from "@catiarodrigues/goldfinch/components/spinner";
   <Basic />
 </ComponentExample>
 
-Choose a size that fits the context — `sm` for inline use, `base` for buttons, and `lg` for full-page loading states.
+Use `sm` inline, `base` in buttons and `lg` for a full-page loading state.
 
 <ComponentExample title="Sizes" code={sizesCode}>
   <Sizes />
 </ComponentExample>
 
 <Callout type="info">
-  Always provide an `aria-label` or visually hidden text for screen readers when
-  using a standalone Spinner.
+  Spinner announces itself as "Loading" (`role="status"`). Pass `aria-label` to
+  say what's loading.
 </Callout>
 
 ## API Reference
 
-<PropsTable
-  of="Spinner"
-  props={[
-    {
-      name: "size",
-      type: '"sm" | "base" | "lg"',
-      default: '"base"',
-      description: "The size of the spinner.",
-    },
-    {
-      name: "className",
-      type: "string",
-      default: "—",
-      description: "Additional CSS classes.",
-    },
-  ]}
-/>
+<PropsTable of="Spinner" />

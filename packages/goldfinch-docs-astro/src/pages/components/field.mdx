@@ -11,7 +11,7 @@ import Basic from "../../examples/field/basic.tsx";
 import basicCode from "../../examples/field/basic.tsx?raw";
 import usageCode from "../../examples/field/usage.tsx?raw";
 
-Wrap any input-like component with a label, optional description, and validation error display for consistent form layout.
+Adds a label, an optional description and an error message around a form control. Goldfinch's own controls do this through their `label`, `description` and `error` props, so use Field for custom controls.
 
 ## Installation
 
@@ -37,42 +37,12 @@ import { Field } from "@catiarodrigues/goldfinch/components/field";
   <Basic />
 </ComponentExample>
 
-Pass the input as children and provide `label` and optional `description`. Use `error` to show validation messages.
+Pass the control as children. `error` takes a message, which always shows and marks the field invalid, or `{ message, match }`, which shows only when the browser's validation fails that check.
 
 <Callout type="warning">
-  When `required` is true, an asterisk is shown next to the label for
-  accessibility.
+  Set `required={false}` to show "(optional)" after the label.
 </Callout>
 
 ## API Reference
 
-<PropsTable
-  of="Field"
-  props={[
-    {
-      name: "label",
-      type: "ReactNode",
-      default: "—",
-      description: "Field label.",
-    },
-    {
-      name: "description",
-      type: "ReactNode",
-      default: "—",
-      description: "Helper text. Hidden while an error is showing.",
-    },
-    {
-      name: "error",
-      type: "string | { message: ReactNode; match: FieldErrorMatch }",
-      default: "—",
-      description:
-        'A string is always shown and makes the field invalid. With `{ message, match }`, the message shows only when the browser\'s validation fails that check (e.g. `"valueMissing"`). The control is marked invalid (red ring, `aria-invalid`) exactly while the error shows.',
-    },
-    {
-      name: "required",
-      type: "boolean",
-      default: "true",
-      description: "Show required indicator.",
-    },
-  ]}
-/>
+<PropsTable of="Field" />

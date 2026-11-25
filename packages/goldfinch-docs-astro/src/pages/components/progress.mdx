@@ -13,7 +13,7 @@ import Sizes from "../../examples/progress/sizes.tsx";
 import sizesCode from "../../examples/progress/sizes.tsx?raw";
 import usageCode from "../../examples/progress/usage.tsx?raw";
 
-Communicate task completion or metric values with an accessible bar — fully customizable label and display value.
+A bar showing how far a task has got, or how much of a limit is used, with a label and a value.
 
 ## Installation
 
@@ -39,7 +39,7 @@ import { Progress } from "@catiarodrigues/goldfinch/components/progress";
   <Basic />
 </ComponentExample>
 
-Use `value` to set the current progress (0–100). The `label` prop is required for accessibility.
+`value` sets the progress, from 0 to 100.
 
 <ComponentExample title="With custom label" code={sizesCode}>
   <Sizes />
@@ -48,37 +48,9 @@ Use `value` to set the current progress (0–100). The `label` prop is required 
 Use `customValue` to override the percentage display with a custom string.
 
 <Callout type="warning">
-  The `label` prop is required for screen reader accessibility.
+  `label` is required: it names the bar for screen readers.
 </Callout>
 
 ## API Reference
 
-<PropsTable
-  of="Progress"
-  props={[
-    {
-      name: "label",
-      type: "string",
-      default: "—",
-      description: "Accessible label for the progress (required).",
-    },
-    {
-      name: "value",
-      type: "number",
-      default: "—",
-      description: "Current value (0-100).",
-    },
-    {
-      name: "customValue",
-      type: "string",
-      default: "—",
-      description: "Custom display text override for the value.",
-    },
-    {
-      name: "showValue",
-      type: "boolean",
-      default: "true",
-      description: "Whether to show the value label.",
-    },
-  ]}
-/>
+<PropsTable of="Progress" />

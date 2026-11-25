@@ -19,7 +19,7 @@ import Sizes from "../../examples/badge/sizes.tsx";
 import sizesCode from "../../examples/badge/sizes.tsx?raw";
 import usageCode from "../../examples/badge/usage.tsx?raw";
 
-Displays a small label for status, categorization, or metadata.
+A small label for status, categories or metadata.
 
 ## Installation
 
@@ -57,7 +57,7 @@ Use these for product-specific labels where semantic colors don't fit.
 
 ### Dot badges
 
-Use `appearance="dot"` for a status indicator with a colored dot. Supported with `success`, `warning`, `error`, and `neutral` variants.
+`appearance="dot"` adds a coloured status dot. It works with the `success`, `warning`, `error` and `neutral` variants.
 
 <ComponentExample title="Dot badges" code={dotCode}>
   <Dot />
@@ -65,7 +65,7 @@ Use `appearance="dot"` for a status indicator with a colored dot. Supported with
 
 ### In a sentence
 
-Badges sit inline with text for labeling items in context.
+Badges sit inline with text, so they can label an item where it's mentioned.
 
 <ComponentExample title="In a sentence" code={inSentenceCode}>
   <InSentence />
@@ -73,7 +73,7 @@ Badges sit inline with text for labeling items in context.
 
 ### Sizes
 
-Three sizes are available to fit different contexts — `sm` for tight inline placement, `md` as the default, and `lg` for standalone emphasis.
+There are three sizes: `sm` for tight inline use, `md` (the default) and `lg` for a badge that stands on its own.
 
 <ComponentExample title="Sizes" code={sizesCode}>
   <Sizes />
@@ -81,35 +81,4 @@ Three sizes are available to fit different contexts — `sm` for tight inline pl
 
 ## API Reference
 
-<PropsTable
-  of="Badge"
-  props={[
-    {
-      name: "variant",
-      type: '"primary" | "secondary" | "error" | "warning" | "success" | "destructive" | "info" | "beta" | "outline" | "red" | "green" | "neutral" | "orange" | "purple" | "teal" | "teal-subtle" | "blue"',
-      default: '"primary"',
-      description:
-        "Color variant. Use semantic variants (primary, success, error, etc.) for feedback; token variants (red, green, teal, etc.) for product labels.",
-    },
-    {
-      name: "appearance",
-      type: '"filled" | "dot"',
-      default: '"filled"',
-      description:
-        "Visual appearance. `dot` adds a colored circle indicator. Only success, warning, error, and neutral show a dot.",
-    },
-    {
-      name: "size",
-      type: '"sm" | "md" | "lg"',
-      default: '"md"',
-      description:
-        "Badge size — sm for inline, md for default, lg for standalone emphasis.",
-    },
-    {
-      name: "className",
-      type: "string",
-      default: "—",
-      description: "Additional CSS classes merged via cn().",
-    },
-  ]}
-/>
+<PropsTable of="Badge" />

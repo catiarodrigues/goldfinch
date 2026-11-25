@@ -11,7 +11,7 @@ import Basic from "../../examples/page/basic.tsx";
 import basicCode from "../../examples/page/basic.tsx?raw";
 import usageCode from "../../examples/page/usage.tsx?raw";
 
-A centered, max-width layout wrapper with a built-in page header (title, description, breadcrumbs) — the outer shell for any page content.
+A centred, width-limited wrapper for a page's content, with parts for the title, description and breadcrumbs.
 
 ## Installation
 
@@ -40,32 +40,10 @@ import { Page } from "@catiarodrigues/goldfinch/components/page";
 Choose a `size` to control the maximum width: `sm` (48rem), `base` (64rem), `lg` (80rem), or `full` (no constraint).
 
 <Callout type="info">
-  Page provides responsive padding — `px-4` on mobile, `px-6` on sm, `px-8` on
-  lg — so content never touches the viewport edges.
+  Page adds responsive side padding (`px-4`, then `px-6` from `sm` and `px-8`
+  from `lg`) so content stays off the edges of the viewport.
 </Callout>
 
 ## API Reference
 
-<PropsTable
-  of="Page"
-  props={[
-    {
-      name: "size",
-      type: '"sm" | "base" | "lg" | "full"',
-      default: '"base"',
-      description: "Max-width constraint.",
-    },
-    {
-      name: "children",
-      type: "ReactNode",
-      default: "—",
-      description: "Page content.",
-    },
-    {
-      name: "className",
-      type: "string",
-      default: "—",
-      description: "Additional CSS classes.",
-    },
-  ]}
-/>
+<PropsTable of="Page" />

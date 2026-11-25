@@ -11,7 +11,7 @@ import Basic from "../../examples/link/basic.tsx";
 import basicCode from "../../examples/link/basic.tsx?raw";
 import usageCode from "../../examples/link/usage.tsx?raw";
 
-Style anchor elements with Goldfinch's link tokens for consistent color, underline, and hover behavior.
+An anchor styled with Goldfinch's link colours, underline and hover state.
 
 ## Installation
 
@@ -37,7 +37,7 @@ import { Link } from "@catiarodrigues/goldfinch/components/link";
   <Basic />
 </ComponentExample>
 
-Provide an `href` and children. The component renders an `<a>` tag with Goldfinch typography and color tokens.
+Give it an `href` and content. It renders through `LinkProvider`'s component, an `<a>` by default, so it can use your router's Link.
 
 <Callout type="info">
   For external links, consider adding `target="_blank"` and `rel="noopener
@@ -46,26 +46,4 @@ Provide an `href` and children. The component renders an `<a>` tag with Goldfinc
 
 ## API Reference
 
-<PropsTable
-  of="Link"
-  props={[
-    {
-      name: "href",
-      type: "string",
-      default: "—",
-      description: "The URL to navigate to.",
-    },
-    {
-      name: "children",
-      type: "ReactNode",
-      default: "—",
-      description: "Link content.",
-    },
-    {
-      name: "className",
-      type: "string",
-      default: "—",
-      description: "Additional CSS classes.",
-    },
-  ]}
-/>
+<PropsTable of="Link" />

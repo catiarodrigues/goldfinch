@@ -131,7 +131,9 @@ export interface InputGroupRootPropsInternal
         "label" | "description" | "error" | "required" | "labelTooltip"
       >
     > {
+  /** Size of every control in the group. */
   size?: GoldfinchInputSize | undefined;
+  /** Disables every control in the group. */
   disabled?: boolean;
 }
 

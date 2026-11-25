@@ -11,7 +11,7 @@ import Basic from "../../examples/toolbar/basic.tsx";
 import basicCode from "../../examples/toolbar/basic.tsx?raw";
 import usageCode from "../../examples/toolbar/usage.tsx?raw";
 
-Group related controls — buttons, inputs, and input groups — in a connected horizontal bar with `role="toolbar"` and arrow-key navigation.
+A connected horizontal bar of related controls (buttons, inputs and input groups) with `role="toolbar"` and arrow-key navigation.
 
 ## Installation
 
@@ -40,32 +40,9 @@ import { Toolbar } from "@catiarodrigues/goldfinch/components/toolbar";
 Use `<Toolbar.Button>` for action buttons, `<Toolbar.Input>` for text inputs, and `<Toolbar.InputGroup>` for grouped input+button combos. All toolbar children inherit the toolbar's size and connected styling.
 
 <Callout type="info">
-  Toolbar uses `role="toolbar"` and supports keyboard navigation with arrow keys
-  between controls.
+  Tab moves into the toolbar once, and the arrow keys move between its controls.
 </Callout>
 
 ## API Reference
 
-<PropsTable
-  of="Toolbar"
-  props={[
-    {
-      name: "children",
-      type: "ReactNode",
-      default: "—",
-      description: "Toolbar controls.",
-    },
-    {
-      name: "aria-label",
-      type: "string",
-      default: "—",
-      description: "Accessible label.",
-    },
-    {
-      name: "className",
-      type: "string",
-      default: "—",
-      description: "Additional CSS classes.",
-    },
-  ]}
-/>
+<PropsTable of="Toolbar" />

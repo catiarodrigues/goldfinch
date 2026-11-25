@@ -10,7 +10,7 @@ import Basic from "../../examples/top-navigation/basic.tsx";
 import basicCode from "../../examples/top-navigation/basic.tsx?raw";
 import usageCode from "../../examples/top-navigation/usage.tsx?raw";
 
-A horizontal top bar for app-level navigation — brand logo, nav links, and right-aligned actions.
+A top bar for app navigation, with a logo, navigation links and actions on the right.
 
 ## Installation
 
@@ -40,20 +40,10 @@ Use `TopNavigation.NavItem` with `active` for the current page. Actions are push
 
 ## API Reference
 
-<PropsTable
-  of="TopNavigation"
-  props={[
-    {
-      name: "children",
-      type: "ReactNode",
-      default: "—",
-      description: "Header content.",
-    },
-    {
-      name: "className",
-      type: "string",
-      default: "—",
-      description: "Additional CSS classes.",
-    },
-  ]}
-/>
+### TopNavigation
+
+<PropsTable of="TopNavigation" />
+
+### TopNavigation.NavItem
+
+<PropsTable of="TopNavigation.NavItem" />

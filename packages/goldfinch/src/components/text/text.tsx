@@ -176,16 +176,22 @@ type BaseTextProps = Omit<
   ComponentPropsWithoutRef<"span">,
   "className" | "style"
 > & {
+  /** Escape hatch for extra classes. Prefer `variant`, `size` and `bold`, which keep text consistent. */
   DANGEROUS_className?: string;
+  /** Escape hatch for inline styles. Prefer the typed props. */
   DANGEROUS_style?: CSSProperties;
 };
 
 type TextPropsInternal<Variant extends TextVariant = "body"> = BaseTextProps &
   (Variant extends Copy
     ? {
+        /** Typographic style: headings, body copy, secondary or monospace text. */
         variant?: Variant;
+        /** Uses the bold weight. */
         bold?: boolean;
+        /** Text size for body copy. */
         size?: TextSize;
+        /** Cuts overflowing text off with an ellipsis. */
         truncate?: boolean;
         /** Optional element override. Defaults to `<p>`. */
         as?: TextElement;

@@ -11,7 +11,7 @@ import Basic from "../../examples/copy-to-clipboard/basic.tsx";
 import basicCode from "../../examples/copy-to-clipboard/basic.tsx?raw";
 import usageCode from "../../examples/copy-to-clipboard/usage.tsx?raw";
 
-Display a read-only value alongside a copy button — perfect for API tokens, install commands, and shareable IDs.
+Shows a read-only value with a button that copies it, for things like API tokens, install commands and IDs.
 
 ## Installation
 
@@ -37,28 +37,13 @@ import { CopyToClipboard } from "@catiarodrigues/goldfinch/components/copy-to-cl
   <Basic client:visible />
 </ComponentExample>
 
-Pass the text to copy via the `text` prop.
+`text` is what's shown and copied. Set `textToCopy` when the copied value should differ from what's shown, such as a full token behind a shortened one.
 
 <Callout type="info">
-  Clipboard access requires a secure context (HTTPS or localhost).
+  Browsers only allow the Clipboard API on HTTPS and localhost. Elsewhere the
+  component falls back to the older copy command.
 </Callout>
 
 ## API Reference
 
-<PropsTable
-  of="CopyToClipboard"
-  props={[
-    {
-      name: "text",
-      type: "string",
-      default: "—",
-      description: "The text to copy to clipboard.",
-    },
-    {
-      name: "className",
-      type: "string",
-      default: "—",
-      description: "Additional CSS classes.",
-    },
-  ]}
-/>
+<PropsTable of="CopyToClipboard" />

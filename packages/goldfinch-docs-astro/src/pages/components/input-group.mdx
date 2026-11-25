@@ -11,7 +11,7 @@ import Basic from "../../examples/input-group/basic.tsx";
 import basicCode from "../../examples/input-group/basic.tsx?raw";
 import usageCode from "../../examples/input-group/usage.tsx?raw";
 
-Visually join an input with adjacent buttons — borders merge seamlessly for a single cohesive control.
+Joins an input with buttons, addons or a suffix into one control with a shared border.
 
 ## Installation
 
@@ -44,29 +44,13 @@ import { InputGroup } from "@catiarodrigues/goldfinch/components/input-group";
   <Basic />
 </ComponentExample>
 
-Place an Input alongside Button elements as children. The group merges their borders for a unified appearance.
+Compose it from `InputGroup.Input`, `InputGroup.Button`, `InputGroup.Addon` and `InputGroup.Suffix`. Set `size`, `disabled`, `label` and `error` on the group; its parts inherit them.
 
 <Callout type="info">
-  InputGroup does not manage layout logic — it purely handles the visual merging
-  of adjacent form controls.
+  InputGroup picks its focus style from its children: one ring around the whole
+  group, or a ring per control when it holds standalone buttons.
 </Callout>
 
 ## API Reference
 
-<PropsTable
-  of="InputGroup"
-  props={[
-    {
-      name: "children",
-      type: "ReactNode",
-      default: "—",
-      description: "Input and button elements.",
-    },
-    {
-      name: "className",
-      type: "string",
-      default: "—",
-      description: "Additional CSS classes.",
-    },
-  ]}
-/>
+<PropsTable of="InputGroup" />

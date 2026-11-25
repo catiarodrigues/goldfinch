@@ -30,6 +30,7 @@ export const GOLDFINCH_PAGE_DEFAULT_VARIANTS = {
 export type GoldfinchPageSize = keyof typeof GOLDFINCH_PAGE_VARIANTS.size;
 
 export interface GoldfinchPageVariantsProps {
+  /** Maximum content width: `sm` 48rem, `base` 64rem, `lg` 80rem, `full` none. */
   size?: GoldfinchPageSize;
 }
 
@@ -47,7 +48,9 @@ export function pageVariants({
 }
 
 export interface PageRootProps extends GoldfinchPageVariantsProps {
+  /** Page content, usually starting with `Page.Title`. */
   children: ReactNode;
+  /** Additional CSS classes merged via `cn()`. */
   className?: string;
 }
 

@@ -11,7 +11,7 @@ import Basic from "../../examples/checkbox/basic.tsx";
 import basicCode from "../../examples/checkbox/basic.tsx?raw";
 import usageCode from "../../examples/checkbox/usage.tsx?raw";
 
-Toggle individual items on or off in multi-select forms with support for an indeterminate "some selected" state.
+Turns a single option on or off. It also has an indeterminate state for a parent whose options are partly selected.
 
 ## Installation
 
@@ -37,47 +37,19 @@ import { Checkbox } from "@catiarodrigues/goldfinch/components/checkbox";
   <Basic client:visible />
 </ComponentExample>
 
-Use `checked` and `onCheckedChange` for controlled mode, or `defaultChecked` for uncontrolled mode.
+Control it with `checked` and `onCheckedChange`. Without `checked` it manages its own state and starts unchecked. For a set of options, use `Checkbox.Group`.
 
 <Callout type="info">
-  The indeterminate state is visual only — the checkbox does not fire a change
-  event when toggled from indeterminate.
+  `indeterminate` only changes how the box looks. Set it yourself from the state
+  of the options it summarises.
 </Callout>
 
 ## API Reference
 
-<PropsTable
-  of="Checkbox"
-  props={[
-    {
-      name: "defaultChecked",
-      type: "boolean",
-      default: "false",
-      description: "Initial checked state.",
-    },
-    {
-      name: "checked",
-      type: "boolean",
-      default: "—",
-      description: "Controlled checked state.",
-    },
-    {
-      name: "onCheckedChange",
-      type: "(checked: boolean) => void",
-      default: "—",
-      description: "Change callback.",
-    },
-    {
-      name: "disabled",
-      type: "boolean",
-      default: "false",
-      description: "Disable the checkbox.",
-    },
-    {
-      name: "indeterminate",
-      type: "boolean",
-      default: "false",
-      description: "Show an indeterminate state.",
-    },
-  ]}
-/>
+### Checkbox
+
+<PropsTable of="Checkbox" />
+
+### Checkbox.Group
+
+<PropsTable of="Checkbox.Group" />

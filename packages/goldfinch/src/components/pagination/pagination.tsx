@@ -84,6 +84,7 @@ export const GOLDFINCH_PAGINATION_DEFAULT_VARIANTS = {
 } as const;
 
 export interface GoldfinchPaginationVariantsProps {
+  /** Which navigation controls to show. */
   controls?: GoldfinchPaginationControls;
 }
 

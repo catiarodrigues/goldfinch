@@ -11,7 +11,7 @@ import Basic from "../../examples/radio/basic.tsx";
 import basicCode from "../../examples/radio/basic.tsx?raw";
 import usageCode from "../../examples/radio/usage.tsx?raw";
 
-Select exactly one item from a small set of choices — grouped via shared `name` for native browser mutual exclusivity.
+Picks exactly one option from a small set.
 
 ## Installation
 
@@ -37,41 +37,19 @@ import { Radio } from "@catiarodrigues/goldfinch/components/radio";
   <Basic client:visible />
 </ComponentExample>
 
-Each radio button gets a `value`. Use `checked` and `onChange` to manage the selected state. Group radios with the same `name`.
+Put `Radio.Item`s in a `Radio.Group` with a `legend`. Control the selection with `value` and `onValueChange` on the group, or set `defaultValue` and leave it uncontrolled.
 
 <Callout type="info">
-  Radio buttons within a group should share the same `name` attribute so the
-  browser enforces mutual exclusivity.
+  Tab moves into the group on the selected option, and the arrow keys move the
+  selection.
 </Callout>
 
 ## API Reference
 
-<PropsTable
-  of="Radio"
-  props={[
-    {
-      name: "value",
-      type: "string",
-      default: "—",
-      description: "The value of the radio button.",
-    },
-    {
-      name: "checked",
-      type: "boolean",
-      default: "false",
-      description: "Checked state.",
-    },
-    {
-      name: "onChange",
-      type: "(e: ChangeEvent<HTMLInputElement>) => void",
-      default: "—",
-      description: "Change callback.",
-    },
-    {
-      name: "disabled",
-      type: "boolean",
-      default: "false",
-      description: "Disable the radio.",
-    },
-  ]}
-/>
+### Radio.Group
+
+<PropsTable of="Radio.Group" />
+
+### Radio.Item
+
+<PropsTable of="Radio.Item" />

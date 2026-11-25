@@ -13,7 +13,7 @@ import Variants from "../../examples/input/variants.tsx";
 import variantsCode from "../../examples/input/variants.tsx?raw";
 import usageCode from "../../examples/input/usage.tsx?raw";
 
-Collect alphanumeric text with built-in support for field labels, description text, and validation errors.
+A text field with built-in support for a label, a description and an error message.
 
 ## Installation
 
@@ -39,49 +39,22 @@ import { Input } from "@catiarodrigues/goldfinch/components/input";
   <Basic />
 </ComponentExample>
 
-Use `error` to show error styling with a validation message. Set `type` to change the HTML input type (text, email, password, etc.).
+`error` shows a message and marks the field invalid. Set `type` for email, password and other input types.
 
 <ComponentExample title="Variants" code={variantsCode}>
   <Variants />
 </ComponentExample>
 
-The input ships as a standalone component but is designed to be wrapped in a `Field` for labels, descriptions, and validation. Compound sub-components are also available:
+Pass `label`, `description` and `error` straight to Input; it adds the Field around itself. Two related components hang off it:
 
-- **`Input.Group`** — merges adjacent inputs/buttons visually
-- **`Input.Sensitive`** — masks content with a show/hide toggle (great for API keys or tokens)
+- `Input.Group` is InputGroup, for an input joined with buttons.
+- `Input.Sensitive` is SensitiveInput, which masks its value until revealed.
 
 <Callout type="info">
-  Always pair an Input with a Field or Label component for accessibility.
+  Every input needs an accessible name: a `label`, or `aria-label` when there's
+  no visible one.
 </Callout>
 
 ## API Reference
 
-<PropsTable
-  of="Input"
-  props={[
-    {
-      name: "placeholder",
-      type: "string",
-      default: "—",
-      description: "Placeholder text.",
-    },
-    {
-      name: "error",
-      type: "string",
-      default: "—",
-      description: "Error message text. Shows error styling when truthy.",
-    },
-    {
-      name: "disabled",
-      type: "boolean",
-      default: "false",
-      description: "Disable the input.",
-    },
-    {
-      name: "type",
-      type: "string",
-      default: '"text"',
-      description: "Input type attribute.",
-    },
-  ]}
-/>
+<PropsTable of="Input" />

@@ -175,6 +175,7 @@ export interface SidebarProviderProps {
   variant?: SidebarVariant;
   /** Which side the sidebar is on. @default "left" */
   side?: SidebarSide;
+  /** How the sidebar collapses: to an icon rail (`icon`), off screen (`offcanvas`), or not at all (`none`). */
   collapsible?: "icon" | "offcanvas" | "none";
   /** Enable drag-to-resize on the sidebar edge. @default false */
   resizable?: boolean;
@@ -1046,7 +1047,9 @@ export interface SidebarMenuButtonProps extends Omit<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   "className" | "children"
 > {
+  /** Icon shown before the label. Stays visible when the sidebar collapses to icons. */
   icon?: React.ComponentType<{ className?: string }> | React.ReactNode;
+  /** Marks the item as the current page. */
   active?: boolean;
   /**
    * Button size.
@@ -1055,11 +1058,15 @@ export interface SidebarMenuButtonProps extends Omit<
    * @default "base"
    */
   size?: SidebarMenuButtonSize;
+  /** Renders the item as a link (through `LinkProvider`'s component) instead of a button. */
   href?: string;
   /** Link target — only meaningful when `href` is provided. */
   target?: React.HTMLAttributeAnchorTarget;
+  /** Tooltip shown when the sidebar is collapsed to icons. */
   tooltip?: string;
+  /** Additional CSS classes merged via `cn()`. */
   className?: string;
+  /** The item's label. */
   children?: ReactNode;
 }
 

@@ -17,7 +17,7 @@ import Loading from "../../examples/button/loading.tsx";
 import loadingCode from "../../examples/button/loading.tsx?raw";
 import usageCode from "../../examples/button/usage.tsx?raw";
 
-Trigger actions with five visual variants, four sizes, loading state, and optional icon support.
+Buttons trigger actions. There are five variants and four sizes, plus a loading state and an optional icon.
 
 ## Installation
 
@@ -59,7 +59,7 @@ import { Button } from "@catiarodrigues/goldfinch/components/button";
   <Sizes />
 </ComponentExample>
 
-Four sizes available: `xs`, `sm`, `base` (default), `lg`.
+There are four sizes: `xs`, `sm`, `base` (the default) and `lg`.
 
 ### Shape
 
@@ -67,7 +67,7 @@ Four sizes available: `xs`, `sm`, `base` (default), `lg`.
   <Shape />
 </ComponentExample>
 
-Use `shape="square"` for square buttons.
+`shape="square"` makes an icon-only button square.
 
 ### Loading
 
@@ -78,50 +78,9 @@ Use `shape="square"` for square buttons.
 Set `loading` to show a spinner and disable the button.
 
 <Callout type="info">
-  When loading, the button text remains visible alongside the spinner for
-  context.
+  The label stays visible next to the spinner while loading.
 </Callout>
 
 ## API Reference
 
-<PropsTable
-  of="Button"
-  props={[
-    {
-      name: "variant",
-      type: '"primary" | "secondary" | "ghost" | "outline" | "destructive"',
-      default: '"secondary"',
-      description: "Visual style of the button.",
-    },
-    {
-      name: "size",
-      type: '"xs" | "sm" | "base" | "lg"',
-      default: '"base"',
-      description: "Button size.",
-    },
-    {
-      name: "shape",
-      type: '"base" | "square"',
-      default: '"base"',
-      description: "Button shape.",
-    },
-    {
-      name: "loading",
-      type: "boolean",
-      default: "false",
-      description: "Show a loading spinner and disable the button.",
-    },
-    {
-      name: "disabled",
-      type: "boolean",
-      default: "false",
-      description: "Disable the button.",
-    },
-    {
-      name: "className",
-      type: "string",
-      default: "—",
-      description: "Additional CSS classes.",
-    },
-  ]}
-/>
+<PropsTable of="Button" />

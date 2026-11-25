@@ -11,7 +11,7 @@ import Basic from "../../examples/modal/basic.tsx";
 import basicCode from "../../examples/modal/basic.tsx?raw";
 import usageCode from "../../examples/modal/usage.tsx?raw";
 
-A modal overlay that captures focus and blocks page interaction until dismissed — use for confirmations, quick forms, or detail views.
+A dialog that holds focus and blocks the rest of the page until it's closed, for confirmations, short forms or details.
 
 ## Installation
 
@@ -37,47 +37,24 @@ import { Modal } from "@catiarodrigues/goldfinch/components/modal";
   <Basic client:visible />
 </ComponentExample>
 
-Control the modal with `open` and `onOpenChange`. Provide a `title` for accessibility. Four sizes available: `sm`, `base`, `lg`, `xl`.
+Put `open` and `onOpenChange` on `Modal.Root`, or leave it uncontrolled with a `Modal.Trigger`. Name the dialog with `Modal.Title`. `size` on `Modal` sets the width: `sm`, `base`, `lg` or `xl`.
 
 <Callout type="warning">
-  Always provide a `title` for screen readers. The modal traps focus while open
-  to meet accessibility standards.
+  Always include a `Modal.Title`: it gives the dialog its accessible name. Focus
+  stays inside the modal while it's open and returns to the trigger when it
+  closes.
 </Callout>
 
 ## API Reference
 
-<PropsTable
-  of="Modal"
-  props={[
-    {
-      name: "open",
-      type: "boolean",
-      default: "—",
-      description: "Controlled open state.",
-    },
-    {
-      name: "onClose",
-      type: "() => void",
-      default: "—",
-      description: "Called when the modal is dismissed.",
-    },
-    {
-      name: "title",
-      type: "ReactNode",
-      default: "—",
-      description: "Modal title.",
-    },
-    {
-      name: "description",
-      type: "ReactNode",
-      default: "—",
-      description: "Accessible description.",
-    },
-    {
-      name: "size",
-      type: '"sm" | "base" | "lg" | "xl"',
-      default: '"base"',
-      description: "Modal width.",
-    },
-  ]}
-/>
+### Modal.Root
+
+Owns the open state.
+
+<PropsTable of="Modal.Root" />
+
+### Modal
+
+The dialog panel.
+
+<PropsTable of="Modal" />

@@ -170,6 +170,11 @@ export function toastVariants({
  * ```
  */
 export interface ToastyProps extends GoldfinchToastVariantsProps {
+  /**
+   * @deprecated Has no effect: set the variant per toast with
+   * `toast.add({ variant })`.
+   */
+  variant?: GoldfinchToastVariant;
   /** Application content. Toasts render via a portal above this. */
   children: React.ReactNode;
   /**

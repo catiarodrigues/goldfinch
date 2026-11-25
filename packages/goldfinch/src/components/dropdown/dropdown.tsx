@@ -155,14 +155,18 @@ const renderIconNode = (IconComponent?: Icon | React.ReactNode) => {
 const DropdownMenuItem = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Item> & {
+    /** Indents the item to line up with items that have an icon. */
     inset?: boolean;
+    /** Icon shown before the item's label. */
     icon?: Icon | React.ReactNode;
+    /** Highlights the item as the current choice. */
     selected?: boolean;
     /**
      * @deprecated Use `DropdownMenu.LinkItem` instead for navigation links.
      * This prop will be removed in a future major version.
      */
     href?: string;
+    /** `danger` colours the item for destructive actions such as Delete. */
     variant?: "default" | "danger";
   }
 >(
