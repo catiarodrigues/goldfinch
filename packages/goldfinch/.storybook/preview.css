@@ -1,0 +1,6 @@
+/* Paint the story page like a consumer app (and the docs site) does, so the
+   a11y contrast checks see real page colours in light and dark mode. */
+body {
+  background-color: var(--color-goldfinch-canvas);
+  color: var(--text-color-goldfinch-default);
+}

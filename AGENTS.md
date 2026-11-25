@@ -70,8 +70,10 @@ goldfinch/
 - Testing is Storybook stories run through `@storybook/addon-vitest` in a real Chromium via
   Playwright — there are no `*.test.ts` files. Stories without a `play` function are still
   exercised as render-smoke-tests. `pnpm exec playwright install` has to be run once locally
-  before `pnpm test` will pass. Every story is also an accessibility test: axe violations
-  fail it (`a11y.test: "error"` in `.storybook/preview.tsx`). Fix the violation rather than
+  before `pnpm test` will pass. Every story is also an accessibility test, in light **and** dark
+  mode: axe violations fail it (`a11y.test: "error"`, plus a preview `afterEach` that reruns
+  the same check with `data-mode="dark"` in `.storybook/preview.tsx`; `preview.css` paints
+  the page with the canvas token so contrast is measured against real page colours). Fix the violation rather than
   excluding it — the one exclusion, Base UI's `[data-base-ui-focus-guard]` sentinels, is a
   known axe false positive.
 - **Docs examples have one source.** Each example is a file under

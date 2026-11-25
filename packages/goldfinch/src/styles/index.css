@@ -64,6 +64,8 @@
   --color-goldfinch-warning: light-dark(#d4a017, #f0c040);
   --color-goldfinch-danger-tint: light-dark(#fde8e8, #5c1a1a);
   --color-goldfinch-danger: light-dark(#dc2626, #f87171);
+  /* Solid danger fill behind white text (>=4.5:1 in both modes); --color-goldfinch-danger stays tuned for rings/borders. */
+  --color-goldfinch-danger-solid: light-dark(#dc2626, #dc2626);
   --color-goldfinch-success-tint: light-dark(#d1fae5, #14532d);
   --color-goldfinch-success: light-dark(#16a34a, #4ade80);
 
@@ -143,6 +145,7 @@
     --color-goldfinch-warning: #d4a017;
     --color-goldfinch-danger-tint: #fde8e8;
     --color-goldfinch-danger: #dc2626;
+    --color-goldfinch-danger-solid: #dc2626;
     --color-goldfinch-success-tint: #d1fae5;
     --color-goldfinch-success: #16a34a;
     --color-goldfinch-banner-info: oklch(93% 0.01 260 / 0.7);
@@ -204,6 +207,7 @@
     --color-goldfinch-warning: #f0c040;
     --color-goldfinch-danger-tint: #5c1a1a;
     --color-goldfinch-danger: #f87171;
+    --color-goldfinch-danger-solid: #dc2626;
     --color-goldfinch-success-tint: #14532d;
     --color-goldfinch-success: #4ade80;
     --color-goldfinch-banner-info: oklch(30% 0.01 260 / 0.5);

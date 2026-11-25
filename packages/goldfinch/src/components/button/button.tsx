@@ -11,7 +11,7 @@ export const goldfinchButtonVariants = {
     ghost: "text-goldfinch-default hover:bg-goldfinch-tint bg-transparent",
     outline:
       "bg-transparent text-goldfinch-default ring ring-goldfinch-line hover:ring-goldfinch-focus/25",
-    destructive: "bg-goldfinch-danger text-white",
+    destructive: "bg-goldfinch-danger-solid text-white",
   },
   size: {
     xs: "px-2 py-1 text-xs rounded-md",
