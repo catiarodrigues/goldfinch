@@ -1,6 +1,7 @@
 import { Popover as PopoverBase } from "@base-ui/react/popover";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { cn } from "../../utils/cn";
+import { buttonChildAsRender } from "../../utils/button-trigger";
 import {
   usePortalContainer,
   type PortalContainer,
@@ -80,11 +81,12 @@ function PopoverTrigger({
   render,
   ...props
 }: PopoverTriggerProps) {
-  // Support both render prop (preferred) and deprecated asChild pattern
-  // When using asChild, children IS the render element, so don't pass it as children
-  const resolvedRender =
-    render ??
-    (asChild ? (children as BasePopoverTriggerProps["render"]) : undefined);
+  // render prop (preferred), deprecated asChild, or a <Button> child, which
+  // becomes the trigger itself (no button inside a button)
+  const childAsRender = asChild
+    ? (children as BasePopoverTriggerProps["render"])
+    : buttonChildAsRender(children);
+  const resolvedRender = render ?? childAsRender;
 
   return (
     <PopoverBase.Trigger
@@ -94,7 +96,7 @@ function PopoverTrigger({
       render={resolvedRender}
       {...props}
     >
-      {asChild ? undefined : children}
+      {!render && childAsRender ? undefined : children}
     </PopoverBase.Trigger>
   );
 }

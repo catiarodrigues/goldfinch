@@ -9,6 +9,7 @@ import { Dialog as DialogBase } from "@base-ui/react/dialog";
 import { AlertDialog as AlertDialogBase } from "@base-ui/react/alert-dialog";
 import { Card } from "../card";
 import { cn } from "../../utils/cn";
+import { buttonChildAsRender } from "../../utils/button-trigger";
 import { resolveVariant } from "../../utils/resolve-variant";
 import {
   usePortalContainer,
@@ -278,30 +279,23 @@ export type ModalTriggerProps =
   | BaseModalTriggerProps
   | BaseAlertModalTriggerProps;
 
-function ModalTrigger({ children, ...props }: ModalTriggerProps) {
+function ModalTrigger({ children, render, ...props }: ModalTriggerProps) {
   const role = useModalRole();
+  // A <Button> child becomes the trigger itself (no button inside a button)
+  const buttonChild = render ? undefined : buttonChildAsRender(children);
+  const triggerProps = {
+    "data-goldfinch-component": "Modal",
+    "data-goldfinch-part": "trigger",
+    ...props,
+    render: render ?? buttonChild,
+    children: buttonChild ? undefined : children,
+  };
 
   if (role === "alertdialog") {
-    return (
-      <AlertDialogBase.Trigger
-        data-goldfinch-component="Modal"
-        data-goldfinch-part="trigger"
-        {...(props as BaseAlertModalTriggerProps)}
-      >
-        {children}
-      </AlertDialogBase.Trigger>
-    );
+    return <AlertDialogBase.Trigger {...(triggerProps as BaseAlertModalTriggerProps)} />;
   }
 
-  return (
-    <DialogBase.Trigger
-      data-goldfinch-component="Modal"
-      data-goldfinch-part="trigger"
-      {...props}
-    >
-      {children}
-    </DialogBase.Trigger>
-  );
+  return <DialogBase.Trigger {...(triggerProps as BaseModalTriggerProps)} />;
 }
 
 ModalTrigger.displayName = "Modal.Trigger";
@@ -346,13 +340,20 @@ type BaseModalCloseProps = ComponentPropsWithoutRef<typeof DialogBase.Close>;
 
 export type ModalCloseProps = BaseModalCloseProps;
 
-function ModalClose({ children, ...props }: ModalCloseProps) {
+function ModalClose({ children, render, ...props }: ModalCloseProps) {
   const role = useModalRole();
   const BaseClose =
     role === "alertdialog" ? AlertDialogBase.Close : DialogBase.Close;
+  // A <Button> child becomes the close control itself (no button inside a button)
+  const buttonChild = render ? undefined : buttonChildAsRender(children);
   return (
-    <BaseClose data-goldfinch-component="Modal" data-goldfinch-part="close" {...props}>
-      {children}
+    <BaseClose
+      data-goldfinch-component="Modal"
+      data-goldfinch-part="close"
+      {...props}
+      render={render ?? buttonChild}
+    >
+      {buttonChild ? undefined : children}
     </BaseClose>
   );
 }

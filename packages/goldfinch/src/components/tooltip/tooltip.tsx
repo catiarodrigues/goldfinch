@@ -1,6 +1,7 @@
 import { Tooltip as TooltipBase } from "@base-ui/react/tooltip";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { cn } from "../../utils/cn";
+import { buttonChildAsRender } from "../../utils/button-trigger";
 import { resolveVariant } from "../../utils/resolve-variant";
 import {
   usePortalContainer,
@@ -155,10 +156,13 @@ export function Tooltip({
   const contextContainer = usePortalContainer();
   const container = containerProp ?? contextContainer ?? undefined;
 
-  // Support both render prop (preferred) and deprecated asChild pattern
-  // When using asChild, children IS the render element, so don't pass it as children
-  const resolvedRender =
-    render ?? (asChild ? (children as TriggerProps["render"]) : undefined);
+  // render prop (preferred), deprecated asChild, or a <Button> child, which
+  // becomes the trigger itself (no button inside a button). Other children
+  // (text, icons) keep the focusable wrapper button.
+  const childAsRender = asChild
+    ? (children as TriggerProps["render"])
+    : buttonChildAsRender(children as ReactNode);
+  const resolvedRender = render ?? childAsRender;
   const shouldUseRender = resolvedRender !== undefined;
 
   return (
@@ -180,7 +184,7 @@ export function Tooltip({
         )}
         render={resolvedRender}
       >
-        {asChild ? undefined : (children as ReactNode)}
+        {!render && childAsRender ? undefined : (children as ReactNode)}
       </TooltipBase.Trigger>
       <TooltipBase.Portal container={container}>
         <TooltipBase.Positioner align={align} side={side} sideOffset={10} className="max-w-[var(--available-width)]">

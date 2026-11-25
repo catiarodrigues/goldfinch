@@ -87,3 +87,6 @@ export function Button({
     </BaseButton>
   );
 }
+
+// Matched by name in buttonChildAsRender (utils/button-trigger.ts).
+Button.displayName = "Button";
