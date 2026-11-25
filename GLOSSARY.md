@@ -24,5 +24,7 @@ _Avoid_: group label, field group
 The message shown when a field is invalid. It is either always shown, or shown only when the
 browser's own validation fails a specific check (such as a missing required value). A field
 is invalid exactly when its field error is showing: the message, the invalid styling and the
-invalid state for assistive tech always appear and disappear together.
+invalid state for assistive tech always appear and disappear together. Text fields and
+selects mark the control itself as invalid; choice controls (checkboxes, radios, toggles)
+show a field error by its message alone.
 _Avoid_: validation message, error state, variant="error"

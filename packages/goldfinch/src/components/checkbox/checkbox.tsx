@@ -4,7 +4,8 @@ import { cn } from "../../utils/cn";
 import { resolveVariant } from "../../utils/resolve-variant";
 import { Label } from "../label";
 import { Field, useAccessibleNameWarning, type FieldErrorProp } from "../field/field";
-import { Fieldset } from "@base-ui/react/fieldset";
+import { Fieldset as BaseFieldset } from "@base-ui/react/fieldset";
+import { Fieldset } from "../field/fieldset";
 import { Field as FieldBase } from "@base-ui/react/field";
 import { CheckboxGroup as BaseCheckboxGroup } from "@base-ui/react/checkbox-group";
 import { Checkbox as BaseCheckbox } from "@base-ui/react/checkbox";
@@ -181,8 +182,8 @@ export interface CheckboxGroupProps {
   legend?: string;
   /** Child Checkbox.Item components (and optionally a Checkbox.Legend) */
   children: ReactNode;
-  /** Error message for the group (only appears in groups, not single checkboxes) */
-  error?: string;
+  /** Field error for the group: a message (always shown) or `{ message, match }` */
+  error?: FieldErrorProp;
   /** Helper text for the group */
   description?: ReactNode;
   /** Values of checkboxes that should be initially checked (uncontrolled) */
@@ -257,8 +258,6 @@ const CheckboxBase = forwardRef<HTMLButtonElement, CheckboxProps>(
           "relative flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border-0 bg-goldfinch-base ring focus:outline-none after:absolute after:-inset-x-3 after:-inset-y-2",
           label && "mt-0.5",
           variant === "error" ? "ring-goldfinch-danger" : "ring-goldfinch-hairline",
-          // Invalid state comes from Field (Base UI sets data-invalid)
-          "data-[invalid]:ring-goldfinch-danger",
           !disabled &&
             "hover:ring-goldfinch-hairline focus:ring-goldfinch-focus focus:ring-2 focus-visible:ring-2 focus-visible:ring-goldfinch-brand",
           "data-[checked]:bg-goldfinch-contrast data-[checked]:ring-goldfinch-contrast data-[indeterminate]:bg-goldfinch-contrast data-[indeterminate]:ring-goldfinch-contrast",
@@ -399,11 +398,11 @@ CheckboxItem.displayName = "Checkbox.Item";
 // Checkbox.Legend — composable legend sub-component for Checkbox.Group
 function CheckboxLegend({ children, className }: CheckboxLegendProps) {
   return (
-    <Fieldset.Legend
+    <BaseFieldset.Legend
       className={cn("text-base font-medium text-goldfinch-default", className)}
     >
       {children}
-    </Fieldset.Legend>
+    </BaseFieldset.Legend>
   );
 }
 
@@ -425,26 +424,24 @@ function CheckboxGroup({
 }: CheckboxGroupProps) {
   return (
     <CheckboxGroupContext.Provider value={{ controlFirst }}>
-      <BaseCheckboxGroup
-        defaultValue={defaultValue}
-        value={value}
-        onValueChange={onValueChange}
-        allValues={allValues}
+      <Fieldset
+        legend={legend}
+        description={description}
+        error={error}
         disabled={disabled}
+        className={className}
+        group={
+          <BaseCheckboxGroup
+            defaultValue={defaultValue}
+            value={value}
+            onValueChange={onValueChange}
+            allValues={allValues}
+            disabled={disabled}
+          />
+        }
       >
-        <Fieldset.Root className={cn("flex flex-col gap-4", className)}>
-          {legend && (
-            <Fieldset.Legend className="text-base font-medium text-goldfinch-default">
-              {legend}
-            </Fieldset.Legend>
-          )}
-          <div className="flex flex-col gap-2">{children}</div>
-          {error && <p className="text-sm text-goldfinch-danger">{error}</p>}
-          {description && (
-            <p className="text-sm text-goldfinch-subtle">{description}</p>
-          )}
-        </Fieldset.Root>
-      </BaseCheckboxGroup>
+        <div className="flex flex-col gap-2">{children}</div>
+      </Fieldset>
     </CheckboxGroupContext.Provider>
   );
 }

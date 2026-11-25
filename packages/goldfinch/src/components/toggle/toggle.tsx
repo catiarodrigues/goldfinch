@@ -10,7 +10,8 @@ import {
 import { cn } from "../../utils/cn";
 import { resolveVariant } from "../../utils/resolve-variant";
 import { Field, type FieldErrorProp } from "../field/field";
-import { Fieldset } from "@base-ui/react/fieldset";
+import { Fieldset as BaseFieldset } from "@base-ui/react/fieldset";
+import { Fieldset } from "../field/fieldset";
 
 /** Toggle size and variant definitions mapping names to their Tailwind classes. */
 export const GOLDFINCH_TOGGLE_VARIANTS = {
@@ -99,7 +100,8 @@ export interface ToggleLegendProps {
 export interface ToggleGroupProps {
   legend?: string;
   children: ReactNode;
-  error?: string;
+  /** Field error for the group: a message (always shown) or `{ message, match }` */
+  error?: FieldErrorProp;
   description?: ReactNode;
   disabled?: boolean;
   controlFirst?: boolean;
@@ -201,8 +203,6 @@ const ToggleBase = forwardRef<HTMLButtonElement, ToggleProps>(
             s.track,
             pillRadius,
             trackColors,
-            // Invalid state comes from Field (Base UI sets data-invalid)
-            "data-[invalid]:ring-goldfinch-danger",
             className,
             baseClassName,
           );
@@ -392,11 +392,11 @@ ToggleItem.displayName = "Toggle.Item";
 
 function ToggleLegend({ children, className }: ToggleLegendProps) {
   return (
-    <Fieldset.Legend
+    <BaseFieldset.Legend
       className={cn("text-base font-medium text-goldfinch-default", className)}
     >
       {children}
-    </Fieldset.Legend>
+    </BaseFieldset.Legend>
   );
 }
 
@@ -413,21 +413,15 @@ function ToggleGroup({
 }: ToggleGroupProps) {
   return (
     <ToggleGroupContext.Provider value={{ controlFirst }}>
-      <Fieldset.Root
-        className={cn("flex flex-col gap-4", className)}
+      <Fieldset
+        legend={legend}
+        description={description}
+        error={error}
         disabled={disabled}
+        className={className}
       >
-        {legend && (
-          <Fieldset.Legend className="text-base font-medium text-goldfinch-default">
-            {legend}
-          </Fieldset.Legend>
-        )}
         <div className="flex flex-col gap-2">{children}</div>
-        {error && <p className="text-sm text-goldfinch-danger">{error}</p>}
-        {description && (
-          <p className="text-sm text-goldfinch-subtle">{description}</p>
-        )}
-      </Fieldset.Root>
+      </Fieldset>
     </ToggleGroupContext.Provider>
   );
 }

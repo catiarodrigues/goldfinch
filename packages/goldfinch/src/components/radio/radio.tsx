@@ -8,7 +8,9 @@ import {
 } from "react";
 import { cn } from "../../utils/cn";
 import { resolveVariant } from "../../utils/resolve-variant";
-import { Fieldset } from "@base-ui/react/fieldset";
+import { Fieldset as BaseFieldset } from "@base-ui/react/fieldset";
+import { Fieldset } from "../field/fieldset";
+import type { FieldErrorProp } from "../field/field";
 import {
   RadioGroup as BaseRadioGroup,
   type RadioGroup as BaseRadioGroupNamespace,
@@ -225,8 +227,8 @@ export interface RadioGroupProps<Value = string> {
    * @default "default"
    */
   appearance?: GoldfinchRadioAppearance;
-  /** Error message for the group */
-  error?: string;
+  /** Field error for the group: a message (always shown) or `{ message, match }` */
+  error?: FieldErrorProp;
   /** Helper text for the group */
   description?: ReactNode;
   /** Value of the radio that should be initially selected (uncontrolled) */
@@ -433,11 +435,11 @@ const RadioItem = forwardRef(_RadioItem) as <T = string>(
 // Radio.Legend — composable legend sub-component for Radio.Group
 function RadioLegend({ children, className }: RadioLegendProps) {
   return (
-    <Fieldset.Legend
+    <BaseFieldset.Legend
       className={cn("text-base font-medium text-goldfinch-default", className)}
     >
       {children}
-    </Fieldset.Legend>
+    </BaseFieldset.Legend>
   );
 }
 
@@ -461,41 +463,37 @@ function RadioGroup<Value = string>({
 }: RadioGroupProps<Value>) {
   return (
     <RadioGroupContext.Provider value={{ controlPosition, appearance }}>
-      <BaseRadioGroup<Value>
-        defaultValue={defaultValue}
-        value={value}
-        onValueChange={(newValue, eventDetails) =>
-          onValueChange?.(newValue, eventDetails)
-        }
+      <Fieldset
+        legend={legend}
+        description={description}
+        error={error}
         disabled={disabled}
-        name={name}
+        className={className}
+        // Rendered as the radiogroup itself, so the legend names it.
+        group={
+          <BaseRadioGroup<Value>
+            defaultValue={defaultValue}
+            value={value}
+            onValueChange={(newValue, eventDetails) =>
+              onValueChange?.(newValue, eventDetails)
+            }
+            disabled={disabled}
+            name={name}
+          />
+        }
       >
-        <Fieldset.Root
-          disabled={disabled}
-          className={cn("flex flex-col gap-4", className)}
+        <div
+          className={cn(
+            orientation === "vertical"
+              ? cn("flex flex-col", appearance === "card" ? "gap-3" : "gap-2")
+              : appearance === "card"
+                ? "grid grid-cols-2 gap-3"
+                : "flex flex-row flex-wrap gap-2",
+          )}
         >
-          {legend && (
-            <Fieldset.Legend className="text-base font-medium text-goldfinch-default">
-              {legend}
-            </Fieldset.Legend>
-          )}
-          <div
-            className={cn(
-              orientation === "vertical"
-                ? cn("flex flex-col", appearance === "card" ? "gap-3" : "gap-2")
-                : appearance === "card"
-                  ? "grid grid-cols-2 gap-3"
-                  : "flex flex-row flex-wrap gap-2",
-            )}
-          >
-            {children}
-          </div>
-          {error && <p className="text-sm text-goldfinch-danger">{error}</p>}
-          {description && (
-            <p className="text-sm text-goldfinch-subtle">{description}</p>
-          )}
-        </Fieldset.Root>
-      </BaseRadioGroup>
+          {children}
+        </div>
+      </Fieldset>
     </RadioGroupContext.Provider>
   );
 }
