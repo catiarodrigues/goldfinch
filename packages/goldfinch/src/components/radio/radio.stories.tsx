@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Radio } from "./radio";
 import { expect, userEvent, within } from "storybook/test";
 
+import BasicExample from "../../../../goldfinch-docs-astro/src/examples/radio/basic";
 const meta: Meta<typeof Radio> = {
   title: "Components/Radio",
   component: Radio,
@@ -43,3 +44,5 @@ export const ArrowKeys: Story = {
     await expect(express).toHaveAttribute("aria-checked", "true");
   },
 };
+
+export const Basic: Story = { render: () => <BasicExample /> };

@@ -6,7 +6,9 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import LiveToast from "../../components/demos/LiveToast.astro";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/toast/basic.tsx";
+import basicCode from "../../examples/toast/basic.tsx?raw";
 
 Display brief, auto-dismissing notifications anchored to the bottom of the viewport. Supports programmatic show/dismiss via an imperative manager.
 
@@ -49,20 +51,11 @@ export default function Example() {
 
 ## Examples
 
-<LiveToast title="Toast" />
+<ComponentExample title="Toast" code={basicCode}>
+  <Basic client:visible />
+</ComponentExample>
 
 Wrap your application in Toast. Use the `toastManager` prop to use an external manager, or let it manage toasts internally.
-
-```tsx
-const manager = createGoldfinchToastManager();
-
-<Toast toastManager={manager}>
-  <App />
-</Toast>;
-
-// Later, imperatively:
-manager.show("Notification message");
-```
 
 <Callout type="warning">
   Only one Toast instance should be rendered in the application tree to avoid

@@ -1,6 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "./button";
 
+import BasicExample from "../../../../goldfinch-docs-astro/src/examples/button/basic";
+import SizesExample from "../../../../goldfinch-docs-astro/src/examples/button/sizes";
+import ShapeExample from "../../../../goldfinch-docs-astro/src/examples/button/shape";
+import LoadingExample from "../../../../goldfinch-docs-astro/src/examples/button/loading";
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
   component: Button,
@@ -81,3 +85,11 @@ export const Disabled: Story = {
     disabled: true,
   },
 };
+
+export const Basic: Story = { render: () => <BasicExample /> };
+
+export const Sizes: Story = { render: () => <SizesExample /> };
+
+export const Shape: Story = { render: () => <ShapeExample /> };
+
+export const Loading: Story = { render: () => <LoadingExample /> };

@@ -6,7 +6,9 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import { DemoFrame, PageDemo } from "../../components/demos/index.tsx";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/page/basic.tsx";
+import basicCode from "../../examples/page/basic.tsx?raw";
 
 A centered, max-width layout wrapper with a built-in page header (title, description, breadcrumbs) — the outer shell for any page content.
 
@@ -43,18 +45,11 @@ export default function Example() {
 
 ## Example
 
-<DemoFrame title="Page">
-  <PageDemo />
-</DemoFrame>
+<ComponentExample title="Page" code={basicCode}>
+  <Basic />
+</ComponentExample>
 
 Choose a `size` to control the maximum width: `sm` (48rem), `base` (64rem), `lg` (80rem), or `full` (no constraint).
-
-```tsx
-<Page size="sm">Narrow content</Page>
-<Page size="base">Default width</Page>
-<Page size="lg">Wide content</Page>
-<Page size="full">Full width</Page>
-```
 
 <Callout type="info">
   Page provides responsive padding — `px-4` on mobile, `px-6` on sm, `px-8` on

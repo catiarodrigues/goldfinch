@@ -6,8 +6,9 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import { CollapsibleDemo } from "../../components/demos/index.tsx";
-import LiveCollapsible from "../../components/demos/LiveCollapsible.astro";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/collapsible/basic.tsx";
+import basicCode from "../../examples/collapsible/basic.tsx?raw";
 
 Hide secondary content behind a trigger — ideal for settings panels, FAQ items, or long metadata sections.
 
@@ -46,7 +47,9 @@ export default function Example() {
 
 ## Examples
 
-<LiveCollapsible title="Collapsible" />
+<ComponentExample title="Collapsible" code={basicCode}>
+  <Basic client:visible />
+</ComponentExample>
 
 Provide a `trigger` element and content children. Use `open` and `onOpenChange` for controlled state.
 

@@ -6,11 +6,11 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import {
-  DemoFrame,
-  AlertDemo,
-  AlertVariantsDemo,
-} from "../../components/demos/index.tsx";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/alert/basic.tsx";
+import basicCode from "../../examples/alert/basic.tsx?raw";
+import Variants from "../../examples/alert/variants.tsx";
+import variantsCode from "../../examples/alert/variants.tsx?raw";
 
 Display prominent notices — release notes, system warnings, validation summaries — with optional icon, title, description, and action slot.
 
@@ -45,22 +45,15 @@ export default function Example() {
 
 ## Examples
 
-<DemoFrame title="Alert">
-  <AlertDemo />
-</DemoFrame>
+<ComponentExample title="Alert" code={basicCode}>
+  <Basic />
+</ComponentExample>
 
-<DemoFrame title="Variants">
-  <AlertVariantsDemo />
-</DemoFrame>
+<ComponentExample title="Variants" code={variantsCode}>
+  <Variants />
+</ComponentExample>
 
 Choose a variant that matches the urgency — `default` for general info, `alert` for time-sensitive callouts, `error` for failures, `secondary` for neutral messages.
-
-```tsx
-<Alert variant="default" title="Info" description="General information." />
-<Alert variant="alert" title="Warning" description="Time-sensitive notice." />
-<Alert variant="error" title="Error" description="Critical issue." />
-<Alert variant="secondary" title="Note" description="Neutral message." />
-```
 
 <Callout type="warning">
   Alerts are persistent and should only be used for information that requires

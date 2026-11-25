@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Sidebar } from "./sidebar";
 import { expect, userEvent, within } from "storybook/test";
 
+import BasicExample from "../../../../goldfinch-docs-astro/src/examples/sidebar/basic";
 const meta: Meta<typeof Sidebar> = {
   title: "Components/Sidebar",
   component: Sidebar,
@@ -70,3 +71,5 @@ export const CollapseAndExpand: Story = {
     await expect(wrapper).toHaveAttribute("data-state", "expanded");
   },
 };
+
+export const Basic: Story = { render: () => <BasicExample /> };

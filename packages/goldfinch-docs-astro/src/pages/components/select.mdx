@@ -6,8 +6,11 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import LiveSelect from "../../components/demos/LiveSelect.astro";
-import LiveSelectItems from "../../components/demos/LiveSelectItems.astro";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/select/basic.tsx";
+import basicCode from "../../examples/select/basic.tsx?raw";
+import Items from "../../examples/select/items.tsx";
+import itemsCode from "../../examples/select/items.tsx?raw";
 
 Choose from a predefined list — pass an array of `{ label, value }` objects via `items`, or compose custom option markup with `Select.Option` children.
 
@@ -49,33 +52,17 @@ export default function Example() {
 
 ## Examples
 
-<LiveSelect title="Select" />
+<ComponentExample title="Select" code={basicCode}>
+  <Basic client:visible />
+</ComponentExample>
 
 Provide options via the `items` prop. Use `value` and `onValueChange` for controlled mode, or `defaultValue` for uncontrolled.
 
-```tsx
-<Select
-  items={[
-    { label: "Option 1", value: "1" },
-    { label: "Option 2", value: "2" },
-  ]}
-  placeholder="Choose..."
-/>
-```
-
-<LiveSelectItems title="Items" />
+<ComponentExample title="Items" code={itemsCode}>
+  <Items client:visible />
+</ComponentExample>
 
 For custom option markup, use the compound children API with `Select.Option`, `Select.Group`, `.GroupLabel`, and `.Separator`.
-
-```tsx
-<Select placeholder="Pick one">
-  <Select.Group>
-    <Select.GroupLabel>Fruits</Select.GroupLabel>
-    <Select.Option value="apple">Apple</Select.Option>
-    <Select.Option value="banana">Banana</Select.Option>
-  </Select.Group>
-</Select>
-```
 
 <Callout type="info">
   Select items can be defined as an object map or an array of `{ label, value }` objects.

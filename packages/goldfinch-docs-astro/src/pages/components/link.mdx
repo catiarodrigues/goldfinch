@@ -6,7 +6,9 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import { DemoFrame, LinkDemo } from "../../components/demos/index.tsx";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/link/basic.tsx";
+import basicCode from "../../examples/link/basic.tsx?raw";
 
 Style anchor elements with Goldfinch's link tokens for consistent color, underline, and hover behavior.
 
@@ -40,9 +42,9 @@ export default function Example() {
 
 ## Examples
 
-<DemoFrame title="Link">
-  <LinkDemo />
-</DemoFrame>
+<ComponentExample title="Link" code={basicCode}>
+  <Basic />
+</ComponentExample>
 
 Provide an `href` and children. The component renders an `<a>` tag with Goldfinch typography and color tokens.
 

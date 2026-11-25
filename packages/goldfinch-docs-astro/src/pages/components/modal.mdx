@@ -6,8 +6,9 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import { ModalDemo } from "../../components/demos/index.tsx";
-import LiveModal from "../../components/demos/LiveModal.astro";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/modal/basic.tsx";
+import basicCode from "../../examples/modal/basic.tsx?raw";
 
 A modal overlay that captures focus and blocks page interaction until dismissed — use for confirmations, quick forms, or detail views.
 
@@ -52,16 +53,11 @@ export default function Example() {
 
 ## Examples
 
-<LiveModal title="Modal" />
+<ComponentExample title="Modal" code={basicCode}>
+  <Basic client:visible />
+</ComponentExample>
 
 Control the modal with `open` and `onOpenChange`. Provide a `title` for accessibility. Four sizes available: `sm`, `base`, `lg`, `xl`.
-
-```tsx
-<Modal size="sm">...</Modal>
-<Modal size="base">...</Modal>
-<Modal size="lg">...</Modal>
-<Modal size="xl">...</Modal>
-```
 
 <Callout type="warning">
   Always provide a `title` for screen readers. The modal traps focus while open

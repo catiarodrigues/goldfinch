@@ -6,7 +6,9 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import LiveSidebar from "../../components/demos/LiveSidebar.astro";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/sidebar/basic.tsx";
+import basicCode from "../../examples/sidebar/basic.tsx?raw";
 
 Full-featured application sidebar with collapsible sections, nested menu items, active state tracking, keyboard navigation, and resizable panels.
 
@@ -54,20 +56,11 @@ export default function Example() {
 
 ## Examples
 
-<LiveSidebar title="Sidebar" />
+<ComponentExample title="Sidebar" code={basicCode}>
+  <Basic client:visible />
+</ComponentExample>
 
 Define navigation items via the `items` prop. Track the active item with `activeItemId` and handle selection with `onItemSelect`.
-
-```tsx
-<Sidebar
-  items={[
-    { id: "home", label: "Home", icon: <HomeIcon /> },
-    { id: "settings", label: "Settings", icon: <GearIcon /> },
-  ]}
-  activeItemId="home"
-  onItemSelect={(id) => navigate(id)}
-/>
-```
 
 <Callout type="info">
   Sidebar items can include icons, labels, and nested sub-items for hierarchical

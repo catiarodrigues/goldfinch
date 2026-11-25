@@ -3,6 +3,7 @@ import { DropdownMenu } from "./dropdown";
 import { Button } from "../button/button";
 import { expect, fn, userEvent, waitFor, within } from "storybook/test";
 
+import BasicExample from "../../../../goldfinch-docs-astro/src/examples/dropdown/basic";
 const meta: Meta<typeof DropdownMenu> = {
   title: "Components/Dropdown",
   component: DropdownMenu,
@@ -66,3 +67,5 @@ export const KeyboardNavigation: Story = {
     await expect(trigger).toHaveFocus();
   },
 };
+
+export const Basic: Story = { render: () => <BasicExample /> };

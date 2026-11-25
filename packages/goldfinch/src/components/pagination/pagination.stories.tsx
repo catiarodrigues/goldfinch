@@ -3,6 +3,7 @@ import { Pagination, GOLDFINCH_PAGINATION_VARIANTS } from "./pagination";
 import { useState } from "react";
 import { expect, userEvent, within } from "storybook/test";
 
+import BasicExample from "../../../../goldfinch-docs-astro/src/examples/pagination/basic";
 const meta: Meta<typeof Pagination> = {
   title: "Components/Pagination",
   component: Pagination,
@@ -52,3 +53,5 @@ export const ChangePage: Story = {
     ).toBeEnabled();
   },
 };
+
+export const Basic: Story = { render: () => <BasicExample /> };

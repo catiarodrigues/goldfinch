@@ -6,13 +6,15 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import {
-  DemoFrame,
-  ButtonDemo,
-  ButtonSizesDemo,
-  ButtonLoadingDemo,
-  ButtonShapeDemo,
-} from "../../components/demos/index.tsx";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/button/basic.tsx";
+import basicCode from "../../examples/button/basic.tsx?raw";
+import Sizes from "../../examples/button/sizes.tsx";
+import sizesCode from "../../examples/button/sizes.tsx?raw";
+import Shape from "../../examples/button/shape.tsx";
+import shapeCode from "../../examples/button/shape.tsx?raw";
+import Loading from "../../examples/button/loading.tsx";
+import loadingCode from "../../examples/button/loading.tsx?raw";
 
 Trigger actions with five visual variants, four sizes, loading state, and optional icon support.
 
@@ -44,9 +46,9 @@ export default function Example() {
 
 ### Variants
 
-<DemoFrame title="Variants">
-  <ButtonDemo />
-</DemoFrame>
+<ComponentExample title="Variants" code={basicCode}>
+  <Basic />
+</ComponentExample>
 
 | Variant       | Purpose               |
 | ------------- | --------------------- |
@@ -56,52 +58,29 @@ export default function Example() {
 | `ghost`       | Subtle, no border     |
 | `outline`     | Bordered, transparent |
 
-```tsx
-<Button variant="secondary">Default</Button>
-<Button variant="primary">Primary</Button>
-<Button variant="destructive">Destructive</Button>
-<Button variant="ghost">Ghost</Button>
-<Button variant="outline">Outline</Button>
-```
-
 ### Sizes
 
-<DemoFrame title="Sizes">
-  <ButtonSizesDemo />
-</DemoFrame>
+<ComponentExample title="Sizes" code={sizesCode}>
+  <Sizes />
+</ComponentExample>
 
 Four sizes available: `xs`, `sm`, `base` (default), `lg`.
 
-```tsx
-<Button size="xs">XS</Button>
-<Button size="sm">SM</Button>
-<Button size="base">Base</Button>
-<Button size="lg">LG</Button>
-```
-
 ### Shape
 
-<DemoFrame title="Shape">
-  <ButtonShapeDemo />
-</DemoFrame>
+<ComponentExample title="Shape" code={shapeCode}>
+  <Shape />
+</ComponentExample>
 
 Use `shape="square"` for square buttons.
 
-```tsx
-<Button shape="square">Square</Button>
-```
-
 ### Loading
 
-<DemoFrame title="Loading">
-  <ButtonLoadingDemo />
-</DemoFrame>
+<ComponentExample title="Loading" code={loadingCode}>
+  <Loading />
+</ComponentExample>
 
 Set `loading` to show a spinner and disable the button.
-
-```tsx
-<Button loading>Loading</Button>
-```
 
 <Callout type="info">
   When loading, the button text remains visible alongside the spinner for

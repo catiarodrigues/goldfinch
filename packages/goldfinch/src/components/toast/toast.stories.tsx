@@ -3,6 +3,7 @@ import { Button } from "../button/button";
 import { Toasty, useGoldfinchToastManager } from "./toast";
 import { expect, userEvent, waitFor, within } from "storybook/test";
 
+import BasicExample from "../../../../goldfinch-docs-astro/src/examples/toast/basic";
 const meta: Meta<typeof Toasty> = {
   title: "Components/Toast",
   component: Toasty,
@@ -58,3 +59,5 @@ export const ShowAndDismiss: Story = {
     );
   },
 };
+
+export const Basic: Story = { render: () => <BasicExample /> };

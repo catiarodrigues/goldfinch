@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Toggle, GOLDFINCH_TOGGLE_VARIANTS } from "./toggle";
 import { expect, userEvent, within } from "storybook/test";
 
+import BasicExample from "../../../../goldfinch-docs-astro/src/examples/toggle/basic";
 const meta: Meta<typeof Toggle> = {
   title: "Components/Toggle",
   component: Toggle,
@@ -42,3 +43,5 @@ export const SwitchOnAndOff: Story = {
     await expect(toggle).toHaveAttribute("aria-checked", "false");
   },
 };
+
+export const Basic: Story = { render: () => <BasicExample /> };

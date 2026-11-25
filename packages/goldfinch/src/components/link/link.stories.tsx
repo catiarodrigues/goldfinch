@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Link, GOLDFINCH_LINK_VARIANTS } from "./link";
 
+import BasicExample from "../../../../goldfinch-docs-astro/src/examples/link/basic";
 const meta: Meta<typeof Link> = {
   title: "Components/Link",
   component: Link,
@@ -22,3 +23,5 @@ export const Default: Story = {
     href: "#",
   },
 };
+
+export const Basic: Story = { render: () => <BasicExample /> };

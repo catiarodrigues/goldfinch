@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Progress } from "./progress";
 
+import BasicExample from "../../../../goldfinch-docs-astro/src/examples/progress/basic";
+import SizesExample from "../../../../goldfinch-docs-astro/src/examples/progress/sizes";
 const meta: Meta<typeof Progress> = {
   title: "Components/Progress",
   component: Progress,
@@ -15,3 +17,7 @@ export const Default: Story = {
     label: "Progress",
   },
 };
+
+export const Basic: Story = { render: () => <BasicExample /> };
+
+export const Sizes: Story = { render: () => <SizesExample /> };

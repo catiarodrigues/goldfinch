@@ -64,7 +64,7 @@ export const GOLDFINCH_BADGE_VARIANTS = {
       description: "Neutral badge",
     },
     orange: {
-      classes: "bg-goldfinch-badge-orange text-black",
+      classes: "bg-goldfinch-badge-orange text-white",
       description: "Orange badge",
     },
     purple: {

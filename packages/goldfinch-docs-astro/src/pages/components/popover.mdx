@@ -6,8 +6,9 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import { PopoverDemo } from "../../components/demos/index.tsx";
-import LivePopover from "../../components/demos/LivePopover.astro";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/popover/basic.tsx";
+import basicCode from "../../examples/popover/basic.tsx?raw";
 
 Display supplemental content — actions, filters, or details — in a floating panel anchored to a trigger element. Closes on click-outside or Escape.
 
@@ -41,15 +42,11 @@ export default function Example() {
 
 ## Examples
 
-<LivePopover title="Popover" />
+<ComponentExample title="Popover" code={basicCode}>
+  <Basic client:visible />
+</ComponentExample>
 
 Pass the trigger as `children` and the floating content via the `content` prop. The popover handles positioning automatically.
-
-```tsx
-<Popover content={<div>Details go here.</div>}>
-  <Button>Trigger</Button>
-</Popover>
-```
 
 <Callout type="info">
   Popover closes when the user clicks outside or presses Escape, making it ideal

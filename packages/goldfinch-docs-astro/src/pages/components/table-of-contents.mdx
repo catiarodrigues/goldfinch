@@ -6,10 +6,9 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import {
-  DemoFrame,
-  TableOfContentsDemo,
-} from "../../components/demos/index.tsx";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/table-of-contents/basic.tsx";
+import basicCode from "../../examples/table-of-contents/basic.tsx?raw";
 
 Build a navigable outline of page sections using compound sub-components — `Title`, `List`, `Item`, and `Group` for hierarchical structure.
 
@@ -53,25 +52,11 @@ export default function Example() {
 
 ## Examples
 
-<DemoFrame title="Table of Contents">
-  <TableOfContentsDemo />
-</DemoFrame>
+<ComponentExample title="Table of Contents" code={basicCode}>
+  <Basic />
+</ComponentExample>
 
 Compose the table of contents using `TableOfContents.Title`, `.List`, `.Item`, and `.Group` sub-components.
-
-```tsx
-<TableOfContents>
-  <TableOfContents.Title>Contents</TableOfContents.Title>
-  <TableOfContents.List>
-    <TableOfContents.Item>
-      <a href="#section-1">Section 1</a>
-    </TableOfContents.Item>
-    <TableOfContents.Item>
-      <a href="#section-2">Section 2</a>
-    </TableOfContents.Item>
-  </TableOfContents.List>
-</TableOfContents>
-```
 
 <Callout type="info">
   TableOfContents is a compound component — you build the outline structure

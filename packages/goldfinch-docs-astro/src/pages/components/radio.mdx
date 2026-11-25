@@ -6,7 +6,9 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import LiveRadio from "../../components/demos/LiveRadio.astro";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/radio/basic.tsx";
+import basicCode from "../../examples/radio/basic.tsx?raw";
 
 Select exactly one item from a small set of choices — grouped via shared `name` for native browser mutual exclusivity.
 
@@ -54,14 +56,11 @@ export default function Example() {
 
 ## Examples
 
-<LiveRadio title="Radio" />
+<ComponentExample title="Radio" code={basicCode}>
+  <Basic client:visible />
+</ComponentExample>
 
 Each radio button gets a `value`. Use `checked` and `onChange` to manage the selected state. Group radios with the same `name`.
-
-```tsx
-<Radio name="color" value="red" checked={color === "red"} onChange={handleChange} />
-<Radio name="color" value="blue" checked={color === "blue"} onChange={handleChange} />
-```
 
 <Callout type="info">
   Radio buttons within a group should share the same `name` attribute so the

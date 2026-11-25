@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Collapsible } from "./collapsible";
 import { expect, userEvent, waitFor, within } from "storybook/test";
 
+import BasicExample from "../../../../goldfinch-docs-astro/src/examples/collapsible/basic";
 const meta: Meta<typeof Collapsible> = {
   title: "Components/Collapsible",
   component: Collapsible,
@@ -46,3 +47,5 @@ export const Toggle: Story = {
     );
   },
 };
+
+export const Basic: Story = { render: () => <BasicExample /> };

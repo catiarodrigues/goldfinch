@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Card } from "./card";
 
+import BasicExample from "../../../../goldfinch-docs-astro/src/examples/card/basic";
 const meta: Meta<typeof Card> = {
   title: "Components/Card",
   component: Card,
@@ -14,3 +15,5 @@ export const Default: Story = {
     children: "Card content",
   },
 };
+
+export const Basic: Story = { render: () => <BasicExample /> };

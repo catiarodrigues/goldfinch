@@ -3,6 +3,7 @@ import { Modal, GOLDFINCH_MODAL_VARIANTS } from "./modal";
 import { expect, userEvent, waitFor, within } from "storybook/test";
 import { Button } from "../button/button";
 
+import BasicExample from "../../../../goldfinch-docs-astro/src/examples/modal/basic";
 const meta: Meta<typeof Modal> = {
   title: "Components/Modal",
   component: Modal,
@@ -60,3 +61,5 @@ export const KeyboardAndFocus: Story = {
     await expect(trigger).toHaveFocus();
   },
 };
+
+export const Basic: Story = { render: () => <BasicExample /> };

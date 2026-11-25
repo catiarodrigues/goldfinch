@@ -6,8 +6,9 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import { DropdownDemo } from "../../components/demos/index.tsx";
-import LiveDropdown from "../../components/demos/LiveDropdown.astro";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/dropdown/basic.tsx";
+import basicCode from "../../examples/dropdown/basic.tsx?raw";
 
 Present a list of actions or links in a positioned overlay that opens on click.
 
@@ -53,7 +54,9 @@ export default function Example() {
 
 ## Examples
 
-<LiveDropdown title="Dropdown" />
+<ComponentExample title="Dropdown" code={basicCode}>
+  <Basic client:visible />
+</ComponentExample>
 
 Build the menu using compound sub-components: `DropdownMenu.Trigger`, `.Portal`, `.Content`, `.Item`, `.Separator`.
 

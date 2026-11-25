@@ -39,7 +39,7 @@ goldfinch/
 │       └── src/
 │           ├── pages/components/<name>.mdx       # one page per component, imports the library via workspace:*
 │           ├── examples/<name>/<example>.tsx         # docs examples: rendered + shown as code on the page, and rendered as stories
-│           ├── components/demos/                    # legacy demos (being migrated to examples/); Overview grid previews
+│           ├── components/demos/                    # Overview-grid previews only (most re-export an example)
 │           └── layouts/                            # BaseLayout -> MainLayout -> DocLayout -> MdxDocLayout
 ├── pnpm-workspace.yaml                       # packages/* + apps/* -- apps/ doesn't exist yet, don't assume it's populated
 └── tsconfig.json                             # base tsconfig; each package has its own too
@@ -81,8 +81,8 @@ goldfinch/
   source verbatim (`?raw`), and the component's `*.stories.tsx` renders the same file, so
   every documented example gets the a11y gate and tests. The library's `tsconfig.json`
   `paths` and `vite.config.ts` `resolve.alias` map `@catiarodrigues/goldfinch` to
-  `src/index.ts` so those stories run against source, not `dist/`. Badge and Tabs are
-  migrated; the other pages still use `components/demos/` plus hand-written code blocks.
+  `src/index.ts` so those stories run against source, not `dist/`. Examples that use state or
+  event handlers need `client:visible` on the page, or they render as static HTML.
 - Compound components (`Select.Option`, `Modal.Title`, `Sidebar.MenuItem`, etc.) are matched
   at runtime by a static `displayName`, not `instanceof` or type — see
   `input-group/context.ts`'s `partitionChildren`/`detectFocusMode`, which does this

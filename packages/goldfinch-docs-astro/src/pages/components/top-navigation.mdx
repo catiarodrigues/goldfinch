@@ -5,7 +5,9 @@ layout: ../../layouts/MdxDocLayout.astro
 ---
 
 import PropsTable from "../../components/docs/PropsTable.astro";
-import { DemoFrame, TopNavigationDemo } from "../../components/demos/index.tsx";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/top-navigation/basic.tsx";
+import basicCode from "../../examples/top-navigation/basic.tsx?raw";
 
 A horizontal top bar for app-level navigation — brand logo, nav links, and right-aligned actions.
 
@@ -50,9 +52,9 @@ export default function AppBar() {
 
 ## Example
 
-<DemoFrame title="TopNavigation">
-  <TopNavigationDemo />
-</DemoFrame>
+<ComponentExample title="TopNavigation" code={basicCode}>
+  <Basic />
+</ComponentExample>
 
 Use `TopNavigation.NavItem` with `active` for the current page. Actions are pushed to the right via `TopNavigation.Actions`.
 

@@ -6,7 +6,9 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import { DemoFrame, BreadcrumbsDemo } from "../../components/demos/index.tsx";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/breadcrumbs/basic.tsx";
+import basicCode from "../../examples/breadcrumbs/basic.tsx?raw";
 
 Show the user's current location within a page hierarchy and provide quick navigation back to parent sections.
 
@@ -41,20 +43,11 @@ export default function Example() {
 
 ## Examples
 
-<DemoFrame title="Breadcrumbs">
-  <BreadcrumbsDemo />
-</DemoFrame>
+<ComponentExample title="Breadcrumbs" code={basicCode}>
+  <Basic />
+</ComponentExample>
 
 Pass an array of items with `label` and optional `href`. The last item is rendered as plain text to indicate the current page.
-
-```tsx
-const items = [
-  { label: "Home", href: "#" },
-  { label: "Products", href: "#" },
-  { label: "Details" },
-];
-return <Breadcrumbs items={items} />;
-```
 
 <Callout type="info">
   Omit the `href` on the last item to indicate the current page without making

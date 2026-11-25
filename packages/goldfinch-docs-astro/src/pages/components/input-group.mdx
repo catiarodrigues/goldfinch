@@ -6,7 +6,9 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import { DemoFrame, InputGroupDemo } from "../../components/demos/index.tsx";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/input-group/basic.tsx";
+import basicCode from "../../examples/input-group/basic.tsx?raw";
 
 Visually join an input with adjacent buttons — borders merge seamlessly for a single cohesive control.
 
@@ -50,9 +52,9 @@ export default function Example() {
 
 ## Examples
 
-<DemoFrame title="Input Group">
-  <InputGroupDemo />
-</DemoFrame>
+<ComponentExample title="Input Group" code={basicCode}>
+  <Basic />
+</ComponentExample>
 
 Place an Input alongside Button elements as children. The group merges their borders for a unified appearance.
 

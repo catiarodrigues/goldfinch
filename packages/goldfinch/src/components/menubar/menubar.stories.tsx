@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { MenuBar } from "./menubar";
 import { expect, fn, userEvent, within } from "storybook/test";
 
+import BasicExample from "../../../../goldfinch-docs-astro/src/examples/menubar/basic";
 const meta: Meta<typeof MenuBar> = {
   title: "Components/Menubar",
   component: MenuBar,
@@ -51,3 +52,5 @@ export const KeyboardNavigation: Story = {
     await expect(onSettings).toHaveBeenCalledOnce();
   },
 };
+
+export const Basic: Story = { render: () => <BasicExample /> };

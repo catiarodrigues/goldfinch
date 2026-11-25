@@ -6,7 +6,9 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import LiveSensitiveInput from "../../components/demos/LiveSensitiveInput.astro";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/sensitive-input/basic.tsx";
+import basicCode from "../../examples/sensitive-input/basic.tsx?raw";
 
 Collect API keys, tokens, and other secrets with the value masked by default and a toggle to reveal it on demand.
 
@@ -47,13 +49,11 @@ export default function Example() {
 
 ## Examples
 
-<LiveSensitiveInput title="Sensitive Input" />
+<ComponentExample title="Sensitive Input" code={basicCode}>
+  <Basic client:visible />
+</ComponentExample>
 
 Use this component instead of a standard Input when the value should not be visible on screen by default.
-
-```tsx
-<SensitiveInput placeholder="sk-proj-..." aria-label="API Key" />
-```
 
 <Callout type="warning">
   SensitiveInput masks the display but does not encrypt or secure the value in

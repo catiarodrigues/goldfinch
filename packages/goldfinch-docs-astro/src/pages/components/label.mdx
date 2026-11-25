@@ -5,8 +5,9 @@ layout: ../../layouts/MdxDocLayout.astro
 ---
 
 import PropsTable from "../../components/docs/PropsTable.astro";
-import { DemoFrame } from "../../components/demos/index.tsx";
-import { Label } from "@catiarodrigues/goldfinch";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/label/basic.tsx";
+import basicCode from "../../examples/label/basic.tsx?raw";
 
 A form label that can show an "(Optional)" indicator and an info tooltip.
 
@@ -26,19 +27,9 @@ import { Label } from "@catiarodrigues/goldfinch/components/label";
 
 ## Examples
 
-<DemoFrame title="Label">
-  <div className="flex flex-col gap-3">
-    <Label>Email</Label>
-    <Label showOptional>Middle Name</Label>
-    <Label tooltip="We'll use this to verify your account.">Phone</Label>
-  </div>
-</DemoFrame>
-
-```tsx
-<Label>Email</Label>
-<Label showOptional>Middle Name</Label>
-<Label tooltip="We'll use this to verify your account.">Phone</Label>
-```
+<ComponentExample title="Label" code={basicCode}>
+  <Basic />
+</ComponentExample>
 
 ## API Reference
 

@@ -6,7 +6,9 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import LiveToggle from "../../components/demos/LiveToggle.astro";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/toggle/basic.tsx";
+import basicCode from "../../examples/toggle/basic.tsx?raw";
 
 Switch a binary setting between on and off with an animated thumb. Supports both controlled and uncontrolled usage.
 
@@ -43,14 +45,11 @@ export default function Example() {
 
 ## Examples
 
-<LiveToggle title="Toggle" />
+<ComponentExample title="Toggle" code={basicCode}>
+  <Basic client:visible />
+</ComponentExample>
 
 Use `checked` and `onCheckedChange` for controlled mode, or `defaultChecked` for uncontrolled mode. The toggle animates between states.
-
-```tsx
-<Toggle label="Dark mode" defaultChecked />
-<Toggle label="Notifications" checked={notif} onCheckedChange={setNotif} />
-```
 
 Compound sub-components are also available for grouped toggles:
 

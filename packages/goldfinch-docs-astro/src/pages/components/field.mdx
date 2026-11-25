@@ -6,7 +6,9 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import { DemoFrame, FieldDemo } from "../../components/demos/index.tsx";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/field/basic.tsx";
+import basicCode from "../../examples/field/basic.tsx?raw";
 
 Wrap any input-like component with a label, optional description, and validation error display for consistent form layout.
 
@@ -40,17 +42,11 @@ export default function Example() {
 
 ## Examples
 
-<DemoFrame title="Field">
-  <FieldDemo />
-</DemoFrame>
+<ComponentExample title="Field" code={basicCode}>
+  <Basic />
+</ComponentExample>
 
 Pass the input as children and provide `label` and optional `description`. Use `error` to show validation messages.
-
-```tsx
-<Field label="Email" description="We'll never share your email.">
-  <Input type="email" placeholder="you@example.com" />
-</Field>
-```
 
 <Callout type="warning">
   When `required` is true, an asterisk is shown next to the label for

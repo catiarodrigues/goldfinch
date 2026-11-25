@@ -6,7 +6,9 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import LiveTable from "../../components/demos/LiveTable.astro";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/table/basic.tsx";
+import basicCode from "../../examples/table/basic.tsx?raw";
 
 Render tabular data using a compound component API — `Table.Header`, `Table.Head`, `Table.Body`, `Table.Row`, `Table.Cell` — with Goldfinch borders, spacing, and typography.
 
@@ -51,26 +53,11 @@ export default function Example() {
 
 ## Examples
 
-<LiveTable title="Table" />
+<ComponentExample title="Table" code={basicCode}>
+  <Basic client:visible />
+</ComponentExample>
 
 The compound components: `<Table.Header>` (`<thead>`), `<Table.Head>` (`<th>`), `<Table.Body>` (`<tbody>`), `<Table.Row>` (`<tr>`), and `<Table.Cell>` (`<td>`).
-
-```tsx
-<Table>
-  <Table.Header>
-    <Table.Row>
-      <Table.Head>Column</Table.Head>
-      <Table.Head>Column</Table.Head>
-    </Table.Row>
-  </Table.Header>
-  <Table.Body>
-    <Table.Row>
-      <Table.Cell>Value</Table.Cell>
-      <Table.Cell>Value</Table.Cell>
-    </Table.Row>
-  </Table.Body>
-</Table>
-```
 
 <Callout type="info">
   All table sub-components accept standard HTML attributes and `className` for

@@ -6,7 +6,9 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import { DemoFrame, EmptyStateDemo } from "../../components/demos/index.tsx";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/empty-state/basic.tsx";
+import basicCode from "../../examples/empty-state/basic.tsx?raw";
 
 Turn empty lists and search results into opportunities — explain why data is missing and offer a clear next action.
 
@@ -41,18 +43,11 @@ export default function Example() {
 
 ## Examples
 
-<DemoFrame title="EmptyState">
-  <EmptyStateDemo />
-</DemoFrame>
+<ComponentExample title="EmptyState" code={basicCode}>
+  <Basic />
+</ComponentExample>
 
 Provide a `title` and `description` to explain the empty state. Use the `action` slot to render a call-to-action button.
-
-```tsx
-<EmptyState
-  title="No results"
-  description="Try adjusting your search or filters."
-/>
-```
 
 <Callout type="info">
   Empty states are an opportunity to guide users — always include a helpful

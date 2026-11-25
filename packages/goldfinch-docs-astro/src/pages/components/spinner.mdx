@@ -6,11 +6,11 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import {
-  DemoFrame,
-  SpinnerDemo,
-  SpinnerSizesDemo,
-} from "../../components/demos/index.tsx";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/spinner/basic.tsx";
+import basicCode from "../../examples/spinner/basic.tsx?raw";
+import Sizes from "../../examples/spinner/sizes.tsx";
+import sizesCode from "../../examples/spinner/sizes.tsx?raw";
 
 Indicate ongoing processing with an animated spin animation — available in `sm`, `base`, and `lg` sizes for different contexts.
 
@@ -45,21 +45,15 @@ export default function Example() {
 
 ## Examples
 
-<DemoFrame title="Spinner">
-  <SpinnerDemo />
-</DemoFrame>
+<ComponentExample title="Spinner" code={basicCode}>
+  <Basic />
+</ComponentExample>
 
 Choose a size that fits the context — `sm` for inline use, `base` for buttons, and `lg` for full-page loading states.
 
-```tsx
-<Spinner size="sm" aria-label="Loading" />
-<Spinner size="base" aria-label="Loading" />
-<Spinner size="lg" aria-label="Loading" />
-```
-
-<DemoFrame title="Sizes">
-  <SpinnerSizesDemo />
-</DemoFrame>
+<ComponentExample title="Sizes" code={sizesCode}>
+  <Sizes />
+</ComponentExample>
 
 <Callout type="info">
   Always provide an `aria-label` or visually hidden text for screen readers when

@@ -6,7 +6,9 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import { DemoFrame, TextDemo } from "../../components/demos/index.tsx";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/text/basic.tsx";
+import basicCode from "../../examples/text/basic.tsx?raw";
 
 Render headings, body copy, secondary text, monospace, and semantic color variants — each variant maps to the appropriate HTML element automatically.
 
@@ -43,20 +45,11 @@ export default function Example() {
 
 ## Examples
 
-<DemoFrame title="Text">
-  <TextDemo />
-</DemoFrame>
+<ComponentExample title="Text" code={basicCode}>
+  <Basic />
+</ComponentExample>
 
 Choose from variants like `heading1`, `heading2`, `heading3`, `body`, `secondary`, `mono`, etc. The component renders the corresponding HTML element.
-
-```tsx
-<Text variant="heading1">Page Title</Text>
-<Text variant="heading2">Section Title</Text>
-<Text variant="body">Regular paragraph text.</Text>
-<Text variant="mono">Monospaced content</Text>
-<Text variant="success">Saved successfully</Text>
-<Text variant="error">Invalid input</Text>
-```
 
 <Callout type="info">
   The `variant` maps to semantic HTML elements — `heading1` renders `<h1>`, `body` renders `<p>`, and `secondary` renders `<p>` with muted styling.

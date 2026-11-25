@@ -3,6 +3,7 @@ import { Tooltip, GOLDFINCH_TOOLTIP_VARIANTS } from "./tooltip";
 import { expect, userEvent, waitFor, within } from "storybook/test";
 import { Button } from "../button/button";
 
+import BasicExample from "../../../../goldfinch-docs-astro/src/examples/tooltip/basic";
 const meta: Meta<typeof Tooltip> = {
   title: "Components/Tooltip",
   component: Tooltip,
@@ -43,3 +44,5 @@ export const ShowsOnFocus: Story = {
     await waitFor(() => expect(page.queryByText("Saves a copy")).toBeNull());
   },
 };
+
+export const Basic: Story = { render: () => <BasicExample /> };

@@ -6,8 +6,9 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import { TooltipDemo } from "../../components/demos/index.tsx";
-import LiveTooltip from "../../components/demos/LiveTooltip.astro";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/tooltip/basic.tsx";
+import basicCode from "../../examples/tooltip/basic.tsx?raw";
 
 Annotate icons, buttons, and controls with concise labels that appear on hover (mouse) or focus (keyboard) and auto-position around the trigger.
 
@@ -43,17 +44,11 @@ export default function Example() {
 
 ## Examples
 
-<LiveTooltip title="Tooltip" />
+<ComponentExample title="Tooltip" code={basicCode}>
+  <Basic client:visible />
+</ComponentExample>
 
 Wrap the trigger element as `children` and provide the tooltip text via the `label` prop. The tooltip positions itself automatically.
-
-```tsx
-<Tooltip label="Settings">
-  <button aria-label="Settings">
-    <GearIcon />
-  </button>
-</Tooltip>
-```
 
 <Callout type="info">
   Tooltips appear on hover for mouse users and on focus for keyboard users,

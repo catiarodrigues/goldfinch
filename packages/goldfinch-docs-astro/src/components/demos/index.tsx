@@ -1,92 +1,14 @@
 /* ---------- Imports ---------- */
 import {
   Badge,
-  Alert,
-  Breadcrumbs,
-  Button,
-  Checkbox,
-  CopyToClipboard,
-  Collapsible,
-  Modal,
-  DropdownMenu,
-  EmptyState,
-  Field,
-  Grid,
-  Input,
-  InputGroup,
-  Label,
-  SensitiveInput,
-  Card,
-  Link,
-  Spinner,
-  MenuBar,
-  Progress,
-  Pagination,
-  Popover,
-  Radio,
-  Select,
   Sidebar,
-  Toggle,
-  Table,
-  TableOfContents,
   Tabs,
-  Text,
-  Toasty,
-  Toolbar,
-  Tooltip,
   TopNavigation,
   Page,
-  useGoldfinchToastManager,
 } from "@catiarodrigues/goldfinch";
-import { useState, useCallback } from "react";
-import { Copy, Trash } from "@phosphor-icons/react";
-export { DemoFrame } from "./DemoFrame";
 
 /* ---------- Button ---------- */
-export function ButtonDemo() {
-  return (
-    <div className="flex flex-wrap items-center gap-4">
-      <Button variant="secondary">Default</Button>
-      <Button variant="primary">Primary</Button>
-      <Button variant="destructive">Destructive</Button>
-      <Button variant="ghost">Ghost</Button>
-      <Button variant="outline">Outline</Button>
-    </div>
-  );
-}
-
-export function ButtonSizesDemo() {
-  return (
-    <div className="flex flex-wrap items-center gap-4">
-      <Button size="xs">XS</Button>
-      <Button size="sm">SM</Button>
-      <Button size="base">Base</Button>
-      <Button size="lg">LG</Button>
-    </div>
-  );
-}
-
-export function ButtonLoadingDemo() {
-  return (
-    <div className="flex flex-wrap items-center gap-4">
-      <Button variant="secondary" loading>
-        Loading
-      </Button>
-      <Button variant="primary" loading>
-        Primary
-      </Button>
-    </div>
-  );
-}
-
-export function ButtonShapeDemo() {
-  return (
-    <div className="flex flex-wrap items-center gap-4">
-      <Button>Default</Button>
-      <Button shape="square">Square</Button>
-    </div>
-  );
-}
+export { default as ButtonDemo } from "../../examples/button/basic";
 
 /* ---------- Badge ---------- */
 export function BadgeDemo() {
@@ -100,472 +22,103 @@ export function BadgeDemo() {
 }
 
 /* ---------- Alert ---------- */
-export function AlertDemo() {
-  return <Alert>This is an informational alert message.</Alert>;
-}
-
-export function AlertVariantsDemo() {
-  return (
-    <div className="flex flex-col gap-4">
-      <Alert>Default</Alert>
-      <Alert variant="alert">Alert</Alert>
-      <Alert variant="error">Error</Alert>
-      <Alert variant="secondary">Secondary</Alert>
-    </div>
-  );
-}
+export { default as AlertDemo } from "../../examples/alert/basic";
 
 /* ---------- Breadcrumbs ---------- */
-export function BreadcrumbsDemo() {
-  const items = [
-    { label: "Home", href: "#" },
-    { label: "Products", href: "#" },
-    { label: "Details" },
-  ];
-  return <Breadcrumbs items={items} />;
-}
+export { default as BreadcrumbsDemo } from "../../examples/breadcrumbs/basic";
 
 /* ---------- Checkbox ---------- */
-export function CheckboxDemo() {
-  const [subscribed, setSubscribed] = useState(true);
-  return (
-    <div className="flex flex-col gap-3">
-      <Label>
-        <Checkbox aria-label="Accept terms" /> Accept terms
-      </Label>
-      <Label>
-        <Checkbox
-          checked={subscribed}
-          onCheckedChange={setSubscribed}
-          aria-label="Subscribe"
-        />{" "}
-        Subscribe
-      </Label>
-    </div>
-  );
-}
+export { default as CheckboxDemo } from "../../examples/checkbox/basic";
 
 /* ---------- CopyToClipboard ---------- */
-export function CopyToClipboardDemo() {
-  return <CopyToClipboard text="npm install @catiarodrigues/goldfinch" />;
-}
+export { default as CopyToClipboardDemo } from "../../examples/copy-to-clipboard/basic";
 
 /* ---------- Collapsible ---------- */
-export function CollapsibleDemo() {
-  return (
-    <Collapsible defaultOpen>
-      <Collapsible.Trigger render={<Button variant="ghost" />}>
-        Toggle
-      </Collapsible.Trigger>
-      <Collapsible.Panel>
-        <div className="pt-3 text-sm text-goldfinch-default">
-          Hidden content revealed.
-        </div>
-      </Collapsible.Panel>
-    </Collapsible>
-  );
-}
+export { default as CollapsibleDemo } from "../../examples/collapsible/basic";
 
 /* ---------- Modal ---------- */
-export function ModalDemo() {
-  const [open, setOpen] = useState(false);
-  return (
-    <Modal.Root open={open} onOpenChange={setOpen}>
-      <Modal.Trigger>
-        <Button>Open Modal</Button>
-      </Modal.Trigger>
-      <Modal size="sm">
-        <Modal.Title>Hello</Modal.Title>
-        <Modal.Description className="pb-4 text-sm text-goldfinch-default">
-          This is a modal example.
-        </Modal.Description>
-        <Modal.Close>
-          <Button>Close</Button>
-        </Modal.Close>
-      </Modal>
-    </Modal.Root>
-  );
-}
+export { default as ModalDemo } from "../../examples/modal/basic";
 
 /* ---------- Dropdown ---------- */
-export function DropdownDemo() {
-  return (
-    <DropdownMenu>
-      <DropdownMenu.Trigger>
-        <Button variant="ghost">Actions</Button>
-      </DropdownMenu.Trigger>
-      <DropdownMenu.Portal>
-        <DropdownMenu.Content align="start">
-          <DropdownMenu.Item onClick={() => {}}>Edit</DropdownMenu.Item>
-          <DropdownMenu.Item onClick={() => {}}>Duplicate</DropdownMenu.Item>
-          <DropdownMenu.Separator />
-          <DropdownMenu.Item onClick={() => {}} variant="danger">
-            Delete
-          </DropdownMenu.Item>
-        </DropdownMenu.Content>
-      </DropdownMenu.Portal>
-    </DropdownMenu>
-  );
-}
+export { default as DropdownDemo } from "../../examples/dropdown/basic";
 
 /* ---------- EmptyState ---------- */
-export function EmptyStateDemo() {
-  return (
-    <EmptyState
-      title="No results"
-      description="Try adjusting your search or filters."
-    />
-  );
-}
+export { default as EmptyStateDemo } from "../../examples/empty-state/basic";
 
 /* ---------- Field ---------- */
-export function FieldDemo() {
-  return (
-    <Field label="Email" description="We'll never share your email.">
-      <Input type="email" placeholder="you@example.com" aria-label="Email" />
-    </Field>
-  );
-}
+export { default as FieldDemo } from "../../examples/field/basic";
 
 /* ---------- Label ---------- */
-export function LabelDemo() {
-  return (
-    <div className="flex flex-col gap-3">
-      <Label>Email</Label>
-      <Label showOptional>Middle Name</Label>
-      <Label tooltip="We'll use this to verify your account.">Phone</Label>
-    </div>
-  );
-}
+export { default as LabelDemo } from "../../examples/label/basic";
 
 /* ---------- Grid ---------- */
-export function GridDemo() {
-  return (
-    <Grid variant="3up" gap="base">
-      <div className="rounded-lg bg-goldfinch-tint p-4 text-center text-sm">
-        1
-      </div>
-      <div className="rounded-lg bg-goldfinch-tint p-4 text-center text-sm">
-        2
-      </div>
-      <div className="rounded-lg bg-goldfinch-tint p-4 text-center text-sm">
-        3
-      </div>
-    </Grid>
-  );
-}
+export { default as GridDemo } from "../../examples/grid/basic";
 
 /* ---------- Input ---------- */
-export function InputDemo() {
-  return <Input placeholder="Type something…" aria-label="Sample input" />;
-}
-
-export function InputVariantsDemo() {
-  return (
-    <div className="flex w-full max-w-xs flex-col gap-3">
-      <Input placeholder="Default" aria-label="Default input" />
-      <Input
-        placeholder="Error state"
-        error="This field is required"
-        aria-label="Error input"
-      />
-    </div>
-  );
-}
+export { default as InputDemo } from "../../examples/input/basic";
 
 /* ---------- InputGroup ---------- */
-export function InputGroupDemo() {
-  return (
-    <InputGroup>
-      <InputGroup.Input placeholder="Search…" aria-label="Search" />
-      <InputGroup.Button variant="primary">Go</InputGroup.Button>
-    </InputGroup>
-  );
-}
+export { default as InputGroupDemo } from "../../examples/input-group/basic";
 
 /* ---------- Card ---------- */
-export function CardDemo() {
-  return (
-    <Card className="p-6">
-      <h3 className="mb-2 text-lg font-semibold text-goldfinch-strong">Card</h3>
-      <p className="text-sm text-goldfinch-default">A card with elevation.</p>
-    </Card>
-  );
-}
+export { default as CardDemo } from "../../examples/card/basic";
 
 /* ---------- Link ---------- */
-export function LinkDemo() {
-  return <Link href="#">A styled link</Link>;
-}
+export { default as LinkDemo } from "../../examples/link/basic";
 
 /* ---------- Spinner ---------- */
-export function SpinnerDemo() {
-  return <Spinner />;
-}
-
-export function SpinnerSizesDemo() {
-  return (
-    <div className="flex items-center gap-4">
-      <Spinner size="sm" />
-      <Spinner size="base" />
-      <Spinner size="lg" />
-    </div>
-  );
-}
+export { default as SpinnerDemo } from "../../examples/spinner/basic";
 
 /* ---------- Menubar ---------- */
-export function MenubarDemo() {
-  return (
-    <MenuBar
-      isActive={0}
-      options={[
-        { icon: <Copy size={16} />, tooltip: "Copy", onClick: () => {} },
-        { icon: <Trash size={16} />, tooltip: "Delete", onClick: () => {} },
-      ]}
-    />
-  );
-}
+export { default as MenubarDemo } from "../../examples/menubar/basic";
 
 /* ---------- Progress ---------- */
-export function ProgressDemo() {
-  return <Progress label="Storage" value={65} />;
-}
-
-export function ProgressSizesDemo() {
-  return (
-    <div className="flex flex-col gap-3">
-      <Progress label="Storage used" value={65} />
-      <Progress label="API requests" value={90} customValue="900 / 1,000" />
-    </div>
-  );
-}
+export { default as ProgressDemo } from "../../examples/progress/basic";
 
 /* ---------- Pagination ---------- */
-export function PaginationDemo() {
-  const [page, setPage] = useState(1);
-  return (
-    <Pagination page={page} setPage={setPage} perPage={10} totalCount={100} />
-  );
-}
+export { default as PaginationDemo } from "../../examples/pagination/basic";
 
 /* ---------- Popover ---------- */
-export function PopoverDemo() {
-  return (
-    <Popover>
-      <Popover.Trigger render={<Button variant="ghost">Open Popover</Button>} />
-      <Popover.Content>
-        <div className="text-sm">Popover content</div>
-      </Popover.Content>
-    </Popover>
-  );
-}
+export { default as PopoverDemo } from "../../examples/popover/basic";
 
 /* ---------- Radio ---------- */
-export function RadioDemo() {
-  return (
-    <Radio.Group legend="Choose one" defaultValue="a">
-      <Radio.Item label="Option A" value="a" />
-      <Radio.Item label="Option B" value="b" />
-    </Radio.Group>
-  );
-}
+export { default as RadioDemo } from "../../examples/radio/basic";
 
 /* ---------- Select ---------- */
-export function SelectDemo() {
-  return (
-    <Select
-      placeholder="Choose…"
-      items={{ apple: "Apple", banana: "Banana", cherry: "Cherry" }}
-    />
-  );
-}
-
-export function SelectItemsDemo() {
-  return (
-    <Select
-      label="Pick a fruit"
-      placeholder="Pick a fruit…"
-      items={{ apple: "Apple", banana: "Banana", cherry: "Cherry" }}
-    />
-  );
-}
+export { default as SelectDemo } from "../../examples/select/basic";
 
 /* ---------- SensitiveInput ---------- */
-export function SensitiveInputDemo() {
-  return <SensitiveInput placeholder="Enter sensitive data…" />;
-}
+export { default as SensitiveInputDemo } from "../../examples/sensitive-input/basic";
 
 /* ---------- Sidebar ---------- */
-export function SidebarDemo() {
-  return (
-    <div className="w-64 overflow-hidden rounded-lg border border-goldfinch-hairline">
-      <Sidebar.Provider defaultOpen collapsible="none">
-        <Sidebar>
-          <Sidebar.Header>Navigation</Sidebar.Header>
-          <Sidebar.Content>
-            <Sidebar.Menu>
-              <Sidebar.MenuItem>
-                <Sidebar.MenuButton>Dashboard</Sidebar.MenuButton>
-              </Sidebar.MenuItem>
-              <Sidebar.MenuItem>
-                <Sidebar.MenuButton>Analytics</Sidebar.MenuButton>
-              </Sidebar.MenuItem>
-              <Sidebar.MenuItem>
-                <Sidebar.MenuButton>Settings</Sidebar.MenuButton>
-              </Sidebar.MenuItem>
-            </Sidebar.Menu>
-          </Sidebar.Content>
-        </Sidebar>
-      </Sidebar.Provider>
-    </div>
-  );
-}
+export { default as SidebarDemo } from "../../examples/sidebar/basic";
 
 /* ---------- Toggle ---------- */
-export function ToggleDemo() {
-  return (
-    <div className="flex items-center gap-3">
-      <Toggle defaultChecked /> <span className="text-sm">Toggle</span>
-    </div>
-  );
-}
+export { default as ToggleDemo } from "../../examples/toggle/basic";
 
 /* ---------- Table ---------- */
-export function TableDemo() {
-  return (
-    <Table>
-      <Table.Header>
-        <Table.Row>
-          <Table.Head>Name</Table.Head>
-          <Table.Head>Role</Table.Head>
-        </Table.Row>
-      </Table.Header>
-      <Table.Body>
-        <Table.Row>
-          <Table.Cell>Alice</Table.Cell>
-          <Table.Cell>Engineer</Table.Cell>
-        </Table.Row>
-        <Table.Row>
-          <Table.Cell>Bob</Table.Cell>
-          <Table.Cell>Designer</Table.Cell>
-        </Table.Row>
-      </Table.Body>
-    </Table>
-  );
-}
+export { default as TableDemo } from "../../examples/table/basic";
 
 /* ---------- TableOfContents ---------- */
-export function TableOfContentsDemo() {
-  return (
-    <TableOfContents>
-      <TableOfContents.List>
-        <TableOfContents.Item href="#intro">Introduction</TableOfContents.Item>
-        <TableOfContents.Item href="#usage">Usage</TableOfContents.Item>
-        <TableOfContents.Item href="#api">API</TableOfContents.Item>
-      </TableOfContents.List>
-    </TableOfContents>
-  );
-}
+export { default as TableOfContentsDemo } from "../../examples/table-of-contents/basic";
 
 /* ---------- Text ---------- */
-export function TextDemo() {
-  return (
-    <div className="flex flex-col gap-2">
-      <Text variant="heading1" as="h1">
-        Heading 1
-      </Text>
-      <Text variant="heading2" as="h2">
-        Heading 2
-      </Text>
-      <Text variant="heading3" as="h3">
-        Heading 3
-      </Text>
-      <Text variant="body">Body text</Text>
-      <Text variant="secondary">Secondary text</Text>
-    </div>
-  );
-}
+export { default as TextDemo } from "../../examples/text/basic";
 
 /* ---------- Toast ---------- */
-function ToastInner() {
-  const toast = useGoldfinchToastManager();
-  const addToast = useCallback(() => {
-    toast.add({
-      title: "Hello!",
-      description: "This is a toast notification.",
-    });
-  }, [toast]);
-  return <Button onClick={addToast}>Show Toast</Button>;
-}
-
-export function ToastDemo() {
-  return (
-    <Toasty>
-      <ToastInner />
-    </Toasty>
-  );
-}
+export { default as ToastDemo } from "../../examples/toast/basic";
 
 /* ---------- Toolbar ---------- */
-export function ToolbarDemo() {
-  return (
-    <Toolbar aria-label="Formatting">
-      <Toolbar.Button>Bold</Toolbar.Button>
-      <Toolbar.Button>Italic</Toolbar.Button>
-      <Toolbar.Button>Underline</Toolbar.Button>
-    </Toolbar>
-  );
-}
+export { default as ToolbarDemo } from "../../examples/toolbar/basic";
 
 /* ---------- TopNavigation ---------- */
-export function TopNavigationDemo() {
-  return (
-    <TopNavigation>
-      <TopNavigation.Logo>
-        <span className="text-lg font-bold text-goldfinch-strong">
-          Goldfinch
-        </span>
-      </TopNavigation.Logo>
-      <TopNavigation.Nav>
-        <TopNavigation.NavItem active>Docs</TopNavigation.NavItem>
-        <TopNavigation.NavItem>Components</TopNavigation.NavItem>
-        <TopNavigation.NavItem>Blog</TopNavigation.NavItem>
-      </TopNavigation.Nav>
-      <TopNavigation.Actions>
-        <Button variant="ghost" size="sm">
-          Log in
-        </Button>
-        <Button size="sm">Sign up</Button>
-      </TopNavigation.Actions>
-    </TopNavigation>
-  );
-}
+export { default as TopNavigationDemo } from "../../examples/top-navigation/basic";
 
 /* ---------- Page ---------- */
-export function PageDemo() {
-  return (
-    <Page size="sm">
-      <Page.Breadcrumbs>Home / Components</Page.Breadcrumbs>
-      <Page.Title>Button</Page.Title>
-      <Page.Description>
-        Clickable controls for forms, dialogs, and action bars.
-      </Page.Description>
-      <p className="pt-4 text-goldfinch-default">
-        This content is constrained to a max-width container with consistent
-        padding.
-      </p>
-    </Page>
-  );
-}
+export { default as PageDemo } from "../../examples/page/basic";
 
 /* ---------- Tooltip ---------- */
-export function TooltipDemo() {
-  return (
-    <Tooltip content="This is a tooltip">
-      <Button variant="ghost">Hover me</Button>
-    </Tooltip>
-  );
-}
+export { default as TooltipDemo } from "../../examples/tooltip/basic";
 
 /* ---------- Grid previews ----------
  * Compact stand-ins for the Overview page's component grid, used only

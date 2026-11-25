@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SensitiveInput } from "./sensitive-input";
 import { expect, userEvent, waitFor, within } from "storybook/test";
 
+import BasicExample from "../../../../goldfinch-docs-astro/src/examples/sensitive-input/basic";
 const meta: Meta<typeof SensitiveInput> = {
   title: "Components/Sensitive Input",
   component: SensitiveInput,
@@ -43,3 +44,5 @@ export const RevealAndHide: Story = {
     await waitFor(() => expect(input).toHaveAttribute("type", "text"));
   },
 };
+
+export const Basic: Story = { render: () => <BasicExample /> };

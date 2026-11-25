@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Field } from "./field";
 import { Input } from "../input";
 
+import BasicExample from "../../../../goldfinch-docs-astro/src/examples/field/basic";
 const meta: Meta<typeof Field> = {
   title: "Components/Field",
   component: Field,
@@ -17,3 +18,5 @@ export const Default: Story = {
     </Field>
   ),
 };
+
+export const Basic: Story = { render: () => <BasicExample /> };

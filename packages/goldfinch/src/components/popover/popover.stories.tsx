@@ -3,6 +3,7 @@ import { Popover } from "./popover";
 import { expect, userEvent, waitFor, within } from "storybook/test";
 import { Button } from "../button/button";
 
+import BasicExample from "../../../../goldfinch-docs-astro/src/examples/popover/basic";
 const meta: Meta<typeof Popover> = {
   title: "Components/Popover",
   component: Popover,
@@ -53,3 +54,5 @@ export const OpenAndDismiss: Story = {
     await expect(trigger).toHaveFocus();
   },
 };
+
+export const Basic: Story = { render: () => <BasicExample /> };

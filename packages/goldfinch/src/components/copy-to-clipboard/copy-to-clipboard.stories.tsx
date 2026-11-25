@@ -7,6 +7,7 @@ import { useState } from "react";
 import { expect, spyOn, userEvent, within } from "storybook/test";
 import { Button } from "../button/button";
 
+import BasicExample from "../../../../goldfinch-docs-astro/src/examples/copy-to-clipboard/basic";
 const meta: Meta<typeof CopyToClipboard> = {
   title: "Components/CopyToClipboard",
   component: CopyToClipboard,
@@ -58,3 +59,5 @@ export const CopiesCurrentValue: Story = {
     await expect(writeText).toHaveBeenCalledWith("token-B");
   },
 };
+
+export const Basic: Story = { render: () => <BasicExample /> };

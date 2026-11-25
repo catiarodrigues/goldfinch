@@ -6,7 +6,9 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import LiveToolbar from "../../components/demos/LiveToolbar.astro";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/toolbar/basic.tsx";
+import basicCode from "../../examples/toolbar/basic.tsx?raw";
 
 Group related controls — buttons, inputs, and input groups — in a connected horizontal bar with `role="toolbar"` and arrow-key navigation.
 
@@ -42,17 +44,11 @@ export default function Example() {
 
 ## Examples
 
-<LiveToolbar title="Toolbar" />
+<ComponentExample title="Toolbar" code={basicCode}>
+  <Basic client:visible />
+</ComponentExample>
 
 Use `<Toolbar.Button>` for action buttons, `<Toolbar.Input>` for text inputs, and `<Toolbar.InputGroup>` for grouped input+button combos. All toolbar children inherit the toolbar's size and connected styling.
-
-```tsx
-<Toolbar aria-label="Formatting">
-  <Toolbar.Button>Bold</Toolbar.Button>
-  <Toolbar.Button>Italic</Toolbar.Button>
-  <Toolbar.Input placeholder="Search..." aria-label="Search" />
-</Toolbar>
-```
 
 <Callout type="info">
   Toolbar uses `role="toolbar"` and supports keyboard navigation with arrow keys

@@ -6,7 +6,9 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import { DemoFrame, PaginationDemo } from "../../components/demos/index.tsx";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/pagination/basic.tsx";
+import basicCode from "../../examples/pagination/basic.tsx?raw";
 
 Navigate multi-page content with numbered page buttons, previous/next arrows, and automatic ellipsis for large page counts.
 
@@ -37,15 +39,11 @@ export default function Example() {
 
 ## Examples
 
-<DemoFrame title="Pagination">
-  <PaginationDemo />
-</DemoFrame>
+<ComponentExample title="Pagination" code={basicCode}>
+  <Basic client:visible />
+</ComponentExample>
 
 Pass the `current` page, `total` pages, and an `onChange` callback. The component renders page buttons with previous and next arrows.
-
-```tsx
-<Pagination current={1} total={20} onChange={(page) => console.log(page)} />
-```
 
 <Callout type="info">
   Pagination collapses page numbers with ellipsis when there are many pages to

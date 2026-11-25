@@ -6,7 +6,9 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import { DemoFrame, MenubarDemo } from "../../components/demos/index.tsx";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/menubar/basic.tsx";
+import basicCode from "../../examples/menubar/basic.tsx?raw";
 
 A horizontal navigation bar of icon buttons with tooltips — familiar for desktop-style toolbar interfaces.
 
@@ -40,9 +42,9 @@ export default function Example() {
 
 ## Examples
 
-<DemoFrame title="Menubar">
-  <MenubarDemo />
-</DemoFrame>
+<ComponentExample title="Menubar" code={basicCode}>
+  <Basic client:visible />
+</ComponentExample>
 
 Provide an `options` array where each item has an `icon`, `tooltip`, and `onClick` handler. Use `isActive` to highlight the current selection.
 

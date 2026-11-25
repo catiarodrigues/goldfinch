@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Checkbox, GOLDFINCH_CHECKBOX_VARIANTS } from "./checkbox";
 import { expect, userEvent, within } from "storybook/test";
 
+import BasicExample from "../../../../goldfinch-docs-astro/src/examples/checkbox/basic";
 const meta: Meta<typeof Checkbox> = {
   title: "Components/Checkbox",
   component: Checkbox,
@@ -37,3 +38,5 @@ export const ToggleByLabelAndKeyboard: Story = {
     await expect(box).toHaveAttribute("aria-checked", "false");
   },
 };
+
+export const Basic: Story = { render: () => <BasicExample /> };

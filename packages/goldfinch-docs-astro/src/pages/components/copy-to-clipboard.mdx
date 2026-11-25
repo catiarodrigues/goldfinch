@@ -6,8 +6,9 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import { CopyToClipboardDemo } from "../../components/demos/index.tsx";
-import LiveCopyToClipboard from "../../components/demos/LiveCopyToClipboard.astro";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/copy-to-clipboard/basic.tsx";
+import basicCode from "../../examples/copy-to-clipboard/basic.tsx?raw";
 
 Display a read-only value alongside a copy button — perfect for API tokens, install commands, and shareable IDs.
 
@@ -37,13 +38,11 @@ export default function Example() {
 
 ## Examples
 
-<LiveCopyToClipboard title="Copy to Clipboard" />
+<ComponentExample title="Copy to Clipboard" code={basicCode}>
+  <Basic client:visible />
+</ComponentExample>
 
 Pass the text to copy via the `text` prop.
-
-```tsx
-<CopyToClipboard text="npm install @catiarodrigues/goldfinch" />
-```
 
 <Callout type="info">
   Clipboard access requires a secure context (HTTPS or localhost).

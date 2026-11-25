@@ -6,7 +6,9 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import { DemoFrame, GridDemo } from "../../components/demos/index.tsx";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/grid/basic.tsx";
+import basicCode from "../../examples/grid/basic.tsx?raw";
 
 Distribute content across preset responsive column layouts — from side-by-side to 6-column grids.
 
@@ -42,18 +44,11 @@ export default function Example() {
 
 ## Examples
 
-<DemoFrame title="Grid">
-  <GridDemo />
-</DemoFrame>
+<ComponentExample title="Grid" code={basicCode}>
+  <Basic />
+</ComponentExample>
 
 Choose a `variant` for the column layout and `gap` for spacing between items.
-
-```tsx
-<Grid variant="2up" gap="base">
-  <GridItem>Left</GridItem>
-  <GridItem>Right</GridItem>
-</Grid>
-```
 
 <Callout type="info">
   The grid is responsive — columns adjust at md, lg, and xl breakpoints

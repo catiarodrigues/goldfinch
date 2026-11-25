@@ -83,7 +83,7 @@
   /* Badge fills carry white text: one shade per colour, >=4.5:1 (WCAG AA) in both modes. */
   --color-goldfinch-badge-red: light-dark(#dc2626, #dc2626);
   --color-goldfinch-badge-green: light-dark(#15803d, #15803d);
-  --color-goldfinch-badge-orange: light-dark(#ea580c, #f97316);
+  --color-goldfinch-badge-orange: light-dark(#c2410c, #c2410c);
   --color-goldfinch-badge-purple: light-dark(#9333ea, #9333ea);
   --color-goldfinch-badge-teal: light-dark(#0f766e, #0f766e);
   --color-goldfinch-badge-teal-subtle: light-dark(#ccfbf1, #134e4a);
@@ -152,7 +152,7 @@
     --color-goldfinch-banner-warning: #fef3cd;
     --color-goldfinch-badge-red: #dc2626;
     --color-goldfinch-badge-green: #15803d;
-    --color-goldfinch-badge-orange: #ea580c;
+    --color-goldfinch-badge-orange: #c2410c;
     --color-goldfinch-badge-purple: #9333ea;
     --color-goldfinch-badge-teal: #0f766e;
     --color-goldfinch-badge-blue: #2563eb;
@@ -214,7 +214,7 @@
     --color-goldfinch-banner-warning: oklch(40% 0.05 85 / 0.5);
     --color-goldfinch-badge-red: #dc2626;
     --color-goldfinch-badge-green: #15803d;
-    --color-goldfinch-badge-orange: #f97316;
+    --color-goldfinch-badge-orange: #c2410c;
     --color-goldfinch-badge-purple: #9333ea;
     --color-goldfinch-badge-teal: #0f766e;
     --color-goldfinch-badge-blue: #2563eb;

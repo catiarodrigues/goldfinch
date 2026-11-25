@@ -6,7 +6,9 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import { DemoFrame, CardDemo } from "../../components/demos/index.tsx";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/card/basic.tsx";
+import basicCode from "../../examples/card/basic.tsx?raw";
 
 Group related content in an elevated container that sits above the base surface — useful for cards, panels, and callout blocks.
 
@@ -41,20 +43,13 @@ export default function Example() {
 
 ## Examples
 
-<DemoFrame title="Card">
-  <CardDemo />
-</DemoFrame>
+<ComponentExample title="Card" code={basicCode}>
+  <Basic />
+</ComponentExample>
 
 Card applies a consistent elevation shadow and padding. Use it to group related content in a distinct visual container.
 
 For layered layouts, use the compound sub-components:
-
-```tsx
-<Card>
-  <Card.Secondary>Next Steps</Card.Secondary>
-  <Card.Primary>Get started with Goldfinch</Card.Primary>
-</Card>
-```
 
 <Callout type="info">
   Card uses a medium elevation level by default. Nest within containers for

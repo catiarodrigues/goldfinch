@@ -6,7 +6,9 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import LiveCheckbox from "../../components/demos/LiveCheckbox.astro";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/checkbox/basic.tsx";
+import basicCode from "../../examples/checkbox/basic.tsx?raw";
 
 Toggle individual items on or off in multi-select forms with support for an indeterminate "some selected" state.
 
@@ -36,14 +38,11 @@ export default function Example() {
 
 ## Examples
 
-<LiveCheckbox title="Checkbox" />
+<ComponentExample title="Checkbox" code={basicCode}>
+  <Basic client:visible />
+</ComponentExample>
 
 Use `checked` and `onCheckedChange` for controlled mode, or `defaultChecked` for uncontrolled mode.
-
-```tsx
-<Checkbox defaultChecked aria-label="Accept terms" />
-<Checkbox indeterminate aria-label="Some selected" />
-```
 
 <Callout type="info">
   The indeterminate state is visual only — the checkbox does not fire a change

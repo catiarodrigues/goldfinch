@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "../button/button";
 import { TopNavigation } from "./top-navigation";
 
+import BasicExample from "../../../../goldfinch-docs-astro/src/examples/top-navigation/basic";
 const meta: Meta<typeof TopNavigation> = {
   title: "Components/Top Navigation",
   component: TopNavigation,
@@ -32,3 +33,5 @@ export const Default: Story = {
     </TopNavigation>
   ),
 };
+
+export const Basic: Story = { render: () => <BasicExample /> };

@@ -2,4 +2,4 @@
 "@catiarodrigues/goldfinch": patch
 ---
 
-Badge colour fills now meet WCAG AA contrast (4.5:1) with their white text in light and dark mode: green and teal are darker in both modes, and red, purple, blue, green, teal and neutral no longer switch to lighter, failing shades in dark mode.
+Badge colour fills now meet WCAG AA contrast (4.5:1) with white text in light and dark mode: green, teal and orange are darker, orange now uses white text like the other colours, and no badge colour switches to a lighter, failing shade in dark mode.
