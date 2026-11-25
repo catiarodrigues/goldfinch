@@ -14,13 +14,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - uses: pnpm/action-setup@v4
         with:
           version: 11.7.0 # keep in sync with devEngines.packageManager
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 24
           cache: pnpm
@@ -70,7 +70,7 @@ jobs:
         if: env.CHROMATIC_PROJECT_TOKEN == ''
         run: echo "CHROMATIC_PROJECT_TOKEN not set; skipping visual tests."
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         if: env.CHROMATIC_PROJECT_TOKEN != ''
         with:
           fetch-depth: 0 # Chromatic compares against the baseline commit
@@ -80,7 +80,7 @@ jobs:
         with:
           version: 11.7.0
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         if: env.CHROMATIC_PROJECT_TOKEN != ''
         with:
           node-version: 24

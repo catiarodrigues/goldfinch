@@ -168,7 +168,7 @@ pnpm build:docs                                                  # builds the li
 pnpm lint                                                         # oxlint; warnings fail
 pnpm format / pnpm format:check                                   # Prettier (sorts Tailwind classes)
 pnpm typecheck                                                    # tsc --noEmit for the library
-pnpm typecheck:docs                                               # tsc --noEmit for the docs site
+pnpm typecheck:docs                                               # builds the library, then tsc --noEmit for the docs site (it type-checks against dist/)
 pnpm test                                                         # story tests (interaction + a11y) in Chromium -- needs `pnpm exec playwright install` once
 pnpm changeset                                                    # record a user-facing change for the next release
 pnpm --filter @catiarodrigues/goldfinch storybook                     # Storybook dev server, port 6006

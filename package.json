@@ -8,7 +8,7 @@
     "build": "pnpm --filter @catiarodrigues/goldfinch build",
     "build:docs": "pnpm --filter @catiarodrigues/goldfinch-docs-astro build",
     "typecheck": "pnpm --filter @catiarodrigues/goldfinch typecheck",
-    "typecheck:docs": "pnpm --filter @catiarodrigues/goldfinch-docs-astro typecheck",
+    "typecheck:docs": "pnpm build && pnpm --filter @catiarodrigues/goldfinch-docs-astro typecheck",
     "lint": "oxlint --deny-warnings",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
