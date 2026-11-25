@@ -235,7 +235,8 @@ export function detectFocusMode(
         ? (type as { displayName?: string }).displayName
         : undefined;
 
-    if (displayName === "InputGroup.Addon") {
+    // "InputGroup.Label" is the deprecated alias of Addon (it renders an Addon).
+    if (displayName === "InputGroup.Addon" || displayName === "InputGroup.Label") {
       hasAddon = true;
       return;
     }

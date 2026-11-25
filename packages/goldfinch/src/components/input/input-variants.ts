@@ -55,7 +55,8 @@ export interface GoldfinchInputVariantsProps {
   /**
    * Visual variant.
    * - `"default"` — Standard input
-   * - `"error"` — Error state for validation failures
+   * - `"error"` — @deprecated: forces error styling. Pass `error` instead;
+   *   invalid styling then follows the field error automatically.
    * @default "default"
    */
   variant?: GoldfinchInputVariant;
@@ -74,6 +75,9 @@ export function inputVariants({
     "border-0 bg-goldfinch-control text-goldfinch-default ring ring-goldfinch-line outline-none focus:outline-none",
     // Disabled state and placeholder styles (using vanilla CSS class for Chrome compatibility)
     "goldfinch-input-placeholder disabled:text-goldfinch-disabled",
+    // Invalid state comes from Field (Base UI sets data-invalid on the control
+    // exactly while its field error shows) — never from reading `error` here.
+    "data-[invalid]:ring-goldfinch-danger",
     // Apply size styles from GOLDFINCH_INPUT_VARIANTS
     resolveVariant(
       GOLDFINCH_INPUT_VARIANTS.size,
@@ -90,10 +94,14 @@ export function inputVariants({
     parentFocusIndicator &&
       (variant === "error"
         ? "focus-within:ring-goldfinch-danger/50 focus-within:ring-[1.5px]"
-        : "focus-within:ring-goldfinch-focus/50 focus-within:ring-[1.5px]"),
+        : [
+            "focus-within:ring-goldfinch-focus/50 focus-within:ring-[1.5px]",
+            // Container whose inner control is invalid
+            "has-[[data-invalid]]:ring-goldfinch-danger has-[[data-invalid]]:focus-within:ring-goldfinch-danger/50",
+          ]),
     focusIndicator &&
       (variant === "error"
         ? "focus:ring-goldfinch-danger/50 focus:ring-[1.5px]"
-        : "focus:ring-goldfinch-focus/50 focus:ring-[1.5px]"),
+        : "focus:ring-goldfinch-focus/50 focus:ring-[1.5px] data-[invalid]:focus:ring-goldfinch-danger/50"),
   );
 }

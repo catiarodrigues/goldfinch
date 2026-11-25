@@ -5,7 +5,7 @@ import {
   type ReactNode,
 } from "react";
 import { Input as BaseInput } from "@base-ui/react/input";
-import { Field, normalizeFieldError, type FieldErrorMatch } from "../field/field";
+import { Field, useAccessibleNameWarning, type FieldErrorProp } from "../field/field";
 import {
   GOLDFINCH_INPUT_VARIANTS,
   GOLDFINCH_INPUT_DEFAULT_VARIANTS,
@@ -16,8 +16,8 @@ import {
 } from "./input-variants";
 
 // Re-exported so existing `../input/input` imports keep working — the variant
-// config lives in ./input-variants to avoid a circular import with
-// sensitive-input.tsx (which also needs it and is imported by this file).
+// config lives in ./input-variants so InputGroup and SensitiveInput can import
+// it without importing this module (see ./index.ts).
 export {
   GOLDFINCH_INPUT_VARIANTS,
   GOLDFINCH_INPUT_DEFAULT_VARIANTS,
@@ -34,7 +34,7 @@ const InputRoot = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const {
     className,
     size = "base",
-    variant: variantProp,
+    variant,
     label,
     labelTooltip,
     description,
@@ -44,7 +44,7 @@ const InputRoot = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   } = props;
 
   // Deprecation warning for variant="error"
-  if (process.env.NODE_ENV !== "production" && variantProp === "error") {
+  if (process.env.NODE_ENV !== "production" && variant === "error") {
     console.warn(
       '[Goldfinch Input]: variant="error" is deprecated. ' +
         "Error styling is now automatically applied when the `error` prop is truthy. " +
@@ -52,28 +52,10 @@ const InputRoot = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     );
   }
 
-  // Auto-apply error styling when error prop is truthy
-  // Explicit variant prop takes precedence for backwards compatibility
-  const variant = variantProp ?? (error ? "error" : "default");
-
   // Extract required from inputProps to pass to Field for label decoration
   const { required } = inputProps;
 
-  // A11y enforcement: warn in dev if no accessible name provided
-  if (process.env.NODE_ENV !== "production") {
-    const hasLabel = Boolean(label);
-    const hasAriaLabel = Boolean(inputProps["aria-label"]);
-    const hasAriaLabelledBy = Boolean(inputProps["aria-labelledby"]);
-
-    if (!hasLabel && !hasAriaLabel && !hasAriaLabelledBy) {
-      console.warn(
-        "[Goldfinch Input]: Input must have an accessible name. Provide either:\n" +
-          "  - label prop: <Input label='Email' />\n" +
-          "  - aria-label: <Input aria-label='Email address' />\n" +
-          "  - aria-labelledby for custom label association",
-      );
-    }
-  }
+  useAccessibleNameWarning("Input", { label, ...inputProps });
 
   const input = (
     <BaseInput
@@ -95,23 +77,18 @@ const InputRoot = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     />
   );
 
-  // Render with Field wrapper if label, error, or description is provided
-  if (label || error || description) {
-    return (
-      <Field
-        label={label}
-        required={required}
-        labelTooltip={labelTooltip}
-        description={description}
-        error={normalizeFieldError(error)}
-      >
-        {input}
-      </Field>
-    );
-  }
-
-  // Render bare input without Field wrapper
-  return input;
+  // Field decides whether there's anything to wrap, and owns invalid state.
+  return (
+    <Field
+      label={label}
+      required={required}
+      labelTooltip={labelTooltip}
+      description={description}
+      error={error}
+    >
+      {input}
+    </Field>
+  );
 });
 
 InputRoot.displayName = "Input";
@@ -161,7 +138,7 @@ export type InputProps = Pick<GoldfinchInputVariantsProps, "size" | "variant"> &
     /** Helper text displayed below the input */
     description?: ReactNode;
     /** Error message or validation error object */
-    error?: string | { message: ReactNode; match: FieldErrorMatch };
+    error?: FieldErrorProp;
     /** Suppress browser extension password manager overlays on non-credential inputs. */
     passwordManagerIgnore?: boolean;
   };

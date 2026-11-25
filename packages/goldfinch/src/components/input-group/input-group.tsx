@@ -6,6 +6,7 @@ import {
   type PropsWithChildren,
 } from "react";
 import { cn } from "../../utils/cn";
+import { resolveVariantKey } from "../../utils/resolve-variant";
 import { inputVariants } from "../input/input-variants";
 import { Field } from "../field/field";
 import {
@@ -67,7 +68,7 @@ export const GOLDFINCH_INPUT_GROUP_DEFAULT_VARIANTS = {
  *
  * @example
  * ```tsx
- * <InputGroup label="Email" error={{ message: "Invalid", match: true }}>
+ * <InputGroup label="Email" error="Invalid email">
  *   <InputGroup.Addon><EnvelopeIcon /></InputGroup.Addon>
  *   <InputGroup.Input placeholder="you@example.com" />
  * </InputGroup>
@@ -87,7 +88,7 @@ const Root = forwardRef<
 >(
   (
     {
-      size = "base",
+      size: sizeProp = "base",
       children,
       className,
       disabled = false,
@@ -100,6 +101,9 @@ const Root = forwardRef<
     },
     forwardedRef,
   ) => {
+    // Validate once; every size table (here and in the sub-components, via
+    // context) is then indexed with a known key.
+    const size = resolveVariantKey(GOLDFINCH_INPUT_GROUP_VARIANTS.size, sizeProp, "base");
     const inputId = useId();
     const focusMode = detectFocusMode(children);
 
@@ -138,7 +142,7 @@ const Root = forwardRef<
         : // isolate creates a new stacking context so z-index in children doesn't leak out
           "isolate overflow-visible ring-0 shadow-none",
       // Error state must also come after inputVariants
-      "has-[input[aria-invalid=true]]:ring-goldfinch-danger",
+      "has-[[data-invalid]]:ring-goldfinch-danger",
       // Reset horizontal padding — children handle their own spacing
       "px-0",
       // Horizontal layout with no gap — children control their own internal spacing
@@ -191,7 +195,7 @@ const Root = forwardRef<
                 // Clip children to rounded corners within the zone
                 "overflow-hidden",
                 // Show red ring on validation error
-                "has-[input[aria-invalid=true]]:ring-goldfinch-danger",
+                "has-[[data-invalid]]:ring-goldfinch-danger",
                 // Reset horizontal padding — children handle their own spacing
                 "px-0",
                 // Fill available width but allow shrinking when sibling buttons are present
@@ -249,21 +253,17 @@ const Root = forwardRef<
         </InputGroupContext.Provider>
       );
 
-      if (label) {
-        return (
-          <Field
-            label={label}
-            description={description}
-            error={error}
-            required={required}
-            labelTooltip={labelTooltip}
-          >
-            {hybridContainer}
-          </Field>
-        );
-      }
-
-      return hybridContainer;
+      return (
+        <Field
+          label={label}
+          description={description}
+          error={error}
+          required={required}
+          labelTooltip={labelTooltip}
+        >
+          {hybridContainer}
+        </Field>
+      );
     }
 
     // Container / Individual mode (non-hybrid)
@@ -312,21 +312,18 @@ const Root = forwardRef<
       </InputGroupContext.Provider>
     );
 
-    if (label) {
-      return (
-        <Field
-          label={label}
-          description={description}
-          error={error}
-          required={required}
-          labelTooltip={labelTooltip}
-        >
-          {container}
-        </Field>
-      );
-    }
-
-    return container;
+    // Field decides whether there's anything to wrap, and owns invalid state.
+    return (
+      <Field
+        label={label}
+        description={description}
+        error={error}
+        required={required}
+        labelTooltip={labelTooltip}
+      >
+        {container}
+      </Field>
+    );
   },
 );
 Root.displayName = "InputGroup";

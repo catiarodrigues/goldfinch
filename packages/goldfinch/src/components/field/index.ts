@@ -1,6 +1,7 @@
 export {
   Field,
   normalizeFieldError,
+  type FieldErrorProp,
   type FieldProps,
   type FieldErrorMatch,
   fieldVariants,

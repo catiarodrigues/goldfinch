@@ -9,7 +9,7 @@ import {
 } from "react";
 import { cn } from "../../utils/cn";
 import { resolveVariant } from "../../utils/resolve-variant";
-import { Field } from "../field/field";
+import { Field, type FieldErrorProp } from "../field/field";
 import { Fieldset } from "@base-ui/react/fieldset";
 
 /** Toggle size and variant definitions mapping names to their Tailwind classes. */
@@ -77,6 +77,10 @@ export type ToggleProps = Omit<
   variant?: ToggleVariant;
   label?: ReactNode;
   labelTooltip?: ReactNode;
+  /** Helper text displayed below the toggle */
+  description?: ReactNode;
+  /** Field error: a message (always shown) or `{ message, match }` (shown on that validity failure) */
+  error?: FieldErrorProp;
   required?: boolean;
   controlFirst?: boolean;
   size?: GoldfinchToggleSize;
@@ -125,6 +129,8 @@ const ToggleBase = forwardRef<HTMLButtonElement, ToggleProps>(
       variant = "default",
       label,
       labelTooltip,
+      description,
+      error,
       required,
       controlFirst = true,
       onCheckedChange,
@@ -195,6 +201,8 @@ const ToggleBase = forwardRef<HTMLButtonElement, ToggleProps>(
             s.track,
             pillRadius,
             trackColors,
+            // Invalid state comes from Field (Base UI sets data-invalid)
+            "data-[invalid]:ring-goldfinch-danger",
             className,
             baseClassName,
           );
@@ -235,15 +243,14 @@ const ToggleBase = forwardRef<HTMLButtonElement, ToggleProps>(
       />
     );
 
-    if (!label) {
-      return switchControl;
-    }
-
+    // Field decides whether there's anything to wrap, and owns invalid state.
     return (
       <Field
         label={label}
         required={required}
         labelTooltip={labelTooltip}
+        description={description}
+        error={error}
         controlFirst={controlFirst}
       >
         {switchControl}

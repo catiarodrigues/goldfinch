@@ -7,6 +7,7 @@ import React, {
 import { Toolbar as ToolbarBase } from "@base-ui/react/toolbar";
 import type { Input as BaseInput } from "@base-ui/react/input";
 import { cn } from "../../utils/cn";
+import { resolveVariant } from "../../utils/resolve-variant";
 import { Button as GoldfinchButton, type ButtonProps } from "../button/button";
 import { Input as GoldfinchInput, type InputProps } from "../input/input";
 import { InputGroup } from "../input-group/input-group";
@@ -107,7 +108,11 @@ const Root = React.forwardRef<HTMLDivElement, ToolbarProps>(
         data-goldfinch-component="Toolbar"
         className={cn(
           "inline-flex w-fit items-stretch rounded-lg ring ring-goldfinch-line bg-goldfinch-control shadow-xs",
-          GOLDFINCH_TOOLBAR_VARIANTS.size[size].classes,
+          resolveVariant(
+            GOLDFINCH_TOOLBAR_VARIANTS.size,
+            size,
+            GOLDFINCH_TOOLBAR_DEFAULT_VARIANTS.size,
+          ).classes,
           className,
         )}
         {...props}

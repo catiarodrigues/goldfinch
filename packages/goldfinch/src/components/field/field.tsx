@@ -1,5 +1,5 @@
 import { Field as FieldBase } from "@base-ui/react/field";
-import type { ReactNode } from "react";
+import { createContext, useContext, type ReactNode } from "react";
 import { cn } from "../../utils/cn";
 import { Label } from "../label";
 
@@ -10,7 +10,7 @@ import { Label } from "../label";
  * Returns `undefined` when the input is falsy.
  */
 export function normalizeFieldError(
-  error: string | { message: ReactNode; match: FieldErrorMatch } | undefined,
+  error: FieldErrorProp | undefined,
 ): { message: ReactNode; match: FieldErrorMatch } | undefined {
   if (!error) return undefined;
   if (typeof error === "string") return { message: error, match: true };
@@ -76,6 +76,47 @@ export type FieldErrorMatch =
   | "valueMissing";
 
 /**
+ * A field error: either a message that is always shown (the field is invalid
+ * while it's set), or `{ message, match }` to show the message only when the
+ * browser's own validation fails that `ValidityState` check.
+ */
+export type FieldErrorProp = string | { message: ReactNode; match: FieldErrorMatch };
+
+/** True inside a Field that has a label, so its control already has an accessible name. */
+const FieldLabelledContext = createContext(false);
+
+/** True when rendered inside a Field with a label (so the control is already named). */
+export function useInLabelledField() {
+  return useContext(FieldLabelledContext);
+}
+
+/**
+ * Dev-only warning for a form control with no accessible name. Counts a
+ * surrounding labelled Field (e.g. `<Field label><Input/></Field>` or a
+ * labelled InputGroup), not just the control's own props.
+ */
+export function useAccessibleNameWarning(
+  component: string,
+  props: { label?: ReactNode; "aria-label"?: string; "aria-labelledby"?: string },
+) {
+  const inLabelledField = useInLabelledField();
+  if (
+    process.env.NODE_ENV !== "production" &&
+    !inLabelledField &&
+    !props.label &&
+    !props["aria-label"] &&
+    !props["aria-labelledby"]
+  ) {
+    console.warn(
+      `[Goldfinch ${component}]: ${component} must have an accessible name. Provide either:\n` +
+        `  - label prop: <${component} label="Email" />\n` +
+        `  - aria-label: <${component} aria-label="Email address" />\n` +
+        "  - aria-labelledby for custom label association",
+    );
+  }
+}
+
+/**
  * Field component props — wraps a form control with label, description, and error message.
  *
  * @example
@@ -93,7 +134,7 @@ export interface FieldProps extends GoldfinchFieldVariantsProps {
   /** The form control element(s) to wrap (Input, Select, Checkbox, etc.). */
   children: ReactNode;
   /** The label content — can be a string or any React node. */
-  label: ReactNode;
+  label?: ReactNode;
   /**
    * When explicitly `false`, shows gray "(optional)" text after the label.
    * When `true` or `undefined`, no indicator is shown.
@@ -101,12 +142,14 @@ export interface FieldProps extends GoldfinchFieldVariantsProps {
   required?: boolean;
   /** Tooltip content displayed next to the label via an info icon. */
   labelTooltip?: ReactNode;
-  /** Validation error with a message and a browser `ValidityState` match key. */
-  error?: {
-    message: ReactNode;
-    match: FieldErrorMatch;
-  };
-  /** Helper text displayed below the control (hidden when `error` is present). */
+  /**
+   * Field error. A string (or `{ message, match: true }`) is always shown and
+   * makes the field invalid; `{ message, match: "valueMissing" }` etc. shows
+   * only when the browser's validation fails that check. Either way the
+   * control gets `data-invalid` / `aria-invalid` exactly while it shows.
+   */
+  error?: FieldErrorProp;
+  /** Helper text displayed below the control (hidden while an error is showing). */
   description?: ReactNode;
   /** When `true`, places the control before the label (for checkbox/switch layouts). */
   controlFirst?: boolean;
@@ -118,6 +161,8 @@ export interface FieldProps extends GoldfinchFieldVariantsProps {
    * @default false
    */
   hideLabel?: boolean;
+  /** Additional CSS classes for the Field root. */
+  className?: string;
 }
 
 /**
@@ -140,44 +185,58 @@ export function Field({
   description,
   controlFirst = false,
   hideLabel = false,
+  className,
 }: FieldProps) {
+  const fieldError = normalizeFieldError(error);
+
+  // Nothing to surround the control with: render it bare.
+  if (!label && !description && !fieldError) return <>{children}</>;
+
   // Show "(optional)" when required is explicitly false
   const showOptional = required === false;
 
   return (
-    <FieldBase.Root className={fieldVariants({ controlFirst })}>
-      {!hideLabel && (
-        <FieldBase.Label className="m-0 select-none text-base font-medium text-goldfinch-default">
-          <Label showOptional={showOptional} tooltip={labelTooltip} asContent>
-            {label}
-          </Label>
-        </FieldBase.Label>
-      )}
-      {children}
-      {error ? (
-        <FieldBase.Error
-          className={cn(
-            "text-sm leading-snug text-goldfinch-danger",
-            // Span full width in horizontal layout
-            "col-span-full",
-          )}
-          match={error.match}
-        >
-          {error.message}
-        </FieldBase.Error>
-      ) : (
-        description && (
+    <FieldLabelledContext.Provider value={Boolean(label)}>
+      <FieldBase.Root
+        className={cn(fieldVariants({ controlFirst }), "group/field", className)}
+        // An always-shown error makes the field invalid; a `match` error lets
+        // the browser's validity decide.
+        invalid={fieldError?.match === true ? true : undefined}
+      >
+        {label && !hideLabel && (
+          <FieldBase.Label className="m-0 select-none text-base font-medium text-goldfinch-default">
+            <Label showOptional={showOptional} tooltip={labelTooltip} asContent>
+              {label}
+            </Label>
+          </FieldBase.Label>
+        )}
+        {children}
+        {description && (
           <FieldBase.Description
             className={cn(
               "text-sm leading-snug text-goldfinch-subtle",
               // Span full width in horizontal layout
               "col-span-full",
+              // Hidden while the error is showing
+              fieldError && "group-data-[invalid]/field:hidden",
             )}
           >
             {description}
           </FieldBase.Description>
-        )
-      )}
-    </FieldBase.Root>
+        )}
+        {fieldError && (
+          <FieldBase.Error
+            className={cn(
+              "text-sm leading-snug text-goldfinch-danger",
+              // Span full width in horizontal layout
+              "col-span-full",
+            )}
+            match={fieldError.match}
+          >
+            {fieldError.message}
+          </FieldBase.Error>
+        )}
+      </FieldBase.Root>
+    </FieldLabelledContext.Provider>
   );
 }

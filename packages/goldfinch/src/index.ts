@@ -25,7 +25,7 @@ export { DropdownMenu } from "./components/dropdown";
 export { EmptyState } from "./components/empty-state";
 export type { EmptyStateProps } from "./components/empty-state";
 export { Field } from "./components/field";
-export type { FieldProps, FieldErrorMatch } from "./components/field";
+export type { FieldProps, FieldErrorMatch, FieldErrorProp } from "./components/field";
 export { TopNavigation } from "./components/top-navigation";
 export type { TopNavigationProps, TopNavigationLogoProps, TopNavigationNavProps, TopNavigationNavItemProps, TopNavigationActionsProps } from "./components/top-navigation";
 export { Grid, GridItem } from "./components/grid";

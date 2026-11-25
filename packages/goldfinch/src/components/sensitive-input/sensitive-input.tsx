@@ -17,7 +17,7 @@ import {
   type GoldfinchInputSize,
   type GoldfinchInputVariant,
 } from "../input/input-variants";
-import { Field, type FieldErrorMatch } from "../field/field";
+import { Field, type FieldErrorProp } from "../field/field";
 
 export const GOLDFINCH_SENSITIVE_INPUT_VARIANTS = GOLDFINCH_INPUT_VARIANTS;
 
@@ -73,7 +73,7 @@ export interface SensitiveInputProps
   /** Helper text displayed below the input */
   description?: ReactNode;
   /** Error message or validation error object */
-  error?: string | { message: ReactNode; match: FieldErrorMatch };
+  error?: FieldErrorProp;
 }
 
 /**
@@ -94,7 +94,7 @@ export const SensitiveInput = forwardRef<HTMLInputElement, SensitiveInputProps>(
       onValueChange,
       onCopy,
       size = GOLDFINCH_SENSITIVE_INPUT_DEFAULT_VARIANTS.size,
-      variant: variantProp,
+      variant,
       disabled = false,
       readOnly = false,
       id,
@@ -110,7 +110,7 @@ export const SensitiveInput = forwardRef<HTMLInputElement, SensitiveInputProps>(
     ref,
   ) => {
     // Deprecation warning for variant="error"
-    if (process.env.NODE_ENV !== "production" && variantProp === "error") {
+    if (process.env.NODE_ENV !== "production" && variant === "error") {
       console.warn(
         '[Goldfinch SensitiveInput]: variant="error" is deprecated. ' +
           "Error styling is now automatically applied when the `error` prop is truthy. " +
@@ -118,9 +118,6 @@ export const SensitiveInput = forwardRef<HTMLInputElement, SensitiveInputProps>(
       );
     }
 
-    // Auto-apply error styling when error prop is truthy
-    // Explicit variant prop takes precedence for backwards compatibility
-    const variant = variantProp ?? (error ? "error" : "default");
     // For aria-label, only use string labels (ReactNode labels can't be used for aria-label)
     const ariaLabelFallback =
       typeof label === "string" ? label : "Sensitive value";
@@ -492,29 +489,18 @@ export const SensitiveInput = forwardRef<HTMLInputElement, SensitiveInputProps>(
       </div>
     );
 
-    // Render with Field wrapper if label is provided
-    if (label) {
-      return (
-        <Field
-          label={label}
-          required={required}
-          labelTooltip={labelTooltip}
-          description={description}
-          error={
-            error
-              ? typeof error === "string"
-                ? { message: error, match: true }
-                : error
-              : undefined
-          }
-        >
-          {input}
-        </Field>
-      );
-    }
-
-    // Render bare input without Field wrapper
-    return input;
+    // Field decides whether there's anything to wrap, and owns invalid state.
+    return (
+      <Field
+        label={label}
+        required={required}
+        labelTooltip={labelTooltip}
+        description={description}
+        error={error}
+      >
+        {input}
+      </Field>
+    );
   },
 );
 

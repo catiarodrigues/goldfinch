@@ -3,6 +3,7 @@ import { CheckIcon, MinusIcon } from "@phosphor-icons/react";
 import { cn } from "../../utils/cn";
 import { resolveVariant } from "../../utils/resolve-variant";
 import { Label } from "../label";
+import { Field, useAccessibleNameWarning, type FieldErrorProp } from "../field/field";
 import { Fieldset } from "@base-ui/react/fieldset";
 import { Field as FieldBase } from "@base-ui/react/field";
 import { CheckboxGroup as BaseCheckboxGroup } from "@base-ui/react/checkbox-group";
@@ -110,6 +111,10 @@ export type CheckboxProps = {
   label?: ReactNode;
   /** Tooltip content to display next to the label via an info icon */
   labelTooltip?: ReactNode;
+  /** Helper text displayed below the checkbox */
+  description?: ReactNode;
+  /** Field error: a message (always shown) or `{ message, match }` (shown on that validity failure) */
+  error?: FieldErrorProp;
   /** When true (default), checkbox appears before label. When false, label appears before checkbox. */
   controlFirst?: boolean;
   /** Whether the checkbox is checked (controlled) */
@@ -227,6 +232,8 @@ const CheckboxBase = forwardRef<HTMLButtonElement, CheckboxProps>(
       variant = "default",
       label,
       labelTooltip,
+      description,
+      error,
       controlFirst = true,
       onCheckedChange,
       required,
@@ -235,22 +242,7 @@ const CheckboxBase = forwardRef<HTMLButtonElement, CheckboxProps>(
     },
     ref,
   ) => {
-    // A11y enforcement: warn in dev if no accessible name provided
-    if (process.env.NODE_ENV !== "production") {
-      const hasLabel = Boolean(label);
-      const hasAriaLabel = Boolean(props["aria-label"]);
-      const hasAriaLabelledBy = Boolean(props["aria-labelledby"]);
-
-      if (!hasLabel && !hasAriaLabel && !hasAriaLabelledBy) {
-        console.warn(
-          "[Goldfinch Checkbox]: Checkbox must have an accessible name. Provide either:\n" +
-            "  - label prop: <Checkbox label='Accept terms' />\n" +
-            "  - aria-label: <Checkbox aria-label='Select item' />\n" +
-            "  - aria-labelledby for custom label association\n" +
-            "  Note: When used inside Checkbox.Group, label is optional",
-        );
-      }
-    }
+    useAccessibleNameWarning("Checkbox", { label, ...props });
 
     const checkboxControl = (
       <BaseCheckbox.Root
@@ -265,6 +257,8 @@ const CheckboxBase = forwardRef<HTMLButtonElement, CheckboxProps>(
           "relative flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border-0 bg-goldfinch-base ring focus:outline-none after:absolute after:-inset-x-3 after:-inset-y-2",
           label && "mt-0.5",
           variant === "error" ? "ring-goldfinch-danger" : "ring-goldfinch-hairline",
+          // Invalid state comes from Field (Base UI sets data-invalid)
+          "data-[invalid]:ring-goldfinch-danger",
           !disabled &&
             "hover:ring-goldfinch-hairline focus:ring-goldfinch-focus focus:ring-2 focus-visible:ring-2 focus-visible:ring-goldfinch-brand",
           "data-[checked]:bg-goldfinch-contrast data-[checked]:ring-goldfinch-contrast data-[indeterminate]:bg-goldfinch-contrast data-[indeterminate]:ring-goldfinch-contrast",
@@ -289,32 +283,42 @@ const CheckboxBase = forwardRef<HTMLButtonElement, CheckboxProps>(
       </BaseCheckbox.Root>
     );
 
-    // If no label provided, return bare checkbox (for use in other components like Dropdown)
-    if (!label) {
-      return checkboxControl;
-    }
-
-    // Use Field.Root + Field.Label enclosing pattern for proper a11y association
+    // The label encloses the checkbox (Base UI's Field.Label enclosing pattern),
+    // so Field's own label is hidden; Field still decides whether to wrap and
+    // owns description, error and invalid state.
     // See: https://base-ui.com/react/components/field
     return (
-      <FieldBase.Root className="inline-flex">
-        <FieldBase.Label
-          className={cn(
-            "!m-0 !min-h-0 !text-base inline-flex items-start gap-2",
-            controlFirst ? "flex-row" : "flex-row-reverse justify-end",
-            disabled ? "cursor-not-allowed" : "cursor-pointer",
-          )}
-        >
-          {checkboxControl}
-          <Label
-            showOptional={required === false}
-            tooltip={labelTooltip}
-            asContent
+      <Field
+        label={label}
+        required={required}
+        description={description}
+        error={error}
+        hideLabel
+        // Column of [label row, description/error]; start-aligned (Field's
+        // checkbox rule would otherwise centre the row in a column layout).
+        className="inline-flex flex-col gap-1 has-[input[type=checkbox]]:items-start"
+      >
+        {label ? (
+          <FieldBase.Label
+            className={cn(
+              "!m-0 !min-h-0 !text-base inline-flex items-start gap-2",
+              controlFirst ? "flex-row" : "flex-row-reverse justify-end",
+              disabled ? "cursor-not-allowed" : "cursor-pointer",
+            )}
           >
-            {label}
-          </Label>
-        </FieldBase.Label>
-      </FieldBase.Root>
+            {checkboxControl}
+            <Label
+              showOptional={required === false}
+              tooltip={labelTooltip}
+              asContent
+            >
+              {label}
+            </Label>
+          </FieldBase.Label>
+        ) : (
+          checkboxControl
+        )}
+      </Field>
     );
   },
 );

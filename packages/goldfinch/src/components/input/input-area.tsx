@@ -1,9 +1,9 @@
-import { inputVariants } from "./input";
+import { inputVariants } from "./input-variants";
 import { cn } from "../../utils/cn";
 import { useCallback, type ReactNode } from "react";
 import * as React from "react";
-import { Field as FieldBase } from "@base-ui/react/field";
-import { Field as GoldfinchField, normalizeFieldError, type FieldErrorMatch } from "../field/field";
+import { Input as BaseInput } from "@base-ui/react/input";
+import { Field, useAccessibleNameWarning, type FieldErrorProp } from "../field/field";
 
 export const InputArea = React.forwardRef<HTMLTextAreaElement, InputAreaProps>(
   (props, ref) => {
@@ -11,7 +11,7 @@ export const InputArea = React.forwardRef<HTMLTextAreaElement, InputAreaProps>(
       className,
       onValueChange,
       size = "base",
-      variant: variantProp,
+      variant,
       onChange,
       label,
       labelTooltip,
@@ -21,7 +21,7 @@ export const InputArea = React.forwardRef<HTMLTextAreaElement, InputAreaProps>(
     } = props;
 
     // Deprecation warning for variant="error"
-    if (process.env.NODE_ENV !== "production" && variantProp === "error") {
+    if (process.env.NODE_ENV !== "production" && variant === "error") {
       console.warn(
         '[Goldfinch InputArea]: variant="error" is deprecated. ' +
           "Error styling is now automatically applied when the `error` prop is truthy. " +
@@ -29,12 +29,11 @@ export const InputArea = React.forwardRef<HTMLTextAreaElement, InputAreaProps>(
       );
     }
 
-    // Auto-apply error styling when error prop is truthy
-    // Explicit variant prop takes precedence for backwards compatibility
-    const variant = variantProp ?? (error ? "error" : "default");
-
     // Extract required from inputProps to pass to Field for label decoration
     const { required } = inputProps;
+
+    useAccessibleNameWarning("InputArea", { label, ...inputProps });
+
     const handleChange = useCallback(
       (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         onChange?.(event);
@@ -43,47 +42,34 @@ export const InputArea = React.forwardRef<HTMLTextAreaElement, InputAreaProps>(
       [onChange, onValueChange],
     );
 
-    const textareaClassName = cn(
-      inputVariants({ size, variant, focusIndicator: true }),
-      "h-auto py-2", // Input variant always comes with size, but it does not apply for textarea
-      className,
+    // Base UI's Input rendered as a <textarea>: it merges its own field
+    // wiring (id, aria-*, validity tracking, data-invalid) with ours instead of
+    // either side overwriting the other.
+    const textarea = (
+      <BaseInput
+        ref={ref as React.Ref<HTMLInputElement>}
+        render={<textarea />}
+        className={cn(
+          inputVariants({ size, variant, focusIndicator: true }),
+          "h-auto py-2", // Input variant always comes with size, but it does not apply for textarea
+          className,
+        )}
+        onChange={handleChange as unknown as React.ChangeEventHandler<HTMLInputElement>}
+        {...(inputProps as Omit<React.ComponentPropsWithoutRef<typeof BaseInput>, "size">)}
+      />
     );
 
-    // Render with Field wrapper if label, error, or description is provided
-    // Use FieldBase.Control with render callback to ensure proper label-textarea association.
-    // The render callback receives props with the correct id/aria-labelledby from Field context.
-    if (label || error || description) {
-      return (
-        <GoldfinchField
-          label={label}
-          required={required}
-          labelTooltip={labelTooltip}
-          description={description}
-          error={normalizeFieldError(error)}
-        >
-          <FieldBase.Control
-            render={(controlProps) => (
-              <textarea
-                {...controlProps}
-                ref={ref}
-                className={textareaClassName}
-                onChange={handleChange}
-                {...inputProps}
-              />
-            )}
-          />
-        </GoldfinchField>
-      );
-    }
-
-    // Render bare textarea without Field wrapper
+    // Field decides whether there's anything to wrap, and owns invalid state.
     return (
-      <textarea
-        ref={ref}
-        className={textareaClassName}
-        onChange={handleChange}
-        {...inputProps}
-      />
+      <Field
+        label={label}
+        required={required}
+        labelTooltip={labelTooltip}
+        description={description}
+        error={error}
+      >
+        {textarea}
+      </Field>
     );
   },
 );
@@ -113,7 +99,7 @@ export type InputAreaProps = {
   /** Helper text displayed below the textarea */
   description?: ReactNode;
   /** Error message or validation error object */
-  error?: string | { message: ReactNode; match: FieldErrorMatch };
+  error?: FieldErrorProp;
 
   // Finally, spread the native input props (least important)
 } & Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "size">;

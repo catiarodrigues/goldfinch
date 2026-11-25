@@ -6,7 +6,8 @@ import { cn } from "../../utils/cn";
 import { GOLDFINCH_INPUT_VARIANTS, type GoldfinchInputSize } from "../input/input";
 import { SkeletonLine } from "../spinner";
 import { Label } from "../label";
-import { Field, type FieldErrorMatch } from "../field/field";
+import { Field, useInLabelledField, type FieldErrorProp } from "../field/field";
+import { resolveVariantKey } from "../../utils/resolve-variant";
 import {
   usePortalContainer,
   type PortalContainer,
@@ -86,8 +87,10 @@ export function selectVariants({
   return cn(
     "inline-flex items-center justify-between font-normal",
     "bg-goldfinch-base text-goldfinch-default ring ring-goldfinch-line hover:bg-goldfinch-tint",
-    selectSizeClasses[size],
+    selectSizeClasses[resolveVariantKey(selectSizeClasses, size, GOLDFINCH_SELECT_DEFAULT_VARIANTS.size)],
     "focus:opacity-100 focus:ring-goldfinch-focus/50 focus-visible:ring-inset *:in-focus:opacity-100",
+    // Invalid state comes from Field (Base UI sets data-invalid on the trigger)
+    "data-[invalid]:ring-goldfinch-danger data-[invalid]:focus:ring-goldfinch-danger/50",
   );
 }
 
@@ -250,7 +253,7 @@ type SelectPropsGeneric<T, Multiple extends boolean | undefined = false> = Omit<
     /** Helper text displayed below the select */
     description?: ReactNode;
     /** Error message or validation error object */
-    error?: string | { message: ReactNode; match: FieldErrorMatch };
+    error?: FieldErrorProp;
     /**
      * Container element for the portal. Use this to render the select inside
      * a Shadow DOM or custom container. Overrides `GoldfinchPortalProvider` context.
@@ -321,7 +324,7 @@ export interface SelectProps {
   /** Helper text displayed below the select. */
   description?: ReactNode;
   /** Error message string or validation error object with `match` key. */
-  error?: string | { message: ReactNode; match: FieldErrorMatch };
+  error?: FieldErrorProp;
 }
 
 /**
@@ -358,7 +361,7 @@ export function Select<T, Multiple extends boolean | undefined = false>({
   hideLabel,
   placeholder,
   loading,
-  size = GOLDFINCH_SELECT_DEFAULT_VARIANTS.size,
+  size: sizeProp = GOLDFINCH_SELECT_DEFAULT_VARIANTS.size,
   labelTooltip,
   description,
   error,
@@ -366,14 +369,18 @@ export function Select<T, Multiple extends boolean | undefined = false>({
   container: containerProp,
   ...props
 }: SelectPropsGeneric<T, Multiple> & { required?: boolean }) {
+  const size = resolveVariantKey(triggerIconStyles, sizeProp, GOLDFINCH_SELECT_DEFAULT_VARIANTS.size);
   const labelId = useId();
   const contextContainer = usePortalContainer();
   const container = containerProp ?? contextContainer ?? undefined;
   const propLookup = props as Record<string, unknown>;
   const ariaLabel = propLookup["aria-label"] as string | undefined;
   const ariaLabelledby = propLookup["aria-labelledby"] as string | undefined;
-  // For aria-label, use string label or placeholder (ReactNode labels can't be used for aria-label)
-  const fallbackLabel = typeof label === "string" ? label : placeholder;
+  // For aria-label, use string label or placeholder (ReactNode labels can't be used for aria-label).
+  // Inside a labelled Field the trigger is already named by it: no placeholder fallback.
+  const inLabelledField = useInLabelledField();
+  const fallbackLabel =
+    typeof label === "string" ? label : inLabelledField ? undefined : placeholder;
 
   // Deprecation warning for hideLabel
   if (process.env.NODE_ENV !== "production" && hideLabel !== undefined) {
@@ -385,10 +392,10 @@ export function Select<T, Multiple extends boolean | undefined = false>({
     );
   }
 
-  // New behavior: label presence determines Field wrapper visibility (like Input)
-  // hideLabel is only respected for backward compatibility when explicitly set to true
-  const useFieldWrapper = label && hideLabel !== true;
-  const triggerLabelledBy = useFieldWrapper
+  // The label is visible unless the deprecated hideLabel is explicitly true,
+  // in which case it's rendered sr-only and referenced via aria-labelledby.
+  const visibleLabel = Boolean(label) && hideLabel !== true;
+  const triggerLabelledBy = visibleLabel
     ? undefined
     : (ariaLabelledby ?? (label ? labelId : undefined));
   const triggerAriaLabel =
@@ -437,11 +444,11 @@ export function Select<T, Multiple extends boolean | undefined = false>({
   // Use Base UI's Select.Label for accessible naming — avoids the
   // hover/focus coupling that a native <label> (from Field) would cause.
   const showOptional = required === false;
-  const selectLabelNode = label ? (
+  const selectLabelNode = visibleLabel ? (
     <SelectBase.Label className="m-0 select-none text-base font-medium text-goldfinch-default">
       <Label
         showOptional={showOptional}
-        tooltip={hideLabel ? undefined : labelTooltip}
+        tooltip={labelTooltip}
         asContent
       >
         {label}
@@ -462,8 +469,6 @@ export function Select<T, Multiple extends boolean | undefined = false>({
         className={cn(
           selectVariants({ size }),
           props.disabled && "cursor-not-allowed opacity-50",
-          error &&
-            "!ring-goldfinch-danger focus:ring-goldfinch-danger/50 focus:ring-[1.5px]",
           className,
         )}
         aria-label={triggerAriaLabel}
@@ -514,56 +519,25 @@ export function Select<T, Multiple extends boolean | undefined = false>({
     </SelectBase.Root>
   );
 
-  // Use Field wrapper when label is provided and not hidden
-  if (useFieldWrapper) {
-    return (
-      <Field
-        label={label}
-        required={required}
-        labelTooltip={labelTooltip}
-        description={description}
-        error={
-          error
-            ? typeof error === "string"
-              ? { message: error, match: true }
-              : error
-            : undefined
-        }
-        hideLabel
-      >
-        {selectControl}
-      </Field>
-    );
-  }
-
-  // Render with standalone label when label is hidden (sr-only)
-  // Still show description/error for accessibility and UX
-  const normalizedError = error
-    ? typeof error === "string"
-      ? { message: error, match: true as const }
-      : error
-    : undefined;
-
+  // Field decides whether there's anything to wrap, and owns invalid state.
+  // Select renders its own label (Base UI's Select.Label avoids the hover/focus
+  // coupling a native <label> would cause), so Field's is hidden.
   return (
-    <div className="grid gap-2">
-      {label && (
+    <Field
+      label={label}
+      required={required}
+      labelTooltip={labelTooltip}
+      description={description}
+      error={error}
+      hideLabel
+    >
+      {label && !visibleLabel && (
         <span id={labelId} className="sr-only">
           {label}
         </span>
       )}
       {selectControl}
-      {normalizedError ? (
-        <span className="text-sm text-goldfinch-danger">
-          {normalizedError.message}
-        </span>
-      ) : (
-        description && (
-          <span className="text-sm leading-snug text-goldfinch-subtle">
-            {description}
-          </span>
-        )
-      )}
-    </div>
+    </Field>
   );
 }
 

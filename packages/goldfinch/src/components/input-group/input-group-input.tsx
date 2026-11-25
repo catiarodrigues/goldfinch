@@ -10,8 +10,8 @@ export type InputGroupInputProps = Omit<
 >;
 
 /**
- * Text input that inherits size, disabled, and error state from InputGroup context.
- * Automatically sets `aria-invalid` when parent has an error.
+ * Text input that inherits size and disabled state from InputGroup context.
+ * Invalid state (`aria-invalid` / `data-invalid`) comes from InputGroup's Field.
  */
 export const Input = forwardRef<HTMLInputElement, InputGroupInputProps>(
   (props, ref) => {
@@ -45,9 +45,6 @@ export const Input = forwardRef<HTMLInputElement, InputGroupInputProps>(
     const tokens = INPUT_GROUP_SIZE[size];
     const isIndividual = context?.focusMode === "individual";
 
-    // Auto-set aria-invalid when error is present in context
-    const hasError = Boolean(context?.error);
-
     // Use explicit id if provided, otherwise fall back to context id
     // (links the input to the invisible label overlay for click-to-focus).
     const inputId = props.id ?? context?.inputId;
@@ -57,7 +54,6 @@ export const Input = forwardRef<HTMLInputElement, InputGroupInputProps>(
         ref={ref}
         size={context?.size}
         disabled={context?.disabled || (props as any).disabled}
-        aria-invalid={hasError || props["aria-invalid"]}
         {...props}
         id={inputId}
         className={cn(
