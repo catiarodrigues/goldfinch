@@ -1,0 +1,5 @@
+# Formatting-only commits, skipped by `git blame`.
+# Enable once per clone: git config blame.ignoreRevsFile .git-blame-ignore-revs
+
+# format the repo with Prettier
+dbae74872866e29794332e365b71b38f889e20dc
