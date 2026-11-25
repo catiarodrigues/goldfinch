@@ -73,7 +73,8 @@ The compound components: `<Table.Header>` (`<thead>`), `<Table.Head>` (`<th>`), 
 ```
 
 <Callout type="info">
-  All table sub-components accept standard HTML attributes and `className` for custom styling.
+  All table sub-components accept standard HTML attributes and `className` for
+  custom styling.
 </Callout>
 
 ## API Reference
@@ -81,7 +82,17 @@ The compound components: `<Table.Header>` (`<thead>`), `<Table.Head>` (`<th>`), 
 <PropsTable
   of="Table"
   props={[
-    { name: "children", type: "ReactNode", default: "—", description: "Table content (Head, Body, etc.)." },
-    { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+    {
+      name: "children",
+      type: "ReactNode",
+      default: "—",
+      description: "Table content (Head, Body, etc.).",
+    },
+    {
+      name: "className",
+      type: "string",
+      default: "—",
+      description: "Additional CSS classes.",
+    },
   ]}
 />

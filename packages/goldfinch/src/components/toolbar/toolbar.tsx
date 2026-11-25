@@ -107,7 +107,7 @@ const Root = React.forwardRef<HTMLDivElement, ToolbarProps>(
         ref={ref}
         data-goldfinch-component="Toolbar"
         className={cn(
-          "inline-flex w-fit items-stretch rounded-lg ring ring-goldfinch-line bg-goldfinch-control shadow-xs",
+          "inline-flex w-fit items-stretch rounded-lg bg-goldfinch-control shadow-xs ring ring-goldfinch-line",
           resolveVariant(
             GOLDFINCH_TOOLBAR_VARIANTS.size,
             size,

@@ -55,7 +55,8 @@ Provide a `title` and `description` to explain the empty state. Use the `action`
 ```
 
 <Callout type="info">
-  Empty states are an opportunity to guide users — always include a helpful message and a clear next action.
+  Empty states are an opportunity to guide users — always include a helpful
+  message and a clear next action.
 </Callout>
 
 ## API Reference
@@ -63,8 +64,23 @@ Provide a `title` and `description` to explain the empty state. Use the `action`
 <PropsTable
   of="EmptyState"
   props={[
-    { name: "title", type: "string", default: "—", description: "Empty state title." },
-    { name: "description", type: "string", default: "—", description: "Empty state description." },
-    { name: "action", type: "ReactNode", default: "—", description: "Optional call-to-action." },
+    {
+      name: "title",
+      type: "string",
+      default: "—",
+      description: "Empty state title.",
+    },
+    {
+      name: "description",
+      type: "string",
+      default: "—",
+      description: "Empty state description.",
+    },
+    {
+      name: "action",
+      type: "ReactNode",
+      default: "—",
+      description: "Optional call-to-action.",
+    },
   ]}
 />

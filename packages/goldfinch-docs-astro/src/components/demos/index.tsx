@@ -70,8 +70,12 @@ export function ButtonSizesDemo() {
 export function ButtonLoadingDemo() {
   return (
     <div className="flex flex-wrap items-center gap-4">
-      <Button variant="secondary" loading>Loading</Button>
-      <Button variant="primary" loading>Primary</Button>
+      <Button variant="secondary" loading>
+        Loading
+      </Button>
+      <Button variant="primary" loading>
+        Primary
+      </Button>
     </div>
   );
 }
@@ -128,10 +132,18 @@ export function BadgeColorVariantsDemo() {
 export function BadgeDotDemo() {
   return (
     <div className="flex flex-wrap items-center gap-2">
-      <Badge appearance="dot" variant="success">Healthy</Badge>
-      <Badge appearance="dot" variant="warning">Warning</Badge>
-      <Badge appearance="dot" variant="error">Error</Badge>
-      <Badge appearance="dot" variant="neutral">Neutral</Badge>
+      <Badge appearance="dot" variant="success">
+        Healthy
+      </Badge>
+      <Badge appearance="dot" variant="warning">
+        Warning
+      </Badge>
+      <Badge appearance="dot" variant="error">
+        Error
+      </Badge>
+      <Badge appearance="dot" variant="neutral">
+        Neutral
+      </Badge>
     </div>
   );
 }
@@ -157,9 +169,7 @@ export function BadgeSizesDemo() {
 
 /* ---------- Alert ---------- */
 export function AlertDemo() {
-  return (
-    <Alert>This is an informational alert message.</Alert>
-  );
+  return <Alert>This is an informational alert message.</Alert>;
 }
 
 export function AlertVariantsDemo() {
@@ -192,7 +202,12 @@ export function CheckboxDemo() {
         <Checkbox aria-label="Accept terms" /> Accept terms
       </Label>
       <Label>
-        <Checkbox checked={subscribed} onCheckedChange={setSubscribed} aria-label="Subscribe" /> Subscribe
+        <Checkbox
+          checked={subscribed}
+          onCheckedChange={setSubscribed}
+          aria-label="Subscribe"
+        />{" "}
+        Subscribe
       </Label>
     </div>
   );
@@ -229,7 +244,7 @@ export function ModalDemo() {
       </Modal.Trigger>
       <Modal size="sm">
         <Modal.Title>Hello</Modal.Title>
-        <Modal.Description className="text-sm text-goldfinch-default pb-4">
+        <Modal.Description className="pb-4 text-sm text-goldfinch-default">
           This is a modal example.
         </Modal.Description>
         <Modal.Close>
@@ -252,7 +267,9 @@ export function DropdownDemo() {
           <DropdownMenu.Item onClick={() => {}}>Edit</DropdownMenu.Item>
           <DropdownMenu.Item onClick={() => {}}>Duplicate</DropdownMenu.Item>
           <DropdownMenu.Separator />
-          <DropdownMenu.Item onClick={() => {}} variant="danger">Delete</DropdownMenu.Item>
+          <DropdownMenu.Item onClick={() => {}} variant="danger">
+            Delete
+          </DropdownMenu.Item>
         </DropdownMenu.Content>
       </DropdownMenu.Portal>
     </DropdownMenu>
@@ -293,9 +310,15 @@ export function LabelDemo() {
 export function GridDemo() {
   return (
     <Grid variant="3up" gap="base">
-      <div className="rounded-lg bg-goldfinch-tint p-4 text-center text-sm">1</div>
-      <div className="rounded-lg bg-goldfinch-tint p-4 text-center text-sm">2</div>
-      <div className="rounded-lg bg-goldfinch-tint p-4 text-center text-sm">3</div>
+      <div className="rounded-lg bg-goldfinch-tint p-4 text-center text-sm">
+        1
+      </div>
+      <div className="rounded-lg bg-goldfinch-tint p-4 text-center text-sm">
+        2
+      </div>
+      <div className="rounded-lg bg-goldfinch-tint p-4 text-center text-sm">
+        3
+      </div>
     </Grid>
   );
 }
@@ -307,9 +330,13 @@ export function InputDemo() {
 
 export function InputVariantsDemo() {
   return (
-    <div className="flex flex-col gap-3 w-full max-w-xs">
+    <div className="flex w-full max-w-xs flex-col gap-3">
       <Input placeholder="Default" aria-label="Default input" />
-      <Input placeholder="Error state" error="This field is required" aria-label="Error input" />
+      <Input
+        placeholder="Error state"
+        error="This field is required"
+        aria-label="Error input"
+      />
     </div>
   );
 }
@@ -384,7 +411,9 @@ export function ProgressSizesDemo() {
 /* ---------- Pagination ---------- */
 export function PaginationDemo() {
   const [page, setPage] = useState(1);
-  return <Pagination page={page} setPage={setPage} perPage={10} totalCount={100} />;
+  return (
+    <Pagination page={page} setPage={setPage} perPage={10} totalCount={100} />
+  );
 }
 
 /* ---------- Popover ---------- */
@@ -437,7 +466,7 @@ export function SensitiveInputDemo() {
 /* ---------- Sidebar ---------- */
 export function SidebarDemo() {
   return (
-    <div className="w-64 rounded-lg border border-goldfinch-hairline overflow-hidden">
+    <div className="w-64 overflow-hidden rounded-lg border border-goldfinch-hairline">
       <Sidebar.Provider defaultOpen collapsible="none">
         <Sidebar>
           <Sidebar.Header>Navigation</Sidebar.Header>
@@ -519,8 +548,15 @@ export function TabsDemo() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <p className="mb-2 text-sm font-medium text-goldfinch-subtle">Underline</p>
-        <Tabs tabs={tabsItems} variant="underline" value={tab} onValueChange={setTab} />
+        <p className="mb-2 text-sm font-medium text-goldfinch-subtle">
+          Underline
+        </p>
+        <Tabs
+          tabs={tabsItems}
+          variant="underline"
+          value={tab}
+          onValueChange={setTab}
+        />
         <div className="pt-4">
           {tab === "preview" && <p className="text-sm">Preview content</p>}
           {tab === "code" && <p className="text-sm">Code content</p>}
@@ -528,8 +564,15 @@ export function TabsDemo() {
         </div>
       </div>
       <div>
-        <p className="mb-2 text-sm font-medium text-goldfinch-subtle">Segmented</p>
-        <Tabs tabs={tabsItems} variant="segmented" value={tab2} onValueChange={setTab2} />
+        <p className="mb-2 text-sm font-medium text-goldfinch-subtle">
+          Segmented
+        </p>
+        <Tabs
+          tabs={tabsItems}
+          variant="segmented"
+          value={tab2}
+          onValueChange={setTab2}
+        />
         <div className="pt-4">
           {tab2 === "preview" && <p className="text-sm">Preview content</p>}
           {tab2 === "code" && <p className="text-sm">Code content</p>}
@@ -544,9 +587,15 @@ export function TabsDemo() {
 export function TextDemo() {
   return (
     <div className="flex flex-col gap-2">
-      <Text variant="heading1" as="h1">Heading 1</Text>
-      <Text variant="heading2" as="h2">Heading 2</Text>
-      <Text variant="heading3" as="h3">Heading 3</Text>
+      <Text variant="heading1" as="h1">
+        Heading 1
+      </Text>
+      <Text variant="heading2" as="h2">
+        Heading 2
+      </Text>
+      <Text variant="heading3" as="h3">
+        Heading 3
+      </Text>
       <Text variant="body">Body text</Text>
       <Text variant="secondary">Secondary text</Text>
     </div>
@@ -557,7 +606,10 @@ export function TextDemo() {
 function ToastInner() {
   const toast = useGoldfinchToastManager();
   const addToast = useCallback(() => {
-    toast.add({ title: "Hello!", description: "This is a toast notification." });
+    toast.add({
+      title: "Hello!",
+      description: "This is a toast notification.",
+    });
   }, [toast]);
   return <Button onClick={addToast}>Show Toast</Button>;
 }
@@ -586,7 +638,9 @@ export function TopNavigationDemo() {
   return (
     <TopNavigation>
       <TopNavigation.Logo>
-        <span className="text-lg font-bold text-goldfinch-strong">Goldfinch</span>
+        <span className="text-lg font-bold text-goldfinch-strong">
+          Goldfinch
+        </span>
       </TopNavigation.Logo>
       <TopNavigation.Nav>
         <TopNavigation.NavItem active>Docs</TopNavigation.NavItem>
@@ -594,7 +648,9 @@ export function TopNavigationDemo() {
         <TopNavigation.NavItem>Blog</TopNavigation.NavItem>
       </TopNavigation.Nav>
       <TopNavigation.Actions>
-        <Button variant="ghost" size="sm">Log in</Button>
+        <Button variant="ghost" size="sm">
+          Log in
+        </Button>
         <Button size="sm">Sign up</Button>
       </TopNavigation.Actions>
     </TopNavigation>
@@ -607,8 +663,13 @@ export function PageDemo() {
     <Page size="sm">
       <Page.Breadcrumbs>Home / Components</Page.Breadcrumbs>
       <Page.Title>Button</Page.Title>
-      <Page.Description>Clickable controls for forms, dialogs, and action bars.</Page.Description>
-      <p className="text-goldfinch-default pt-4">This content is constrained to a max-width container with consistent padding.</p>
+      <Page.Description>
+        Clickable controls for forms, dialogs, and action bars.
+      </Page.Description>
+      <p className="pt-4 text-goldfinch-default">
+        This content is constrained to a max-width container with consistent
+        padding.
+      </p>
     </Page>
   );
 }
@@ -632,7 +693,9 @@ export function TopNavigationGridPreview() {
     <div style={{ width: 200 }}>
       <TopNavigation>
         <TopNavigation.Logo>
-          <span className="text-sm font-bold text-goldfinch-strong">Goldfinch</span>
+          <span className="text-sm font-bold text-goldfinch-strong">
+            Goldfinch
+          </span>
         </TopNavigation.Logo>
       </TopNavigation>
     </div>

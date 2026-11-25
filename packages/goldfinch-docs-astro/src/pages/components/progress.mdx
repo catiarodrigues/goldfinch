@@ -6,7 +6,11 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import { DemoFrame, ProgressDemo, ProgressSizesDemo } from "../../components/demos/index.tsx";
+import {
+  DemoFrame,
+  ProgressDemo,
+  ProgressSizesDemo,
+} from "../../components/demos/index.tsx";
 
 Communicate task completion or metric values with an accessible bar — fully customizable label and display value.
 
@@ -66,9 +70,29 @@ Use `customValue` to override the percentage display with a custom string.
 <PropsTable
   of="Progress"
   props={[
-    { name: "label", type: "string", default: "—", description: "Accessible label for the progress (required)." },
-    { name: "value", type: "number", default: "—", description: "Current value (0-100)." },
-    { name: "customValue", type: "string", default: "—", description: "Custom display text override for the value." },
-    { name: "showValue", type: "boolean", default: "true", description: "Whether to show the value label." },
+    {
+      name: "label",
+      type: "string",
+      default: "—",
+      description: "Accessible label for the progress (required).",
+    },
+    {
+      name: "value",
+      type: "number",
+      default: "—",
+      description: "Current value (0-100).",
+    },
+    {
+      name: "customValue",
+      type: "string",
+      default: "—",
+      description: "Custom display text override for the value.",
+    },
+    {
+      name: "showValue",
+      type: "boolean",
+      default: "true",
+      description: "Whether to show the value label.",
+    },
   ]}
 />

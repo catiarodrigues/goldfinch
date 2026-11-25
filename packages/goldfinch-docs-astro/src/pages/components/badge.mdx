@@ -6,7 +6,14 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import { DemoFrame, BadgeSemanticVariantsDemo, BadgeColorVariantsDemo, BadgeDotDemo, BadgeInSentenceDemo, BadgeSizesDemo } from "../../components/demos/index.tsx";
+import {
+  DemoFrame,
+  BadgeSemanticVariantsDemo,
+  BadgeColorVariantsDemo,
+  BadgeDotDemo,
+  BadgeInSentenceDemo,
+  BadgeSizesDemo,
+} from "../../components/demos/index.tsx";
 
 Displays a small label for status, categorization, or metadata.
 
@@ -96,8 +103,8 @@ Badges sit inline with text for labeling items in context.
 
 ```tsx
 <p className="flex items-center gap-2">
-      Users
-      <Badge variant="secondary">New</Badge>
+  Users
+  <Badge variant="secondary">New</Badge>
 </p>
 ```
 
@@ -120,9 +127,32 @@ Three sizes are available to fit different contexts — `sm` for tight inline pl
 <PropsTable
   of="Badge"
   props={[
-    { name: "variant", type: '"primary" | "secondary" | "error" | "warning" | "success" | "destructive" | "info" | "beta" | "outline" | "red" | "green" | "neutral" | "orange" | "purple" | "teal" | "teal-subtle" | "blue"', default: '"primary"', description: "Color variant. Use semantic variants (primary, success, error, etc.) for feedback; token variants (red, green, teal, etc.) for product labels." },
-    { name: "appearance", type: '"filled" | "dot"', default: '"filled"', description: "Visual appearance. `dot` adds a colored circle indicator. Only success, warning, error, and neutral show a dot." },
-    { name: "size", type: '"sm" | "md" | "lg"', default: '"md"', description: "Badge size — sm for inline, md for default, lg for standalone emphasis." },
-    { name: "className", type: "string", default: "—", description: "Additional CSS classes merged via cn()." },
+    {
+      name: "variant",
+      type: '"primary" | "secondary" | "error" | "warning" | "success" | "destructive" | "info" | "beta" | "outline" | "red" | "green" | "neutral" | "orange" | "purple" | "teal" | "teal-subtle" | "blue"',
+      default: '"primary"',
+      description:
+        "Color variant. Use semantic variants (primary, success, error, etc.) for feedback; token variants (red, green, teal, etc.) for product labels.",
+    },
+    {
+      name: "appearance",
+      type: '"filled" | "dot"',
+      default: '"filled"',
+      description:
+        "Visual appearance. `dot` adds a colored circle indicator. Only success, warning, error, and neutral show a dot.",
+    },
+    {
+      name: "size",
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+      description:
+        "Badge size — sm for inline, md for default, lg for standalone emphasis.",
+    },
+    {
+      name: "className",
+      type: "string",
+      default: "—",
+      description: "Additional CSS classes merged via cn().",
+    },
   ]}
 />

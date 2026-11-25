@@ -30,7 +30,8 @@ type RootProps = ComponentPropsWithoutRef<typeof BaseMeter.Root>;
  * <Progress label="API requests" value={75} customValue="750 / 1,000" />
  * ```
  */
-export interface ProgressProps extends RootProps, GoldfinchProgressVariantsProps {
+export interface ProgressProps
+  extends RootProps, GoldfinchProgressVariantsProps {
   /** Custom formatted value text (e.g. "750 / 1,000") displayed instead of percentage. */
   customValue?: string;
   /** Label text displayed above the progress track. */

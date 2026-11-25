@@ -36,7 +36,7 @@ export default function SidebarNav({ currentPath }: Props) {
       <button
         onClick={() => setOpen(true)}
         aria-label="Open navigation"
-        className="fixed bottom-4 right-4 z-50 flex lg:hidden items-center justify-center size-12 rounded-full bg-goldfinch-brand text-goldfinch-inverse shadow-lg cursor-pointer border-none"
+        className="fixed right-4 bottom-4 z-50 flex size-12 cursor-pointer items-center justify-center rounded-full border-none bg-goldfinch-brand text-goldfinch-inverse shadow-lg lg:hidden"
       >
         <List size={24} />
       </button>
@@ -51,19 +51,16 @@ export default function SidebarNav({ currentPath }: Props) {
       )}
 
       <aside
-        className={`
-          fixed top-0 left-0 z-50 h-full w-64 overflow-y-auto border-r border-goldfinch-hairline
-          bg-goldfinch-canvas transition-transform duration-200
-          lg:sticky lg:top-16 lg:z-auto lg:block lg:translate-x-0 lg:h-[calc(100vh-4rem)]
-          ${open ? "translate-x-0" : "-translate-x-full"}
-        `}
+        className={`fixed top-0 left-0 z-50 h-full w-64 overflow-y-auto border-r border-goldfinch-hairline bg-goldfinch-canvas transition-transform duration-200 lg:sticky lg:top-16 lg:z-auto lg:block lg:h-[calc(100vh-4rem)] lg:translate-x-0 ${open ? "translate-x-0" : "-translate-x-full"} `}
       >
-        <div className="flex items-center justify-between px-4 h-14 border-b border-goldfinch-hairline lg:hidden">
-          <span className="font-semibold text-goldfinch-strong">Navigation</span>
+        <div className="flex h-14 items-center justify-between border-b border-goldfinch-hairline px-4 lg:hidden">
+          <span className="font-semibold text-goldfinch-strong">
+            Navigation
+          </span>
           <button
             onClick={close}
             aria-label="Close navigation"
-            className="flex items-center justify-center size-8 rounded-lg bg-goldfinch-base text-goldfinch-default hover:bg-goldfinch-tint cursor-pointer border-none"
+            className="flex size-8 cursor-pointer items-center justify-center rounded-lg border-none bg-goldfinch-base text-goldfinch-default hover:bg-goldfinch-tint"
           >
             <X size={16} />
           </button>
@@ -72,7 +69,7 @@ export default function SidebarNav({ currentPath }: Props) {
         <nav className="p-4">
           {navigation.map((section) => (
             <div key={section.title} className="mb-6 last:mb-0">
-              <h3 className="mb-2 px-3 text-xs font-semibold uppercase tracking-wider text-goldfinch-subtle">
+              <h3 className="mb-2 px-3 text-xs font-semibold tracking-wider text-goldfinch-subtle uppercase">
                 {section.title}
               </h3>
               <ul className="space-y-0.5">
@@ -84,7 +81,7 @@ export default function SidebarNav({ currentPath }: Props) {
                       onClick={close}
                       className={`flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors ${
                         isActive(item.href)
-                          ? "bg-goldfinch-tint text-goldfinch-strong font-medium"
+                          ? "bg-goldfinch-tint font-medium text-goldfinch-strong"
                           : "text-goldfinch-default hover:bg-goldfinch-base hover:text-goldfinch-strong"
                       }`}
                     >

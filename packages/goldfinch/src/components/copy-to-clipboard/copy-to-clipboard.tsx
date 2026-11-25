@@ -66,7 +66,11 @@ export function copyToClipboardVariants({
     // Base styles
     "flex items-center overflow-hidden bg-goldfinch-base px-0 font-mono",
     // Apply size styles from GOLDFINCH_COPY_TO_CLIPBOARD_VARIANTS
-    resolveVariant(GOLDFINCH_COPY_TO_CLIPBOARD_VARIANTS.size, size, GOLDFINCH_COPY_TO_CLIPBOARD_DEFAULT_VARIANTS.size).classes,
+    resolveVariant(
+      GOLDFINCH_COPY_TO_CLIPBOARD_VARIANTS.size,
+      size,
+      GOLDFINCH_COPY_TO_CLIPBOARD_DEFAULT_VARIANTS.size,
+    ).classes,
   );
 }
 
@@ -125,7 +129,7 @@ function AnchoredToasts() {
           <Toast.Root
             toast={toast}
             className={cn(
-              "flex origin-[var(--transform-origin)] flex-col rounded-md bg-goldfinch-base px-3 py-1.5 text-xs text-goldfinch-default font-sans",
+              "flex origin-[var(--transform-origin)] flex-col rounded-md bg-goldfinch-base px-3 py-1.5 font-sans text-xs text-goldfinch-default",
               "shadow-lg shadow-goldfinch-tip-shadow outline outline-goldfinch-fill",
             )}
           >
@@ -174,7 +178,11 @@ export const CopyToClipboard = forwardRef<HTMLDivElement, CopyToClipboardProps>(
   ) => {
     const [copied, setCopied] = useState(false);
     const buttonRef = useRef<HTMLButtonElement | null>(null);
-    const sizeConfig = resolveVariant(GOLDFINCH_COPY_TO_CLIPBOARD_VARIANTS.size, size, GOLDFINCH_COPY_TO_CLIPBOARD_DEFAULT_VARIANTS.size);
+    const sizeConfig = resolveVariant(
+      GOLDFINCH_COPY_TO_CLIPBOARD_VARIANTS.size,
+      size,
+      GOLDFINCH_COPY_TO_CLIPBOARD_DEFAULT_VARIANTS.size,
+    );
 
     // Destructure tooltip config with defaults
     const {
@@ -248,9 +256,9 @@ export const CopyToClipboard = forwardRef<HTMLDivElement, CopyToClipboardProps>(
         size={sizeConfig.buttonSize}
         variant="ghost"
         className={cn(
-          "rounded-l-none rounded-r-[inherit] border-l! border-goldfinch-line! px-3 relative isolate overflow-hidden transition-all duration-200",
-          "focus:ring-inset focus:ring-goldfinch-focus/50",
-          "focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-goldfinch-brand",
+          "relative isolate overflow-hidden rounded-l-none rounded-r-[inherit] border-l! border-goldfinch-line! px-3 transition-all duration-200",
+          "focus:ring-goldfinch-focus/50 focus:ring-inset",
+          "focus-visible:ring-2 focus-visible:ring-goldfinch-brand focus-visible:ring-inset",
         )}
         onClick={copyToClipboard}
         aria-label={copyAction}

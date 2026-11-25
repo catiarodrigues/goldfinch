@@ -92,7 +92,11 @@ export function paginationVariants({
 }: GoldfinchPaginationVariantsProps = {}) {
   return cn(
     "flex items-center justify-between gap-2",
-    resolveVariant(GOLDFINCH_PAGINATION_VARIANTS.controls, controls, GOLDFINCH_PAGINATION_DEFAULT_VARIANTS.controls).classes,
+    resolveVariant(
+      GOLDFINCH_PAGINATION_VARIANTS.controls,
+      controls,
+      GOLDFINCH_PAGINATION_DEFAULT_VARIANTS.controls,
+    ).classes,
   );
 }
 
@@ -239,7 +243,7 @@ function PaginationControls({
   return (
     <div
       data-slot="pagination-controls"
-      className={cn("grow flex flex-col items-end", className)}
+      className={cn("flex grow flex-col items-end", className)}
     >
       <nav aria-label={labels.navigation}>
         <InputGroup>
@@ -556,7 +560,7 @@ function PaginationRoot(props: PaginationProps) {
       <PaginationContext.Provider value={contextValue}>
         <div
           data-slot="pagination"
-          className={cn("flex items-center gap-2 w-full", className)}
+          className={cn("flex w-full items-center gap-2", className)}
         >
           {children}
         </div>
@@ -583,7 +587,7 @@ function PaginationRoot(props: PaginationProps) {
     <PaginationContext.Provider value={contextValue}>
       <div
         data-slot="pagination"
-        className={cn("flex items-center gap-2 w-full", className)}
+        className={cn("flex w-full items-center gap-2", className)}
       >
         <div
           aria-live="polite"

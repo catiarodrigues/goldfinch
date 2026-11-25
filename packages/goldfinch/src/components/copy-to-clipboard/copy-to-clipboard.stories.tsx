@@ -11,7 +11,7 @@ type Story = StoryObj<typeof CopyToClipboard>;
 
 export const Default: Story = {
   args: {
-    text: 'npm install goldfinch',
-    labels: { copyAction: 'Copy install command' },
+    text: "npm install goldfinch",
+    labels: { copyAction: "Copy install command" },
   },
 };

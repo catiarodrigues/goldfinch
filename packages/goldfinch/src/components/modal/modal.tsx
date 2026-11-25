@@ -144,7 +144,11 @@ export function modalVariants({
     // Base styles
     "shadow-m ring ring-goldfinch-line fixed top-1/2 left-1/2 w-full sm:w-auto max-w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-xl bg-goldfinch-base text-goldfinch-default p-6 duration-150 data-ending-style:scale-90 data-ending-style:opacity-0 data-starting-style:scale-90 data-starting-style:opacity-0",
     // Apply size from GOLDFINCH_MODAL_VARIANTS
-    resolveVariant(GOLDFINCH_MODAL_VARIANTS.size, size, GOLDFINCH_MODAL_DEFAULT_VARIANTS.size).classes,
+    resolveVariant(
+      GOLDFINCH_MODAL_VARIANTS.size,
+      size,
+      GOLDFINCH_MODAL_DEFAULT_VARIANTS.size,
+    ).classes,
   );
 }
 
@@ -292,7 +296,11 @@ function ModalTrigger({ children, render, ...props }: ModalTriggerProps) {
   };
 
   if (role === "alertdialog") {
-    return <AlertDialogBase.Trigger {...(triggerProps as BaseAlertModalTriggerProps)} />;
+    return (
+      <AlertDialogBase.Trigger
+        {...(triggerProps as BaseAlertModalTriggerProps)}
+      />
+    );
   }
 
   return <DialogBase.Trigger {...(triggerProps as BaseModalTriggerProps)} />;

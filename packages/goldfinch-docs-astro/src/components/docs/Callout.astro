@@ -31,16 +31,18 @@ const config: Record<string, { border: string; bg: string; icon: string }> = {
 const c = config[type];
 ---
 
-<div class={`not-prose rounded-lg border-l-4 ${c.border} ${c.bg} px-4 py-3 my-4`}>
+<div
+  class={`not-prose rounded-lg border-l-4 ${c.border} ${c.bg} px-4 py-3 my-4`}
+>
   <div class="flex items-start gap-3">
-    <span class="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full text-xs font-bold"
+    <span
+      class="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full text-xs font-bold"
       style={{
         color: `var(--color-goldfinch-${type === "info" ? "info" : type === "warning" ? "warning" : type === "success" ? "success" : "danger"})`,
         backgroundColor: `var(--color-goldfinch-${type === "info" ? "info" : type === "warning" ? "warning" : type === "success" ? "success" : "danger"})`,
         opacity: "0.15",
       }}
-    >
-    </span>
+    ></span>
     <div class="min-w-0 text-sm text-goldfinch-default">
       <slot />
     </div>

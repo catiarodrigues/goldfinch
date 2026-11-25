@@ -18,8 +18,14 @@ const items: TabsItem[] = [
 
 function ControlledTabs({ variant }: { variant: "underline" | "segmented" }) {
   const [tab, setTab] = useState("preview");
-  return <Tabs tabs={items} variant={variant} value={tab} onValueChange={setTab} />;
+  return (
+    <Tabs tabs={items} variant={variant} value={tab} onValueChange={setTab} />
+  );
 }
 
-export const Underline: Story = { render: () => <ControlledTabs variant="underline" /> };
-export const Segmented: Story = { render: () => <ControlledTabs variant="segmented" /> };
+export const Underline: Story = {
+  render: () => <ControlledTabs variant="underline" />,
+};
+export const Segmented: Story = {
+  render: () => <ControlledTabs variant="segmented" />,
+};

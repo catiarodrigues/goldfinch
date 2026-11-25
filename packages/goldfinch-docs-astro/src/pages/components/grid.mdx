@@ -56,7 +56,8 @@ Choose a `variant` for the column layout and `gap` for spacing between items.
 ```
 
 <Callout type="info">
-  The grid is responsive — columns adjust at md, lg, and xl breakpoints depending on the variant.
+  The grid is responsive — columns adjust at md, lg, and xl breakpoints
+  depending on the variant.
 </Callout>
 
 ## API Reference
@@ -64,9 +65,29 @@ Choose a `variant` for the column layout and `gap` for spacing between items.
 <PropsTable
   of="Grid"
   props={[
-    { name: "variant", type: '"2up" | "side-by-side" | "2-1" | "1-2" | "3up" | "4up" | "6up" | "1-2-4up" | "1-3up"', default: "—", description: "Responsive column layout preset." },
-    { name: "gap", type: '"none" | "sm" | "base" | "lg"', default: '"base"', description: "Gap between grid items." },
-    { name: "children", type: "ReactNode", default: "—", description: "GridItem elements or content." },
-    { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+    {
+      name: "variant",
+      type: '"2up" | "side-by-side" | "2-1" | "1-2" | "3up" | "4up" | "6up" | "1-2-4up" | "1-3up"',
+      default: "—",
+      description: "Responsive column layout preset.",
+    },
+    {
+      name: "gap",
+      type: '"none" | "sm" | "base" | "lg"',
+      default: '"base"',
+      description: "Gap between grid items.",
+    },
+    {
+      name: "children",
+      type: "ReactNode",
+      default: "—",
+      description: "GridItem elements or content.",
+    },
+    {
+      name: "className",
+      type: "string",
+      default: "—",
+      description: "Additional CSS classes.",
+    },
   ]}
 />

@@ -38,7 +38,8 @@ export const GOLDFINCH_TABLE_VARIANTS = {
   },
 } as const;
 
-export type GoldfinchTableStickyColumn = keyof typeof GOLDFINCH_TABLE_VARIANTS.sticky;
+export type GoldfinchTableStickyColumn =
+  keyof typeof GOLDFINCH_TABLE_VARIANTS.sticky;
 
 /**
  * Shared sticky-column styles for `<th>` and `<td>`.
@@ -58,7 +59,11 @@ const stickyColumnClasses = (
   /** "head" renders at z-2, "cell" at z-1 */
   element: "head" | "cell",
 ) => {
-  const base = resolveVariant(GOLDFINCH_TABLE_VARIANTS.sticky, side, "left").classes;
+  const base = resolveVariant(
+    GOLDFINCH_TABLE_VARIANTS.sticky,
+    side,
+    "left",
+  ).classes;
   const z = element === "head" ? "z-2" : "z-1";
 
   const fadePosition = side === "right" ? "before:-left-6" : "before:-right-6";
@@ -76,7 +81,8 @@ const stickyColumnClasses = (
 
   // Header cells: use goldfinch-base by default, goldfinch-elevated when in compact header
   // The compact header applies a data attribute we can target with :has()
-  const bg = "bg-goldfinch-base group-data-[compact]/header:bg-goldfinch-elevated";
+  const bg =
+    "bg-goldfinch-base group-data-[compact]/header:bg-goldfinch-elevated";
   const fade =
     side === "right"
       ? "before:bg-gradient-to-r before:from-transparent before:to-goldfinch-base group-data-[compact]/header:before:to-goldfinch-elevated"
@@ -90,7 +96,8 @@ export const GOLDFINCH_TABLE_DEFAULT_VARIANTS = {
   variant: "default",
 } as const;
 
-export type GoldfinchTableRowVariant = keyof typeof GOLDFINCH_TABLE_VARIANTS.variant;
+export type GoldfinchTableRowVariant =
+  keyof typeof GOLDFINCH_TABLE_VARIANTS.variant;
 export type GoldfinchTableLayout = keyof typeof GOLDFINCH_TABLE_VARIANTS.layout;
 
 /**
@@ -128,7 +135,11 @@ const TableRoot = forwardRef<
 >(({ layout = "auto", ...props }, ref) => {
   const className = cn(
     "isolate w-full", // isolate creates a stacking context so z-0/z-1/z-2 never leak out
-    resolveVariant(GOLDFINCH_TABLE_VARIANTS.layout, layout, GOLDFINCH_TABLE_DEFAULT_VARIANTS.layout).classes,
+    resolveVariant(
+      GOLDFINCH_TABLE_VARIANTS.layout,
+      layout,
+      GOLDFINCH_TABLE_DEFAULT_VARIANTS.layout,
+    ).classes,
     "[&_td]:border-b [&_td]:border-goldfinch-fill [&_tr:last-child_td]:border-b-0", // Row border
     "[&_td]:p-3", // Cell padding
     "[&_th]:border-b [&_th]:border-goldfinch-fill [&_th]:p-3 [&_th]:font-semibold [&_th]:text-base", // Header styles
@@ -155,7 +166,8 @@ const TableHeader = forwardRef<
   const isCompact = variant === "compact";
   const className = cn(
     "group/header",
-    isCompact && "[&_th]:bg-goldfinch-elevated [&_th]:py-2 text-xs text-goldfinch-strong",
+    isCompact &&
+      "[&_th]:bg-goldfinch-elevated [&_th]:py-2 text-xs text-goldfinch-strong",
     sticky && "[&_th]:sticky [&_th]:top-0 [&_th]:z-1",
     props.className,
   );
@@ -197,7 +209,11 @@ const TableRow = forwardRef<
   }
 >(({ variant = GOLDFINCH_TABLE_DEFAULT_VARIANTS.variant, ...props }, ref) => {
   const className = cn(
-    resolveVariant(GOLDFINCH_TABLE_VARIANTS.variant, variant, GOLDFINCH_TABLE_DEFAULT_VARIANTS.variant).classes,
+    resolveVariant(
+      GOLDFINCH_TABLE_VARIANTS.variant,
+      variant,
+      GOLDFINCH_TABLE_DEFAULT_VARIANTS.variant,
+    ).classes,
     props.className,
   );
 

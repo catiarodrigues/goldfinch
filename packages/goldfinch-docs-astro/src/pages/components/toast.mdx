@@ -21,13 +21,20 @@ import { Toast, createGoldfinchToastManager } from "@catiarodrigues/goldfinch";
 ### Granular
 
 ```tsx
-import { Toast, createGoldfinchToastManager } from "@catiarodrigues/goldfinch/components/toast";
+import {
+  Toast,
+  createGoldfinchToastManager,
+} from "@catiarodrigues/goldfinch/components/toast";
 ```
 
 ## Usage
 
 ```tsx
-import { Toast, createGoldfinchToastManager, Button } from "@catiarodrigues/goldfinch";
+import {
+  Toast,
+  createGoldfinchToastManager,
+  Button,
+} from "@catiarodrigues/goldfinch";
 
 const toastManager = createGoldfinchToastManager();
 
@@ -51,14 +58,15 @@ const manager = createGoldfinchToastManager();
 
 <Toast toastManager={manager}>
   <App />
-</Toast>
+</Toast>;
 
 // Later, imperatively:
 manager.show("Notification message");
 ```
 
 <Callout type="warning">
-  Only one Toast instance should be rendered in the application tree to avoid duplicate notifications.
+  Only one Toast instance should be rendered in the application tree to avoid
+  duplicate notifications.
 </Callout>
 
 ## API Reference
@@ -66,8 +74,23 @@ manager.show("Notification message");
 <PropsTable
   of="Toast"
   props={[
-    { name: "children", type: "ReactNode", default: "—", description: "Application content." },
-    { name: "container", type: "PortalContainer", default: "—", description: "Portal target." },
-    { name: "toastManager", type: "return type of createGoldfinchToastManager()", default: "—", description: "External toast manager." },
+    {
+      name: "children",
+      type: "ReactNode",
+      default: "—",
+      description: "Application content.",
+    },
+    {
+      name: "container",
+      type: "PortalContainer",
+      default: "—",
+      description: "Portal target.",
+    },
+    {
+      name: "toastManager",
+      type: "return type of createGoldfinchToastManager()",
+      default: "—",
+      description: "External toast manager.",
+    },
   ]}
 />

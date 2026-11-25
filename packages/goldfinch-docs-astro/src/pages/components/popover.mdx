@@ -52,7 +52,8 @@ Pass the trigger as `children` and the floating content via the `content` prop. 
 ```
 
 <Callout type="info">
-  Popover closes when the user clicks outside or presses Escape, making it ideal for contextual menus and tooltips.
+  Popover closes when the user clicks outside or presses Escape, making it ideal
+  for contextual menus and tooltips.
 </Callout>
 
 ## API Reference
@@ -60,7 +61,17 @@ Pass the trigger as `children` and the floating content via the `content` prop. 
 <PropsTable
   of="Popover"
   props={[
-    { name: "content", type: "ReactNode", default: "—", description: "Popover content." },
-    { name: "children", type: "ReactNode", default: "—", description: "Trigger element." },
+    {
+      name: "content",
+      type: "ReactNode",
+      default: "—",
+      description: "Popover content.",
+    },
+    {
+      name: "children",
+      type: "ReactNode",
+      default: "—",
+      description: "Trigger element.",
+    },
   ]}
 />

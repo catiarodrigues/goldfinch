@@ -14,7 +14,9 @@ export const Default: Story = {
   render: () => (
     <TopNavigation>
       <TopNavigation.Logo>
-        <span className="text-lg font-bold text-goldfinch-strong">Goldfinch</span>
+        <span className="text-lg font-bold text-goldfinch-strong">
+          Goldfinch
+        </span>
       </TopNavigation.Logo>
       <TopNavigation.Nav>
         <TopNavigation.NavItem active>Docs</TopNavigation.NavItem>
@@ -22,7 +24,9 @@ export const Default: Story = {
         <TopNavigation.NavItem>Blog</TopNavigation.NavItem>
       </TopNavigation.Nav>
       <TopNavigation.Actions>
-        <Button variant="ghost" size="sm">Log in</Button>
+        <Button variant="ghost" size="sm">
+          Log in
+        </Button>
         <Button size="sm">Sign up</Button>
       </TopNavigation.Actions>
     </TopNavigation>

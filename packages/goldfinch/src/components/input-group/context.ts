@@ -49,7 +49,10 @@ export interface InputGroupSizeTokens {
   iconSize: number;
 }
 
-export const INPUT_GROUP_SIZE: Record<GoldfinchInputSize, InputGroupSizeTokens> = {
+export const INPUT_GROUP_SIZE: Record<
+  GoldfinchInputSize,
+  InputGroupSizeTokens
+> = {
   xs: {
     inputOuter: "px-1.5",
     addonOuterStart: "pl-1.5",
@@ -120,7 +123,8 @@ export const INPUT_GROUP_HAS_CLASSES: Record<GoldfinchInputSize, string> = {
  * (see `detectFocusMode`), so it is not part of the public or internal API.
  */
 export interface InputGroupRootPropsInternal
-  extends HTMLAttributes<HTMLElement>,
+  extends
+    HTMLAttributes<HTMLElement>,
     Partial<
       Pick<
         FieldProps,
@@ -236,7 +240,10 @@ export function detectFocusMode(
         : undefined;
 
     // "InputGroup.Label" is the deprecated alias of Addon (it renders an Addon).
-    if (displayName === "InputGroup.Addon" || displayName === "InputGroup.Label") {
+    if (
+      displayName === "InputGroup.Addon" ||
+      displayName === "InputGroup.Label"
+    ) {
       hasAddon = true;
       return;
     }

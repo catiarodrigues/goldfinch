@@ -26,7 +26,8 @@ export const GOLDFINCH_EMPTY_STATE_DEFAULT_VARIANTS = {
   size: "base",
 } as const;
 
-export type GoldfinchEmptyStateSize = keyof typeof GOLDFINCH_EMPTY_STATE_VARIANTS.size;
+export type GoldfinchEmptyStateSize =
+  keyof typeof GOLDFINCH_EMPTY_STATE_VARIANTS.size;
 
 export interface GoldfinchEmptyStateVariantsProps {
   /**
@@ -44,7 +45,11 @@ export function emptyStateVariants({
 }: GoldfinchEmptyStateVariantsProps = {}) {
   return cn(
     "flex w-full flex-col items-center rounded-xl border border-goldfinch-fill bg-goldfinch-control text-goldfinch-default",
-    resolveVariant(GOLDFINCH_EMPTY_STATE_VARIANTS.size, size, GOLDFINCH_EMPTY_STATE_DEFAULT_VARIANTS.size).classes,
+    resolveVariant(
+      GOLDFINCH_EMPTY_STATE_VARIANTS.size,
+      size,
+      GOLDFINCH_EMPTY_STATE_DEFAULT_VARIANTS.size,
+    ).classes,
   );
 }
 
@@ -101,7 +106,9 @@ export function EmptyState({
       <h2 className="text-2xl font-semibold">{title}</h2>
 
       {description && (
-        <p className="max-w-140 text-center text-goldfinch-subtle">{description}</p>
+        <p className="max-w-140 text-center text-goldfinch-subtle">
+          {description}
+        </p>
       )}
 
       {commandLine && (
@@ -132,7 +139,10 @@ export function EmptyState({
             }}
           >
             {emptyStateCopied ? (
-              <CheckIcon size={16} className="animate-bounce-in text-goldfinch-success" />
+              <CheckIcon
+                size={16}
+                className="animate-bounce-in text-goldfinch-success"
+              />
             ) : (
               <CopyIcon
                 size={16}

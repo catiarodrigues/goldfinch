@@ -20,9 +20,10 @@ Only real peer deps are `react`/`react-dom` (>=18) — `@phosphor-icons/react`, 
 `clsx`, `tailwind-merge` all come along as regular dependencies, don't install them separately.
 
 **Tailwind CSS v4 is required.** The stylesheet ships as Tailwind source (`@import "tailwindcss"`
-+ `@theme` tokens), not compiled CSS — the consuming project's Tailwind build generates the
-utility classes. Add `tailwindcss()` from `@tailwindcss/vite` to `vite.config.ts` plugins, then
-put this in the app's main CSS file (once):
+
+- `@theme` tokens), not compiled CSS — the consuming project's Tailwind build generates the
+  utility classes. Add `tailwindcss()` from `@tailwindcss/vite` to `vite.config.ts` plugins, then
+  put this in the app's main CSS file (once):
 
 ```css
 @import "@catiarodrigues/goldfinch/styles";
@@ -52,27 +53,27 @@ Sub-parts are attached directly to the import (`Modal.Trigger`, not a separate i
 the #1 thing to get right — don't invent prop-based APIs for things that are actually compound
 children.
 
-| Component | Sub-parts |
-| --- | --- |
-| `Modal` | `.Root` `.Trigger` `.Title` `.Description` `.Close` |
-| `Popover` | `.Trigger` `.Content` `.Title` `.Description` `.Close` |
-| `DropdownMenu` | `.Trigger` `.Portal` `.Content` `.Item` `.LinkItem` `.CheckboxItem` `.RadioGroup` `.RadioItem` `.RadioItemIndicator` `.Label` `.Separator` `.Shortcut` `.Group` `.Sub` `.SubTrigger` `.SubContent` |
-| `Select` | `.Option` `.Group` `.GroupLabel` `.Separator` |
-| `Checkbox` | `.Item` `.Group` `.Legend` |
-| `Radio` | `.Item` `.Group` `.Legend` |
-| `Toggle` | `.Item` `.Group` `.Legend` |
-| `Input` | `.Group` (= `InputGroup`) `.Sensitive` (= `SensitiveInput`) |
-| `InputGroup` | `.Input` `.Button` `.Addon` `.Suffix` |
-| `Toolbar` | `.Button` `.Input` `.InputGroup` |
-| `Table` | `.Header` `.Head` `.Row` `.Body` `.Cell` `.CheckCell` `.CheckHead` `.Footer` `.ResizeHandle` |
-| `Page` | `.Title` `.Description` `.Breadcrumbs` |
-| `Pagination` | `.Info` `.PageSize` `.Controls` `.Separator` |
-| `Collapsible` | `.Root` `.Trigger` `.Panel` |
-| `Card` | `.Primary` `.Secondary` |
-| `Link` | `.ExternalIcon` |
-| `TopNavigation` | `.Logo` `.Nav` `.NavItem` `.Actions` |
-| `TableOfContents` | `.Title` `.List` `.Item` `.Group` |
-| `Sidebar` | `.Provider` `.Header` `.Content` `.Footer` `.Group` `.GroupLabel` `.Menu` `.MenuItem` `.MenuButton` `.MenuBadge` `.MenuSub` `.MenuSubItem` `.MenuSubButton` `.Separator` `.Trigger` `.Rail` `.Collapsible` `.CollapsibleTrigger` `.CollapsibleContent` |
+| Component         | Sub-parts                                                                                                                                                                                                                                              |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Modal`           | `.Root` `.Trigger` `.Title` `.Description` `.Close`                                                                                                                                                                                                    |
+| `Popover`         | `.Trigger` `.Content` `.Title` `.Description` `.Close`                                                                                                                                                                                                 |
+| `DropdownMenu`    | `.Trigger` `.Portal` `.Content` `.Item` `.LinkItem` `.CheckboxItem` `.RadioGroup` `.RadioItem` `.RadioItemIndicator` `.Label` `.Separator` `.Shortcut` `.Group` `.Sub` `.SubTrigger` `.SubContent`                                                     |
+| `Select`          | `.Option` `.Group` `.GroupLabel` `.Separator`                                                                                                                                                                                                          |
+| `Checkbox`        | `.Item` `.Group` `.Legend`                                                                                                                                                                                                                             |
+| `Radio`           | `.Item` `.Group` `.Legend`                                                                                                                                                                                                                             |
+| `Toggle`          | `.Item` `.Group` `.Legend`                                                                                                                                                                                                                             |
+| `Input`           | `.Group` (= `InputGroup`) `.Sensitive` (= `SensitiveInput`)                                                                                                                                                                                            |
+| `InputGroup`      | `.Input` `.Button` `.Addon` `.Suffix`                                                                                                                                                                                                                  |
+| `Toolbar`         | `.Button` `.Input` `.InputGroup`                                                                                                                                                                                                                       |
+| `Table`           | `.Header` `.Head` `.Row` `.Body` `.Cell` `.CheckCell` `.CheckHead` `.Footer` `.ResizeHandle`                                                                                                                                                           |
+| `Page`            | `.Title` `.Description` `.Breadcrumbs`                                                                                                                                                                                                                 |
+| `Pagination`      | `.Info` `.PageSize` `.Controls` `.Separator`                                                                                                                                                                                                           |
+| `Collapsible`     | `.Root` `.Trigger` `.Panel`                                                                                                                                                                                                                            |
+| `Card`            | `.Primary` `.Secondary`                                                                                                                                                                                                                                |
+| `Link`            | `.ExternalIcon`                                                                                                                                                                                                                                        |
+| `TopNavigation`   | `.Logo` `.Nav` `.NavItem` `.Actions`                                                                                                                                                                                                                   |
+| `TableOfContents` | `.Title` `.List` `.Item` `.Group`                                                                                                                                                                                                                      |
+| `Sidebar`         | `.Provider` `.Header` `.Content` `.Footer` `.Group` `.GroupLabel` `.Menu` `.MenuItem` `.MenuButton` `.MenuBadge` `.MenuSub` `.MenuSubItem` `.MenuSubButton` `.Separator` `.Trigger` `.Rail` `.Collapsible` `.CollapsibleTrigger` `.CollapsibleContent` |
 
 ### Worked examples
 
@@ -164,7 +165,11 @@ function App() {
 function SaveButton() {
   const toast = useGoldfinchToastManager();
   return (
-    <Button onClick={() => toast.add({ title: "Saved", description: "Changes saved." })}>
+    <Button
+      onClick={() =>
+        toast.add({ title: "Saved", description: "Changes saved." })
+      }
+    >
       Save
     </Button>
   );
@@ -219,44 +224,44 @@ requirement.
 
 ## Components
 
-| Component | Granular import |
-| --- | --- |
-| Alert | `components/alert` |
-| Badge | `components/badge` |
-| Breadcrumbs | `components/breadcrumbs` |
-| Button | `components/button` |
-| Card | `components/card` |
-| Checkbox | `components/checkbox` |
-| Collapsible | `components/collapsible` |
+| Component       | Granular import                |
+| --------------- | ------------------------------ |
+| Alert           | `components/alert`             |
+| Badge           | `components/badge`             |
+| Breadcrumbs     | `components/breadcrumbs`       |
+| Button          | `components/button`            |
+| Card            | `components/card`              |
+| Checkbox        | `components/checkbox`          |
+| Collapsible     | `components/collapsible`       |
 | CopyToClipboard | `components/copy-to-clipboard` |
-| Dropdown | `components/dropdown` |
-| EmptyState | `components/empty-state` |
-| Field | `components/field` |
-| Grid | `components/grid` |
-| Input | `components/input` |
-| InputGroup | `components/input-group` |
-| Label | `components/label` |
-| Link | `components/link` |
-| Menubar | `components/menubar` |
-| Modal | `components/modal` |
-| Page | `components/page` |
-| Pagination | `components/pagination` |
-| Popover | `components/popover` |
-| Progress | `components/progress` |
-| Radio | `components/radio` |
-| Select | `components/select` |
-| SensitiveInput | `components/sensitive-input` |
-| Sidebar | `components/sidebar` |
-| Spinner | `components/spinner` |
-| Table | `components/table` |
+| Dropdown        | `components/dropdown`          |
+| EmptyState      | `components/empty-state`       |
+| Field           | `components/field`             |
+| Grid            | `components/grid`              |
+| Input           | `components/input`             |
+| InputGroup      | `components/input-group`       |
+| Label           | `components/label`             |
+| Link            | `components/link`              |
+| Menubar         | `components/menubar`           |
+| Modal           | `components/modal`             |
+| Page            | `components/page`              |
+| Pagination      | `components/pagination`        |
+| Popover         | `components/popover`           |
+| Progress        | `components/progress`          |
+| Radio           | `components/radio`             |
+| Select          | `components/select`            |
+| SensitiveInput  | `components/sensitive-input`   |
+| Sidebar         | `components/sidebar`           |
+| Spinner         | `components/spinner`           |
+| Table           | `components/table`             |
 | TableOfContents | `components/table-of-contents` |
-| Tabs | `components/tabs` |
-| Text | `components/text` |
-| Toast | `components/toast` |
-| Toggle | `components/toggle` |
-| Toolbar | `components/toolbar` |
-| Tooltip | `components/tooltip` |
-| TopNavigation | `components/top-navigation` |
+| Tabs            | `components/tabs`              |
+| Text            | `components/text`              |
+| Toast           | `components/toast`             |
+| Toggle          | `components/toggle`            |
+| Toolbar         | `components/toolbar`           |
+| Tooltip         | `components/tooltip`           |
+| TopNavigation   | `components/top-navigation`    |
 
 Full API reference, props tables, and live examples for every component:
 **[goldfinch.catiarodrigues.dev](https://goldfinch.catiarodrigues.dev/)**

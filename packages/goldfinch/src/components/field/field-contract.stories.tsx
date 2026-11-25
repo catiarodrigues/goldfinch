@@ -39,10 +39,15 @@ const CASES: Record<string, CaseProps> = {
   description: { label: "Email", description: "We never share it" },
   // Shown only when the browser's validation reports a missing value,
   // which hasn't happened yet: nothing invalid on first render.
-  match: { label: "Email", required: true, error: { message: "Required", match: "valueMissing" } },
+  match: {
+    label: "Email",
+    required: true,
+    error: { message: "Required", match: "valueMissing" },
+  },
 };
 
-const describedBy = (el: HTMLElement) => el.getAttribute("aria-describedby") ?? "";
+const describedBy = (el: HTMLElement) =>
+  el.getAttribute("aria-describedby") ?? "";
 
 function Matrix({ render }: { render: (props: CaseProps) => ReactNode }) {
   return (
@@ -60,34 +65,51 @@ function Matrix({ render }: { render: (props: CaseProps) => ReactNode }) {
 }
 
 /** `role` to find the control by; `"label"` finds it by label instead (e.g. password inputs have no role). */
-function contract(role: string, render: (props: CaseProps) => ReactNode): Story {
+function contract(
+  role: string,
+  render: (props: CaseProps) => ReactNode,
+): Story {
   return {
     render: () => <Matrix render={render} />,
     play: async ({ canvasElement }) => {
       const canvas = within(canvasElement);
       const control = (id: string) =>
         role === "label"
-          ? within(canvas.getByTestId(id)).getByLabelText(/Email/, { selector: "input" })
+          ? within(canvas.getByTestId(id)).getByLabelText(/Email/, {
+              selector: "input",
+            })
           : within(canvas.getByTestId(id)).getByRole(role, { name: /Email/ });
 
       // label: named by its label, not invalid
-      await expect(control("label")).not.toHaveAttribute("aria-invalid", "true");
+      await expect(control("label")).not.toHaveAttribute(
+        "aria-invalid",
+        "true",
+      );
 
       // error without a label: message shown, control invalid, message linked
       const errored = control("error");
-      const message = within(canvas.getByTestId("error")).getByText("Already taken");
+      const message = within(canvas.getByTestId("error")).getByText(
+        "Already taken",
+      );
       await expect(errored).toHaveAttribute("aria-invalid", "true");
       await expect(describedBy(errored)).toContain(message.id);
 
       // description: shown and linked, not invalid
       const described = control("description");
-      const description = within(canvas.getByTestId("description")).getByText("We never share it");
+      const description = within(canvas.getByTestId("description")).getByText(
+        "We never share it",
+      );
       await expect(described).not.toHaveAttribute("aria-invalid", "true");
       await expect(describedBy(described)).toContain(description.id);
 
       // match error before the browser reports the failure: no message, not invalid
-      await expect(within(canvas.getByTestId("match")).queryByText("Required")).toBeNull();
-      await expect(control("match")).not.toHaveAttribute("aria-invalid", "true");
+      await expect(
+        within(canvas.getByTestId("match")).queryByText("Required"),
+      ).toBeNull();
+      await expect(control("match")).not.toHaveAttribute(
+        "aria-invalid",
+        "true",
+      );
 
       // inside an outer labelled Field: named by it, no false warning
       control("outer-field");
@@ -100,22 +122,31 @@ function contract(role: string, render: (props: CaseProps) => ReactNode): Story 
 
 export const InputContract = contract("textbox", (p) => <Input {...p} />);
 
-export const InputAreaContract = contract("textbox", (p) => <InputArea {...p} />);
+export const InputAreaContract = contract("textbox", (p) => (
+  <InputArea {...p} />
+));
 
 // Masked by default (type="password", which has no textbox role).
-export const SensitiveInputContract = contract("label", (p) => <SensitiveInput {...p} />);
-
-export const InputGroupContract = contract("textbox", ({ "aria-label": ariaLabel, ...p }) => (
-  <InputGroup {...p}>
-    <InputGroup.Addon>@</InputGroup.Addon>
-    <InputGroup.Input aria-label={ariaLabel} />
-  </InputGroup>
+export const SensitiveInputContract = contract("label", (p) => (
+  <SensitiveInput {...p} />
 ));
+
+export const InputGroupContract = contract(
+  "textbox",
+  ({ "aria-label": ariaLabel, ...p }) => (
+    <InputGroup {...p}>
+      <InputGroup.Addon>@</InputGroup.Addon>
+      <InputGroup.Input aria-label={ariaLabel} />
+    </InputGroup>
+  ),
+);
 
 export const SelectContract = contract("combobox", (p) => (
   <Select {...p} placeholder="Choose…" items={{ a: "A", b: "B" }} />
 ));
 
-export const CheckboxContract = contract("checkbox", (p) => <Checkbox {...p} />);
+export const CheckboxContract = contract("checkbox", (p) => (
+  <Checkbox {...p} />
+));
 
 export const ToggleContract = contract("switch", (p) => <Toggle {...p} />);

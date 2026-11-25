@@ -103,7 +103,11 @@ const Root = forwardRef<
   ) => {
     // Validate once; every size table (here and in the sub-components, via
     // context) is then indexed with a known key.
-    const size = resolveVariantKey(GOLDFINCH_INPUT_GROUP_VARIANTS.size, sizeProp, "base");
+    const size = resolveVariantKey(
+      GOLDFINCH_INPUT_GROUP_VARIANTS.size,
+      sizeProp,
+      "base",
+    );
     const inputId = useId();
     const focusMode = detectFocusMode(children);
 
@@ -202,7 +206,7 @@ const Root = forwardRef<
                 "flex min-w-0 flex-1 items-center gap-0",
                 // Use a clean 1px CSS border instead of ring+shadow from inputVariants
                 // so the zone matches adjacent individual-mode buttons exactly.
-                "ring-0 shadow-none",
+                "shadow-none ring-0",
                 "border border-goldfinch-line",
                 "focus-within:border-goldfinch-focus/50",
                 // z-[2] lifts above adjacent button's -ml-px overlap so focus border shows
@@ -210,7 +214,7 @@ const Root = forwardRef<
                 // Negative margin (not border-l-0) so the border is still paintable on focus
                 "not-first:-ml-px",
                 // Outer edges inherit radius; inner edges are flat against sibling buttons
-                "first:rounded-l-[inherit] last:rounded-r-[inherit] rounded-none",
+                "rounded-none first:rounded-l-[inherit] last:rounded-r-[inherit]",
                 // Size-specific padding adjustments when addons or suffixes are present
                 INPUT_GROUP_HAS_CLASSES[size],
                 // When a suffix is present, let the input shrink to its content width
@@ -227,7 +231,7 @@ const Root = forwardRef<
                 <label
                   htmlFor={inputId}
                   // Positioned behind children (z-0) so it catches clicks on empty space
-                  className="absolute inset-0 z-0 cursor-text mb-0!"
+                  className="absolute inset-0 z-0 mb-0! cursor-text"
                   aria-hidden="true"
                 />
               )}

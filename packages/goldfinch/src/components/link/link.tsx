@@ -81,7 +81,13 @@ export interface GoldfinchLinkVariantsProps {
 export function linkVariants({
   variant = GOLDFINCH_LINK_DEFAULT_VARIANTS.variant,
 }: GoldfinchLinkVariantsProps = {}) {
-  return cn(resolveVariant(GOLDFINCH_LINK_VARIANTS.variant, variant, GOLDFINCH_LINK_DEFAULT_VARIANTS.variant).classes);
+  return cn(
+    resolveVariant(
+      GOLDFINCH_LINK_VARIANTS.variant,
+      variant,
+      GOLDFINCH_LINK_DEFAULT_VARIANTS.variant,
+    ).classes,
+  );
 }
 
 /**
@@ -163,11 +169,11 @@ const LinkBase = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
     useEffect(() => {
       if ("to" in props && props.to !== undefined) {
         console.warn(
-          '[goldfinch] Link: The `to` prop is deprecated. Use `href` instead.\n\n' +
-            'If your app uses a client-side router, configure a LinkProvider that\n' +
-            'maps `href` to your router\'s navigation prop. See:\n' +
-            'https://goldfinch.example.com/utilities/link-provider\n\n' +
-            'Migration example:\n' +
+          "[goldfinch] Link: The `to` prop is deprecated. Use `href` instead.\n\n" +
+            "If your app uses a client-side router, configure a LinkProvider that\n" +
+            "maps `href` to your router's navigation prop. See:\n" +
+            "https://goldfinch.example.com/utilities/link-provider\n\n" +
+            "Migration example:\n" +
             '  Before: <Link to="/page">…</Link>\n' +
             '  After:  <Link href="/page">…</Link>',
         );

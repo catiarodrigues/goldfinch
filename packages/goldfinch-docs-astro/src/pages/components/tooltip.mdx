@@ -49,12 +49,15 @@ Wrap the trigger element as `children` and provide the tooltip text via the `lab
 
 ```tsx
 <Tooltip label="Settings">
-  <button aria-label="Settings"><GearIcon /></button>
+  <button aria-label="Settings">
+    <GearIcon />
+  </button>
 </Tooltip>
 ```
 
 <Callout type="info">
-  Tooltips appear on hover for mouse users and on focus for keyboard users, ensuring accessibility across input methods.
+  Tooltips appear on hover for mouse users and on focus for keyboard users,
+  ensuring accessibility across input methods.
 </Callout>
 
 ## API Reference
@@ -62,7 +65,17 @@ Wrap the trigger element as `children` and provide the tooltip text via the `lab
 <PropsTable
   of="Tooltip"
   props={[
-    { name: "label", type: "ReactNode", default: "—", description: "Tooltip content." },
-    { name: "children", type: "ReactNode", default: "—", description: "Trigger element." },
+    {
+      name: "label",
+      type: "ReactNode",
+      default: "—",
+      description: "Tooltip content.",
+    },
+    {
+      name: "children",
+      type: "ReactNode",
+      default: "—",
+      description: "Trigger element.",
+    },
   ]}
 />

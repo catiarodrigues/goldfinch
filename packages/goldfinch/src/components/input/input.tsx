@@ -5,7 +5,11 @@ import {
   type ReactNode,
 } from "react";
 import { Input as BaseInput } from "@base-ui/react/input";
-import { Field, useAccessibleNameWarning, type FieldErrorProp } from "../field/field";
+import {
+  Field,
+  useAccessibleNameWarning,
+  type FieldErrorProp,
+} from "../field/field";
 import {
   GOLDFINCH_INPUT_VARIANTS,
   GOLDFINCH_INPUT_DEFAULT_VARIANTS,

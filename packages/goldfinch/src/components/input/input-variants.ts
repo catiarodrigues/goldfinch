@@ -27,7 +27,8 @@ export const GOLDFINCH_INPUT_VARIANTS = {
       description: "Default input appearance",
     },
     error: {
-      classes: "!ring-goldfinch-danger focus:ring-goldfinch-danger/50 focus:ring-[1.5px]",
+      classes:
+        "!ring-goldfinch-danger focus:ring-goldfinch-danger/50 focus:ring-[1.5px]",
       description: "Error state for validation failures",
     },
   },
@@ -40,7 +41,8 @@ export const GOLDFINCH_INPUT_DEFAULT_VARIANTS = {
 
 // Derived types from GOLDFINCH_INPUT_VARIANTS
 export type GoldfinchInputSize = keyof typeof GOLDFINCH_INPUT_VARIANTS.size;
-export type GoldfinchInputVariant = keyof typeof GOLDFINCH_INPUT_VARIANTS.variant;
+export type GoldfinchInputVariant =
+  keyof typeof GOLDFINCH_INPUT_VARIANTS.variant;
 
 export interface GoldfinchInputVariantsProps {
   /**

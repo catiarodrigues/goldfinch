@@ -11,7 +11,7 @@ type Story = StoryObj<typeof EmptyState>;
 
 export const Default: Story = {
   args: {
-    title: 'No items found',
-    description: 'Try adjusting your search or filters.',
+    title: "No items found",
+    description: "Try adjusting your search or filters.",
   },
 };

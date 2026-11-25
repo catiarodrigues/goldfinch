@@ -86,12 +86,47 @@ For custom option markup, use the compound children API with `Select.Option`, `S
 <PropsTable
   of="Select"
   props={[
-    { name: "items", type: "Record<string, SelectItemValue> | ReadonlyArray<{ label: ReactNode; value: T }>", default: "—", description: "Available options." },
-    { name: "placeholder", type: "string", default: "—", description: "Placeholder when nothing selected." },
-    { name: "value", type: "unknown", default: "—", description: "Controlled selected value." },
-    { name: "defaultValue", type: "unknown", default: "—", description: "Uncontrolled initial value." },
-    { name: "onValueChange", type: "(value: unknown) => void", default: "—", description: "Selection change callback." },
-    { name: "label", type: "ReactNode", default: "—", description: "Field label." },
-    { name: "disabled", type: "boolean", default: "false", description: "Disable the select." },
+    {
+      name: "items",
+      type: "Record<string, SelectItemValue> | ReadonlyArray<{ label: ReactNode; value: T }>",
+      default: "—",
+      description: "Available options.",
+    },
+    {
+      name: "placeholder",
+      type: "string",
+      default: "—",
+      description: "Placeholder when nothing selected.",
+    },
+    {
+      name: "value",
+      type: "unknown",
+      default: "—",
+      description: "Controlled selected value.",
+    },
+    {
+      name: "defaultValue",
+      type: "unknown",
+      default: "—",
+      description: "Uncontrolled initial value.",
+    },
+    {
+      name: "onValueChange",
+      type: "(value: unknown) => void",
+      default: "—",
+      description: "Selection change callback.",
+    },
+    {
+      name: "label",
+      type: "ReactNode",
+      default: "—",
+      description: "Field label.",
+    },
+    {
+      name: "disabled",
+      type: "boolean",
+      default: "false",
+      description: "Disable the select.",
+    },
   ]}
 />

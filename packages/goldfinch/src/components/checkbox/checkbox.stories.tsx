@@ -11,6 +11,6 @@ type Story = StoryObj<typeof Checkbox>;
 
 export const Default: Story = {
   args: {
-    label: 'Accept terms',
+    label: "Accept terms",
   },
 };

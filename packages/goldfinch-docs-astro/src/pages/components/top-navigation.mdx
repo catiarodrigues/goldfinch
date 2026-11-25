@@ -39,7 +39,9 @@ export default function AppBar() {
         <TopNavigation.NavItem>Settings</TopNavigation.NavItem>
       </TopNavigation.Nav>
       <TopNavigation.Actions>
-        <Button variant="ghost" size="sm">Log in</Button>
+        <Button variant="ghost" size="sm">
+          Log in
+        </Button>
       </TopNavigation.Actions>
     </TopNavigation>
   );
@@ -59,7 +61,17 @@ Use `TopNavigation.NavItem` with `active` for the current page. Actions are push
 <PropsTable
   of="TopNavigation"
   props={[
-    { name: "children", type: "ReactNode", default: "—", description: "Header content." },
-    { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+    {
+      name: "children",
+      type: "ReactNode",
+      default: "—",
+      description: "Header content.",
+    },
+    {
+      name: "className",
+      type: "string",
+      default: "—",
+      description: "Additional CSS classes.",
+    },
   ]}
 />

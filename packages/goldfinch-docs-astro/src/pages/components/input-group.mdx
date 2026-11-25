@@ -39,7 +39,9 @@ import { InputGroup, Input, Button } from "@catiarodrigues/goldfinch";
 export default function Example() {
   return (
     <InputGroup>
-      <Button variant="secondary" onClick={() => alert("Search")}>Search</Button>
+      <Button variant="secondary" onClick={() => alert("Search")}>
+        Search
+      </Button>
       <Input placeholder="Search..." aria-label="Search" />
     </InputGroup>
   );
@@ -55,7 +57,8 @@ export default function Example() {
 Place an Input alongside Button elements as children. The group merges their borders for a unified appearance.
 
 <Callout type="info">
-  InputGroup does not manage layout logic — it purely handles the visual merging of adjacent form controls.
+  InputGroup does not manage layout logic — it purely handles the visual merging
+  of adjacent form controls.
 </Callout>
 
 ## API Reference
@@ -63,7 +66,17 @@ Place an Input alongside Button elements as children. The group merges their bor
 <PropsTable
   of="InputGroup"
   props={[
-    { name: "children", type: "ReactNode", default: "—", description: "Input and button elements." },
-    { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+    {
+      name: "children",
+      type: "ReactNode",
+      default: "—",
+      description: "Input and button elements.",
+    },
+    {
+      name: "className",
+      type: "string",
+      default: "—",
+      description: "Additional CSS classes.",
+    },
   ]}
 />

@@ -17,6 +17,9 @@ export function buttonChildAsRender(
   const type = children.type;
   const isButton =
     type === "button" ||
-    (typeof type !== "string" && (type as { displayName?: string }).displayName === "Button");
-  return isButton ? (children as ReactElement<Record<string, unknown>>) : undefined;
+    (typeof type !== "string" &&
+      (type as { displayName?: string }).displayName === "Button");
+  return isButton
+    ? (children as ReactElement<Record<string, unknown>>)
+    : undefined;
 }

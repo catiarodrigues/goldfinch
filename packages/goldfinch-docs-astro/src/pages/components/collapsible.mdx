@@ -59,9 +59,29 @@ Provide a `trigger` element and content children. Use `open` and `onOpenChange` 
 <PropsTable
   of="Collapsible"
   props={[
-    { name: "trigger", type: "ReactNode", default: "—", description: "The element that toggles the content." },
-    { name: "defaultOpen", type: "boolean", default: "false", description: "Initial open state." },
-    { name: "open", type: "boolean", default: "—", description: "Controlled open state." },
-    { name: "onOpenChange", type: "(open: boolean) => void", default: "—", description: "Open state change callback." },
+    {
+      name: "trigger",
+      type: "ReactNode",
+      default: "—",
+      description: "The element that toggles the content.",
+    },
+    {
+      name: "defaultOpen",
+      type: "boolean",
+      default: "false",
+      description: "Initial open state.",
+    },
+    {
+      name: "open",
+      type: "boolean",
+      default: "—",
+      description: "Controlled open state.",
+    },
+    {
+      name: "onOpenChange",
+      type: "(open: boolean) => void",
+      default: "—",
+      description: "Open state change callback.",
+    },
   ]}
 />

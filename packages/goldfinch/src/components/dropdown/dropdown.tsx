@@ -7,10 +7,7 @@ import {
   usePortalContainer,
   type PortalContainer,
 } from "../../utils/portal-provider";
-import {
-  CaretRightIcon as CaretRight,
-  type Icon,
-} from "@phosphor-icons/react";
+import { CaretRightIcon as CaretRight, type Icon } from "@phosphor-icons/react";
 
 /** Dropdown item variant definitions (default and danger styles). */
 export const GOLDFINCH_DROPDOWN_VARIANTS = {
@@ -32,7 +29,8 @@ export const GOLDFINCH_DROPDOWN_DEFAULT_VARIANTS = {
 } as const;
 
 // Derived types from GOLDFINCH_DROPDOWN_VARIANTS
-export type GoldfinchDropdownVariant = keyof typeof GOLDFINCH_DROPDOWN_VARIANTS.variant;
+export type GoldfinchDropdownVariant =
+  keyof typeof GOLDFINCH_DROPDOWN_VARIANTS.variant;
 
 export interface GoldfinchDropdownVariantsProps {
   /**
@@ -47,7 +45,13 @@ export interface GoldfinchDropdownVariantsProps {
 export function dropdownVariants({
   variant = GOLDFINCH_DROPDOWN_DEFAULT_VARIANTS.variant,
 }: GoldfinchDropdownVariantsProps = {}) {
-  return cn(resolveVariant(GOLDFINCH_DROPDOWN_VARIANTS.variant, variant, GOLDFINCH_DROPDOWN_DEFAULT_VARIANTS.variant).classes);
+  return cn(
+    resolveVariant(
+      GOLDFINCH_DROPDOWN_VARIANTS.variant,
+      variant,
+      GOLDFINCH_DROPDOWN_DEFAULT_VARIANTS.variant,
+    ).classes,
+  );
 }
 
 const DropdownMenuSubTrigger = React.forwardRef<
@@ -334,7 +338,7 @@ const DropdownMenuCheckboxItem = React.forwardRef<
     checked={checked}
     {...props}
   >
-      <DropdownMenuPrimitive.CheckboxItemIndicator className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center bg-goldfinch-contrast rounded-sm" />
+    <DropdownMenuPrimitive.CheckboxItemIndicator className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center rounded-sm bg-goldfinch-contrast" />
     {children}
   </DropdownMenuPrimitive.CheckboxItem>
 ));
@@ -420,7 +424,9 @@ const DropdownMenuRadioItemIndicator = React.forwardRef<
     className={cn("ml-auto flex items-center justify-center", className)}
     {...props}
   >
-    {children ?? <span className="h-2 w-2 rounded-full bg-goldfinch-contrast" />}
+    {children ?? (
+      <span className="h-2 w-2 rounded-full bg-goldfinch-contrast" />
+    )}
   </DropdownMenuPrimitive.RadioItemIndicator>
 ));
 DropdownMenuRadioItemIndicator.displayName = "DropdownMenuRadioItemIndicator";

@@ -56,8 +56,10 @@ export const GOLDFINCH_RADIO_DEFAULT_VARIANTS = {
 } as const;
 
 // Derived types from GOLDFINCH_RADIO_VARIANTS
-export type GoldfinchRadioVariant = keyof typeof GOLDFINCH_RADIO_VARIANTS.variant;
-export type GoldfinchRadioAppearance = keyof typeof GOLDFINCH_RADIO_VARIANTS.appearance;
+export type GoldfinchRadioVariant =
+  keyof typeof GOLDFINCH_RADIO_VARIANTS.variant;
+export type GoldfinchRadioAppearance =
+  keyof typeof GOLDFINCH_RADIO_VARIANTS.appearance;
 
 export interface GoldfinchRadioVariantsProps {
   /**
@@ -329,14 +331,14 @@ function _RadioItem<T = string>(
         data-goldfinch-component="Radio"
         data-goldfinch-part="item-label"
         className={cn(
-          "m-0 group relative flex items-start gap-3 rounded-lg border border-goldfinch-hairline bg-goldfinch-base p-3 transition-colors has-[[data-checked]]:border-goldfinch-interact has-[[data-checked]]:bg-goldfinch-tint",
+          "group relative m-0 flex items-start gap-3 rounded-lg border border-goldfinch-hairline bg-goldfinch-base p-3 transition-colors has-[[data-checked]]:border-goldfinch-interact has-[[data-checked]]:bg-goldfinch-tint",
           controlAtStart && "flex-row-reverse",
           variant === "error" &&
             "border-goldfinch-danger has-[[data-checked]]:border-goldfinch-danger has-[[data-checked]]:bg-goldfinch-base",
           disabled
             ? "cursor-not-allowed opacity-50"
             : cn(
-                "has-[[data-disabled]]:cursor-not-allowed has-[[data-disabled]]:opacity-50 cursor-pointer",
+                "cursor-pointer has-[[data-disabled]]:cursor-not-allowed has-[[data-disabled]]:opacity-50",
                 variant !== "error" &&
                   "hover:not-has-[[data-disabled]]:bg-goldfinch-tint",
               ),
@@ -358,8 +360,10 @@ function _RadioItem<T = string>(
           value={value}
           disabled={disabled}
           className={cn(
-            "relative mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-0 bg-goldfinch-base ring ring-2 focus:outline-none focus:ring-goldfinch-focus focus-visible:ring-2 focus-visible:ring-goldfinch-brand",
-            variant === "error" ? "ring-goldfinch-danger" : "ring-goldfinch-line",
+            "relative mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-0 bg-goldfinch-base ring ring-2 focus:ring-goldfinch-focus focus:outline-none focus-visible:ring-2 focus-visible:ring-goldfinch-brand",
+            variant === "error"
+              ? "ring-goldfinch-danger"
+              : "ring-goldfinch-line",
             !disabled &&
               variant !== "error" &&
               "group-hover:ring-goldfinch-hairline focus-visible:outline-offset-3",
@@ -385,7 +389,7 @@ function _RadioItem<T = string>(
       data-goldfinch-component="Radio"
       data-goldfinch-part="item-label"
       className={cn(
-        "m-0 group relative inline-flex items-start gap-2",
+        "group relative m-0 inline-flex items-start gap-2",
         // "start" (default): radio before label
         // "end": label before radio using flex-row-reverse
         effectiveControlPosition === "end" && "flex-row-reverse justify-end",
@@ -400,14 +404,14 @@ function _RadioItem<T = string>(
         value={value}
         disabled={disabled}
         className={cn(
-          "relative mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-0 bg-goldfinch-base ring focus:outline-none after:absolute after:-inset-x-3 after:-inset-y-2",
+          "relative mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-0 bg-goldfinch-base ring after:absolute after:-inset-x-3 after:-inset-y-2 focus:outline-none",
           variant === "error" ? "ring-goldfinch-danger" : "ring-goldfinch-line",
           !disabled &&
             variant !== "error" &&
-            "group-hover:ring-goldfinch-hairline focus:ring-goldfinch-focus focus:ring-2 focus-visible:ring-2 focus-visible:ring-goldfinch-brand focus-visible:outline-offset-3",
+            "group-hover:ring-goldfinch-hairline focus:ring-2 focus:ring-goldfinch-focus focus-visible:ring-2 focus-visible:ring-goldfinch-brand focus-visible:outline-offset-3",
           !disabled &&
             variant === "error" &&
-            "focus:ring-goldfinch-focus focus:ring-2 focus-visible:ring-2 focus-visible:ring-goldfinch-brand focus-visible:outline-offset-3",
+            "focus:ring-2 focus:ring-goldfinch-focus focus-visible:ring-2 focus-visible:ring-goldfinch-brand focus-visible:outline-offset-3",
           "data-[checked]:bg-goldfinch-contrast",
         )}
       >

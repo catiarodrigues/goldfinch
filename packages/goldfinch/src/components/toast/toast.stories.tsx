@@ -13,7 +13,14 @@ type Story = StoryObj<typeof Toasty>;
 function ShowToastButton() {
   const toast = useGoldfinchToastManager();
   return (
-    <Button onClick={() => toast.add({ title: "Hello!", description: "This is a toast notification." })}>
+    <Button
+      onClick={() =>
+        toast.add({
+          title: "Hello!",
+          description: "This is a toast notification.",
+        })
+      }
+    >
       Show Toast
     </Button>
   );

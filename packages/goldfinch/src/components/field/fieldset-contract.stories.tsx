@@ -26,9 +26,13 @@ const CASES: Record<string, CaseProps> = {
   match: { error: { message: "Required", match: "valueMissing" } },
 };
 
-const describedBy = (el: HTMLElement) => el.getAttribute("aria-describedby") ?? "";
+const describedBy = (el: HTMLElement) =>
+  el.getAttribute("aria-describedby") ?? "";
 
-function contract(role: string, render: (props: CaseProps) => ReactNode): Story {
+function contract(
+  role: string,
+  render: (props: CaseProps) => ReactNode,
+): Story {
   return {
     render: () => (
       <div className="flex flex-col gap-8">
@@ -62,7 +66,9 @@ function contract(role: string, render: (props: CaseProps) => ReactNode): Story 
       await expect(describedBy(described)).toContain(description.id);
 
       // match error before the browser reports the failure: no message, not invalid
-      await expect(within(canvas.getByTestId("match")).queryByText("Required")).toBeNull();
+      await expect(
+        within(canvas.getByTestId("match")).queryByText("Required"),
+      ).toBeNull();
       await expect(group("match")).not.toHaveAttribute("data-invalid");
     },
   };

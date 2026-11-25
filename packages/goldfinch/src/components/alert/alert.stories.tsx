@@ -11,20 +11,20 @@ type Story = StoryObj<typeof Alert>;
 
 export const Default: Story = {
   args: {
-    children: 'This is an informational alert.',
+    children: "This is an informational alert.",
   },
 };
 
 export const AlertStory: Story = {
   args: {
-    children: 'This is an informational alert.',
-    variant: 'alert',
+    children: "This is an informational alert.",
+    variant: "alert",
   },
 };
 
 export const Error: Story = {
   args: {
-    children: 'This is an informational alert.',
-    variant: 'error',
+    children: "This is an informational alert.",
+    variant: "error",
   },
 };

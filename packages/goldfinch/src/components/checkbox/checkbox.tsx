@@ -3,7 +3,11 @@ import { CheckIcon, MinusIcon } from "@phosphor-icons/react";
 import { cn } from "../../utils/cn";
 import { resolveVariant } from "../../utils/resolve-variant";
 import { Label } from "../label";
-import { Field, useAccessibleNameWarning, type FieldErrorProp } from "../field/field";
+import {
+  Field,
+  useAccessibleNameWarning,
+  type FieldErrorProp,
+} from "../field/field";
 import { Fieldset as BaseFieldset } from "@base-ui/react/fieldset";
 import { Fieldset } from "../field/fieldset";
 import { Field as FieldBase } from "@base-ui/react/field";
@@ -35,7 +39,8 @@ export const GOLDFINCH_CHECKBOX_DEFAULT_VARIANTS = {
 } as const;
 
 // Derived types from GOLDFINCH_CHECKBOX_VARIANTS
-export type GoldfinchCheckboxVariant = keyof typeof GOLDFINCH_CHECKBOX_VARIANTS.variant;
+export type GoldfinchCheckboxVariant =
+  keyof typeof GOLDFINCH_CHECKBOX_VARIANTS.variant;
 
 export interface GoldfinchCheckboxVariantsProps {
   /**
@@ -50,7 +55,13 @@ export interface GoldfinchCheckboxVariantsProps {
 export function checkboxVariants({
   variant = GOLDFINCH_CHECKBOX_DEFAULT_VARIANTS.variant,
 }: GoldfinchCheckboxVariantsProps = {}) {
-  return cn(resolveVariant(GOLDFINCH_CHECKBOX_VARIANTS.variant, variant, GOLDFINCH_CHECKBOX_DEFAULT_VARIANTS.variant).classes);
+  return cn(
+    resolveVariant(
+      GOLDFINCH_CHECKBOX_VARIANTS.variant,
+      variant,
+      GOLDFINCH_CHECKBOX_DEFAULT_VARIANTS.variant,
+    ).classes,
+  );
 }
 
 // Legacy type alias for backwards compatibility
@@ -255,11 +266,13 @@ const CheckboxBase = forwardRef<HTMLButtonElement, CheckboxProps>(
         disabled={disabled}
         onCheckedChange={onCheckedChange}
         className={cn(
-          "relative flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border-0 bg-goldfinch-base ring focus:outline-none after:absolute after:-inset-x-3 after:-inset-y-2",
+          "relative flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border-0 bg-goldfinch-base ring after:absolute after:-inset-x-3 after:-inset-y-2 focus:outline-none",
           label && "mt-0.5",
-          variant === "error" ? "ring-goldfinch-danger" : "ring-goldfinch-hairline",
+          variant === "error"
+            ? "ring-goldfinch-danger"
+            : "ring-goldfinch-hairline",
           !disabled &&
-            "hover:ring-goldfinch-hairline focus:ring-goldfinch-focus focus:ring-2 focus-visible:ring-2 focus-visible:ring-goldfinch-brand",
+            "hover:ring-goldfinch-hairline focus:ring-2 focus:ring-goldfinch-focus focus-visible:ring-2 focus-visible:ring-goldfinch-brand",
           "data-[checked]:bg-goldfinch-contrast data-[checked]:ring-goldfinch-contrast data-[indeterminate]:bg-goldfinch-contrast data-[indeterminate]:ring-goldfinch-contrast",
           disabled && "cursor-not-allowed opacity-50",
           className,
@@ -300,7 +313,7 @@ const CheckboxBase = forwardRef<HTMLButtonElement, CheckboxProps>(
         {label ? (
           <FieldBase.Label
             className={cn(
-              "!m-0 !min-h-0 !text-base inline-flex items-start gap-2",
+              "!m-0 inline-flex !min-h-0 items-start gap-2 !text-base",
               controlFirst ? "flex-row" : "flex-row-reverse justify-end",
               disabled ? "cursor-not-allowed" : "cursor-pointer",
             )}
@@ -347,7 +360,7 @@ const CheckboxItem = forwardRef<HTMLButtonElement, CheckboxItemProps>(
         data-goldfinch-component="Checkbox"
         data-goldfinch-part="item-label"
         className={cn(
-          "m-0 relative inline-flex items-start gap-2",
+          "relative m-0 inline-flex items-start gap-2",
           // Control first (default): checkbox before label
           // Label first: label before checkbox using flex-row-reverse
           !controlFirst && "flex-row-reverse justify-end",
@@ -367,9 +380,11 @@ const CheckboxItem = forwardRef<HTMLButtonElement, CheckboxItemProps>(
           onCheckedChange={onCheckedChange}
           className={cn(
             "peer relative mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border-0 bg-goldfinch-base ring after:absolute after:-inset-x-3 after:-inset-y-2",
-            variant === "error" ? "ring-goldfinch-danger" : "ring-goldfinch-hairline",
+            variant === "error"
+              ? "ring-goldfinch-danger"
+              : "ring-goldfinch-hairline",
             !disabled &&
-              "group-hover:ring-goldfinch-hairline hover:ring-goldfinch-hairline focus:ring-goldfinch-focus focus:ring-2 focus-visible:ring-2 focus-visible:ring-goldfinch-brand",
+              "group-hover:ring-goldfinch-hairline hover:ring-goldfinch-hairline focus:ring-2 focus:ring-goldfinch-focus focus-visible:ring-2 focus-visible:ring-goldfinch-brand",
             "data-[checked]:bg-goldfinch-contrast data-[checked]:ring-goldfinch-contrast data-[indeterminate]:bg-goldfinch-contrast data-[indeterminate]:ring-goldfinch-contrast",
           )}
         >

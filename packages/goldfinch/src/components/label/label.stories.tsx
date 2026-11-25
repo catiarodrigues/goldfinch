@@ -11,6 +11,6 @@ type Story = StoryObj<typeof Label>;
 
 export const Default: Story = {
   args: {
-    children: 'Email address',
+    children: "Email address",
   },
 };

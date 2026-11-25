@@ -166,7 +166,8 @@ export function Tabs({
       className={cn(
         "relative isolate min-w-0 font-medium",
         isSegmented &&
-          (isSm ? "rounded-md" : "rounded-lg") + " ring ring-goldfinch-hairline/70",
+          (isSm ? "rounded-md" : "rounded-lg") +
+            " ring ring-goldfinch-hairline/70",
         className,
       )}
       onValueChange={(nextValue) => {
@@ -191,7 +192,7 @@ export function Tabs({
         className={cn(
           "relative flex min-w-0 shrink items-stretch",
           isSegmented &&
-            "goldfinch-tabs-list overflow-x-auto rounded-lg bg-goldfinch-recessed px-0.5 [--scroll-fade-width:3rem] scroll-px-(--scroll-fade-width)",
+            "goldfinch-tabs-list scroll-px-(--scroll-fade-width) overflow-x-auto rounded-lg bg-goldfinch-recessed px-0.5 [--scroll-fade-width:3rem]",
           isSegmented && (isSm ? "h-6.5 rounded-md" : "h-9"),
           isOverflowing && "cursor-grab active:cursor-grabbing",
           isUnderline && "gap-4 border-b border-goldfinch-hairline pb-2",
@@ -214,16 +215,16 @@ export function Tabs({
               });
             }}
             className={cn(
-              "relative z-2 flex items-center rounded bg-transparent whitespace-nowrap focus:outline-none focus:ring-goldfinch-focus/50 focus-visible:ring-2 focus-visible:ring-goldfinch-brand",
+              "relative z-2 flex items-center rounded bg-transparent whitespace-nowrap focus:ring-goldfinch-focus/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-goldfinch-brand",
               isOverflowing
                 ? "cursor-grab active:cursor-grabbing"
                 : "cursor-pointer",
               isSm ? "text-xs" : "text-base",
               isSegmented &&
-                "my-0.5 text-goldfinch-subtle hover:text-goldfinch-default aria-selected:text-goldfinch-default focus-visible:ring-inset",
-              isSegmented && (isSm ? "px-2 rounded-sm" : "px-2.5 rounded-md"),
+                "my-0.5 text-goldfinch-subtle hover:text-goldfinch-default focus-visible:ring-inset aria-selected:text-goldfinch-default",
+              isSegmented && (isSm ? "rounded-sm px-2" : "rounded-md px-2.5"),
               isUnderline &&
-                "text-goldfinch-subtle hover:bg-goldfinch-tint hover:text-goldfinch-default aria-selected:hover:bg-goldfinch-tint aria-selected:font-medium aria-selected:text-goldfinch-default",
+                "text-goldfinch-subtle hover:bg-goldfinch-tint hover:text-goldfinch-default aria-selected:font-medium aria-selected:text-goldfinch-default aria-selected:hover:bg-goldfinch-tint",
               isUnderline && (isSm ? "px-1.5 py-2.5" : "px-2 py-3"),
               tab.className,
             )}
@@ -236,7 +237,7 @@ export function Tabs({
             <div
               {...props}
               className={cn(
-                "absolute z-1 left-0",
+                "absolute left-0 z-1",
                 "w-(--active-tab-width) translate-x-(--active-tab-left) transition-all duration-200",
                 "data-[rendered=false]:scale-90 data-[rendered=false]:opacity-0",
                 isSegmented &&

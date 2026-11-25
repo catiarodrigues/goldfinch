@@ -10,10 +10,10 @@ const description = frontmatter?.description || "";
     <slot name="head" />
   </div>
 
-  <h1 class="text-goldfinch-strong text-3xl font-bold tracking-tight">{title}</h1>
-  {description && (
-    <p class="lead mb-8">{description}</p>
-  )}
+  <h1 class="text-goldfinch-strong text-3xl font-bold tracking-tight">
+    {title}
+  </h1>
+  {description && <p class="lead mb-8">{description}</p>}
 
   <slot />
 </DocLayout>

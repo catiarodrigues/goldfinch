@@ -5,4 +5,8 @@ export {
   useLinkComponent,
   type LinkComponentProps,
 } from "./link-provider";
-export { GoldfinchPortalProvider, usePortalContainer, type PortalContainer } from "./portal-provider";
+export {
+  GoldfinchPortalProvider,
+  usePortalContainer,
+  type PortalContainer,
+} from "./portal-provider";

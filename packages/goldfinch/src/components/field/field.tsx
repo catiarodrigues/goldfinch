@@ -80,7 +80,9 @@ export type FieldErrorMatch =
  * while it's set), or `{ message, match }` to show the message only when the
  * browser's own validation fails that `ValidityState` check.
  */
-export type FieldErrorProp = string | { message: ReactNode; match: FieldErrorMatch };
+export type FieldErrorProp =
+  | string
+  | { message: ReactNode; match: FieldErrorMatch };
 
 /** True inside a Field that has a label, so its control already has an accessible name. */
 const FieldLabelledContext = createContext(false);
@@ -97,7 +99,11 @@ export function useInLabelledField() {
  */
 export function useAccessibleNameWarning(
   component: string,
-  props: { label?: ReactNode; "aria-label"?: string; "aria-labelledby"?: string },
+  props: {
+    label?: ReactNode;
+    "aria-label"?: string;
+    "aria-labelledby"?: string;
+  },
 ) {
   const inLabelledField = useInLabelledField();
   if (
@@ -198,13 +204,17 @@ export function Field({
   return (
     <FieldLabelledContext.Provider value={Boolean(label)}>
       <FieldBase.Root
-        className={cn(fieldVariants({ controlFirst }), "group/field", className)}
+        className={cn(
+          fieldVariants({ controlFirst }),
+          "group/field",
+          className,
+        )}
         // An always-shown error makes the field invalid; a `match` error lets
         // the browser's validity decide.
         invalid={fieldError?.match === true ? true : undefined}
       >
         {label && !hideLabel && (
-          <FieldBase.Label className="m-0 select-none text-base font-medium text-goldfinch-default">
+          <FieldBase.Label className="m-0 text-base font-medium text-goldfinch-default select-none">
             <Label showOptional={showOptional} tooltip={labelTooltip} asContent>
               {label}
             </Label>

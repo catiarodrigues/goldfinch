@@ -47,14 +47,25 @@ export const ButtonChildIsTheTrigger: Story = {
     // The open modal is portalled to <body>, so search the whole document.
     const page = within(canvasElement.ownerDocument.body);
 
-    await expect(canvasElement.ownerDocument.querySelectorAll("button button")).toHaveLength(0);
+    await expect(
+      canvasElement.ownerDocument.querySelectorAll("button button"),
+    ).toHaveLength(0);
     // `hidden: true`: the open modal hides the page behind it from the a11y
     // tree; this checks structure (one button each), not reachability.
-    for (const name of ["Open modal", "Close modal", "Open popover", "Hover me"]) {
-      await expect(page.getAllByRole("button", { name, hidden: true })).toHaveLength(1);
+    for (const name of [
+      "Open modal",
+      "Close modal",
+      "Open popover",
+      "Hover me",
+    ]) {
+      await expect(
+        page.getAllByRole("button", { name, hidden: true }),
+      ).toHaveLength(1);
     }
 
     // An icon child is still wrapped in a button.
-    await expect(page.getByRole("button", { name: "About", hidden: true })).toBeInTheDocument();
+    await expect(
+      page.getByRole("button", { name: "About", hidden: true }),
+    ).toBeInTheDocument();
   },
 };

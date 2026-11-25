@@ -57,7 +57,8 @@ Choose a `size` to control the maximum width: `sm` (48rem), `base` (64rem), `lg`
 ```
 
 <Callout type="info">
-  Page provides responsive padding — `px-4` on mobile, `px-6` on sm, `px-8` on lg — so content never touches the viewport edges.
+  Page provides responsive padding — `px-4` on mobile, `px-6` on sm, `px-8` on
+  lg — so content never touches the viewport edges.
 </Callout>
 
 ## API Reference
@@ -65,8 +66,23 @@ Choose a `size` to control the maximum width: `sm` (48rem), `base` (64rem), `lg`
 <PropsTable
   of="Page"
   props={[
-    { name: "size", type: '"sm" | "base" | "lg" | "full"', default: '"base"', description: "Max-width constraint." },
-    { name: "children", type: "ReactNode", default: "—", description: "Page content." },
-    { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+    {
+      name: "size",
+      type: '"sm" | "base" | "lg" | "full"',
+      default: '"base"',
+      description: "Max-width constraint.",
+    },
+    {
+      name: "children",
+      type: "ReactNode",
+      default: "—",
+      description: "Page content.",
+    },
+    {
+      name: "className",
+      type: "string",
+      default: "—",
+      description: "Additional CSS classes.",
+    },
   ]}
 />

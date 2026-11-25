@@ -11,41 +11,41 @@ type Story = StoryObj<typeof Badge>;
 
 export const Default: Story = {
   args: {
-    children: 'Badge',
+    children: "Badge",
   },
 };
 
 export const Primary: Story = {
   args: {
-    children: 'Badge',
-    variant: 'primary',
+    children: "Badge",
+    variant: "primary",
   },
 };
 
 export const Secondary: Story = {
   args: {
-    children: 'Badge',
-    variant: 'secondary',
+    children: "Badge",
+    variant: "secondary",
   },
 };
 
 export const Success: Story = {
   args: {
-    children: 'Badge',
-    variant: 'success',
+    children: "Badge",
+    variant: "success",
   },
 };
 
 export const Warning: Story = {
   args: {
-    children: 'Badge',
-    variant: 'warning',
+    children: "Badge",
+    variant: "warning",
   },
 };
 
 export const Error: Story = {
   args: {
-    children: 'Badge',
-    variant: 'error',
+    children: "Badge",
+    variant: "error",
   },
 };

@@ -11,6 +11,6 @@ type Story = StoryObj<typeof SensitiveInput>;
 
 export const Default: Story = {
   args: {
-    placeholder: 'Enter sensitive data...',
+    placeholder: "Enter sensitive data...",
   },
 };

@@ -38,7 +38,11 @@ export function pageVariants({
 }: GoldfinchPageVariantsProps = {}) {
   return cn(
     "mx-auto w-full px-4 sm:px-6 lg:px-8 py-6",
-    resolveVariant(GOLDFINCH_PAGE_VARIANTS.size, size, GOLDFINCH_PAGE_DEFAULT_VARIANTS.size).classes,
+    resolveVariant(
+      GOLDFINCH_PAGE_VARIANTS.size,
+      size,
+      GOLDFINCH_PAGE_DEFAULT_VARIANTS.size,
+    ).classes,
   );
 }
 
@@ -52,11 +56,7 @@ const PageRoot = forwardRef<HTMLDivElement, PageRootProps>(function Page(
   ref,
 ) {
   return (
-    <div
-      ref={ref}
-      className={cn(pageVariants({ size }), className)}
-      {...props}
-    >
+    <div ref={ref} className={cn(pageVariants({ size }), className)} {...props}>
       {children}
     </div>
   );
@@ -69,7 +69,12 @@ export interface PageTitleProps {
 
 function PageTitle({ children, className }: PageTitleProps) {
   return (
-    <h1 className={cn("text-2xl font-semibold tracking-tight text-goldfinch-strong", className)}>
+    <h1
+      className={cn(
+        "text-2xl font-semibold tracking-tight text-goldfinch-strong",
+        className,
+      )}
+    >
       {children}
     </h1>
   );
@@ -82,9 +87,7 @@ export interface PageDescriptionProps {
 
 function PageDescription({ children, className }: PageDescriptionProps) {
   return (
-    <p className={cn("text-sm text-goldfinch-subtle", className)}>
-      {children}
-    </p>
+    <p className={cn("text-sm text-goldfinch-subtle", className)}>{children}</p>
   );
 }
 

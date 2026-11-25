@@ -12,7 +12,9 @@ export default function ThemeToggle() {
       setTheme(stored);
       document.documentElement.dataset.mode = stored;
     } else {
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
       const t = prefersDark ? "dark" : "light";
       setTheme(t);
       document.documentElement.dataset.mode = t;
@@ -30,7 +32,7 @@ export default function ThemeToggle() {
     <button
       onClick={toggle}
       aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
-      className="flex items-center justify-center size-8 rounded-lg bg-goldfinch-base text-goldfinch-default hover:bg-goldfinch-tint transition-colors cursor-pointer border-none"
+      className="flex size-8 cursor-pointer items-center justify-center rounded-lg border-none bg-goldfinch-base text-goldfinch-default transition-colors hover:bg-goldfinch-tint"
     >
       {theme === "light" ? <Moon size={16} /> : <Sun size={16} />}
     </button>

@@ -6,20 +6,22 @@ export interface TopNavigationProps {
   className?: string;
 }
 
-const TopNavigationRoot = forwardRef<HTMLElement, TopNavigationProps>(function TopNavigation(
-  { children, className, ...props },
-  ref,
-) {
-  return (
-    <header
-      ref={ref}
-      className={cn("flex h-14 items-center gap-4 border-b border-goldfinch-hairline bg-goldfinch-base px-4", className)}
-      {...props}
-    >
-      {children}
-    </header>
-  );
-});
+const TopNavigationRoot = forwardRef<HTMLElement, TopNavigationProps>(
+  function TopNavigation({ children, className, ...props }, ref) {
+    return (
+      <header
+        ref={ref}
+        className={cn(
+          "flex h-14 items-center gap-4 border-b border-goldfinch-hairline bg-goldfinch-base px-4",
+          className,
+        )}
+        {...props}
+      >
+        {children}
+      </header>
+    );
+  },
+);
 
 export interface TopNavigationLogoProps {
   children: ReactNode;
@@ -41,9 +43,7 @@ export interface TopNavigationNavProps {
 
 function TopNavigationNav({ children, className }: TopNavigationNavProps) {
   return (
-    <nav className={cn("flex items-center gap-1", className)}>
-      {children}
-    </nav>
+    <nav className={cn("flex items-center gap-1", className)}>{children}</nav>
   );
 }
 
@@ -53,7 +53,11 @@ export interface TopNavigationNavItemProps {
   className?: string;
 }
 
-function TopNavigationNavItem({ children, active, className }: TopNavigationNavItemProps) {
+function TopNavigationNavItem({
+  children,
+  active,
+  className,
+}: TopNavigationNavItemProps) {
   return (
     <div
       className={cn(
@@ -74,7 +78,10 @@ export interface TopNavigationActionsProps {
   className?: string;
 }
 
-function TopNavigationActions({ children, className }: TopNavigationActionsProps) {
+function TopNavigationActions({
+  children,
+  className,
+}: TopNavigationActionsProps) {
   return (
     <div className={cn("ml-auto flex items-center gap-2", className)}>
       {children}

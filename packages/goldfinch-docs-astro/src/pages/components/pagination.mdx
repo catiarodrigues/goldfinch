@@ -48,7 +48,8 @@ Pass the `current` page, `total` pages, and an `onChange` callback. The componen
 ```
 
 <Callout type="info">
-  Pagination collapses page numbers with ellipsis when there are many pages to keep the UI compact.
+  Pagination collapses page numbers with ellipsis when there are many pages to
+  keep the UI compact.
 </Callout>
 
 ## API Reference
@@ -56,8 +57,23 @@ Pass the `current` page, `total` pages, and an `onChange` callback. The componen
 <PropsTable
   of="Pagination"
   props={[
-    { name: "current", type: "number", default: "—", description: "Current page number." },
-    { name: "total", type: "number", default: "—", description: "Total number of pages." },
-    { name: "onChange", type: "(page: number) => void", default: "—", description: "Page change callback." },
+    {
+      name: "current",
+      type: "number",
+      default: "—",
+      description: "Current page number.",
+    },
+    {
+      name: "total",
+      type: "number",
+      default: "—",
+      description: "Total number of pages.",
+    },
+    {
+      name: "onChange",
+      type: "(page: number) => void",
+      default: "—",
+      description: "Page change callback.",
+    },
   ]}
 />

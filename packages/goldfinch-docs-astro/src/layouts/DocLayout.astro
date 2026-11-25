@@ -29,18 +29,20 @@ const showToc = headings.length > 0;
             On this page
           </h4>
           <ul class="space-y-1.5">
-            {headings.filter((h: any) => h.depth <= 3).map((h: any) => (
-              <li>
-                <a
-                  href={`#${h.slug}`}
-                  class={`block text-sm transition-colors hover:text-goldfinch-strong ${
-                    h.depth === 3 ? "pl-4" : ""
-                  } text-goldfinch-subtle`}
-                >
-                  {h.text}
-                </a>
-              </li>
-            ))}
+            {headings
+              .filter((h: any) => h.depth <= 3)
+              .map((h: any) => (
+                <li>
+                  <a
+                    href={`#${h.slug}`}
+                    class={`block text-sm transition-colors hover:text-goldfinch-strong ${
+                      h.depth === 3 ? "pl-4" : ""
+                    } text-goldfinch-subtle`}
+                  >
+                    {h.text}
+                  </a>
+                </li>
+              ))}
           </ul>
         </div>
       </aside>

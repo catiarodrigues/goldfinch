@@ -114,7 +114,8 @@ export const GOLDFINCH_TOAST_STYLING = {
 } as const;
 
 // Derived types from GOLDFINCH_TOAST_VARIANTS
-export type GoldfinchToastVariant = keyof typeof GOLDFINCH_TOAST_VARIANTS.variant;
+export type GoldfinchToastVariant =
+  keyof typeof GOLDFINCH_TOAST_VARIANTS.variant;
 
 export interface GoldfinchToastVariantsProps {
   variant?: GoldfinchToastVariant;
@@ -127,7 +128,11 @@ export function toastVariants({
     // Base styles for toast root
     "rounded-xl ring ring-goldfinch-line bg-clip-padding p-4 shadow-lg",
     // Apply variant styles from GOLDFINCH_TOAST_VARIANTS
-    resolveVariant(GOLDFINCH_TOAST_VARIANTS.variant, variant, GOLDFINCH_TOAST_DEFAULT_VARIANTS.variant).classes,
+    resolveVariant(
+      GOLDFINCH_TOAST_VARIANTS.variant,
+      variant,
+      GOLDFINCH_TOAST_DEFAULT_VARIANTS.variant,
+    ).classes,
   );
 }
 
@@ -242,7 +247,10 @@ function wrapManagerMethods<
       });
     },
 
-    update: (id: string, options: Partial<GoldfinchToastManagerAddOptions<any>>) => {
+    update: (
+      id: string,
+      options: Partial<GoldfinchToastManagerAddOptions<any>>,
+    ) => {
       return manager.update(id, {
         ...options,
       });
@@ -422,14 +430,21 @@ function ToastBackground({ variant }: { variant?: GoldfinchToastVariant }) {
   const background = variant && TOAST_BACKGROUND_CLASSES[variant];
   return (
     <div
-      className={cn("absolute inset-0 rounded-[11px] bg-goldfinch-base/90", background)}
+      className={cn(
+        "absolute inset-0 rounded-[11px] bg-goldfinch-base/90",
+        background,
+      )}
     />
   );
 }
 
 function ToastIcon({ variant }: { variant?: GoldfinchToastVariant }) {
   if (!variant || variant === "default") return null;
-  const variantConfig = resolveVariant(GOLDFINCH_TOAST_VARIANTS.variant, variant, GOLDFINCH_TOAST_DEFAULT_VARIANTS.variant);
+  const variantConfig = resolveVariant(
+    GOLDFINCH_TOAST_VARIANTS.variant,
+    variant,
+    GOLDFINCH_TOAST_DEFAULT_VARIANTS.variant,
+  );
   if (!("icon" in variantConfig)) return null;
   const Icon = variantConfig.icon;
   return (

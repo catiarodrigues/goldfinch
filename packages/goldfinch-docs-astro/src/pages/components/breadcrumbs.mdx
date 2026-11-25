@@ -57,7 +57,8 @@ return <Breadcrumbs items={items} />;
 ```
 
 <Callout type="info">
-  Omit the `href` on the last item to indicate the current page without making it a link.
+  Omit the `href` on the last item to indicate the current page without making
+  it a link.
 </Callout>
 
 ## API Reference
@@ -65,7 +66,17 @@ return <Breadcrumbs items={items} />;
 <PropsTable
   of="Breadcrumbs"
   props={[
-    { name: "items", type: "BreadcrumbItem[]", default: "—", description: "Array of breadcrumb items with label and optional href." },
-    { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+    {
+      name: "items",
+      type: "BreadcrumbItem[]",
+      default: "—",
+      description: "Array of breadcrumb items with label and optional href.",
+    },
+    {
+      name: "className",
+      type: "string",
+      default: "—",
+      description: "Additional CSS classes.",
+    },
   ]}
 />

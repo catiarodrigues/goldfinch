@@ -6,7 +6,13 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import { DemoFrame, ButtonDemo, ButtonSizesDemo, ButtonLoadingDemo, ButtonShapeDemo } from "../../components/demos/index.tsx";
+import {
+  DemoFrame,
+  ButtonDemo,
+  ButtonSizesDemo,
+  ButtonLoadingDemo,
+  ButtonShapeDemo,
+} from "../../components/demos/index.tsx";
 
 Trigger actions with five visual variants, four sizes, loading state, and optional icon support.
 
@@ -42,13 +48,13 @@ export default function Example() {
   <ButtonDemo />
 </DemoFrame>
 
-| Variant | Purpose |
-|---------|---------|
-| `secondary` | Default button style |
-| `primary` | Main call-to-action |
-| `destructive` | Destructive action |
-| `ghost` | Subtle, no border |
-| `outline` | Bordered, transparent |
+| Variant       | Purpose               |
+| ------------- | --------------------- |
+| `secondary`   | Default button style  |
+| `primary`     | Main call-to-action   |
+| `destructive` | Destructive action    |
+| `ghost`       | Subtle, no border     |
+| `outline`     | Bordered, transparent |
 
 ```tsx
 <Button variant="secondary">Default</Button>
@@ -98,7 +104,8 @@ Set `loading` to show a spinner and disable the button.
 ```
 
 <Callout type="info">
-  When loading, the button text remains visible alongside the spinner for context.
+  When loading, the button text remains visible alongside the spinner for
+  context.
 </Callout>
 
 ## API Reference
@@ -106,11 +113,41 @@ Set `loading` to show a spinner and disable the button.
 <PropsTable
   of="Button"
   props={[
-    { name: "variant", type: '"primary" | "secondary" | "ghost" | "outline" | "destructive"', default: '"secondary"', description: "Visual style of the button." },
-    { name: "size", type: '"xs" | "sm" | "base" | "lg"', default: '"base"', description: "Button size." },
-    { name: "shape", type: '"base" | "square"', default: '"base"', description: "Button shape." },
-    { name: "loading", type: "boolean", default: "false", description: "Show a loading spinner and disable the button." },
-    { name: "disabled", type: "boolean", default: "false", description: "Disable the button." },
-    { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+    {
+      name: "variant",
+      type: '"primary" | "secondary" | "ghost" | "outline" | "destructive"',
+      default: '"secondary"',
+      description: "Visual style of the button.",
+    },
+    {
+      name: "size",
+      type: '"xs" | "sm" | "base" | "lg"',
+      default: '"base"',
+      description: "Button size.",
+    },
+    {
+      name: "shape",
+      type: '"base" | "square"',
+      default: '"base"',
+      description: "Button shape.",
+    },
+    {
+      name: "loading",
+      type: "boolean",
+      default: "false",
+      description: "Show a loading spinner and disable the button.",
+    },
+    {
+      name: "disabled",
+      type: "boolean",
+      default: "false",
+      description: "Disable the button.",
+    },
+    {
+      name: "className",
+      type: "string",
+      default: "—",
+      description: "Additional CSS classes.",
+    },
   ]}
 />

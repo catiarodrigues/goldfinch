@@ -12,18 +12,25 @@ import { ViewTransitions } from "astro:transitions";
     <ViewTransitions />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <slot name="head" />
 
     <script>
-      (function() {
-        var stored = localStorage.getItem('goldfinch-theme');
-        if (stored === 'light' || stored === 'dark') {
+      (function () {
+        var stored = localStorage.getItem("goldfinch-theme");
+        if (stored === "light" || stored === "dark") {
           document.documentElement.dataset.mode = stored;
         } else {
-          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          document.documentElement.dataset.mode = prefersDark ? 'dark' : 'light';
+          var prefersDark = window.matchMedia(
+            "(prefers-color-scheme: dark)",
+          ).matches;
+          document.documentElement.dataset.mode = prefersDark
+            ? "dark"
+            : "light";
         }
       })();
     </script>

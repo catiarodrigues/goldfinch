@@ -31,7 +31,10 @@ const gridOverrides: Record<string, string> = {
 
 const items: ComponentDoc[] = Object.keys(modules)
   .map((path) => {
-    const slug = path.split("/").pop()!.replace(/\.mdx$/, "");
+    const slug = path
+      .split("/")
+      .pop()!
+      .replace(/\.mdx$/, "");
     const demoName = gridOverrides[slug] ?? `${toPascalCase(slug)}Demo`;
     return {
       href: `/components/${slug}`,
@@ -43,26 +46,24 @@ const items: ComponentDoc[] = Object.keys(modules)
 ---
 
 <div class="not-prose grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-  {
-    items.map((item) => {
-      const Demo = item.Demo;
-      return (
-        <div class="flex flex-col overflow-hidden rounded-lg border border-goldfinch-hairline bg-goldfinch-base">
-          <div
-            class="flex h-36 items-center justify-center overflow-hidden bg-goldfinch-canvas p-4"
-            inert
-            aria-hidden="true"
-          >
-            <div class="scale-75">{Demo && <Demo />}</div>
-          </div>
-          <a
-            href={item.href}
-            class="border-t border-goldfinch-hairline px-4 py-2.5 text-sm font-medium text-goldfinch-strong transition-colors hover:bg-goldfinch-tint"
-          >
-            {item.title}
-          </a>
+  {items.map((item) => {
+    const Demo = item.Demo;
+    return (
+      <div class="flex flex-col overflow-hidden rounded-lg border border-goldfinch-hairline bg-goldfinch-base">
+        <div
+          class="flex h-36 items-center justify-center overflow-hidden bg-goldfinch-canvas p-4"
+          inert
+          aria-hidden="true"
+        >
+          <div class="scale-75">{Demo && <Demo />}</div>
         </div>
-      );
-    })
-  }
+        <a
+          href={item.href}
+          class="border-t border-goldfinch-hairline px-4 py-2.5 text-sm font-medium text-goldfinch-strong transition-colors hover:bg-goldfinch-tint"
+        >
+          {item.title}
+        </a>
+      </div>
+    );
+  })}
 </div>

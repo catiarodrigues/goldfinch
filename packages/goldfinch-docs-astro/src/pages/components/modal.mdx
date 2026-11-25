@@ -64,7 +64,8 @@ Control the modal with `open` and `onOpenChange`. Provide a `title` for accessib
 ```
 
 <Callout type="warning">
-  Always provide a `title` for screen readers. The modal traps focus while open to meet accessibility standards.
+  Always provide a `title` for screen readers. The modal traps focus while open
+  to meet accessibility standards.
 </Callout>
 
 ## API Reference
@@ -72,10 +73,35 @@ Control the modal with `open` and `onOpenChange`. Provide a `title` for accessib
 <PropsTable
   of="Modal"
   props={[
-    { name: "open", type: "boolean", default: "—", description: "Controlled open state." },
-    { name: "onClose", type: "() => void", default: "—", description: "Called when the modal is dismissed." },
-    { name: "title", type: "ReactNode", default: "—", description: "Modal title." },
-    { name: "description", type: "ReactNode", default: "—", description: "Accessible description." },
-    { name: "size", type: '"sm" | "base" | "lg" | "xl"', default: '"base"', description: "Modal width." },
+    {
+      name: "open",
+      type: "boolean",
+      default: "—",
+      description: "Controlled open state.",
+    },
+    {
+      name: "onClose",
+      type: "() => void",
+      default: "—",
+      description: "Called when the modal is dismissed.",
+    },
+    {
+      name: "title",
+      type: "ReactNode",
+      default: "—",
+      description: "Modal title.",
+    },
+    {
+      name: "description",
+      type: "ReactNode",
+      default: "—",
+      description: "Accessible description.",
+    },
+    {
+      name: "size",
+      type: '"sm" | "base" | "lg" | "xl"',
+      default: '"base"',
+      description: "Modal width.",
+    },
   ]}
 />

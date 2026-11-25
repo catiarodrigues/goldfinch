@@ -118,12 +118,13 @@ export const Button = forwardRef<
       : undefined;
 
     const sizedIcon =
-      icon &&
-      contextIconSize &&
-      typeof icon === "function"
-        ? React.createElement(icon as unknown as React.ComponentType<{ size?: number }>, {
-            size: contextIconSize,
-          })
+      icon && contextIconSize && typeof icon === "function"
+        ? React.createElement(
+            icon as unknown as React.ComponentType<{ size?: number }>,
+            {
+              size: contextIconSize,
+            },
+          )
         : icon;
 
     const btn = (
@@ -156,7 +157,7 @@ export const Button = forwardRef<
           // Individual mode: each button owns its own border and focus indicator
           isIndividual && [
             // Own border replaces the container's shared ring; force full height
-            "relative h-full! rounded-none ring-0 focus-visible:ring-0 border border-goldfinch-line",
+            "relative h-full! rounded-none border border-goldfinch-line ring-0 focus-visible:ring-0",
             "first:rounded-l-[inherit] last:rounded-r-[inherit]",
             // Negative margin (not border-l-0) so the border is still paintable on focus
             "not-first:-ml-px",

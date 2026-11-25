@@ -145,8 +145,13 @@ export function gridVariants({
 } = {}) {
   return cn(
     "grid",
-    variant && resolveVariant(GOLDFINCH_GRID_VARIANTS.variant, variant, "2up").classes,
-    resolveVariant(GOLDFINCH_GRID_VARIANTS.gap, gap, GOLDFINCH_GRID_DEFAULT_VARIANTS.gap).classes,
+    variant &&
+      resolveVariant(GOLDFINCH_GRID_VARIANTS.variant, variant, "2up").classes,
+    resolveVariant(
+      GOLDFINCH_GRID_VARIANTS.gap,
+      gap,
+      GOLDFINCH_GRID_DEFAULT_VARIANTS.gap,
+    ).classes,
   );
 }
 

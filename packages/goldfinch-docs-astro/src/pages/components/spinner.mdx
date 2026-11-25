@@ -6,7 +6,11 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import { DemoFrame, SpinnerDemo, SpinnerSizesDemo } from "../../components/demos/index.tsx";
+import {
+  DemoFrame,
+  SpinnerDemo,
+  SpinnerSizesDemo,
+} from "../../components/demos/index.tsx";
 
 Indicate ongoing processing with an animated spin animation — available in `sm`, `base`, and `lg` sizes for different contexts.
 
@@ -58,7 +62,8 @@ Choose a size that fits the context — `sm` for inline use, `base` for buttons,
 </DemoFrame>
 
 <Callout type="info">
-  Always provide an `aria-label` or visually hidden text for screen readers when using a standalone Spinner.
+  Always provide an `aria-label` or visually hidden text for screen readers when
+  using a standalone Spinner.
 </Callout>
 
 ## API Reference
@@ -66,7 +71,17 @@ Choose a size that fits the context — `sm` for inline use, `base` for buttons,
 <PropsTable
   of="Spinner"
   props={[
-    { name: "size", type: '"sm" | "base" | "lg"', default: '"base"', description: "The size of the spinner." },
-    { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+    {
+      name: "size",
+      type: '"sm" | "base" | "lg"',
+      default: '"base"',
+      description: "The size of the spinner.",
+    },
+    {
+      name: "className",
+      type: "string",
+      default: "—",
+      description: "Additional CSS classes.",
+    },
   ]}
 />

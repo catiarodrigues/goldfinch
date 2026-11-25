@@ -54,9 +54,10 @@ In your main CSS file (e.g. `src/index.css`, imported once from your app entry):
 ```
 
 <Callout type="info">
-  `@source` is required — Tailwind v4 doesn't scan `node_modules`, so without it the components
-  render unstyled. The path is relative to your CSS file. The Goldfinch stylesheet already
-  includes `@import "tailwindcss"`, so don't add a second one.
+  `@source` is required — Tailwind v4 doesn't scan `node_modules`, so without it
+  the components render unstyled. The path is relative to your CSS file. The
+  Goldfinch stylesheet already includes `@import "tailwindcss"`, so don't add a
+  second one.
 </Callout>
 
 ## Use a component
@@ -70,5 +71,6 @@ export default function App() {
 ```
 
 <Callout type="info">
-  Goldfinch components are tree-shakeable. Import exactly what you need — unused components are dropped by your bundler.
+  Goldfinch components are tree-shakeable. Import exactly what you need — unused
+  components are dropped by your bundler.
 </Callout>

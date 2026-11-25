@@ -21,9 +21,7 @@ const CARD_PRIMARY_CLASSES =
   "relative flex flex-col gap-2 overflow-hidden rounded-lg bg-goldfinch-base p-4 pr-3 text-inherit no-underline ring ring-goldfinch-fill";
 
 /** Card variant definitions (currently empty, reserved for future additions). */
-export const GOLDFINCH_CARD_VARIANTS = {
-
-} as const;
+export const GOLDFINCH_CARD_VARIANTS = {} as const;
 
 export const GOLDFINCH_CARD_DEFAULT_VARIANTS = {} as const;
 
@@ -84,16 +82,20 @@ const CardRoot = forwardRef<HTMLDivElement, CardProps>(function Card(
   });
 });
 
-function CardSecondary({
-  children,
-  className,
-  ...props
-}: CardSectionProps) {
-  return <div className={cn(CARD_SECONDARY_CLASSES, className)} {...props}>{children}</div>;
+function CardSecondary({ children, className, ...props }: CardSectionProps) {
+  return (
+    <div className={cn(CARD_SECONDARY_CLASSES, className)} {...props}>
+      {children}
+    </div>
+  );
 }
 
 function CardPrimary({ children, className, ...props }: CardSectionProps) {
-  return <div className={cn(CARD_PRIMARY_CLASSES, className)} {...props}>{children}</div>;
+  return (
+    <div className={cn(CARD_PRIMARY_CLASSES, className)} {...props}>
+      {children}
+    </div>
+  );
 }
 
 CardRoot.displayName = "Card";

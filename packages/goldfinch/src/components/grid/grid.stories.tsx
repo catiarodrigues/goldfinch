@@ -11,6 +11,6 @@ type Story = StoryObj<typeof Grid>;
 
 export const Default: Story = {
   args: {
-    children: 'Grid content',
+    children: "Grid content",
   },
 };

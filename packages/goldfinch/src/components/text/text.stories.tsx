@@ -11,7 +11,7 @@ type Story = StoryObj<typeof Text>;
 
 export const Default: Story = {
   args: {
-    children: 'Sample text content',
-    as: 'p',
+    children: "Sample text content",
+    as: "p",
   },
 };

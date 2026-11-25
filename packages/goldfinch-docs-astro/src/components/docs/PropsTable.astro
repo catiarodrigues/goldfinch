@@ -19,17 +19,27 @@ const { of: componentName, props } = Astro.props;
   <table class="w-full text-sm">
     <thead>
       <tr class="border-b border-goldfinch-hairline bg-goldfinch-base">
-        <th class="px-4 py-2.5 text-left font-medium text-goldfinch-strong">Prop</th>
-        <th class="px-4 py-2.5 text-left font-medium text-goldfinch-strong">Type</th>
-        <th class="px-4 py-2.5 text-left font-medium text-goldfinch-strong">Default</th>
-        <th class="px-4 py-2.5 text-left font-medium text-goldfinch-strong">Description</th>
+        <th class="px-4 py-2.5 text-left font-medium text-goldfinch-strong">
+          Prop
+        </th>
+        <th class="px-4 py-2.5 text-left font-medium text-goldfinch-strong">
+          Type
+        </th>
+        <th class="px-4 py-2.5 text-left font-medium text-goldfinch-strong">
+          Default
+        </th>
+        <th class="px-4 py-2.5 text-left font-medium text-goldfinch-strong">
+          Description
+        </th>
       </tr>
     </thead>
     <tbody>
       {props.map((prop) => (
         <tr class="border-b border-goldfinch-hairline last:border-none">
           <td class="px-4 py-2.5">
-            <code class="text-xs font-medium text-goldfinch-strong">{prop.name}</code>
+            <code class="text-xs font-medium text-goldfinch-strong">
+              {prop.name}
+            </code>
             {prop.required && (
               <span class="ml-1 text-xs text-goldfinch-danger">*</span>
             )}
@@ -44,9 +54,7 @@ const { of: componentName, props } = Astro.props;
               <span class="text-xs text-goldfinch-subtle">&mdash;</span>
             )}
           </td>
-          <td class="px-4 py-2.5 text-goldfinch-default">
-            {prop.description}
-          </td>
+          <td class="px-4 py-2.5 text-goldfinch-default">{prop.description}</td>
         </tr>
       ))}
     </tbody>

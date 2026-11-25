@@ -3,7 +3,10 @@ import { CaretUpDownIcon } from "@phosphor-icons/react";
 import { forwardRef, useId } from "react";
 import type { ReactNode } from "react";
 import { cn } from "../../utils/cn";
-import { GOLDFINCH_INPUT_VARIANTS, type GoldfinchInputSize } from "../input/input";
+import {
+  GOLDFINCH_INPUT_VARIANTS,
+  type GoldfinchInputSize,
+} from "../input/input";
 import { SkeletonLine } from "../spinner";
 import { Label } from "../label";
 import { Field, useInLabelledField, type FieldErrorProp } from "../field/field";
@@ -87,7 +90,13 @@ export function selectVariants({
   return cn(
     "inline-flex items-center justify-between font-normal",
     "bg-goldfinch-base text-goldfinch-default ring ring-goldfinch-line hover:bg-goldfinch-tint",
-    selectSizeClasses[resolveVariantKey(selectSizeClasses, size, GOLDFINCH_SELECT_DEFAULT_VARIANTS.size)],
+    selectSizeClasses[
+      resolveVariantKey(
+        selectSizeClasses,
+        size,
+        GOLDFINCH_SELECT_DEFAULT_VARIANTS.size,
+      )
+    ],
     "focus:opacity-100 focus:ring-goldfinch-focus/50 focus-visible:ring-inset *:in-focus:opacity-100",
     // Invalid state comes from Field (Base UI sets data-invalid on the trigger)
     "data-[invalid]:ring-goldfinch-danger data-[invalid]:focus:ring-goldfinch-danger/50",
@@ -369,7 +378,11 @@ export function Select<T, Multiple extends boolean | undefined = false>({
   container: containerProp,
   ...props
 }: SelectPropsGeneric<T, Multiple> & { required?: boolean }) {
-  const size = resolveVariantKey(triggerIconStyles, sizeProp, GOLDFINCH_SELECT_DEFAULT_VARIANTS.size);
+  const size = resolveVariantKey(
+    triggerIconStyles,
+    sizeProp,
+    GOLDFINCH_SELECT_DEFAULT_VARIANTS.size,
+  );
   const labelId = useId();
   const contextContainer = usePortalContainer();
   const container = containerProp ?? contextContainer ?? undefined;
@@ -380,7 +393,11 @@ export function Select<T, Multiple extends boolean | undefined = false>({
   // Inside a labelled Field the trigger is already named by it: no placeholder fallback.
   const inLabelledField = useInLabelledField();
   const fallbackLabel =
-    typeof label === "string" ? label : inLabelledField ? undefined : placeholder;
+    typeof label === "string"
+      ? label
+      : inLabelledField
+        ? undefined
+        : placeholder;
 
   // Deprecation warning for hideLabel
   if (process.env.NODE_ENV !== "production" && hideLabel !== undefined) {
@@ -445,12 +462,8 @@ export function Select<T, Multiple extends boolean | undefined = false>({
   // hover/focus coupling that a native <label> (from Field) would cause.
   const showOptional = required === false;
   const selectLabelNode = visibleLabel ? (
-    <SelectBase.Label className="m-0 select-none text-base font-medium text-goldfinch-default">
-      <Label
-        showOptional={showOptional}
-        tooltip={labelTooltip}
-        asContent
-      >
+    <SelectBase.Label className="m-0 text-base font-medium text-goldfinch-default select-none">
+      <Label showOptional={showOptional} tooltip={labelTooltip} asContent>
         {label}
       </Label>
     </SelectBase.Label>
@@ -508,7 +521,7 @@ export function Select<T, Multiple extends boolean | undefined = false>({
           >
             <SelectBase.List
               className={cn(
-                "min-h-0 flex-1 overflow-y-auto overscroll-none scroll-pt-2 scroll-pb-2",
+                "min-h-0 flex-1 scroll-pt-2 scroll-pb-2 overflow-y-auto overscroll-none",
               )}
             >
               {renderedChildren}

@@ -3,7 +3,11 @@ import { cn } from "../../utils/cn";
 import { useCallback, type ReactNode } from "react";
 import * as React from "react";
 import { Input as BaseInput } from "@base-ui/react/input";
-import { Field, useAccessibleNameWarning, type FieldErrorProp } from "../field/field";
+import {
+  Field,
+  useAccessibleNameWarning,
+  type FieldErrorProp,
+} from "../field/field";
 
 export const InputArea = React.forwardRef<HTMLTextAreaElement, InputAreaProps>(
   (props, ref) => {
@@ -54,8 +58,13 @@ export const InputArea = React.forwardRef<HTMLTextAreaElement, InputAreaProps>(
           "h-auto py-2", // Input variant always comes with size, but it does not apply for textarea
           className,
         )}
-        onChange={handleChange as unknown as React.ChangeEventHandler<HTMLInputElement>}
-        {...(inputProps as Omit<React.ComponentPropsWithoutRef<typeof BaseInput>, "size">)}
+        onChange={
+          handleChange as unknown as React.ChangeEventHandler<HTMLInputElement>
+        }
+        {...(inputProps as Omit<
+          React.ComponentPropsWithoutRef<typeof BaseInput>,
+          "size"
+        >)}
       />
     );
 

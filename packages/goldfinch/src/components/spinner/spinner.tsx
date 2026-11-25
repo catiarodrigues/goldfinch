@@ -40,7 +40,11 @@ export function spinnerVariants({
   size = GOLDFINCH_SPINNER_DEFAULT_VARIANTS.size,
 }: GoldfinchSpinnerVariantsProps = {}): number {
   if (typeof size === "number") return size;
-  return resolveVariant(GOLDFINCH_SPINNER_VARIANTS.size, size, GOLDFINCH_SPINNER_DEFAULT_VARIANTS.size).value;
+  return resolveVariant(
+    GOLDFINCH_SPINNER_VARIANTS.size,
+    size,
+    GOLDFINCH_SPINNER_DEFAULT_VARIANTS.size,
+  ).value;
 }
 
 /**

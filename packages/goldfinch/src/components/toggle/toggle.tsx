@@ -48,7 +48,8 @@ export const GOLDFINCH_TOGGLE_DEFAULT_VARIANTS = {
 
 // Derived types from GOLDFINCH_TOGGLE_VARIANTS
 export type GoldfinchToggleSize = keyof typeof GOLDFINCH_TOGGLE_VARIANTS.size;
-export type GoldfinchToggleVariant = keyof typeof GOLDFINCH_TOGGLE_VARIANTS.variant;
+export type GoldfinchToggleVariant =
+  keyof typeof GOLDFINCH_TOGGLE_VARIANTS.variant;
 
 export interface GoldfinchToggleVariantsProps {
   size?: GoldfinchToggleSize;
@@ -59,8 +60,16 @@ export function toggleVariants({
   size = GOLDFINCH_TOGGLE_DEFAULT_VARIANTS.size,
   variant = GOLDFINCH_TOGGLE_DEFAULT_VARIANTS.variant,
 }: GoldfinchToggleVariantsProps = {}) {
-  const sizeConfig = resolveVariant(GOLDFINCH_TOGGLE_VARIANTS.size, size, GOLDFINCH_TOGGLE_DEFAULT_VARIANTS.size);
-  const variantConfig = resolveVariant(GOLDFINCH_TOGGLE_VARIANTS.variant, variant, GOLDFINCH_TOGGLE_DEFAULT_VARIANTS.variant);
+  const sizeConfig = resolveVariant(
+    GOLDFINCH_TOGGLE_VARIANTS.size,
+    size,
+    GOLDFINCH_TOGGLE_DEFAULT_VARIANTS.size,
+  );
+  const variantConfig = resolveVariant(
+    GOLDFINCH_TOGGLE_VARIANTS.variant,
+    variant,
+    GOLDFINCH_TOGGLE_DEFAULT_VARIANTS.variant,
+  );
   return cn(sizeConfig.classes, variantConfig.classes);
 }
 
@@ -283,7 +292,7 @@ const ToggleItem = forwardRef<HTMLButtonElement, ToggleItemProps>(
         data-goldfinch-component="Toggle"
         data-goldfinch-part="item-label"
         className={cn(
-          "m-0 relative inline-flex items-center gap-2",
+          "relative m-0 inline-flex items-center gap-2",
           !controlFirst && "flex-row-reverse justify-end",
           disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer",
           className,
@@ -382,7 +391,9 @@ const ToggleItem = forwardRef<HTMLButtonElement, ToggleItemProps>(
             );
           }}
         />
-        <span className="text-base font-medium text-goldfinch-default">{label}</span>
+        <span className="text-base font-medium text-goldfinch-default">
+          {label}
+        </span>
       </label>
     );
   },

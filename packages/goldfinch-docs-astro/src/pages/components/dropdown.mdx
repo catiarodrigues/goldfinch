@@ -41,7 +41,9 @@ export default function Example() {
           <DropdownMenu.Item onClick={() => {}}>Edit</DropdownMenu.Item>
           <DropdownMenu.Item onClick={() => {}}>Duplicate</DropdownMenu.Item>
           <DropdownMenu.Separator />
-          <DropdownMenu.Item onClick={() => {}} variant="danger">Delete</DropdownMenu.Item>
+          <DropdownMenu.Item onClick={() => {}} variant="danger">
+            Delete
+          </DropdownMenu.Item>
         </DropdownMenu.Content>
       </DropdownMenu.Portal>
     </DropdownMenu>
@@ -56,7 +58,8 @@ export default function Example() {
 Build the menu using compound sub-components: `DropdownMenu.Trigger`, `.Portal`, `.Content`, `.Item`, `.Separator`.
 
 <Callout type="info">
-  Dropdown items support keyboard navigation with arrow keys and Enter or Space to select.
+  Dropdown items support keyboard navigation with arrow keys and Enter or Space
+  to select.
 </Callout>
 
 ## API Reference
@@ -64,8 +67,23 @@ Build the menu using compound sub-components: `DropdownMenu.Trigger`, `.Portal`,
 <PropsTable
   of="Dropdown"
   props={[
-    { name: "label", type: "ReactNode", default: "—", description: "Trigger label." },
-    { name: "items", type: "DropdownItem[]", default: "—", description: "Menu items." },
-    { name: "disabled", type: "boolean", default: "false", description: "Disable the dropdown." },
+    {
+      name: "label",
+      type: "ReactNode",
+      default: "—",
+      description: "Trigger label.",
+    },
+    {
+      name: "items",
+      type: "DropdownItem[]",
+      default: "—",
+      description: "Menu items.",
+    },
+    {
+      name: "disabled",
+      type: "boolean",
+      default: "false",
+      description: "Disable the dropdown.",
+    },
   ]}
 />

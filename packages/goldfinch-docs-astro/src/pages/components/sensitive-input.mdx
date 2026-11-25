@@ -56,7 +56,8 @@ Use this component instead of a standard Input when the value should not be visi
 ```
 
 <Callout type="warning">
-  SensitiveInput masks the display but does not encrypt or secure the value in memory. Treat the value with appropriate security measures.
+  SensitiveInput masks the display but does not encrypt or secure the value in
+  memory. Treat the value with appropriate security measures.
 </Callout>
 
 ## API Reference
@@ -64,8 +65,23 @@ Use this component instead of a standard Input when the value should not be visi
 <PropsTable
   of="SensitiveInput"
   props={[
-    { name: "placeholder", type: "string", default: "—", description: "Placeholder text." },
-    { name: "disabled", type: "boolean", default: "false", description: "Disable the input." },
-    { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+    {
+      name: "placeholder",
+      type: "string",
+      default: "—",
+      description: "Placeholder text.",
+    },
+    {
+      name: "disabled",
+      type: "boolean",
+      default: "false",
+      description: "Disable the input.",
+    },
+    {
+      name: "className",
+      type: "string",
+      default: "—",
+      description: "Additional CSS classes.",
+    },
   ]}
 />

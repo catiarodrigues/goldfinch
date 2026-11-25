@@ -34,7 +34,8 @@ export const GOLDFINCH_BREADCRUMBS_DEFAULT_VARIANTS = {
   size: "base",
 } as const;
 
-export type GoldfinchBreadcrumbsSize = keyof typeof GOLDFINCH_BREADCRUMBS_VARIANTS.size;
+export type GoldfinchBreadcrumbsSize =
+  keyof typeof GOLDFINCH_BREADCRUMBS_VARIANTS.size;
 
 export interface GoldfinchBreadcrumbsVariantsProps {
   /**
@@ -51,7 +52,11 @@ export function breadcrumbsVariants({
 }: GoldfinchBreadcrumbsVariantsProps = {}) {
   return cn(
     "group mr-4 flex min-w-0 grow items-center overflow-hidden whitespace-nowrap",
-    resolveVariant(GOLDFINCH_BREADCRUMBS_VARIANTS.size, size, GOLDFINCH_BREADCRUMBS_DEFAULT_VARIANTS.size).classes,
+    resolveVariant(
+      GOLDFINCH_BREADCRUMBS_VARIANTS.size,
+      size,
+      GOLDFINCH_BREADCRUMBS_DEFAULT_VARIANTS.size,
+    ).classes,
   );
 }
 
@@ -72,7 +77,7 @@ const Link = ({
       data-goldfinch-component="Breadcrumbs"
       data-goldfinch-part="link"
       to={href}
-      className="flex min-w-0 max-w-full items-center gap-1 text-goldfinch-subtle no-underline"
+      className="flex max-w-full min-w-0 items-center gap-1 text-goldfinch-subtle no-underline"
     >
       {!!icon && <span className="flex shrink-0 items-center">{icon}</span>}
       <span className="truncate">{children}</span>
@@ -101,7 +106,7 @@ function Current({
 
   return (
     <div
-      className="flex min-w-0 max-w-full items-center gap-1 font-medium"
+      className="flex max-w-full min-w-0 items-center gap-1 font-medium"
       aria-current="page"
     >
       {icon && <span className="flex shrink-0 items-center">{icon}</span>}
@@ -131,7 +136,10 @@ function Separator() {
 
 function MobileEllipsis() {
   return (
-    <span className="flex shrink-0 items-center text-goldfinch-subtle" aria-hidden>
+    <span
+      className="flex shrink-0 items-center text-goldfinch-subtle"
+      aria-hidden
+    >
       ...
     </span>
   );
@@ -205,8 +213,7 @@ export interface BreadcrumbItem {
  * ```
  */
 export interface BreadcrumbsProps
-  extends PropsWithChildren,
-    GoldfinchBreadcrumbsVariantsProps {
+  extends PropsWithChildren, GoldfinchBreadcrumbsVariantsProps {
   /** Additional CSS classes merged via `cn()`. */
   className?: string;
   /**

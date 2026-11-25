@@ -47,7 +47,8 @@ export default function Example() {
 Provide an `href` and children. The component renders an `<a>` tag with Goldfinch typography and color tokens.
 
 <Callout type="info">
-  For external links, consider adding `target="_blank"` and `rel="noopener noreferrer"` for security.
+  For external links, consider adding `target="_blank"` and `rel="noopener
+  noreferrer"` for security.
 </Callout>
 
 ## API Reference
@@ -55,8 +56,23 @@ Provide an `href` and children. The component renders an `<a>` tag with Goldfinc
 <PropsTable
   of="Link"
   props={[
-    { name: "href", type: "string", default: "—", description: "The URL to navigate to." },
-    { name: "children", type: "ReactNode", default: "—", description: "Link content." },
-    { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+    {
+      name: "href",
+      type: "string",
+      default: "—",
+      description: "The URL to navigate to.",
+    },
+    {
+      name: "children",
+      type: "ReactNode",
+      default: "—",
+      description: "Link content.",
+    },
+    {
+      name: "className",
+      type: "string",
+      default: "—",
+      description: "Additional CSS classes.",
+    },
   ]}
 />

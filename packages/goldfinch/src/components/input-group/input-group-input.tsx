@@ -67,7 +67,7 @@ export const Input = forwardRef<HTMLInputElement, InputGroupInputProps>(
           isIndividual
             ? [
                 // Own border replaces the container's shared ring; suppress the base Input's focus:ring so only the border-swap shows
-                "relative ring-0 focus:ring-0 border border-goldfinch-line",
+                "relative border border-goldfinch-line ring-0 focus:ring-0",
                 "first:rounded-l-[inherit] last:rounded-r-[inherit]",
                 // Negative margin (not border-l-0) so the border is still paintable on focus
                 "not-first:-ml-px",
@@ -76,7 +76,7 @@ export const Input = forwardRef<HTMLInputElement, InputGroupInputProps>(
                 "focus:z-2 focus:border-goldfinch-focus/50",
               ].join(" ")
             : // Container mode: kill all focus indicators — the container handles them z-1 lifts the input above the invisible label overlay so cursor/selection work
-              "relative z-1 ring-0! shadow-none outline-none focus:ring-0! focus:outline-none",
+              "relative z-1 shadow-none ring-0! outline-none focus:ring-0! focus:outline-none",
           props.className,
         )}
       />

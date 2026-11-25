@@ -128,8 +128,16 @@ export function textVariants({
   size = GOLDFINCH_TEXT_DEFAULT_VARIANTS.size,
 }: GoldfinchTextVariantsProps = {}) {
   return cn(
-    resolveVariant(GOLDFINCH_TEXT_VARIANTS.variant, variant, GOLDFINCH_TEXT_DEFAULT_VARIANTS.variant).classes,
-    resolveVariant(GOLDFINCH_TEXT_VARIANTS.size, size, GOLDFINCH_TEXT_DEFAULT_VARIANTS.size).classes,
+    resolveVariant(
+      GOLDFINCH_TEXT_VARIANTS.variant,
+      variant,
+      GOLDFINCH_TEXT_DEFAULT_VARIANTS.variant,
+    ).classes,
+    resolveVariant(
+      GOLDFINCH_TEXT_VARIANTS.size,
+      size,
+      GOLDFINCH_TEXT_DEFAULT_VARIANTS.size,
+    ).classes,
   );
 }
 
@@ -317,15 +325,25 @@ function _Text<Variant extends TextVariant = "body">(
       ref={ref as React.RefCallback<HTMLElement>}
       className={cn(
         "text-goldfinch-default",
-        resolveVariant(GOLDFINCH_TEXT_VARIANTS.variant, variant, GOLDFINCH_TEXT_DEFAULT_VARIANTS.variant).classes,
-        isCopy ? resolveVariant(GOLDFINCH_TEXT_VARIANTS.size, size, GOLDFINCH_TEXT_DEFAULT_VARIANTS.size).classes : "",
+        resolveVariant(
+          GOLDFINCH_TEXT_VARIANTS.variant,
+          variant,
+          GOLDFINCH_TEXT_DEFAULT_VARIANTS.variant,
+        ).classes,
+        isCopy
+          ? resolveVariant(
+              GOLDFINCH_TEXT_VARIANTS.size,
+              size,
+              GOLDFINCH_TEXT_DEFAULT_VARIANTS.size,
+            ).classes
+          : "",
         isCopy && bold ? "font-medium" : "",
         // Monospace fonts need to be 1pt smaller than body text to optically match
         isMono &&
           (size === "lg"
             ? GOLDFINCH_TEXT_VARIANTS.size.base.classes
             : GOLDFINCH_TEXT_VARIANTS.size.sm.classes),
-        truncate && "truncate min-w-0",
+        truncate && "min-w-0 truncate",
         DANGEROUS_className,
       )}
       style={DANGEROUS_style}

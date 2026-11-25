@@ -4,10 +4,13 @@ import type { ComponentProps, ReactNode } from "react";
 
 export const goldfinchButtonVariants = {
   variant: {
-    primary: "bg-goldfinch-brand text-goldfinch-inverse hover:bg-goldfinch-brand-hover",
-    secondary: "bg-goldfinch-base text-goldfinch-default ring ring-goldfinch-line hover:bg-goldfinch-tint",
+    primary:
+      "bg-goldfinch-brand text-goldfinch-inverse hover:bg-goldfinch-brand-hover",
+    secondary:
+      "bg-goldfinch-base text-goldfinch-default ring ring-goldfinch-line hover:bg-goldfinch-tint",
     ghost: "text-goldfinch-default hover:bg-goldfinch-tint bg-transparent",
-    outline: "bg-transparent text-goldfinch-default ring ring-goldfinch-line hover:ring-goldfinch-focus/25",
+    outline:
+      "bg-transparent text-goldfinch-default ring ring-goldfinch-line hover:ring-goldfinch-focus/25",
     destructive: "bg-goldfinch-danger text-white",
   },
   size: {
@@ -22,7 +25,8 @@ export const goldfinchButtonVariants = {
   },
 } as const;
 
-export type GoldfinchButtonVariant = keyof typeof goldfinchButtonVariants.variant;
+export type GoldfinchButtonVariant =
+  keyof typeof goldfinchButtonVariants.variant;
 export type GoldfinchButtonSize = keyof typeof goldfinchButtonVariants.size;
 export type GoldfinchButtonShape = keyof typeof goldfinchButtonVariants.shape;
 
@@ -72,7 +76,7 @@ export function Button({
   return (
     <BaseButton
       className={cn(
-        "inline-flex items-center justify-center font-medium select-none cursor-pointer",
+        "inline-flex cursor-pointer items-center justify-center font-medium select-none",
         "focus:outline-none focus-visible:ring-2 focus-visible:ring-goldfinch-focus/50",
         "disabled:cursor-not-allowed disabled:opacity-50",
         goldfinchButtonVariants.variant[variant],

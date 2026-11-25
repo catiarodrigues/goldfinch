@@ -44,7 +44,8 @@ export const GOLDFINCH_BADGE_VARIANTS = {
       description: "Indicates beta or experimental features",
     },
     outline: {
-      classes: "border border-goldfinch-fill bg-transparent text-goldfinch-default",
+      classes:
+        "border border-goldfinch-fill bg-transparent text-goldfinch-default",
       description: "Bordered badge with transparent background",
     },
 
@@ -75,7 +76,8 @@ export const GOLDFINCH_BADGE_VARIANTS = {
       description: "Teal badge",
     },
     "teal-subtle": {
-      classes: "bg-goldfinch-badge-teal-subtle text-goldfinch-badge-teal-subtle",
+      classes:
+        "bg-goldfinch-badge-teal-subtle text-goldfinch-badge-teal-subtle",
       description: "Subtle teal badge",
     },
     blue: {
@@ -111,7 +113,8 @@ export const GOLDFINCH_BADGE_VARIANTS = {
   dotColor: {
     none: {
       classes: "",
-      description: "No dot indicator (used when appearance is not dot, or variant has no dot color)",
+      description:
+        "No dot indicator (used when appearance is not dot, or variant has no dot color)",
     },
     success: {
       classes: "bg-goldfinch-success",
@@ -140,10 +143,13 @@ export const GOLDFINCH_BADGE_DEFAULT_VARIANTS = {
 } as const;
 
 // Derived types from GOLDFINCH_BADGE_VARIANTS
-export type GoldfinchBadgeVariant = keyof typeof GOLDFINCH_BADGE_VARIANTS.variant;
-export type GoldfinchBadgeAppearance = keyof typeof GOLDFINCH_BADGE_VARIANTS.appearance;
+export type GoldfinchBadgeVariant =
+  keyof typeof GOLDFINCH_BADGE_VARIANTS.variant;
+export type GoldfinchBadgeAppearance =
+  keyof typeof GOLDFINCH_BADGE_VARIANTS.appearance;
 export type GoldfinchBadgeSize = keyof typeof GOLDFINCH_BADGE_VARIANTS.size;
-export type GoldfinchBadgeDotColor = keyof typeof GOLDFINCH_BADGE_VARIANTS.dotColor;
+export type GoldfinchBadgeDotColor =
+  keyof typeof GOLDFINCH_BADGE_VARIANTS.dotColor;
 
 export interface GoldfinchBadgeVariantsProps {
   variant?: GoldfinchBadgeVariant;
@@ -267,11 +273,13 @@ export function Badge({
       : "";
 
   return (
-    <span className={cn(badgeVariants({ variant, appearance, size }), className)}>
+    <span
+      className={cn(badgeVariants({ variant, appearance, size }), className)}
+    >
       {dotColor ? (
         <span
           aria-hidden="true"
-          className={cn("size-1.75 rounded-full shrink-0", dotColor)}
+          className={cn("size-1.75 shrink-0 rounded-full", dotColor)}
         />
       ) : null}
       {children}

@@ -67,9 +67,29 @@ Choose from variants like `heading1`, `heading2`, `heading3`, `body`, `secondary
 <PropsTable
   of="Text"
   props={[
-    { name: "variant", type: '"heading1" | "heading2" | "heading3" | "body" | "secondary" | "success" | "error" | "mono" | "mono-secondary"', default: '"body"', description: "Typography variant." },
-    { name: "size", type: '"xs" | "sm" | "base" | "lg"', default: '"base"', description: "Text size (applies to copy variants like body, secondary)." },
-    { name: "children", type: "ReactNode", default: "—", description: "Text content." },
-    { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+    {
+      name: "variant",
+      type: '"heading1" | "heading2" | "heading3" | "body" | "secondary" | "success" | "error" | "mono" | "mono-secondary"',
+      default: '"body"',
+      description: "Typography variant.",
+    },
+    {
+      name: "size",
+      type: '"xs" | "sm" | "base" | "lg"',
+      default: '"base"',
+      description: "Text size (applies to copy variants like body, secondary).",
+    },
+    {
+      name: "children",
+      type: "ReactNode",
+      default: "—",
+      description: "Text content.",
+    },
+    {
+      name: "className",
+      type: "string",
+      default: "—",
+      description: "Additional CSS classes.",
+    },
   ]}
 />

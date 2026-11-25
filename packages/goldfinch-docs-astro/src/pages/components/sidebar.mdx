@@ -42,7 +42,13 @@ export default function Example() {
       ],
     },
   ];
-  return <Sidebar items={items} activeItemId="dashboard" onItemSelect={(id) => console.log(id)} />;
+  return (
+    <Sidebar
+      items={items}
+      activeItemId="dashboard"
+      onItemSelect={(id) => console.log(id)}
+    />
+  );
 }
 ```
 
@@ -64,7 +70,8 @@ Define navigation items via the `items` prop. Track the active item with `active
 ```
 
 <Callout type="info">
-  Sidebar items can include icons, labels, and nested sub-items for hierarchical navigation.
+  Sidebar items can include icons, labels, and nested sub-items for hierarchical
+  navigation.
 </Callout>
 
 ## API Reference
@@ -72,8 +79,23 @@ Define navigation items via the `items` prop. Track the active item with `active
 <PropsTable
   of="Sidebar"
   props={[
-    { name: "items", type: "SidebarItem[]", default: "—", description: "Navigation items." },
-    { name: "activeItemId", type: "string", default: "—", description: "ID of the active item." },
-    { name: "onItemSelect", type: "(id: string) => void", default: "—", description: "Item selection callback." },
+    {
+      name: "items",
+      type: "SidebarItem[]",
+      default: "—",
+      description: "Navigation items.",
+    },
+    {
+      name: "activeItemId",
+      type: "string",
+      default: "—",
+      description: "ID of the active item.",
+    },
+    {
+      name: "onItemSelect",
+      type: "(id: string) => void",
+      default: "—",
+      description: "Item selection callback.",
+    },
   ]}
 />

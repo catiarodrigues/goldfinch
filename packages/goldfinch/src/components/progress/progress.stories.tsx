@@ -12,6 +12,6 @@ type Story = StoryObj<typeof Progress>;
 export const Default: Story = {
   args: {
     value: 60,
-    label: 'Progress',
+    label: "Progress",
   },
 };

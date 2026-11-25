@@ -55,9 +55,29 @@ Provide an `options` array where each item has an `icon`, `tooltip`, and `onClic
 <PropsTable
   of="Menubar"
   props={[
-    { name: "options", type: "MenuOptionProps[]", default: "—", description: "Array of icon button configs." },
-    { name: "isActive", type: "number | boolean | string", default: "—", description: "Currently active value." },
-    { name: "optionIds", type: "boolean", default: "false", description: "Match by option.id instead of index." },
-    { name: "className", type: "string", default: "—", description: "Additional CSS classes." },
+    {
+      name: "options",
+      type: "MenuOptionProps[]",
+      default: "—",
+      description: "Array of icon button configs.",
+    },
+    {
+      name: "isActive",
+      type: "number | boolean | string",
+      default: "—",
+      description: "Currently active value.",
+    },
+    {
+      name: "optionIds",
+      type: "boolean",
+      default: "false",
+      description: "Match by option.id instead of index.",
+    },
+    {
+      name: "className",
+      type: "string",
+      default: "—",
+      description: "Additional CSS classes.",
+    },
   ]}
 />

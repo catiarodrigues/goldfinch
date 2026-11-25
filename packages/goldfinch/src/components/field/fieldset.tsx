@@ -50,8 +50,9 @@ export function Fieldset({
     ? {}
     : {
         "aria-describedby":
-          [description && descriptionId, fieldError && errorId].filter(Boolean).join(" ") ||
-          undefined,
+          [description && descriptionId, fieldError && errorId]
+            .filter(Boolean)
+            .join(" ") || undefined,
         "data-invalid": forcedInvalid ? "" : undefined,
       };
 
@@ -88,7 +89,11 @@ export function Fieldset({
         </FieldBase.Description>
       )}
       {fieldError && (
-        <FieldBase.Error id={errorId} className="text-sm text-goldfinch-danger" match={fieldError.match}>
+        <FieldBase.Error
+          id={errorId}
+          className="text-sm text-goldfinch-danger"
+          match={fieldError.match}
+        >
           {fieldError.message}
         </FieldBase.Error>
       )}
