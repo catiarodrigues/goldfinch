@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Pagination } from "./pagination";
+import { useState } from "react";
+import { expect, userEvent, within } from "storybook/test";
 
 const meta: Meta<typeof Pagination> = {
   title: "Components/Pagination",
@@ -15,5 +17,31 @@ export const Default: Story = {
     setPage: () => {},
     perPage: 25,
     totalCount: 500,
+  },
+};
+
+function StatefulPagination() {
+  const [page, setPage] = useState(1);
+  return (
+    <Pagination page={page} setPage={setPage} perPage={25} totalCount={100} />
+  );
+}
+
+/** Next/previous move between pages; previous is disabled on the first page. */
+export const ChangePage: Story = {
+  render: () => <StatefulPagination />,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const pageInput = canvas.getByRole("textbox", { name: "Page number" });
+    await expect(pageInput).toHaveValue("1");
+    await expect(
+      canvas.getByRole("button", { name: "Previous page" }),
+    ).toBeDisabled();
+
+    await userEvent.click(canvas.getByRole("button", { name: "Next page" }));
+    await expect(pageInput).toHaveValue("2");
+    await expect(
+      canvas.getByRole("button", { name: "Previous page" }),
+    ).toBeEnabled();
   },
 };

@@ -34,6 +34,7 @@ const describedBy = (el: HTMLElement) =>
 
 function contract(
   role: string,
+  itemRole: string,
   render: (props: CaseProps) => ReactNode,
 ): Story {
   return {
@@ -50,6 +51,15 @@ function contract(
       const canvas = within(canvasElement);
       const group = (id: string) =>
         within(canvas.getByTestId(id)).getByRole(role, { name: "Contact" });
+
+      // every item has its own accessible name (regression: items in a Field
+      // once shared one label id, so all were announced as the first)
+      const legendCase = within(canvas.getByTestId("legend"));
+      for (const name of ["Email", "SMS"]) {
+        await expect(legendCase.getAllByRole(itemRole, { name })).toHaveLength(
+          1,
+        );
+      }
 
       // legend: names the group, not invalid
       await expect(group("legend")).not.toHaveAttribute("data-invalid");
@@ -77,21 +87,21 @@ function contract(
   };
 }
 
-export const CheckboxGroupContract = contract("group", (p) => (
+export const CheckboxGroupContract = contract("group", "checkbox", (p) => (
   <Checkbox.Group legend="Contact" {...p}>
     <Checkbox.Item value="email" label="Email" />
     <Checkbox.Item value="sms" label="SMS" />
   </Checkbox.Group>
 ));
 
-export const RadioGroupContract = contract("radiogroup", (p) => (
+export const RadioGroupContract = contract("radiogroup", "radio", (p) => (
   <Radio.Group legend="Contact" {...p}>
     <Radio.Item value="email" label="Email" />
     <Radio.Item value="sms" label="SMS" />
   </Radio.Group>
 ));
 
-export const ToggleGroupContract = contract("group", (p) => (
+export const ToggleGroupContract = contract("group", "switch", (p) => (
   <Toggle.Group legend="Contact" {...p}>
     <Toggle.Item label="Email" />
     <Toggle.Item label="SMS" />

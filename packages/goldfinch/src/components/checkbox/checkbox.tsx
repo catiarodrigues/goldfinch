@@ -356,54 +356,58 @@ const CheckboxItem = forwardRef<HTMLButtonElement, CheckboxItemProps>(
     const { controlFirst } = useContext(CheckboxGroupContext);
 
     return (
-      <label
-        data-goldfinch-component="Checkbox"
-        data-goldfinch-part="item-label"
-        className={cn(
-          "relative m-0 inline-flex items-start gap-2",
-          // Control first (default): checkbox before label
-          // Label first: label before checkbox using flex-row-reverse
-          !controlFirst && "flex-row-reverse justify-end",
-          disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer",
-          className,
-        )}
-      >
-        <BaseCheckbox.Root
-          ref={ref}
+      // Field.Item: this item's own label wiring inside the group's Field
+      // (without it every item shared one label id and one accessible name).
+      <FieldBase.Item className="contents">
+        <label
           data-goldfinch-component="Checkbox"
-          data-goldfinch-part="item"
-          value={value}
-          name={name}
-          checked={checked}
-          indeterminate={indeterminate}
-          disabled={disabled}
-          onCheckedChange={onCheckedChange}
+          data-goldfinch-part="item-label"
           className={cn(
-            "peer relative mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border-0 bg-goldfinch-base ring after:absolute after:-inset-x-3 after:-inset-y-2",
-            variant === "error"
-              ? "ring-goldfinch-danger"
-              : "ring-goldfinch-hairline",
-            !disabled &&
-              "group-hover:ring-goldfinch-hairline hover:ring-goldfinch-hairline focus:ring-2 focus:ring-goldfinch-focus focus-visible:ring-2 focus-visible:ring-goldfinch-brand",
-            "data-[checked]:bg-goldfinch-contrast data-[checked]:ring-goldfinch-contrast data-[indeterminate]:bg-goldfinch-contrast data-[indeterminate]:ring-goldfinch-contrast",
+            "relative m-0 inline-flex items-start gap-2",
+            // Control first (default): checkbox before label
+            // Label first: label before checkbox using flex-row-reverse
+            !controlFirst && "flex-row-reverse justify-end",
+            disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer",
+            className,
           )}
         >
-          <BaseCheckbox.Indicator
-            keepMounted
-            className="flex items-center justify-center text-goldfinch-inverse data-[unchecked]:invisible"
-            render={(renderProps, state) => (
-              <span {...renderProps}>
-                {state.indeterminate ? (
-                  <MinusIcon weight="bold" size={12} />
-                ) : (
-                  <CheckIcon weight="bold" size={12} />
-                )}
-              </span>
+          <BaseCheckbox.Root
+            ref={ref}
+            data-goldfinch-component="Checkbox"
+            data-goldfinch-part="item"
+            value={value}
+            name={name}
+            checked={checked}
+            indeterminate={indeterminate}
+            disabled={disabled}
+            onCheckedChange={onCheckedChange}
+            className={cn(
+              "peer relative mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border-0 bg-goldfinch-base ring after:absolute after:-inset-x-3 after:-inset-y-2",
+              variant === "error"
+                ? "ring-goldfinch-danger"
+                : "ring-goldfinch-hairline",
+              !disabled &&
+                "group-hover:ring-goldfinch-hairline hover:ring-goldfinch-hairline focus:ring-2 focus:ring-goldfinch-focus focus-visible:ring-2 focus-visible:ring-goldfinch-brand",
+              "data-[checked]:bg-goldfinch-contrast data-[checked]:ring-goldfinch-contrast data-[indeterminate]:bg-goldfinch-contrast data-[indeterminate]:ring-goldfinch-contrast",
             )}
-          />
-        </BaseCheckbox.Root>
-        <span className="text-base text-goldfinch-default">{label}</span>
-      </label>
+          >
+            <BaseCheckbox.Indicator
+              keepMounted
+              className="flex items-center justify-center text-goldfinch-inverse data-[unchecked]:invisible"
+              render={(renderProps, state) => (
+                <span {...renderProps}>
+                  {state.indeterminate ? (
+                    <MinusIcon weight="bold" size={12} />
+                  ) : (
+                    <CheckIcon weight="bold" size={12} />
+                  )}
+                </span>
+              )}
+            />
+          </BaseCheckbox.Root>
+          <span className="text-base text-goldfinch-default">{label}</span>
+        </label>
+      </FieldBase.Item>
     );
   },
 );

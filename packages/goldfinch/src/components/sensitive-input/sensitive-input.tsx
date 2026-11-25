@@ -117,9 +117,6 @@ export const SensitiveInput = forwardRef<HTMLInputElement, SensitiveInputProps>(
       );
     }
 
-    // For aria-label, only use string labels (ReactNode labels can't be used for aria-label)
-    const ariaLabelFallback =
-      typeof label === "string" ? label : "Sensitive value";
     const isControlled = controlledValue !== undefined;
     const [internalValue, setInternalValue] = useState(defaultValue);
     const value = isControlled ? controlledValue : internalValue;
@@ -133,10 +130,10 @@ export const SensitiveInput = forwardRef<HTMLInputElement, SensitiveInputProps>(
 
     const inputRef = useRef<HTMLInputElement | null>(null);
     const containerRef = useRef<HTMLDivElement>(null);
+    const eyeButtonRef = useRef<HTMLButtonElement>(null);
     const liveRegionId = useId();
     const generatedId = useId();
     const inputId = id ?? generatedId;
-    const maskedInstructionId = useId();
 
     const mergedRef = useCallback(
       (node: HTMLInputElement | null) => {
@@ -218,17 +215,12 @@ export const SensitiveInput = forwardRef<HTMLInputElement, SensitiveInputProps>(
     const handleContainerClick = useCallback(
       (e: React.MouseEvent) => {
         if (disabled) return;
-        // Ignore clicks that originated from outside (e.g., label click focusing input)
-        // Label clicks trigger a click on the input, but the click coordinates are outside the container
-        if (containerRef.current) {
-          const rect = containerRef.current.getBoundingClientRect();
-          const isClickInsideContainer =
-            e.clientX >= rect.left &&
-            e.clientX <= rect.right &&
-            e.clientY >= rect.top &&
-            e.clientY <= rect.bottom;
-          if (!isClickInsideContainer) return;
-        }
+        // Ignore the click a <label> forwards to its input: it targets the
+        // input itself, which ignores the pointer while masked, so every real
+        // activation (mouse, touch, screen reader, keyboard-triggered click)
+        // targets the container instead. Checking coordinates instead broke
+        // assistive tech, whose clicks carry none.
+        if (e.target === inputRef.current) return;
         if (mode === "masked" && hasValue) {
           setMode("revealed");
           if (!readOnly) {
@@ -244,11 +236,12 @@ export const SensitiveInput = forwardRef<HTMLInputElement, SensitiveInputProps>(
         e.stopPropagation();
         if (mode === "revealed") {
           setMode("masked");
-        } else if (mode === "empty" && hasValue) {
+        } else if (hasValue) {
           setMode("revealed");
+          if (!readOnly) setTimeout(() => inputRef.current?.focus(), 0);
         }
       },
-      [mode, hasValue],
+      [mode, hasValue, readOnly],
     );
 
     const handleChange = useCallback(
@@ -285,36 +278,22 @@ export const SensitiveInput = forwardRef<HTMLInputElement, SensitiveInputProps>(
       [hasValue],
     );
 
-    const handleContainerKeyDown = useCallback(
-      (e: React.KeyboardEvent<HTMLDivElement>) => {
-        if (disabled) return;
-        if (mode === "masked" && hasValue) {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            setMode("revealed");
-            if (!readOnly) {
-              setTimeout(() => inputRef.current?.focus(), 0);
-            }
-          }
-        }
-      },
-      [mode, hasValue, disabled, readOnly],
-    );
-
     const handleInputKeyDown = useCallback(
       (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (mode === "revealed" && e.key === "Escape") {
           setMode("masked");
-          // Move focus to container to avoid focus trap (input becomes tabIndex={-1})
-          setTimeout(() => containerRef.current?.focus(), 0);
+          // Return focus to the eye button: the input leaves the tab order when masked
+          setTimeout(() => eyeButtonRef.current?.focus(), 0);
         }
       },
       [mode],
     );
 
     const isMaskedWithValue = mode === "masked" && hasValue;
-    const showEyeButton =
-      !disabled && (mode === "revealed" || (mode === "empty" && hasValue));
+    // The eye button is how keyboard and screen-reader users reveal a masked
+    // value, so it shows whenever there's a value to reveal or hide.
+    const showEyeButton = !disabled && (mode === "revealed" || hasValue);
+    const valueName = typeof label === "string" ? label : "value";
 
     // Icon sizes matching input sizes
     const iconSize = size === "xs" || size === "sm" ? "size-3" : "size-4";
@@ -402,12 +381,13 @@ export const SensitiveInput = forwardRef<HTMLInputElement, SensitiveInputProps>(
 
         {/* Eye button - absolutely positioned to the right */}
         <button
+          ref={eyeButtonRef}
           type="button"
           data-goldfinch-component="SensitiveInput"
           data-goldfinch-part="toggle-visibility"
           onClick={handleToggleVisibility}
           onKeyDown={(e) => e.stopPropagation()}
-          aria-label={mode === "revealed" ? "Hide value" : "Reveal value"}
+          aria-label={`${mode === "revealed" ? "Hide" : "Reveal"} ${valueName}`}
           tabIndex={showEyeButton ? 0 : -1}
           className={cn(
             "absolute top-1/2 right-0 -translate-y-1/2 cursor-pointer text-goldfinch-subtle hover:text-goldfinch-default focus:text-goldfinch-default focus:ring-goldfinch-focus/50 focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-goldfinch-brand",
@@ -452,35 +432,21 @@ export const SensitiveInput = forwardRef<HTMLInputElement, SensitiveInputProps>(
 
     const input = (
       <div>
-        {isMaskedWithValue ? (
-          <div
-            ref={containerRef}
-            // Cannot use <button> here because containerContent contains interactive button elements (Copy, Reveal).
-            // Using role="button" with proper keyboard handling instead.
-            // oxlint-disable-next-line prefer-tag-over-role
-            role="button"
-            data-goldfinch-component="SensitiveInput"
-            data-goldfinch-part="masked-container"
-            tabIndex={disabled ? -1 : 0}
-            className={containerClassName}
-            onClick={handleContainerClick}
-            onKeyDown={handleContainerKeyDown}
-            aria-label={`${ariaLabelFallback}, masked.`}
-            aria-describedby={`${maskedInstructionId} ${liveRegionId}`}
-            aria-disabled={disabled}
-          >
-            {containerContent}
-          </div>
-        ) : (
-          <div ref={containerRef} className={containerClassName}>
-            {containerContent}
-          </div>
-        )}
-        {isMaskedWithValue && (
-          <span id={maskedInstructionId} className="sr-only">
-            Click or press Enter to reveal.
-          </span>
-        )}
+        {/* Clicking a masked value reveals it (mouse convenience); keyboard and
+            screen-reader users use the eye button. Not role="button": it
+            contains other controls, and buttons can't nest. */}
+        {/* oxlint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions -- mouse shortcut; the eye button is the keyboard/AT equivalent */}
+        <div
+          ref={containerRef}
+          data-goldfinch-component="SensitiveInput"
+          data-goldfinch-part={
+            isMaskedWithValue ? "masked-container" : undefined
+          }
+          className={containerClassName}
+          onClick={isMaskedWithValue ? handleContainerClick : undefined}
+        >
+          {containerContent}
+        </div>
         <span id={liveRegionId} className="sr-only" aria-live="polite">
           {mode === "masked" && hasValue && "Value hidden"}
           {copied && "Copied to clipboard"}

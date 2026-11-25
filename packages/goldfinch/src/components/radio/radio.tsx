@@ -8,6 +8,7 @@ import {
 } from "react";
 import { cn } from "../../utils/cn";
 import { resolveVariant } from "../../utils/resolve-variant";
+import { Field as FieldBase } from "@base-ui/react/field";
 import { Fieldset as BaseFieldset } from "@base-ui/react/fieldset";
 import { Fieldset } from "../field/fieldset";
 import type { FieldErrorProp } from "../field/field";
@@ -327,32 +328,85 @@ function _RadioItem<T = string>(
   if (isCard) {
     const controlAtStart = effectiveControlPosition === "start";
     return (
+      // Field.Item: this item's own label wiring inside the group's Field
+      // (without it every item shared one label id and one accessible name).
+      <FieldBase.Item className="contents">
+        <label
+          data-goldfinch-component="Radio"
+          data-goldfinch-part="item-label"
+          className={cn(
+            "group relative m-0 flex items-start gap-3 rounded-lg border border-goldfinch-hairline bg-goldfinch-base p-3 transition-colors has-[[data-checked]]:border-goldfinch-interact has-[[data-checked]]:bg-goldfinch-tint",
+            controlAtStart && "flex-row-reverse",
+            variant === "error" &&
+              "border-goldfinch-danger has-[[data-checked]]:border-goldfinch-danger has-[[data-checked]]:bg-goldfinch-base",
+            disabled
+              ? "cursor-not-allowed opacity-50"
+              : cn(
+                  "cursor-pointer has-[[data-disabled]]:cursor-not-allowed has-[[data-disabled]]:opacity-50",
+                  variant !== "error" &&
+                    "hover:not-has-[[data-disabled]]:bg-goldfinch-tint",
+                ),
+            className,
+          )}
+        >
+          <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+            <span className="text-base font-medium text-goldfinch-default">
+              {label}
+            </span>
+            {description && (
+              <span className="text-sm text-goldfinch-subtle">
+                {description}
+              </span>
+            )}
+          </div>
+          <BaseRadio.Root
+            ref={ref}
+            data-goldfinch-component="Radio"
+            data-goldfinch-part="item"
+            value={value}
+            disabled={disabled}
+            className={cn(
+              "relative mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-0 bg-goldfinch-base ring ring-2 focus:ring-goldfinch-focus focus:outline-none focus-visible:ring-2 focus-visible:ring-goldfinch-brand",
+              variant === "error"
+                ? "ring-goldfinch-danger"
+                : "ring-goldfinch-line",
+              !disabled &&
+                variant !== "error" &&
+                "group-hover:ring-goldfinch-hairline focus-visible:outline-offset-3",
+              !disabled &&
+                variant === "error" &&
+                "focus-visible:outline-offset-3",
+              "data-[checked]:bg-goldfinch-contrast",
+            )}
+          >
+            <BaseRadio.Indicator
+              keepMounted
+              className="flex items-center justify-center"
+            >
+              <span className="h-2 w-2 rounded-full bg-goldfinch-base" />
+            </BaseRadio.Indicator>
+          </BaseRadio.Root>
+        </label>
+      </FieldBase.Item>
+    );
+  }
+
+  return (
+    // Field.Item: this item's own label wiring inside the group's Field
+    // (without it every item shared one label id and one accessible name).
+    <FieldBase.Item className="contents">
       <label
         data-goldfinch-component="Radio"
         data-goldfinch-part="item-label"
         className={cn(
-          "group relative m-0 flex items-start gap-3 rounded-lg border border-goldfinch-hairline bg-goldfinch-base p-3 transition-colors has-[[data-checked]]:border-goldfinch-interact has-[[data-checked]]:bg-goldfinch-tint",
-          controlAtStart && "flex-row-reverse",
-          variant === "error" &&
-            "border-goldfinch-danger has-[[data-checked]]:border-goldfinch-danger has-[[data-checked]]:bg-goldfinch-base",
-          disabled
-            ? "cursor-not-allowed opacity-50"
-            : cn(
-                "cursor-pointer has-[[data-disabled]]:cursor-not-allowed has-[[data-disabled]]:opacity-50",
-                variant !== "error" &&
-                  "hover:not-has-[[data-disabled]]:bg-goldfinch-tint",
-              ),
+          "group relative m-0 inline-flex items-start gap-2",
+          // "start" (default): radio before label
+          // "end": label before radio using flex-row-reverse
+          effectiveControlPosition === "end" && "flex-row-reverse justify-end",
+          disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer",
           className,
         )}
       >
-        <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-          <span className="text-base font-medium text-goldfinch-default">
-            {label}
-          </span>
-          {description && (
-            <span className="text-sm text-goldfinch-subtle">{description}</span>
-          )}
-        </div>
         <BaseRadio.Root
           ref={ref}
           data-goldfinch-component="Radio"
@@ -360,16 +414,16 @@ function _RadioItem<T = string>(
           value={value}
           disabled={disabled}
           className={cn(
-            "relative mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-0 bg-goldfinch-base ring ring-2 focus:ring-goldfinch-focus focus:outline-none focus-visible:ring-2 focus-visible:ring-goldfinch-brand",
+            "relative mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-0 bg-goldfinch-base ring after:absolute after:-inset-x-3 after:-inset-y-2 focus:outline-none",
             variant === "error"
               ? "ring-goldfinch-danger"
               : "ring-goldfinch-line",
             !disabled &&
               variant !== "error" &&
-              "group-hover:ring-goldfinch-hairline focus-visible:outline-offset-3",
+              "group-hover:ring-goldfinch-hairline focus:ring-2 focus:ring-goldfinch-focus focus-visible:ring-2 focus-visible:ring-goldfinch-brand focus-visible:outline-offset-3",
             !disabled &&
               variant === "error" &&
-              "focus-visible:outline-offset-3",
+              "focus:ring-2 focus:ring-goldfinch-focus focus-visible:ring-2 focus-visible:ring-goldfinch-brand focus-visible:outline-offset-3",
             "data-[checked]:bg-goldfinch-contrast",
           )}
         >
@@ -380,50 +434,9 @@ function _RadioItem<T = string>(
             <span className="h-2 w-2 rounded-full bg-goldfinch-base" />
           </BaseRadio.Indicator>
         </BaseRadio.Root>
+        <span className="text-base text-goldfinch-default">{label}</span>
       </label>
-    );
-  }
-
-  return (
-    <label
-      data-goldfinch-component="Radio"
-      data-goldfinch-part="item-label"
-      className={cn(
-        "group relative m-0 inline-flex items-start gap-2",
-        // "start" (default): radio before label
-        // "end": label before radio using flex-row-reverse
-        effectiveControlPosition === "end" && "flex-row-reverse justify-end",
-        disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer",
-        className,
-      )}
-    >
-      <BaseRadio.Root
-        ref={ref}
-        data-goldfinch-component="Radio"
-        data-goldfinch-part="item"
-        value={value}
-        disabled={disabled}
-        className={cn(
-          "relative mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-0 bg-goldfinch-base ring after:absolute after:-inset-x-3 after:-inset-y-2 focus:outline-none",
-          variant === "error" ? "ring-goldfinch-danger" : "ring-goldfinch-line",
-          !disabled &&
-            variant !== "error" &&
-            "group-hover:ring-goldfinch-hairline focus:ring-2 focus:ring-goldfinch-focus focus-visible:ring-2 focus-visible:ring-goldfinch-brand focus-visible:outline-offset-3",
-          !disabled &&
-            variant === "error" &&
-            "focus:ring-2 focus:ring-goldfinch-focus focus-visible:ring-2 focus-visible:ring-goldfinch-brand focus-visible:outline-offset-3",
-          "data-[checked]:bg-goldfinch-contrast",
-        )}
-      >
-        <BaseRadio.Indicator
-          keepMounted
-          className="flex items-center justify-center"
-        >
-          <span className="h-2 w-2 rounded-full bg-goldfinch-base" />
-        </BaseRadio.Indicator>
-      </BaseRadio.Root>
-      <span className="text-base text-goldfinch-default">{label}</span>
-    </label>
+    </FieldBase.Item>
   );
 }
 
