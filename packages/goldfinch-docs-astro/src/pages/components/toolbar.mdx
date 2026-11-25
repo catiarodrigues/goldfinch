@@ -9,6 +9,7 @@ import PropsTable from "../../components/docs/PropsTable.astro";
 import ComponentExample from "../../components/docs/ComponentExample.astro";
 import Basic from "../../examples/toolbar/basic.tsx";
 import basicCode from "../../examples/toolbar/basic.tsx?raw";
+import usageCode from "../../examples/toolbar/usage.tsx?raw";
 
 Group related controls — buttons, inputs, and input groups — in a connected horizontal bar with `role="toolbar"` and arrow-key navigation.
 
@@ -28,19 +29,7 @@ import { Toolbar } from "@catiarodrigues/goldfinch/components/toolbar";
 
 ## Usage
 
-```tsx
-import { Toolbar } from "@catiarodrigues/goldfinch";
-
-export default function Example() {
-  return (
-    <Toolbar aria-label="Formatting">
-      <Toolbar.Button onClick={() => {}}>Bold</Toolbar.Button>
-      <Toolbar.Button onClick={() => {}}>Italic</Toolbar.Button>
-      <Toolbar.Input placeholder="Search..." aria-label="Search" />
-    </Toolbar>
-  );
-}
-```
+<ComponentExample code={usageCode} />
 
 ## Examples
 

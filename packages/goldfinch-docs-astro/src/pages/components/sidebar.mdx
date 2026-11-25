@@ -9,6 +9,7 @@ import PropsTable from "../../components/docs/PropsTable.astro";
 import ComponentExample from "../../components/docs/ComponentExample.astro";
 import Basic from "../../examples/sidebar/basic.tsx";
 import basicCode from "../../examples/sidebar/basic.tsx?raw";
+import usageCode from "../../examples/sidebar/usage.tsx?raw";
 
 Full-featured application sidebar with collapsible sections, nested menu items, active state tracking, keyboard navigation, and resizable panels.
 
@@ -28,31 +29,7 @@ import { Sidebar } from "@catiarodrigues/goldfinch/components/sidebar";
 
 ## Usage
 
-```tsx
-import { Sidebar } from "@catiarodrigues/goldfinch";
-
-export default function Example() {
-  const items = [
-    { id: "dashboard", label: "Dashboard", icon: <DashboardIcon /> },
-    {
-      id: "settings",
-      label: "Settings",
-      icon: <SettingsIcon />,
-      items: [
-        { id: "profile", label: "Profile" },
-        { id: "account", label: "Account" },
-      ],
-    },
-  ];
-  return (
-    <Sidebar
-      items={items}
-      activeItemId="dashboard"
-      onItemSelect={(id) => console.log(id)}
-    />
-  );
-}
-```
+<ComponentExample code={usageCode} />
 
 ## Examples
 

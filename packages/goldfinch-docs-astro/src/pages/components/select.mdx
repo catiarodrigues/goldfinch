@@ -11,6 +11,7 @@ import Basic from "../../examples/select/basic.tsx";
 import basicCode from "../../examples/select/basic.tsx?raw";
 import Items from "../../examples/select/items.tsx";
 import itemsCode from "../../examples/select/items.tsx?raw";
+import usageCode from "../../examples/select/usage.tsx?raw";
 
 Choose from a predefined list — pass an array of `{ label, value }` objects via `items`, or compose custom option markup with `Select.Option` children.
 
@@ -30,25 +31,7 @@ import { Select } from "@catiarodrigues/goldfinch/components/select";
 
 ## Usage
 
-```tsx
-import { Select } from "@catiarodrigues/goldfinch";
-
-export default function Example() {
-  const [value, setValue] = useState("option-1");
-  const options = [
-    { label: "Option 1", value: "option-1" },
-    { label: "Option 2", value: "option-2" },
-  ];
-  return (
-    <Select
-      items={options}
-      value={value}
-      onValueChange={setValue}
-      placeholder="Select an option"
-    />
-  );
-}
-```
+<ComponentExample code={usageCode} />
 
 ## Examples
 

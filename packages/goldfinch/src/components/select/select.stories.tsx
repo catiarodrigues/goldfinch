@@ -4,6 +4,7 @@ import { expect, fn, userEvent, waitFor, within } from "storybook/test";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/select/basic";
 import ItemsExample from "../../../../goldfinch-docs-astro/src/examples/select/items";
+import UsageExample from "../../../../goldfinch-docs-astro/src/examples/select/usage";
 const meta: Meta<typeof Select> = {
   title: "Components/Select",
   component: Select,
@@ -57,3 +58,5 @@ export const ChooseAnOption: Story = {
 export const Basic: Story = { render: () => <BasicExample /> };
 
 export const Items: Story = { render: () => <ItemsExample /> };
+
+export const Usage: Story = { render: () => <UsageExample /> };

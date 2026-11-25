@@ -9,6 +9,7 @@ import PropsTable from "../../components/docs/PropsTable.astro";
 import ComponentExample from "../../components/docs/ComponentExample.astro";
 import Basic from "../../examples/radio/basic.tsx";
 import basicCode from "../../examples/radio/basic.tsx?raw";
+import usageCode from "../../examples/radio/usage.tsx?raw";
 
 Select exactly one item from a small set of choices — grouped via shared `name` for native browser mutual exclusivity.
 
@@ -28,31 +29,7 @@ import { Radio } from "@catiarodrigues/goldfinch/components/radio";
 
 ## Usage
 
-```tsx
-import { Radio, Field } from "@catiarodrigues/goldfinch";
-
-export default function Example() {
-  const [value, setValue] = useState("option-1");
-  return (
-    <Field label="Choose one">
-      <fieldset className="flex flex-col gap-2">
-        <Radio
-          name="group"
-          value="option-1"
-          checked={value === "option-1"}
-          onChange={(e) => setValue(e.target.value)}
-        />
-        <Radio
-          name="group"
-          value="option-2"
-          checked={value === "option-2"}
-          onChange={(e) => setValue(e.target.value)}
-        />
-      </fieldset>
-    </Field>
-  );
-}
-```
+<ComponentExample code={usageCode} />
 
 ## Examples
 

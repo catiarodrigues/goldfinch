@@ -9,6 +9,7 @@ import PropsTable from "../../components/docs/PropsTable.astro";
 import ComponentExample from "../../components/docs/ComponentExample.astro";
 import Basic from "../../examples/table-of-contents/basic.tsx";
 import basicCode from "../../examples/table-of-contents/basic.tsx?raw";
+import usageCode from "../../examples/table-of-contents/usage.tsx?raw";
 
 Build a navigable outline of page sections using compound sub-components — `Title`, `List`, `Item`, and `Group` for hierarchical structure.
 
@@ -28,27 +29,7 @@ import { TableOfContents } from "@catiarodrigues/goldfinch/components/table-of-c
 
 ## Usage
 
-```tsx
-import { TableOfContents } from "@catiarodrigues/goldfinch";
-
-export default function Example() {
-  return (
-    <TableOfContents>
-      <TableOfContents.Title>On this page</TableOfContents.Title>
-      <TableOfContents.List>
-        <TableOfContents.Item>
-          <a href="#installation">Installation</a>
-        </TableOfContents.Item>
-        <TableOfContents.Group>
-          <TableOfContents.Item>
-            <a href="#usage">Usage</a>
-          </TableOfContents.Item>
-        </TableOfContents.Group>
-      </TableOfContents.List>
-    </TableOfContents>
-  );
-}
-```
+<ComponentExample code={usageCode} />
 
 ## Examples
 

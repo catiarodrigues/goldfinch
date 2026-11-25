@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Page, GOLDFINCH_PAGE_VARIANTS } from "./page";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/page/basic";
+import UsageExample from "../../../../goldfinch-docs-astro/src/examples/page/usage";
 const meta: Meta<typeof Page> = {
   title: "Components/Page",
   component: Page,
@@ -35,3 +36,5 @@ export const Default: Story = {
 };
 
 export const Basic: Story = { render: () => <BasicExample /> };
+
+export const Usage: Story = { render: () => <UsageExample /> };

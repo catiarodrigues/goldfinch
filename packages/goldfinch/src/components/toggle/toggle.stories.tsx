@@ -3,6 +3,7 @@ import { Toggle, GOLDFINCH_TOGGLE_VARIANTS } from "./toggle";
 import { expect, userEvent, within } from "storybook/test";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/toggle/basic";
+import UsageExample from "../../../../goldfinch-docs-astro/src/examples/toggle/usage";
 const meta: Meta<typeof Toggle> = {
   title: "Components/Toggle",
   component: Toggle,
@@ -45,3 +46,5 @@ export const SwitchOnAndOff: Story = {
 };
 
 export const Basic: Story = { render: () => <BasicExample /> };
+
+export const Usage: Story = { render: () => <UsageExample /> };

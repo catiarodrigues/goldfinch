@@ -3,6 +3,7 @@ import { Spinner, GOLDFINCH_SPINNER_VARIANTS } from "./spinner";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/spinner/basic";
 import SizesExample from "../../../../goldfinch-docs-astro/src/examples/spinner/sizes";
+import UsageExample from "../../../../goldfinch-docs-astro/src/examples/spinner/usage";
 const meta: Meta<typeof Spinner> = {
   title: "Components/Spinner",
   component: Spinner,
@@ -23,3 +24,5 @@ export const Default: Story = {};
 export const Basic: Story = { render: () => <BasicExample /> };
 
 export const Sizes: Story = { render: () => <SizesExample /> };
+
+export const Usage: Story = { render: () => <UsageExample /> };

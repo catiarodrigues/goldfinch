@@ -9,6 +9,7 @@ import PropsTable from "../../components/docs/PropsTable.astro";
 import ComponentExample from "../../components/docs/ComponentExample.astro";
 import Basic from "../../examples/table/basic.tsx";
 import basicCode from "../../examples/table/basic.tsx?raw";
+import usageCode from "../../examples/table/usage.tsx?raw";
 
 Render tabular data using a compound component API — `Table.Header`, `Table.Head`, `Table.Body`, `Table.Row`, `Table.Cell` — with Goldfinch borders, spacing, and typography.
 
@@ -28,28 +29,7 @@ import { Table } from "@catiarodrigues/goldfinch/components/table";
 
 ## Usage
 
-```tsx
-import { Table } from "@catiarodrigues/goldfinch";
-
-export default function Example() {
-  return (
-    <Table>
-      <Table.Header>
-        <Table.Row>
-          <Table.Head>Name</Table.Head>
-          <Table.Head>Role</Table.Head>
-        </Table.Row>
-      </Table.Header>
-      <Table.Body>
-        <Table.Row>
-          <Table.Cell>Alice</Table.Cell>
-          <Table.Cell>Engineer</Table.Cell>
-        </Table.Row>
-      </Table.Body>
-    </Table>
-  );
-}
-```
+<ComponentExample code={usageCode} />
 
 ## Examples
 

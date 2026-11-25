@@ -3,6 +3,7 @@ import { Sidebar } from "./sidebar";
 import { expect, userEvent, within } from "storybook/test";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/sidebar/basic";
+import UsageExample from "../../../../goldfinch-docs-astro/src/examples/sidebar/usage";
 const meta: Meta<typeof Sidebar> = {
   title: "Components/Sidebar",
   component: Sidebar,
@@ -73,3 +74,5 @@ export const CollapseAndExpand: Story = {
 };
 
 export const Basic: Story = { render: () => <BasicExample /> };
+
+export const Usage: Story = { render: () => <UsageExample /> };

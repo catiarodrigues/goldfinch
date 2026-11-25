@@ -9,6 +9,7 @@ import PropsTable from "../../components/docs/PropsTable.astro";
 import ComponentExample from "../../components/docs/ComponentExample.astro";
 import Basic from "../../examples/sensitive-input/basic.tsx";
 import basicCode from "../../examples/sensitive-input/basic.tsx?raw";
+import usageCode from "../../examples/sensitive-input/usage.tsx?raw";
 
 Collect API keys, tokens, and other secrets with the value masked by default and a toggle to reveal it on demand.
 
@@ -35,17 +36,7 @@ import { SensitiveInput } from "@catiarodrigues/goldfinch/components/sensitive-i
 
 ## Usage
 
-```tsx
-import { SensitiveInput, Field } from "@catiarodrigues/goldfinch";
-
-export default function Example() {
-  return (
-    <Field label="API Key">
-      <SensitiveInput placeholder="sk-..." aria-label="API Key" />
-    </Field>
-  );
-}
-```
+<ComponentExample code={usageCode} />
 
 ## Examples
 

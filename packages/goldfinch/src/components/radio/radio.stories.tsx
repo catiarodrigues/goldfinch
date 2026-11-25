@@ -3,6 +3,7 @@ import { Radio } from "./radio";
 import { expect, userEvent, within } from "storybook/test";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/radio/basic";
+import UsageExample from "../../../../goldfinch-docs-astro/src/examples/radio/usage";
 const meta: Meta<typeof Radio> = {
   title: "Components/Radio",
   component: Radio,
@@ -46,3 +47,5 @@ export const ArrowKeys: Story = {
 };
 
 export const Basic: Story = { render: () => <BasicExample /> };
+
+export const Usage: Story = { render: () => <UsageExample /> };

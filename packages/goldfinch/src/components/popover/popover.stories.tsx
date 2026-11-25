@@ -4,6 +4,7 @@ import { expect, userEvent, waitFor, within } from "storybook/test";
 import { Button } from "../button/button";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/popover/basic";
+import UsageExample from "../../../../goldfinch-docs-astro/src/examples/popover/usage";
 const meta: Meta<typeof Popover> = {
   title: "Components/Popover",
   component: Popover,
@@ -56,3 +57,5 @@ export const OpenAndDismiss: Story = {
 };
 
 export const Basic: Story = { render: () => <BasicExample /> };
+
+export const Usage: Story = { render: () => <UsageExample /> };

@@ -8,6 +8,7 @@ import { expect, spyOn, userEvent, within } from "storybook/test";
 import { Button } from "../button/button";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/copy-to-clipboard/basic";
+import UsageExample from "../../../../goldfinch-docs-astro/src/examples/copy-to-clipboard/usage";
 const meta: Meta<typeof CopyToClipboard> = {
   title: "Components/CopyToClipboard",
   component: CopyToClipboard,
@@ -61,3 +62,5 @@ export const CopiesCurrentValue: Story = {
 };
 
 export const Basic: Story = { render: () => <BasicExample /> };
+
+export const Usage: Story = { render: () => <UsageExample /> };

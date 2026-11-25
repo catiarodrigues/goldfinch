@@ -11,6 +11,7 @@ import Basic from "../../examples/input/basic.tsx";
 import basicCode from "../../examples/input/basic.tsx?raw";
 import Variants from "../../examples/input/variants.tsx";
 import variantsCode from "../../examples/input/variants.tsx?raw";
+import usageCode from "../../examples/input/usage.tsx?raw";
 
 Collect alphanumeric text with built-in support for field labels, description text, and validation errors.
 
@@ -30,17 +31,7 @@ import { Input } from "@catiarodrigues/goldfinch/components/input";
 
 ## Usage
 
-```tsx
-import { Input, Field } from "@catiarodrigues/goldfinch";
-
-export default function Example() {
-  return (
-    <Field label="Name" description="Enter your full name.">
-      <Input placeholder="John Doe" aria-label="Name" />
-    </Field>
-  );
-}
-```
+<ComponentExample code={usageCode} />
 
 ## Examples
 

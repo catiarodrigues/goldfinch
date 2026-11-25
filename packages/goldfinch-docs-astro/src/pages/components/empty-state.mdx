@@ -9,6 +9,7 @@ import PropsTable from "../../components/docs/PropsTable.astro";
 import ComponentExample from "../../components/docs/ComponentExample.astro";
 import Basic from "../../examples/empty-state/basic.tsx";
 import basicCode from "../../examples/empty-state/basic.tsx?raw";
+import usageCode from "../../examples/empty-state/usage.tsx?raw";
 
 Turn empty lists and search results into opportunities — explain why data is missing and offer a clear next action.
 
@@ -28,18 +29,7 @@ import { EmptyState } from "@catiarodrigues/goldfinch/components/empty-state";
 
 ## Usage
 
-```tsx
-import { EmptyState } from "@catiarodrigues/goldfinch";
-
-export default function Example() {
-  return (
-    <EmptyState
-      title="No results"
-      description="Try adjusting your search or filters."
-    />
-  );
-}
-```
+<ComponentExample code={usageCode} />
 
 ## Examples
 

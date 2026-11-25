@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Grid, GOLDFINCH_GRID_VARIANTS } from "./grid";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/grid/basic";
+import UsageExample from "../../../../goldfinch-docs-astro/src/examples/grid/usage";
 const meta: Meta<typeof Grid> = {
   title: "Components/Grid",
   component: Grid,
@@ -28,3 +29,5 @@ export const Default: Story = {
 };
 
 export const Basic: Story = { render: () => <BasicExample /> };
+
+export const Usage: Story = { render: () => <UsageExample /> };

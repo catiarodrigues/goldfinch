@@ -11,6 +11,7 @@ import Basic from "../../examples/alert/basic.tsx";
 import basicCode from "../../examples/alert/basic.tsx?raw";
 import Variants from "../../examples/alert/variants.tsx";
 import variantsCode from "../../examples/alert/variants.tsx?raw";
+import usageCode from "../../examples/alert/usage.tsx?raw";
 
 Display prominent notices — release notes, system warnings, validation summaries — with optional icon, title, description, and action slot.
 
@@ -30,18 +31,7 @@ import { Alert } from "@catiarodrigues/goldfinch/components/alert";
 
 ## Usage
 
-```tsx
-import { Alert } from "@catiarodrigues/goldfinch";
-
-export default function Example() {
-  return (
-    <Alert
-      title="Update available"
-      description="A new version is ready to install."
-    />
-  );
-}
-```
+<ComponentExample code={usageCode} />
 
 ## Examples
 

@@ -9,6 +9,7 @@ import PropsTable from "../../components/docs/PropsTable.astro";
 import ComponentExample from "../../components/docs/ComponentExample.astro";
 import Basic from "../../examples/field/basic.tsx";
 import basicCode from "../../examples/field/basic.tsx?raw";
+import usageCode from "../../examples/field/usage.tsx?raw";
 
 Wrap any input-like component with a label, optional description, and validation error display for consistent form layout.
 
@@ -28,17 +29,7 @@ import { Field } from "@catiarodrigues/goldfinch/components/field";
 
 ## Usage
 
-```tsx
-import { Field, Input } from "@catiarodrigues/goldfinch";
-
-export default function Example() {
-  return (
-    <Field label="Email" description="We'll never share your email.">
-      <Input type="email" placeholder="you@example.com" aria-label="Email" />
-    </Field>
-  );
-}
-```
+<ComponentExample code={usageCode} />
 
 ## Examples
 

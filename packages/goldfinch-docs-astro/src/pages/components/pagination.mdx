@@ -9,6 +9,7 @@ import PropsTable from "../../components/docs/PropsTable.astro";
 import ComponentExample from "../../components/docs/ComponentExample.astro";
 import Basic from "../../examples/pagination/basic.tsx";
 import basicCode from "../../examples/pagination/basic.tsx?raw";
+import usageCode from "../../examples/pagination/usage.tsx?raw";
 
 Navigate multi-page content with numbered page buttons, previous/next arrows, and automatic ellipsis for large page counts.
 
@@ -28,14 +29,7 @@ import { Pagination } from "@catiarodrigues/goldfinch/components/pagination";
 
 ## Usage
 
-```tsx
-import { Pagination } from "@catiarodrigues/goldfinch";
-
-export default function Example() {
-  const [page, setPage] = useState(1);
-  return <Pagination current={page} total={20} onChange={setPage} />;
-}
-```
+<ComponentExample code={usageCode} />
 
 ## Examples
 

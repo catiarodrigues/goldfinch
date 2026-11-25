@@ -3,6 +3,7 @@ import { Checkbox, GOLDFINCH_CHECKBOX_VARIANTS } from "./checkbox";
 import { expect, userEvent, within } from "storybook/test";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/checkbox/basic";
+import UsageExample from "../../../../goldfinch-docs-astro/src/examples/checkbox/usage";
 const meta: Meta<typeof Checkbox> = {
   title: "Components/Checkbox",
   component: Checkbox,
@@ -40,3 +41,5 @@ export const ToggleByLabelAndKeyboard: Story = {
 };
 
 export const Basic: Story = { render: () => <BasicExample /> };
+
+export const Usage: Story = { render: () => <UsageExample /> };

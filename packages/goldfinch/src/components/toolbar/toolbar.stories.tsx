@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Toolbar, GOLDFINCH_TOOLBAR_VARIANTS } from "./toolbar";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/toolbar/basic";
+import UsageExample from "../../../../goldfinch-docs-astro/src/examples/toolbar/usage";
 const meta: Meta<typeof Toolbar> = {
   title: "Components/Toolbar",
   component: Toolbar,
@@ -28,3 +29,5 @@ export const Default: Story = {
 };
 
 export const Basic: Story = { render: () => <BasicExample /> };
+
+export const Usage: Story = { render: () => <UsageExample /> };

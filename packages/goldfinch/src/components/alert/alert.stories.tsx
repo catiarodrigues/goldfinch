@@ -3,6 +3,7 @@ import { Alert, GOLDFINCH_ALERT_VARIANTS } from "./alert";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/alert/basic";
 import VariantsExample from "../../../../goldfinch-docs-astro/src/examples/alert/variants";
+import UsageExample from "../../../../goldfinch-docs-astro/src/examples/alert/usage";
 const meta: Meta<typeof Alert> = {
   title: "Components/Alert",
   component: Alert,
@@ -41,3 +42,5 @@ export const Error: Story = {
 export const Basic: Story = { render: () => <BasicExample /> };
 
 export const Variants: Story = { render: () => <VariantsExample /> };
+
+export const Usage: Story = { render: () => <UsageExample /> };

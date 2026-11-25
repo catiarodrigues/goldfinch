@@ -9,6 +9,7 @@ import PropsTable from "../../components/docs/PropsTable.astro";
 import ComponentExample from "../../components/docs/ComponentExample.astro";
 import Basic from "../../examples/breadcrumbs/basic.tsx";
 import basicCode from "../../examples/breadcrumbs/basic.tsx?raw";
+import usageCode from "../../examples/breadcrumbs/usage.tsx?raw";
 
 Show the user's current location within a page hierarchy and provide quick navigation back to parent sections.
 
@@ -28,18 +29,7 @@ import { Breadcrumbs } from "@catiarodrigues/goldfinch/components/breadcrumbs";
 
 ## Usage
 
-```tsx
-import { Breadcrumbs } from "@catiarodrigues/goldfinch";
-
-export default function Example() {
-  const items = [
-    { label: "Home", href: "/" },
-    { label: "Products", href: "/products" },
-    { label: "Details" },
-  ];
-  return <Breadcrumbs items={items} />;
-}
-```
+<ComponentExample code={usageCode} />
 
 ## Examples
 

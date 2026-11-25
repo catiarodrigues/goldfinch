@@ -4,6 +4,7 @@ import { useState } from "react";
 import { expect, userEvent, within } from "storybook/test";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/pagination/basic";
+import UsageExample from "../../../../goldfinch-docs-astro/src/examples/pagination/usage";
 const meta: Meta<typeof Pagination> = {
   title: "Components/Pagination",
   component: Pagination,
@@ -55,3 +56,5 @@ export const ChangePage: Story = {
 };
 
 export const Basic: Story = { render: () => <BasicExample /> };
+
+export const Usage: Story = { render: () => <UsageExample /> };

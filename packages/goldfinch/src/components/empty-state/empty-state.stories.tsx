@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { EmptyState, GOLDFINCH_EMPTY_STATE_VARIANTS } from "./empty-state";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/empty-state/basic";
+import UsageExample from "../../../../goldfinch-docs-astro/src/examples/empty-state/usage";
 const meta: Meta<typeof EmptyState> = {
   title: "Components/EmptyState",
   component: EmptyState,
@@ -25,3 +26,5 @@ export const Default: Story = {
 };
 
 export const Basic: Story = { render: () => <BasicExample /> };
+
+export const Usage: Story = { render: () => <UsageExample /> };

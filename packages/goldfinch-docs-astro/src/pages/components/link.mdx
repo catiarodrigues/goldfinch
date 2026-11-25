@@ -9,6 +9,7 @@ import PropsTable from "../../components/docs/PropsTable.astro";
 import ComponentExample from "../../components/docs/ComponentExample.astro";
 import Basic from "../../examples/link/basic.tsx";
 import basicCode from "../../examples/link/basic.tsx?raw";
+import usageCode from "../../examples/link/usage.tsx?raw";
 
 Style anchor elements with Goldfinch's link tokens for consistent color, underline, and hover behavior.
 
@@ -28,17 +29,7 @@ import { Link } from "@catiarodrigues/goldfinch/components/link";
 
 ## Usage
 
-```tsx
-import { Link } from "@catiarodrigues/goldfinch";
-
-export default function Example() {
-  return (
-    <Link href="https://example.com" target="_blank" rel="noopener noreferrer">
-      Visit Example
-    </Link>
-  );
-}
-```
+<ComponentExample code={usageCode} />
 
 ## Examples
 

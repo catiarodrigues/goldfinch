@@ -9,6 +9,7 @@ import PropsTable from "../../components/docs/PropsTable.astro";
 import ComponentExample from "../../components/docs/ComponentExample.astro";
 import Basic from "../../examples/grid/basic.tsx";
 import basicCode from "../../examples/grid/basic.tsx?raw";
+import usageCode from "../../examples/grid/usage.tsx?raw";
 
 Distribute content across preset responsive column layouts — from side-by-side to 6-column grids.
 
@@ -28,19 +29,7 @@ import { Grid, GridItem } from "@catiarodrigues/goldfinch/components/grid";
 
 ## Usage
 
-```tsx
-import { Grid, GridItem } from "@catiarodrigues/goldfinch";
-
-export default function Example() {
-  return (
-    <Grid variant="3up" gap="base">
-      <GridItem className="p-4">1</GridItem>
-      <GridItem className="p-4">2</GridItem>
-      <GridItem className="p-4">3</GridItem>
-    </Grid>
-  );
-}
-```
+<ComponentExample code={usageCode} />
 
 ## Examples
 

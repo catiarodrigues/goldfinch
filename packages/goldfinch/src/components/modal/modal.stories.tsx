@@ -4,6 +4,7 @@ import { expect, userEvent, waitFor, within } from "storybook/test";
 import { Button } from "../button/button";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/modal/basic";
+import UsageExample from "../../../../goldfinch-docs-astro/src/examples/modal/usage";
 const meta: Meta<typeof Modal> = {
   title: "Components/Modal",
   component: Modal,
@@ -63,3 +64,5 @@ export const KeyboardAndFocus: Story = {
 };
 
 export const Basic: Story = { render: () => <BasicExample /> };
+
+export const Usage: Story = { render: () => <UsageExample /> };

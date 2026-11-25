@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Text, GOLDFINCH_TEXT_VARIANTS } from "./text";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/text/basic";
+import UsageExample from "../../../../goldfinch-docs-astro/src/examples/text/usage";
 const meta: Meta<typeof Text> = {
   title: "Components/Text",
   component: Text,
@@ -29,3 +30,5 @@ export const Default: Story = {
 };
 
 export const Basic: Story = { render: () => <BasicExample /> };
+
+export const Usage: Story = { render: () => <UsageExample /> };

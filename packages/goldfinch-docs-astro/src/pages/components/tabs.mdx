@@ -11,6 +11,7 @@ import Underline from "../../examples/tabs/underline.tsx";
 import underlineCode from "../../examples/tabs/underline.tsx?raw";
 import Segmented from "../../examples/tabs/segmented.tsx";
 import segmentedCode from "../../examples/tabs/segmented.tsx?raw";
+import usageCode from "../../examples/tabs/usage.tsx?raw";
 
 Organize related content into switchable panels. Two visual modes: `segmented` (pill-style grouped tabs) and `underline` (classic tab bar).
 
@@ -30,27 +31,11 @@ import { Tabs } from "@catiarodrigues/goldfinch/components/tabs";
 
 ## Usage
 
-```tsx
-import { Tabs } from "@catiarodrigues/goldfinch";
-import { useState } from "react";
-
-export default function Example() {
-  return (
-    <Tabs
-      tabs={[
-        { value: "overview", label: "Overview" },
-        { value: "details", label: "Details" },
-      ]}
-      defaultValue="overview"
-      variant="segmented"
-    />
-  );
-}
-```
+<ComponentExample code={usageCode} />
 
 ## Examples
 
-Define tabs via the `tabs` prop array. Use `value` and `onValueChange` for controlled mode, or `defaultValue` for uncontrolled.
+Define tabs via the `tabs` prop array. Use `value` and `onValueChange` for controlled mode, or omit `value` for uncontrolled (it starts on the first tab).
 
 ### Underline
 
@@ -84,13 +69,8 @@ Define tabs via the `tabs` prop array. Use `value` and `onValueChange` for contr
       name: "value",
       type: "string",
       default: "—",
-      description: "Controlled active value.",
-    },
-    {
-      name: "defaultValue",
-      type: "string",
-      default: "—",
-      description: "Uncontrolled initial value.",
+      description:
+        "Controlled active value. Omit for uncontrolled; it starts on the first tab.",
     },
     {
       name: "onValueChange",

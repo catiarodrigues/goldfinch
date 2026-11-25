@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { TableOfContents } from "./table-of-contents";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/table-of-contents/basic";
+import UsageExample from "../../../../goldfinch-docs-astro/src/examples/table-of-contents/usage";
 const meta: Meta<typeof TableOfContents> = {
   title: "Components/Table Of Contents",
   component: TableOfContents,
@@ -23,3 +24,5 @@ export const Default: Story = {
 };
 
 export const Basic: Story = { render: () => <BasicExample /> };
+
+export const Usage: Story = { render: () => <UsageExample /> };

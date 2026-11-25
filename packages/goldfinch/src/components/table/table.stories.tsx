@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Table, GOLDFINCH_TABLE_VARIANTS } from "./table";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/table/basic";
+import UsageExample from "../../../../goldfinch-docs-astro/src/examples/table/usage";
 const meta: Meta<typeof Table> = {
   title: "Components/Table",
   component: Table,
@@ -41,3 +42,5 @@ export const Default: Story = {
 };
 
 export const Basic: Story = { render: () => <BasicExample /> };
+
+export const Usage: Story = { render: () => <UsageExample /> };

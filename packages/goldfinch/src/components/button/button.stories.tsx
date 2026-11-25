@@ -5,6 +5,7 @@ import BasicExample from "../../../../goldfinch-docs-astro/src/examples/button/b
 import SizesExample from "../../../../goldfinch-docs-astro/src/examples/button/sizes";
 import ShapeExample from "../../../../goldfinch-docs-astro/src/examples/button/shape";
 import LoadingExample from "../../../../goldfinch-docs-astro/src/examples/button/loading";
+import UsageExample from "../../../../goldfinch-docs-astro/src/examples/button/usage";
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
   component: Button,
@@ -93,3 +94,5 @@ export const Sizes: Story = { render: () => <SizesExample /> };
 export const Shape: Story = { render: () => <ShapeExample /> };
 
 export const Loading: Story = { render: () => <LoadingExample /> };
+
+export const Usage: Story = { render: () => <UsageExample /> };

@@ -9,6 +9,7 @@ import PropsTable from "../../components/docs/PropsTable.astro";
 import ComponentExample from "../../components/docs/ComponentExample.astro";
 import Basic from "../../examples/menubar/basic.tsx";
 import basicCode from "../../examples/menubar/basic.tsx?raw";
+import usageCode from "../../examples/menubar/usage.tsx?raw";
 
 A horizontal navigation bar of icon buttons with tooltips — familiar for desktop-style toolbar interfaces.
 
@@ -28,17 +29,7 @@ import { MenuBar } from "@catiarodrigues/goldfinch/components/menubar";
 
 ## Usage
 
-```tsx
-import { MenuBar } from "@catiarodrigues/goldfinch";
-
-export default function Example() {
-  const items = [
-    { icon: <BoldIcon />, tooltip: "Bold", onClick: () => {} },
-    { icon: <ItalicIcon />, tooltip: "Italic", onClick: () => {} },
-  ];
-  return <MenuBar options={items} isActive={1} />;
-}
-```
+<ComponentExample code={usageCode} />
 
 ## Examples
 

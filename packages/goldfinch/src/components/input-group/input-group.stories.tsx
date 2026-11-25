@@ -3,6 +3,7 @@ import { InputGroup, GOLDFINCH_INPUT_GROUP_VARIANTS } from "./input-group";
 import { MagnifyingGlassIcon } from "@phosphor-icons/react";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/input-group/basic";
+import UsageExample from "../../../../goldfinch-docs-astro/src/examples/input-group/usage";
 const meta: Meta<typeof InputGroup> = {
   title: "Components/Input Group",
   component: InputGroup,
@@ -30,3 +31,5 @@ export const Default: Story = {
 };
 
 export const Basic: Story = { render: () => <BasicExample /> };
+
+export const Usage: Story = { render: () => <UsageExample /> };

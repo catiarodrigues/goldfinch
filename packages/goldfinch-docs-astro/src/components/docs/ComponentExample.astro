@@ -7,6 +7,8 @@ export interface Props {
   code: string;
 }
 const { title, code } = Astro.props;
+// Without a preview (e.g. a page's Usage snippet), show just the code.
+const hasPreview = Astro.slots.has("default");
 ---
 
 <figure class="not-prose my-6 overflow-hidden rounded-lg border border-goldfinch-hairline">
@@ -15,10 +17,12 @@ const { title, code } = Astro.props;
       {title}
     </figcaption>
   )}
-  <div class="p-6">
-    <slot />
-  </div>
-  <div class="border-t border-goldfinch-hairline text-sm [&_pre]:m-0! [&_pre]:rounded-none! [&_pre]:border-0! [&_pre]:px-4 [&_pre]:py-3">
+  {hasPreview && (
+    <div class="p-6">
+      <slot />
+    </div>
+  )}
+  <div class="border-goldfinch-hairline [&:not(:first-child)]:border-t text-sm [&_pre]:m-0! [&_pre]:rounded-none! [&_pre]:border-0! [&_pre]:px-4 [&_pre]:py-3">
     <Code
       code={code.trim()}
       lang="tsx"

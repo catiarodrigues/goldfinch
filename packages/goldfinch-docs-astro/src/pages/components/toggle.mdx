@@ -9,6 +9,7 @@ import PropsTable from "../../components/docs/PropsTable.astro";
 import ComponentExample from "../../components/docs/ComponentExample.astro";
 import Basic from "../../examples/toggle/basic.tsx";
 import basicCode from "../../examples/toggle/basic.tsx?raw";
+import usageCode from "../../examples/toggle/usage.tsx?raw";
 
 Switch a binary setting between on and off with an animated thumb. Supports both controlled and uncontrolled usage.
 
@@ -28,20 +29,7 @@ import { Toggle } from "@catiarodrigues/goldfinch/components/toggle";
 
 ## Usage
 
-```tsx
-import { Toggle, Field } from "@catiarodrigues/goldfinch";
-
-export default function Example() {
-  const [enabled, setEnabled] = useState(false);
-  return (
-    <Toggle
-      label="Enable notifications"
-      checked={enabled}
-      onCheckedChange={setEnabled}
-    />
-  );
-}
-```
+<ComponentExample code={usageCode} />
 
 ## Examples
 

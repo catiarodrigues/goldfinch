@@ -9,6 +9,7 @@ import PropsTable from "../../components/docs/PropsTable.astro";
 import ComponentExample from "../../components/docs/ComponentExample.astro";
 import Basic from "../../examples/text/basic.tsx";
 import basicCode from "../../examples/text/basic.tsx?raw";
+import usageCode from "../../examples/text/usage.tsx?raw";
 
 Render headings, body copy, secondary text, monospace, and semantic color variants — each variant maps to the appropriate HTML element automatically.
 
@@ -28,20 +29,7 @@ import { Text } from "@catiarodrigues/goldfinch/components/text";
 
 ## Usage
 
-```tsx
-import { Text } from "@catiarodrigues/goldfinch";
-
-export default function Example() {
-  return (
-    <div>
-      <Text variant="heading1">Heading 1</Text>
-      <Text variant="body">Body copy goes here.</Text>
-      <Text variant="secondary">Secondary / muted text.</Text>
-      <Text variant="mono">npm install</Text>
-    </div>
-  );
-}
-```
+<ComponentExample code={usageCode} />
 
 ## Examples
 

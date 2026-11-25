@@ -3,6 +3,7 @@ import { Progress } from "./progress";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/progress/basic";
 import SizesExample from "../../../../goldfinch-docs-astro/src/examples/progress/sizes";
+import UsageExample from "../../../../goldfinch-docs-astro/src/examples/progress/usage";
 const meta: Meta<typeof Progress> = {
   title: "Components/Progress",
   component: Progress,
@@ -21,3 +22,5 @@ export const Default: Story = {
 export const Basic: Story = { render: () => <BasicExample /> };
 
 export const Sizes: Story = { render: () => <SizesExample /> };
+
+export const Usage: Story = { render: () => <UsageExample /> };

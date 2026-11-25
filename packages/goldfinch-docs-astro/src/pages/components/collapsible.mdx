@@ -9,6 +9,7 @@ import PropsTable from "../../components/docs/PropsTable.astro";
 import ComponentExample from "../../components/docs/ComponentExample.astro";
 import Basic from "../../examples/collapsible/basic.tsx";
 import basicCode from "../../examples/collapsible/basic.tsx?raw";
+import usageCode from "../../examples/collapsible/usage.tsx?raw";
 
 Hide secondary content behind a trigger — ideal for settings panels, FAQ items, or long metadata sections.
 
@@ -28,22 +29,7 @@ import { Collapsible } from "@catiarodrigues/goldfinch/components/collapsible";
 
 ## Usage
 
-```tsx
-import { Collapsible, Button } from "@catiarodrigues/goldfinch";
-
-export default function Example() {
-  return (
-    <Collapsible>
-      <Collapsible.Trigger render={<Button variant="ghost" />}>
-        Toggle
-      </Collapsible.Trigger>
-      <Collapsible.Panel>
-        <div>Hidden content revealed.</div>
-      </Collapsible.Panel>
-    </Collapsible>
-  );
-}
-```
+<ComponentExample code={usageCode} />
 
 ## Examples
 

@@ -9,6 +9,7 @@ import PropsTable from "../../components/docs/PropsTable.astro";
 import ComponentExample from "../../components/docs/ComponentExample.astro";
 import Basic from "../../examples/checkbox/basic.tsx";
 import basicCode from "../../examples/checkbox/basic.tsx?raw";
+import usageCode from "../../examples/checkbox/usage.tsx?raw";
 
 Toggle individual items on or off in multi-select forms with support for an indeterminate "some selected" state.
 
@@ -28,13 +29,7 @@ import { Checkbox } from "@catiarodrigues/goldfinch/components/checkbox";
 
 ## Usage
 
-```tsx
-import { Checkbox } from "@catiarodrigues/goldfinch";
-
-export default function Example() {
-  return <Checkbox defaultChecked aria-label="Accept terms" />;
-}
-```
+<ComponentExample code={usageCode} />
 
 ## Examples
 

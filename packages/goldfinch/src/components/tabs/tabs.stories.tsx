@@ -5,6 +5,7 @@ import UnderlineExample from "../../../../goldfinch-docs-astro/src/examples/tabs
 import SegmentedExample from "../../../../goldfinch-docs-astro/src/examples/tabs/segmented";
 import { expect, userEvent, within } from "storybook/test";
 
+import UsageExample from "../../../../goldfinch-docs-astro/src/examples/tabs/usage";
 const meta: Meta<typeof Tabs> = {
   title: "Components/Tabs",
   component: Tabs,
@@ -40,3 +41,5 @@ export const SelectAndArrowKeys: Story = {
     await expect(canvas.getByRole("tab", { name: "Props" })).toHaveFocus();
   },
 };
+
+export const Usage: Story = { render: () => <UsageExample /> };

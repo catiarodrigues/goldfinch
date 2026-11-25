@@ -3,6 +3,7 @@ import { SensitiveInput } from "./sensitive-input";
 import { expect, userEvent, waitFor, within } from "storybook/test";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/sensitive-input/basic";
+import UsageExample from "../../../../goldfinch-docs-astro/src/examples/sensitive-input/usage";
 const meta: Meta<typeof SensitiveInput> = {
   title: "Components/Sensitive Input",
   component: SensitiveInput,
@@ -46,3 +47,5 @@ export const RevealAndHide: Story = {
 };
 
 export const Basic: Story = { render: () => <BasicExample /> };
+
+export const Usage: Story = { render: () => <UsageExample /> };

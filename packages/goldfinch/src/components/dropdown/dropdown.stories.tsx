@@ -4,6 +4,7 @@ import { Button } from "../button/button";
 import { expect, fn, userEvent, waitFor, within } from "storybook/test";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/dropdown/basic";
+import UsageExample from "../../../../goldfinch-docs-astro/src/examples/dropdown/usage";
 const meta: Meta<typeof DropdownMenu> = {
   title: "Components/Dropdown",
   component: DropdownMenu,
@@ -69,3 +70,5 @@ export const KeyboardNavigation: Story = {
 };
 
 export const Basic: Story = { render: () => <BasicExample /> };
+
+export const Usage: Story = { render: () => <UsageExample /> };

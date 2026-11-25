@@ -9,6 +9,7 @@ import PropsTable from "../../components/docs/PropsTable.astro";
 import ComponentExample from "../../components/docs/ComponentExample.astro";
 import Basic from "../../examples/page/basic.tsx";
 import basicCode from "../../examples/page/basic.tsx?raw";
+import usageCode from "../../examples/page/usage.tsx?raw";
 
 A centered, max-width layout wrapper with a built-in page header (title, description, breadcrumbs) — the outer shell for any page content.
 
@@ -28,20 +29,7 @@ import { Page } from "@catiarodrigues/goldfinch/components/page";
 
 ## Usage
 
-```tsx
-import { Page } from "@catiarodrigues/goldfinch";
-
-export default function Example() {
-  return (
-    <Page size="base">
-      <Page.Breadcrumbs>Home / Dashboard</Page.Breadcrumbs>
-      <Page.Title>Dashboard</Page.Title>
-      <Page.Description>Overview of your project metrics.</Page.Description>
-      {/* Page content */}
-    </Page>
-  );
-}
-```
+<ComponentExample code={usageCode} />
 
 ## Example
 

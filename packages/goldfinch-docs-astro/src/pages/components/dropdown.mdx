@@ -9,6 +9,7 @@ import PropsTable from "../../components/docs/PropsTable.astro";
 import ComponentExample from "../../components/docs/ComponentExample.astro";
 import Basic from "../../examples/dropdown/basic.tsx";
 import basicCode from "../../examples/dropdown/basic.tsx?raw";
+import usageCode from "../../examples/dropdown/usage.tsx?raw";
 
 Present a list of actions or links in a positioned overlay that opens on click.
 
@@ -28,29 +29,7 @@ import { DropdownMenu } from "@catiarodrigues/goldfinch/components/dropdown";
 
 ## Usage
 
-```tsx
-import { DropdownMenu, Button } from "@catiarodrigues/goldfinch";
-
-export default function Example() {
-  return (
-    <DropdownMenu>
-      <DropdownMenu.Trigger>
-        <Button variant="ghost">Actions</Button>
-      </DropdownMenu.Trigger>
-      <DropdownMenu.Portal>
-        <DropdownMenu.Content align="start">
-          <DropdownMenu.Item onClick={() => {}}>Edit</DropdownMenu.Item>
-          <DropdownMenu.Item onClick={() => {}}>Duplicate</DropdownMenu.Item>
-          <DropdownMenu.Separator />
-          <DropdownMenu.Item onClick={() => {}} variant="danger">
-            Delete
-          </DropdownMenu.Item>
-        </DropdownMenu.Content>
-      </DropdownMenu.Portal>
-    </DropdownMenu>
-  );
-}
-```
+<ComponentExample code={usageCode} />
 
 ## Examples
 

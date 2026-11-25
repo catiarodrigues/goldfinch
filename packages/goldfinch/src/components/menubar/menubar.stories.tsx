@@ -3,6 +3,7 @@ import { MenuBar } from "./menubar";
 import { expect, fn, userEvent, within } from "storybook/test";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/menubar/basic";
+import UsageExample from "../../../../goldfinch-docs-astro/src/examples/menubar/usage";
 const meta: Meta<typeof MenuBar> = {
   title: "Components/Menubar",
   component: MenuBar,
@@ -54,3 +55,5 @@ export const KeyboardNavigation: Story = {
 };
 
 export const Basic: Story = { render: () => <BasicExample /> };
+
+export const Usage: Story = { render: () => <UsageExample /> };

@@ -9,6 +9,7 @@ import PropsTable from "../../components/docs/PropsTable.astro";
 import ComponentExample from "../../components/docs/ComponentExample.astro";
 import Basic from "../../examples/tooltip/basic.tsx";
 import basicCode from "../../examples/tooltip/basic.tsx?raw";
+import usageCode from "../../examples/tooltip/usage.tsx?raw";
 
 Annotate icons, buttons, and controls with concise labels that appear on hover (mouse) or focus (keyboard) and auto-position around the trigger.
 
@@ -28,19 +29,7 @@ import { Tooltip } from "@catiarodrigues/goldfinch/components/tooltip";
 
 ## Usage
 
-```tsx
-import { Tooltip, Button } from "@catiarodrigues/goldfinch";
-
-export default function Example() {
-  return (
-    <Tooltip label="Delete item">
-      <Button variant="ghost" aria-label="Delete">
-        <TrashIcon />
-      </Button>
-    </Tooltip>
-  );
-}
-```
+<ComponentExample code={usageCode} />
 
 ## Examples
 

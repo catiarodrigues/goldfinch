@@ -11,6 +11,7 @@ import Basic from "../../examples/spinner/basic.tsx";
 import basicCode from "../../examples/spinner/basic.tsx?raw";
 import Sizes from "../../examples/spinner/sizes.tsx";
 import sizesCode from "../../examples/spinner/sizes.tsx?raw";
+import usageCode from "../../examples/spinner/usage.tsx?raw";
 
 Indicate ongoing processing with an animated spin animation — available in `sm`, `base`, and `lg` sizes for different contexts.
 
@@ -30,18 +31,7 @@ import { Spinner } from "@catiarodrigues/goldfinch/components/spinner";
 
 ## Usage
 
-```tsx
-import { Spinner, Button } from "@catiarodrigues/goldfinch";
-
-export default function Example() {
-  return (
-    <Button disabled>
-      <Spinner size="sm" aria-label="Loading" />
-      Saving...
-    </Button>
-  );
-}
-```
+<ComponentExample code={usageCode} />
 
 ## Examples
 

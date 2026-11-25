@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Breadcrumb, GOLDFINCH_BREADCRUMBS_VARIANTS } from "./breadcrumbs";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/breadcrumbs/basic";
+import UsageExample from "../../../../goldfinch-docs-astro/src/examples/breadcrumbs/usage";
 const meta: Meta<typeof Breadcrumb> = {
   title: "Components/Breadcrumbs",
   component: Breadcrumb,
@@ -30,3 +31,5 @@ export const Default: Story = {
 };
 
 export const Basic: Story = { render: () => <BasicExample /> };
+
+export const Usage: Story = { render: () => <UsageExample /> };

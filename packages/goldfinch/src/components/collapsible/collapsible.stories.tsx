@@ -3,6 +3,7 @@ import { Collapsible } from "./collapsible";
 import { expect, userEvent, waitFor, within } from "storybook/test";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/collapsible/basic";
+import UsageExample from "../../../../goldfinch-docs-astro/src/examples/collapsible/usage";
 const meta: Meta<typeof Collapsible> = {
   title: "Components/Collapsible",
   component: Collapsible,
@@ -49,3 +50,5 @@ export const Toggle: Story = {
 };
 
 export const Basic: Story = { render: () => <BasicExample /> };
+
+export const Usage: Story = { render: () => <UsageExample /> };

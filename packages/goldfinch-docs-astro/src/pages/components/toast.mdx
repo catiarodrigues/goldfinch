@@ -9,6 +9,7 @@ import PropsTable from "../../components/docs/PropsTable.astro";
 import ComponentExample from "../../components/docs/ComponentExample.astro";
 import Basic from "../../examples/toast/basic.tsx";
 import basicCode from "../../examples/toast/basic.tsx?raw";
+import usageCode from "../../examples/toast/usage.tsx?raw";
 
 Display brief, auto-dismissing notifications anchored to the bottom of the viewport. Supports programmatic show/dismiss via an imperative manager.
 
@@ -31,23 +32,7 @@ import {
 
 ## Usage
 
-```tsx
-import {
-  Toast,
-  createGoldfinchToastManager,
-  Button,
-} from "@catiarodrigues/goldfinch";
-
-const toastManager = createGoldfinchToastManager();
-
-export default function Example() {
-  return (
-    <Toast toastManager={toastManager}>
-      <Button onClick={() => toastManager.show("Hello!")}>Show Toast</Button>
-    </Toast>
-  );
-}
-```
+<ComponentExample code={usageCode} />
 
 ## Examples
 

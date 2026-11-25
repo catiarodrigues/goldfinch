@@ -7,6 +7,7 @@ import DotExample from "../../../../goldfinch-docs-astro/src/examples/badge/dot"
 import InSentenceExample from "../../../../goldfinch-docs-astro/src/examples/badge/in-sentence";
 import SizesExample from "../../../../goldfinch-docs-astro/src/examples/badge/sizes";
 
+import UsageExample from "../../../../goldfinch-docs-astro/src/examples/badge/usage";
 const meta: Meta<typeof Badge> = {
   title: "Components/Badge",
   component: Badge,
@@ -78,3 +79,5 @@ export const ColorVariants: Story = { render: () => <ColorVariantsExample /> };
 export const Dot: Story = { render: () => <DotExample /> };
 export const InSentence: Story = { render: () => <InSentenceExample /> };
 export const Sizes: Story = { render: () => <SizesExample /> };
+
+export const Usage: Story = { render: () => <UsageExample /> };

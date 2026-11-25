@@ -9,6 +9,7 @@ import PropsTable from "../../components/docs/PropsTable.astro";
 import ComponentExample from "../../components/docs/ComponentExample.astro";
 import Basic from "../../examples/popover/basic.tsx";
 import basicCode from "../../examples/popover/basic.tsx?raw";
+import usageCode from "../../examples/popover/usage.tsx?raw";
 
 Display supplemental content — actions, filters, or details — in a floating panel anchored to a trigger element. Closes on click-outside or Escape.
 
@@ -28,17 +29,7 @@ import { Popover } from "@catiarodrigues/goldfinch/components/popover";
 
 ## Usage
 
-```tsx
-import { Popover, Button } from "@catiarodrigues/goldfinch";
-
-export default function Example() {
-  return (
-    <Popover content={<p className="p-2">Popover content here.</p>}>
-      <Button variant="ghost">Open</Button>
-    </Popover>
-  );
-}
-```
+<ComponentExample code={usageCode} />
 
 ## Examples
 
