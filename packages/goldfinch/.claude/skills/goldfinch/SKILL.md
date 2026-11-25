@@ -95,7 +95,7 @@ children.
   <Select.Option value="uk">United Kingdom</Select.Option>
 </Select>
 
-// Checkbox.Group for a labeled set; Checkbox alone for a single bare checkbox
+// Checkbox.Group for a labeled set; Checkbox alone for a single checkbox
 <Checkbox.Group legend="Notifications" defaultValue={["email"]}>
   <Checkbox.Item label="Email" value="email" />
   <Checkbox.Item label="SMS" value="sms" />
@@ -121,6 +121,31 @@ children.
   </Sidebar>
 </Sidebar.Provider>
 ```
+
+## Forms
+
+Pass `label`, `description` and `error` straight to the form control (Input, InputArea,
+SensitiveInput, InputGroup, Select, Checkbox, Toggle); it adds the Field around itself only when
+one of them is set. Groups (Checkbox.Group, Radio.Group, Toggle.Group) take `legend`,
+`description` and `error` the same way.
+
+```tsx
+// react-hook-form: errors.x is an object, so pass its message
+<Input label="Email" description="We never share it." error={errors.email?.message} />
+<Radio.Group legend="Plan" error={errors.plan?.message}>…</Radio.Group>
+```
+
+- **`error` is the field error.** A string is always shown and marks the field invalid
+  (`aria-invalid`, plus a red ring on text fields and Select); pass `undefined` when valid. This
+  is the form to use with a validation library (react-hook-form, zod, …).
+- **`{ message, match: "valueMissing" }`** shows the message only when the browser's own
+  validation fails that `ValidityState` check — for native `required` / `type` / `pattern`
+  validation without a library.
+- **Checkboxes, radios and toggles show an error by its message alone** — they get no red ring,
+  by design.
+- **Every control needs an accessible name:** a `label`, or `aria-label` when there's no visible
+  one. Wrapping custom content in `<Field label="…">` names the control inside it.
+- **Invalid styling comes from `error`.** `variant="error"` is deprecated.
 
 ## Toasts
 
