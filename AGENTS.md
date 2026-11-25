@@ -205,8 +205,9 @@ pnpm --filter @catiarodrigues/goldfinch build-storybook                 # static
 - `dist/` (gitignored) is rebuilt by `pnpm build`; never hand-edit or commit anything under it.
 - `apps/*` is declared in `pnpm-workspace.yaml` but no `apps/` directory exists yet.
 - `homepage` in `packages/goldfinch/package.json` points at `goldfinch.catiarodrigues.dev`, the domain
-  configured as `site` in the docs site's `astro.config.mjs`. The docs deploy to Cloudflare
-  via `packages/goldfinch-docs-astro/wrangler.jsonc`; nothing in the repo proves the domain
-  is live, so check before linking to it.
+  configured as `site` in the docs site's `astro.config.mjs`. The site is live: Cloudflare
+  rebuilds and deploys the docs automatically on every push to `main`
+  (`packages/goldfinch-docs-astro/wrangler.jsonc`), so a push to `main` is also a docs
+  release — nothing in CI deploys it.
 - The npm publish token lives in the user-level `~/.npmrc`, never in the repo — check
   `git status`/`git diff` for anything credential-shaped before staging.
