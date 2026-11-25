@@ -10,7 +10,10 @@ import { Tooltip } from "../tooltip";
  * Triggers given a <Button> child render as that button: never a button
  * inside a button. Other children (icons, text) keep a focusable wrapper.
  */
-const meta: Meta = { title: "Components/Button/As Trigger" };
+const meta: Meta = {
+  title: "Components/Button/As Trigger",
+  tags: ["!autodocs"],
+};
 
 export default meta;
 type Story = StoryObj;

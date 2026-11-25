@@ -1,6 +1,6 @@
 import { Select as SelectBase } from "@base-ui/react/select";
 import { CaretUpDownIcon } from "@phosphor-icons/react";
-import { forwardRef, useId } from "react";
+import { Children, forwardRef, isValidElement, useId } from "react";
 import type { ReactNode } from "react";
 import { cn } from "../../utils/cn";
 import {
@@ -159,6 +159,31 @@ function normalizeItems<T>(
     value: key as T,
     label: isItemDescriptor(entry) ? entry.label : entry,
   }));
+}
+
+/**
+ * Collects `{ value, label }` from `Select.Option` children (also inside
+ * `Select.Group`s and fragments), so the trigger can show an option's label
+ * rather than its raw value when options are composed by hand.
+ * Matched by displayName, like other compound parts.
+ */
+function itemsFromOptions<T>(
+  children: ReactNode,
+): Array<{ label: ReactNode; value: T }> {
+  const items: Array<{ label: ReactNode; value: T }> = [];
+  Children.forEach(children, (child) => {
+    if (!isValidElement<{ value?: T; children?: ReactNode }>(child)) return;
+    const name = (child.type as { displayName?: string }).displayName;
+    if (name === "Select.Option") {
+      items.push({
+        value: child.props.value as T,
+        label: child.props.children,
+      });
+    } else {
+      items.push(...itemsFromOptions<T>(child.props.children));
+    }
+  });
+  return items;
 }
 
 /**
@@ -420,7 +445,13 @@ export function Select<T, Multiple extends boolean | undefined = false>({
 
   // Normalize items to array format for Base UI compatibility
   // This fixes placeholder not showing with object map items
-  const normalizedItems = props.items ? normalizeItems(props.items) : undefined;
+  // Base UI needs the value → label list to show a label in the trigger.
+  const optionItems = props.items ? undefined : itemsFromOptions(children);
+  const normalizedItems = props.items
+    ? normalizeItems(props.items)
+    : optionItems?.length
+      ? optionItems
+      : undefined;
 
   // Auto-render children from items if no explicit children provided
   const renderedChildren = children

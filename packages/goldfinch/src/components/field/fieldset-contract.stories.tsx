@@ -11,7 +11,10 @@ import { Toggle } from "../toggle";
  * the description and field error are linked to it, and the group is invalid
  * exactly while its error shows.
  */
-const meta: Meta = { title: "Components/Field/Fieldset Contract" };
+const meta: Meta = {
+  title: "Components/Field/Fieldset Contract",
+  tags: ["!autodocs"],
+};
 
 export default meta;
 type Story = StoryObj;

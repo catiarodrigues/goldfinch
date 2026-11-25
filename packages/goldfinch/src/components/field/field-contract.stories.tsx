@@ -16,6 +16,8 @@ import { Toggle } from "../toggle";
  */
 const meta: Meta = {
   title: "Components/Field/Contract",
+  // Test fixtures, not documentation.
+  tags: ["!autodocs"],
   // Fail if any control warns about a missing accessible name when it has one.
   beforeEach() {
     spyOn(console, "warn");

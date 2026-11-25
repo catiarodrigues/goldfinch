@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { DropdownMenu } from "./dropdown";
 import { Button } from "../button/button";
+import { expect, fn, userEvent, waitFor, within } from "storybook/test";
 
 const meta: Meta<typeof DropdownMenu> = {
   title: "Components/Dropdown",
@@ -24,4 +25,44 @@ export const Default: Story = {
       </DropdownMenu.Content>
     </DropdownMenu>
   ),
+};
+
+const onDuplicate = fn();
+
+/** Arrow keys move through items, Enter activates, focus returns to the trigger. */
+export const KeyboardNavigation: Story = {
+  render: () => (
+    <DropdownMenu>
+      <DropdownMenu.Trigger>
+        <Button>Actions</Button>
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Content>
+        <DropdownMenu.Item>Edit</DropdownMenu.Item>
+        <DropdownMenu.Item onClick={onDuplicate}>Duplicate</DropdownMenu.Item>
+      </DropdownMenu.Content>
+    </DropdownMenu>
+  ),
+  play: async ({ canvasElement }) => {
+    // Popups render in a portal outside the story root.
+    const page = within(canvasElement.ownerDocument.body);
+    const trigger = page.getByRole("button", { name: "Actions" });
+    onDuplicate.mockClear();
+
+    trigger.focus();
+    await userEvent.keyboard("{ArrowDown}");
+    await page.findByRole("menu");
+    await waitFor(() =>
+      expect(page.getByRole("menuitem", { name: "Edit" })).toHaveFocus(),
+    );
+
+    await userEvent.keyboard("{ArrowDown}");
+    await expect(
+      page.getByRole("menuitem", { name: "Duplicate" }),
+    ).toHaveFocus();
+    await userEvent.keyboard("{Enter}");
+
+    await expect(onDuplicate).toHaveBeenCalledOnce();
+    await waitFor(() => expect(page.queryByRole("menu")).toBeNull());
+    await expect(trigger).toHaveFocus();
+  },
 };
