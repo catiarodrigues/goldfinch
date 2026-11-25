@@ -1,10 +1,21 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Toggle } from "./toggle";
+import { Toggle, GOLDFINCH_TOGGLE_VARIANTS } from "./toggle";
 import { expect, userEvent, within } from "storybook/test";
 
 const meta: Meta<typeof Toggle> = {
   title: "Components/Toggle",
   component: Toggle,
+  // Options come from the variant config, so new variants appear automatically.
+  argTypes: {
+    size: {
+      control: "select",
+      options: Object.keys(GOLDFINCH_TOGGLE_VARIANTS.size),
+    },
+    variant: {
+      control: "select",
+      options: Object.keys(GOLDFINCH_TOGGLE_VARIANTS.variant),
+    },
+  },
 };
 
 export default meta;

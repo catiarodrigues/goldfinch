@@ -1,20 +1,27 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Modal } from "./modal";
+import { Modal, GOLDFINCH_MODAL_VARIANTS } from "./modal";
 import { expect, userEvent, waitFor, within } from "storybook/test";
 import { Button } from "../button/button";
 
 const meta: Meta<typeof Modal> = {
   title: "Components/Modal",
   component: Modal,
+  // Options come from the variant config, so new variants appear automatically.
+  argTypes: {
+    size: {
+      control: "select",
+      options: Object.keys(GOLDFINCH_MODAL_VARIANTS.size),
+    },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof Modal>;
 
 export const Default: Story = {
-  render: () => (
+  render: (args) => (
     <Modal.Root defaultOpen>
-      <Modal className="p-8">
+      <Modal className="p-8" {...args}>
         <Modal.Title>Modal Title</Modal.Title>
         <p className="text-goldfinch-subtle">Modal content</p>
       </Modal>

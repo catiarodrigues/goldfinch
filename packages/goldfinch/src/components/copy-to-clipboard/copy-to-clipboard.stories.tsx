@@ -1,5 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { CopyToClipboard } from "./copy-to-clipboard";
+import {
+  CopyToClipboard,
+  GOLDFINCH_COPY_TO_CLIPBOARD_VARIANTS,
+} from "./copy-to-clipboard";
 import { useState } from "react";
 import { expect, spyOn, userEvent, within } from "storybook/test";
 import { Button } from "../button/button";
@@ -7,6 +10,13 @@ import { Button } from "../button/button";
 const meta: Meta<typeof CopyToClipboard> = {
   title: "Components/CopyToClipboard",
   component: CopyToClipboard,
+  // Options come from the variant config, so new variants appear automatically.
+  argTypes: {
+    size: {
+      control: "select",
+      options: Object.keys(GOLDFINCH_COPY_TO_CLIPBOARD_VARIANTS.size),
+    },
+  },
 };
 
 export default meta;

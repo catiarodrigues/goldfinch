@@ -1,17 +1,25 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Page } from "./page";
+import { Page, GOLDFINCH_PAGE_VARIANTS } from "./page";
 
 const meta: Meta<typeof Page> = {
   title: "Components/Page",
   component: Page,
+  // Options come from the variant config, so new variants appear automatically.
+  argTypes: {
+    size: {
+      control: "select",
+      options: Object.keys(GOLDFINCH_PAGE_VARIANTS.size),
+    },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof Page>;
 
 export const Default: Story = {
-  render: () => (
-    <Page size="sm">
+  args: { size: "sm" },
+  render: (args) => (
+    <Page {...args}>
       <Page.Breadcrumbs>Home / Components</Page.Breadcrumbs>
       <Page.Title>Button</Page.Title>
       <Page.Description>

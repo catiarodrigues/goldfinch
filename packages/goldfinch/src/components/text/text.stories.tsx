@@ -1,9 +1,20 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Text } from "./text";
+import { Text, GOLDFINCH_TEXT_VARIANTS } from "./text";
 
 const meta: Meta<typeof Text> = {
   title: "Components/Text",
   component: Text,
+  // Options come from the variant config, so new variants appear automatically.
+  argTypes: {
+    variant: {
+      control: "select",
+      options: Object.keys(GOLDFINCH_TEXT_VARIANTS.variant),
+    },
+    size: {
+      control: "select",
+      options: Object.keys(GOLDFINCH_TEXT_VARIANTS.size),
+    },
+  },
 };
 
 export default meta;

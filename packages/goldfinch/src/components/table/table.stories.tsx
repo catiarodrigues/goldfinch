@@ -1,17 +1,24 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Table } from "./table";
+import { Table, GOLDFINCH_TABLE_VARIANTS } from "./table";
 
 const meta: Meta<typeof Table> = {
   title: "Components/Table",
   component: Table,
+  // Options come from the variant config, so new variants appear automatically.
+  argTypes: {
+    layout: {
+      control: "select",
+      options: Object.keys(GOLDFINCH_TABLE_VARIANTS.layout),
+    },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof Table>;
 
 export const Default: Story = {
-  render: () => (
-    <Table>
+  render: (args) => (
+    <Table {...args}>
       <Table.Header>
         <Table.Row>
           <Table.Head>Name</Table.Head>

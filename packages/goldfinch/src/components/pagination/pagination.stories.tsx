@@ -1,11 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Pagination } from "./pagination";
+import { Pagination, GOLDFINCH_PAGINATION_VARIANTS } from "./pagination";
 import { useState } from "react";
 import { expect, userEvent, within } from "storybook/test";
 
 const meta: Meta<typeof Pagination> = {
   title: "Components/Pagination",
   component: Pagination,
+  // Options come from the variant config, so new variants appear automatically.
+  argTypes: {
+    controls: {
+      control: "select",
+      options: Object.keys(GOLDFINCH_PAGINATION_VARIANTS.controls),
+    },
+  },
 };
 
 export default meta;

@@ -1,9 +1,20 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Grid } from "./grid";
+import { Grid, GOLDFINCH_GRID_VARIANTS } from "./grid";
 
 const meta: Meta<typeof Grid> = {
   title: "Components/Grid",
   component: Grid,
+  // Options come from the variant config, so new variants appear automatically.
+  argTypes: {
+    variant: {
+      control: "select",
+      options: Object.keys(GOLDFINCH_GRID_VARIANTS.variant),
+    },
+    gap: {
+      control: "select",
+      options: Object.keys(GOLDFINCH_GRID_VARIANTS.gap),
+    },
+  },
 };
 
 export default meta;

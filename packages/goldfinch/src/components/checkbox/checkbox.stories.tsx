@@ -1,10 +1,17 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Checkbox } from "./checkbox";
+import { Checkbox, GOLDFINCH_CHECKBOX_VARIANTS } from "./checkbox";
 import { expect, userEvent, within } from "storybook/test";
 
 const meta: Meta<typeof Checkbox> = {
   title: "Components/Checkbox",
   component: Checkbox,
+  // Options come from the variant config, so new variants appear automatically.
+  argTypes: {
+    variant: {
+      control: "select",
+      options: Object.keys(GOLDFINCH_CHECKBOX_VARIANTS.variant),
+    },
+  },
 };
 
 export default meta;

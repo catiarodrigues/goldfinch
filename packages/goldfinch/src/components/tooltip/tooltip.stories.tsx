@@ -1,11 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Tooltip } from "./tooltip";
+import { Tooltip, GOLDFINCH_TOOLTIP_VARIANTS } from "./tooltip";
 import { expect, userEvent, waitFor, within } from "storybook/test";
 import { Button } from "../button/button";
 
 const meta: Meta<typeof Tooltip> = {
   title: "Components/Tooltip",
   component: Tooltip,
+  // Options come from the variant config, so new variants appear automatically.
+  argTypes: {
+    side: {
+      control: "select",
+      options: Object.keys(GOLDFINCH_TOOLTIP_VARIANTS.side),
+    },
+  },
 };
 
 export default meta;
