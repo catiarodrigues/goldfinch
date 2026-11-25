@@ -107,6 +107,7 @@ goldfinch/
 | Remove the `dts()` plugin from `vite.config.ts`, or narrow its `include`/`exclude` without checking | it's the only thing that generates the `.d.ts` files every path in `package.json`'s `exports` map points at — without it the package still builds and publishes, but every TypeScript consumer's import breaks | run `pnpm build` and `npm pack --dry-run` after touching it, confirm `dist/src/**/*.d.ts` still exists for every export |
 | Delete `packages/goldfinch/README.md` or `LICENSE` as "duplicates" of the root files | `npm publish` packs only from `packages/goldfinch/`, not the monorepo root — removing these ships a tarball with no README or license even though the root copies still exist | keep both in sync with the root manually, they're intentionally duplicated |
 | Remove `"private": true` from the root `package.json`, or remove `compilerOptions.types: ["node"]` from the `dts()` call in `vite.config.ts` | root's `package.json` is literally named `"goldfinch"` (unscoped) — an unrelated package already published under that exact name. Without `private`, running `pnpm publish` from the repo root by mistake attempts to publish over it and 403s. Without the `types` override, `vite-plugin-dts`'s isolated TS program can't see `@types/node`'s ambient globals and every `process.env.NODE_ENV` dev-check errors — non-fatal (the build still completes) so it's easy to ship silently; only shows up if you read full build output, not just the tail | leave both as-is; always `cd packages/goldfinch` before publishing |
+| Tell consumers they can skip Tailwind, or show `import "@catiarodrigues/goldfinch/styles"` from a `.ts`/`.tsx` file | `dist/styles/index.css` is Tailwind source (`@import "tailwindcss"` + `@theme`), not compiled CSS — the consumer's Tailwind v4 build generates the utilities, and only finds goldfinch's classes via `@source` (v4 skips `node_modules`). The TS-side import also errors under TS 6+ (`noUncheckedSideEffectImports`, no types for the CSS export). 1.0.0–1.0.1 shipped docs claiming no Tailwind was needed | document the two-line CSS setup (`@import` the styles + `@source` goldfinch's `dist`) — keep the README (both copies), `.claude/skills/goldfinch/SKILL.md`, and the docs `installation.mdx` identical on this; if the build ever switches to compiled CSS, change all three together |
 
 ## Publishing
 
@@ -125,14 +126,26 @@ make that actually work correctly and are easy to silently break:
   the tarball contents include `.d.ts` files, `README.md`, and `LICENSE`, not just `.mjs`.
 
 First published 2026-08-20 as `@catiarodrigues/goldfinch@1.0.0` — it's a real, live package now,
-not a dry run. Two things that aren't obvious from the config alone:
+not a dry run. Things that aren't obvious from the config alone:
 
 - **`pnpm config set ... --location=user` does not write to `~/.npmrc`.** It writes to pnpm's
   own token store (`~/Library/Preferences/pnpm/auth.ini` on macOS), which `npm publish` never
   reads and `pnpm publish` never shares with plain `npm`. If a token works with `npm publish`
   but `pnpm publish` 403s (or vice versa), check both files — they can silently hold different
   tokens. `npm token list` (from any directory outside this repo, to dodge `devEngines`) shows
-  what a given token resolves to regardless of which file it came from.
+  what a given token resolves to regardless of which file it came from. pnpm 12 renamed the
+  flag to `--location=global`; inside this repo `devEngines` still runs the pinned pnpm 11.7.0
+  whatever is installed globally, so verify a newly set token with `pnpm whoami` from
+  `packages/goldfinch/` — that's the pnpm that publishes.
+- **Write tokens expire after 90 days** (npm's cap on granular tokens with write access). An
+  expired token makes `pnpm publish` fail with a misleading `E404 Not Found - PUT …`, not a
+  401. Diagnose with `npm whoami` from outside the repo: `401 Unauthorized` means generate a
+  new token (read+write on the package, bypass 2FA) and set it in both token files.
+- **A successful publish takes minutes to become visible.** After 1.0.2 printed
+  `✅ Published package`, the registry reported only the old versions for ~10 minutes, the
+  tarball URL 404'd for ~2 more, and the npmjs.com page lagged longest. Trust the publish
+  output; to confirm, re-run the same publish — `You cannot publish over the previously
+  published versions` proves it landed. Wait it out rather than bumping again to "retry".
 - **The account requires 2FA for publish** (a security key, not TOTP) — a token needs the
   npmjs.com "bypass 2FA for publish" permission explicitly enabled, or every publish demands
   OTP. That prompt needs a real interactive terminal with browser access; Claude Code's `!`
