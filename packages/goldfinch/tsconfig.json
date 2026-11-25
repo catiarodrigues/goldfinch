@@ -5,7 +5,11 @@
     "declaration": true,
     "declarationDir": "./dist",
     "outDir": "./dist",
-    "rootDir": "./src"
+    // Docs examples (packages/goldfinch-docs-astro/src/examples) import the
+    // package by name; stories render them, so type-check them against src.
+    "paths": {
+      "@catiarodrigues/goldfinch": ["./src/index.ts"]
+    }
   },
   "include": ["src"]
 }

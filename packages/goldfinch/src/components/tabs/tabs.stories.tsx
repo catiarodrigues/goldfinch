@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { useState } from "react";
-import { Tabs, type TabsItem } from "./tabs";
+import { Tabs } from "./tabs";
+// Docs examples: the same files the docs site renders and shows as code.
+import UnderlineExample from "../../../../goldfinch-docs-astro/src/examples/tabs/underline";
+import SegmentedExample from "../../../../goldfinch-docs-astro/src/examples/tabs/segmented";
 import { expect, userEvent, within } from "storybook/test";
 
 const meta: Meta<typeof Tabs> = {
@@ -11,29 +13,16 @@ const meta: Meta<typeof Tabs> = {
 export default meta;
 type Story = StoryObj<typeof Tabs>;
 
-const items: TabsItem[] = [
-  { value: "preview", label: "Preview" },
-  { value: "code", label: "Code" },
-  { value: "props", label: "Props" },
-];
-
-function ControlledTabs({ variant }: { variant: "underline" | "segmented" }) {
-  const [tab, setTab] = useState("preview");
-  return (
-    <Tabs tabs={items} variant={variant} value={tab} onValueChange={setTab} />
-  );
-}
-
 export const Underline: Story = {
-  render: () => <ControlledTabs variant="underline" />,
+  render: () => <UnderlineExample />,
 };
 export const Segmented: Story = {
-  render: () => <ControlledTabs variant="segmented" />,
+  render: () => <SegmentedExample />,
 };
 
 /** Clicking selects a tab; arrow keys move focus along the tab list. */
 export const SelectAndArrowKeys: Story = {
-  render: () => <ControlledTabs variant="underline" />,
+  render: () => <UnderlineExample />,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await expect(canvas.getByRole("tab", { name: "Preview" })).toHaveAttribute(

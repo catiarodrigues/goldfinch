@@ -6,8 +6,11 @@ layout: ../../layouts/MdxDocLayout.astro
 
 import Callout from "../../components/docs/Callout.astro";
 import PropsTable from "../../components/docs/PropsTable.astro";
-import { TabsDemo } from "../../components/demos/index.tsx";
-import LiveTabs from "../../components/demos/LiveTabs.astro";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Underline from "../../examples/tabs/underline.tsx";
+import underlineCode from "../../examples/tabs/underline.tsx?raw";
+import Segmented from "../../examples/tabs/segmented.tsx";
+import segmentedCode from "../../examples/tabs/segmented.tsx?raw";
 
 Organize related content into switchable panels. Two visual modes: `segmented` (pill-style grouped tabs) and `underline` (classic tab bar).
 
@@ -47,19 +50,19 @@ export default function Example() {
 
 ## Examples
 
-<LiveTabs title="Tabs" />
-
 Define tabs via the `tabs` prop array. Use `value` and `onValueChange` for controlled mode, or `defaultValue` for uncontrolled.
 
-```tsx
-<Tabs
-  tabs={[
-    { value: "tab-1", label: "Tab 1" },
-    { value: "tab-2", label: "Tab 2" },
-  ]}
-  variant="underline"
-/>
-```
+### Underline
+
+<ComponentExample title="Underline" code={underlineCode}>
+  <Underline client:visible />
+</ComponentExample>
+
+### Segmented
+
+<ComponentExample title="Segmented" code={segmentedCode}>
+  <Segmented client:visible />
+</ComponentExample>
 
 <Callout type="info">
   The `segmented` variant renders tabs as a segmented control, while `underline`

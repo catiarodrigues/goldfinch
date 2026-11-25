@@ -14,6 +14,17 @@ const dirname =
     : path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
+  resolve: {
+    // Docs examples import the package by name; Storybook (and its tests) must
+    // render them against src, not a possibly stale dist/. No src file imports
+    // the package name, so the library build is unaffected.
+    alias: [
+      {
+        find: /^@catiarodrigues\/goldfinch$/,
+        replacement: resolve(dirname, "src/index.ts"),
+      },
+    ],
+  },
   plugins: [
     react(),
     tailwindcss(),

@@ -1,5 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Badge, GOLDFINCH_BADGE_VARIANTS } from "./badge";
+// Docs examples: the same files the docs site renders and shows as code.
+import SemanticVariantsExample from "../../../../goldfinch-docs-astro/src/examples/badge/semantic-variants";
+import ColorVariantsExample from "../../../../goldfinch-docs-astro/src/examples/badge/color-variants";
+import DotExample from "../../../../goldfinch-docs-astro/src/examples/badge/dot";
+import InSentenceExample from "../../../../goldfinch-docs-astro/src/examples/badge/in-sentence";
+import SizesExample from "../../../../goldfinch-docs-astro/src/examples/badge/sizes";
 
 const meta: Meta<typeof Badge> = {
   title: "Components/Badge",
@@ -64,3 +70,11 @@ export const Error: Story = {
     variant: "error",
   },
 };
+
+export const SemanticVariants: Story = {
+  render: () => <SemanticVariantsExample />,
+};
+export const ColorVariants: Story = { render: () => <ColorVariantsExample /> };
+export const Dot: Story = { render: () => <DotExample /> };
+export const InSentence: Story = { render: () => <InSentenceExample /> };
+export const Sizes: Story = { render: () => <SizesExample /> };

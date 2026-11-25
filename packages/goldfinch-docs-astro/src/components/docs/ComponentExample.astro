@@ -1,13 +1,29 @@
 ---
-import ComponentPreview from "./ComponentPreview.astro";
+import { Code } from "astro:components";
 
 export interface Props {
   title?: string;
-  code?: string;
+  /** The example file's source, imported with `?raw`: exactly the code that renders above it. */
+  code: string;
 }
 const { title, code } = Astro.props;
 ---
 
-<ComponentPreview title={title}>
-  <slot />
-</ComponentPreview>
+<figure class="not-prose my-6 overflow-hidden rounded-lg border border-goldfinch-hairline">
+  {title && (
+    <figcaption class="border-b border-goldfinch-hairline bg-goldfinch-base px-4 py-2 text-xs font-medium text-goldfinch-subtle">
+      {title}
+    </figcaption>
+  )}
+  <div class="p-6">
+    <slot />
+  </div>
+  <div class="border-t border-goldfinch-hairline text-sm [&_pre]:m-0! [&_pre]:rounded-none! [&_pre]:border-0! [&_pre]:px-4 [&_pre]:py-3">
+    <Code
+      code={code.trim()}
+      lang="tsx"
+      themes={{ light: "github-light", dark: "vesper" }}
+      defaultColor={false}
+    />
+  </div>
+</figure>

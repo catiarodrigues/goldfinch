@@ -37,7 +37,6 @@ import {
   TopNavigation,
   Page,
   useGoldfinchToastManager,
-  type TabsItem,
 } from "@catiarodrigues/goldfinch";
 import { useState, useCallback } from "react";
 import { Copy, Trash } from "@phosphor-icons/react";
@@ -96,73 +95,6 @@ export function BadgeDemo() {
       <Badge variant="success">Success</Badge>
       <Badge variant="secondary">Secondary</Badge>
       <Badge variant="outline">Outline</Badge>
-    </div>
-  );
-}
-
-export function BadgeSemanticVariantsDemo() {
-  return (
-    <div className="flex flex-wrap items-center gap-2">
-      <Badge variant="primary">Primary</Badge>
-      <Badge variant="secondary">Secondary</Badge>
-      <Badge variant="error">Error</Badge>
-      <Badge variant="success">Success</Badge>
-      <Badge variant="warning">Warning</Badge>
-      <Badge variant="info">Info</Badge>
-      <Badge variant="outline">Outline</Badge>
-      <Badge variant="beta">Beta</Badge>
-    </div>
-  );
-}
-
-export function BadgeColorVariantsDemo() {
-  return (
-    <div className="flex flex-wrap items-center gap-2">
-      <Badge variant="neutral">Neutral</Badge>
-      <Badge variant="red">Red</Badge>
-      <Badge variant="green">Green</Badge>
-      <Badge variant="orange">Orange</Badge>
-      <Badge variant="teal">Teal</Badge>
-      <Badge variant="blue">Blue</Badge>
-      <Badge variant="purple">Purple</Badge>
-    </div>
-  );
-}
-
-export function BadgeDotDemo() {
-  return (
-    <div className="flex flex-wrap items-center gap-2">
-      <Badge appearance="dot" variant="success">
-        Healthy
-      </Badge>
-      <Badge appearance="dot" variant="warning">
-        Warning
-      </Badge>
-      <Badge appearance="dot" variant="error">
-        Error
-      </Badge>
-      <Badge appearance="dot" variant="neutral">
-        Neutral
-      </Badge>
-    </div>
-  );
-}
-
-export function BadgeInSentenceDemo() {
-  return (
-    <p className="flex items-center gap-2">
-      Users
-      <Badge variant="secondary">New</Badge>
-    </p>
-  );
-}
-
-export function BadgeSizesDemo() {
-  return (
-    <div className="flex flex-wrap items-center gap-2">
-      <Badge size="sm">SM</Badge>
-      <Badge size="md">MD</Badge>
-      <Badge size="lg">LG</Badge>
     </div>
   );
 }
@@ -532,54 +464,6 @@ export function TableOfContentsDemo() {
         <TableOfContents.Item href="#api">API</TableOfContents.Item>
       </TableOfContents.List>
     </TableOfContents>
-  );
-}
-
-/* ---------- Tabs ---------- */
-const tabsItems: TabsItem[] = [
-  { value: "preview", label: "Preview" },
-  { value: "code", label: "Code" },
-  { value: "props", label: "Props" },
-];
-
-export function TabsDemo() {
-  const [tab, setTab] = useState("preview");
-  const [tab2, setTab2] = useState("preview");
-  return (
-    <div className="flex flex-col gap-6">
-      <div>
-        <p className="mb-2 text-sm font-medium text-goldfinch-subtle">
-          Underline
-        </p>
-        <Tabs
-          tabs={tabsItems}
-          variant="underline"
-          value={tab}
-          onValueChange={setTab}
-        />
-        <div className="pt-4">
-          {tab === "preview" && <p className="text-sm">Preview content</p>}
-          {tab === "code" && <p className="text-sm">Code content</p>}
-          {tab === "props" && <p className="text-sm">Props content</p>}
-        </div>
-      </div>
-      <div>
-        <p className="mb-2 text-sm font-medium text-goldfinch-subtle">
-          Segmented
-        </p>
-        <Tabs
-          tabs={tabsItems}
-          variant="segmented"
-          value={tab2}
-          onValueChange={setTab2}
-        />
-        <div className="pt-4">
-          {tab2 === "preview" && <p className="text-sm">Preview content</p>}
-          {tab2 === "code" && <p className="text-sm">Code content</p>}
-          {tab2 === "props" && <p className="text-sm">Props content</p>}
-        </div>
-      </div>
-    </div>
   );
 }
 

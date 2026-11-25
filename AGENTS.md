@@ -38,7 +38,8 @@ goldfinch/
 │   └── goldfinch-docs-astro/                 # Astro docs site, private, not published
 │       └── src/
 │           ├── pages/components/<name>.mdx       # one page per component, imports the library via workspace:*
-│           ├── components/demos/                    # live demo components rendered inside docs pages
+│           ├── examples/<name>/<example>.tsx         # docs examples: rendered + shown as code on the page, and rendered as stories
+│           ├── components/demos/                    # legacy demos (being migrated to examples/); Overview grid previews
 │           └── layouts/                            # BaseLayout -> MainLayout -> DocLayout -> MdxDocLayout
 ├── pnpm-workspace.yaml                       # packages/* + apps/* -- apps/ doesn't exist yet, don't assume it's populated
 └── tsconfig.json                             # base tsconfig; each package has its own too
@@ -46,15 +47,15 @@ goldfinch/
 
 ## Where to look
 
-| Task                                                   | Location                                                         | Notes                                                                                        |
-| ------------------------------------------------------ | ---------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| Add a new component                                    | `packages/goldfinch/src/components/<name>/`                      | then wire it into 3 more places — see Anti-patterns                                          |
-| Change a component's variants (size/color/etc.)        | the `GOLDFINCH_<NAME>_VARIANTS` const at the top of `<name>.tsx` | read via `resolveVariant()`, never raw object indexing                                       |
-| Add/change a design token (color, spacing)             | `packages/goldfinch/src/styles/index.css`                        | `@theme` block, `light-dark()` per token                                                     |
-| Let consumers use their router's Link component        | `utils/link-provider.tsx`                                        | `Sidebar`, `Breadcrumbs`, `Link`, `Dropdown` all consume it via `useLinkComponent()`         |
-| Render an overlay into a Shadow DOM / custom container | `utils/portal-provider.tsx`                                      | `Modal`, `Toast`, `Popover`, `Tooltip`, `Dropdown`, `Select` all read `usePortalContainer()` |
-| Add a docs page for a component                        | `packages/goldfinch-docs-astro/src/pages/components/<name>.mdx`  | rendered through `MdxDocLayout`                                                              |
-| Add a live interactive demo                            | `packages/goldfinch-docs-astro/src/components/demos/index.tsx`   | one exported function per demo, imported by the `.mdx` page                                  |
+| Task                                                   | Location                                                          | Notes                                                                                                                                                                                                                                                                                           |
+| ------------------------------------------------------ | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Add a new component                                    | `packages/goldfinch/src/components/<name>/`                       | then wire it into 3 more places — see Anti-patterns                                                                                                                                                                                                                                             |
+| Change a component's variants (size/color/etc.)        | the `GOLDFINCH_<NAME>_VARIANTS` const at the top of `<name>.tsx`  | read via `resolveVariant()`, never raw object indexing                                                                                                                                                                                                                                          |
+| Add/change a design token (color, spacing)             | `packages/goldfinch/src/styles/index.css`                         | `@theme` block, `light-dark()` per token                                                                                                                                                                                                                                                        |
+| Let consumers use their router's Link component        | `utils/link-provider.tsx`                                         | `Sidebar`, `Breadcrumbs`, `Link`, `Dropdown` all consume it via `useLinkComponent()`                                                                                                                                                                                                            |
+| Render an overlay into a Shadow DOM / custom container | `utils/portal-provider.tsx`                                       | `Modal`, `Toast`, `Popover`, `Tooltip`, `Dropdown`, `Select` all read `usePortalContainer()`                                                                                                                                                                                                    |
+| Add a docs page for a component                        | `packages/goldfinch-docs-astro/src/pages/components/<name>.mdx`   | rendered through `MdxDocLayout`                                                                                                                                                                                                                                                                 |
+| Add a docs example                                     | `packages/goldfinch-docs-astro/src/examples/<name>/<example>.tsx` | one default-export component written as user code (import from `@catiarodrigues/goldfinch`). The page renders it inside `<ComponentExample code={…?raw}>` (add `client:visible` if interactive) and the component's stories render the same file — never hand-write a code block for an example |
 
 ## Conventions
 
@@ -73,6 +74,13 @@ goldfinch/
   fail it (`a11y.test: "error"` in `.storybook/preview.tsx`). Fix the violation rather than
   excluding it — the one exclusion, Base UI's `[data-base-ui-focus-guard]` sentinels, is a
   known axe false positive.
+- **Docs examples have one source.** Each example is a file under
+  `packages/goldfinch-docs-astro/src/examples/`; the docs page renders it and shows its
+  source verbatim (`?raw`), and the component's `*.stories.tsx` renders the same file, so
+  every documented example gets the a11y gate and tests. The library's `tsconfig.json`
+  `paths` and `vite.config.ts` `resolve.alias` map `@catiarodrigues/goldfinch` to
+  `src/index.ts` so those stories run against source, not `dist/`. Badge and Tabs are
+  migrated; the other pages still use `components/demos/` plus hand-written code blocks.
 - Compound components (`Select.Option`, `Modal.Title`, `Sidebar.MenuItem`, etc.) are matched
   at runtime by a static `displayName`, not `instanceof` or type — see
   `input-group/context.ts`'s `partitionChildren`/`detectFocusMode`, which does this
