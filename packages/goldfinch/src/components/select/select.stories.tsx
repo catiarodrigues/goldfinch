@@ -55,6 +55,69 @@ export const ChooseAnOption: Story = {
   },
 };
 
+const onSizeChange = fn();
+
+export const KeyboardSelection: Story = {
+  render: () => (
+    <Select
+      label="Size"
+      placeholder="Choose a size…"
+      onValueChange={onSizeChange}
+    >
+      <Select.Option value="small">Small</Select.Option>
+      <Select.Option value="medium">Medium</Select.Option>
+      <Select.Option value="large">Large</Select.Option>
+    </Select>
+  ),
+  play: async ({ canvasElement }) => {
+    const page = within(canvasElement.ownerDocument.body);
+    const trigger = page.getByRole("combobox", { name: "Size" });
+    onSizeChange.mockClear();
+
+    // Open with the keyboard, move with the arrows, choose with Enter.
+    // Each time the list opens, wait for it to take focus before typing,
+    // as a person would see it open first.
+    await userEvent.click(trigger);
+    await waitFor(() =>
+      expect(page.getByRole("listbox")).toContainElement(
+        document.activeElement as HTMLElement,
+      ),
+    );
+    await userEvent.keyboard("{Escape}");
+    await waitFor(() => expect(page.queryByRole("listbox")).toBeNull());
+    await expect(trigger).toHaveFocus();
+
+    await userEvent.keyboard("{ArrowDown}");
+    await waitFor(() =>
+      expect(page.getByRole("listbox")).toContainElement(
+        document.activeElement as HTMLElement,
+      ),
+    );
+    await userEvent.keyboard("{ArrowDown}{ArrowDown}");
+    await waitFor(() =>
+      expect(page.getByRole("option", { name: "Large" })).toHaveFocus(),
+    );
+    await userEvent.keyboard("{Enter}");
+
+    await expect(onSizeChange).toHaveBeenCalledWith("large", expect.anything());
+    await waitFor(() => expect(page.queryByRole("listbox")).toBeNull());
+    await expect(trigger).toHaveFocus();
+    await expect(trigger).toHaveTextContent("Large");
+
+    // Typeahead: typing a letter in the open list jumps to the match.
+    await userEvent.keyboard("{ArrowDown}");
+    await waitFor(() =>
+      expect(page.getByRole("listbox")).toContainElement(
+        document.activeElement as HTMLElement,
+      ),
+    );
+    await userEvent.keyboard("m");
+    await waitFor(() =>
+      expect(page.getByRole("option", { name: "Medium" })).toHaveFocus(),
+    );
+  },
+};
+
 export const Basic: Story = { render: () => <BasicExample /> };
 
 export const Items: Story = { render: () => <ItemsExample /> };

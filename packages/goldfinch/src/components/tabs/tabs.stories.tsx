@@ -39,6 +39,12 @@ export const SelectAndArrowKeys: Story = {
 
     await userEvent.keyboard("{ArrowRight}");
     await expect(canvas.getByRole("tab", { name: "Props" })).toHaveFocus();
+
+    // Home and End jump to the first and last tab.
+    await userEvent.keyboard("{Home}");
+    await expect(canvas.getByRole("tab", { name: "Preview" })).toHaveFocus();
+    await userEvent.keyboard("{End}");
+    await expect(canvas.getByRole("tab", { name: "Props" })).toHaveFocus();
   },
 };
 

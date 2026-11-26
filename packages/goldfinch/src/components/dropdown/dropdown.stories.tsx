@@ -71,6 +71,43 @@ export const KeyboardNavigation: Story = {
   },
 };
 
+export const EscapeAndTypeahead: Story = {
+  render: () => (
+    <DropdownMenu>
+      <DropdownMenu.Trigger>
+        <Button>More</Button>
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Content>
+        <DropdownMenu.Item>Rename</DropdownMenu.Item>
+        <DropdownMenu.Item>Archive</DropdownMenu.Item>
+        <DropdownMenu.Item>Delete</DropdownMenu.Item>
+      </DropdownMenu.Content>
+    </DropdownMenu>
+  ),
+  play: async ({ canvasElement }) => {
+    const page = within(canvasElement.ownerDocument.body);
+    const trigger = page.getByRole("button", { name: "More" });
+
+    await userEvent.click(trigger);
+    // Wait for the menu to take focus before typing, as a person would.
+    const menu = await page.findByRole("menu");
+    await waitFor(() =>
+      expect(menu).toContainElement(document.activeElement as HTMLElement),
+    );
+
+    // Typing a letter moves to the first item that starts with it.
+    await userEvent.keyboard("d");
+    await waitFor(() =>
+      expect(page.getByRole("menuitem", { name: "Delete" })).toHaveFocus(),
+    );
+
+    // Escape closes the menu and returns focus to the trigger.
+    await userEvent.keyboard("{Escape}");
+    await waitFor(() => expect(page.queryByRole("menu")).toBeNull());
+    await expect(trigger).toHaveFocus();
+  },
+};
+
 export const Basic: Story = { render: () => <BasicExample /> };
 
 export const Usage: Story = { render: () => <UsageExample /> };

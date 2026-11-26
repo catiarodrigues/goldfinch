@@ -61,6 +61,37 @@ export const ShowAndDismiss: Story = {
   },
 };
 
+export const KeyboardDismiss: Story = {
+  render: () => (
+    <Toasty>
+      <ShowToastButton />
+    </Toasty>
+  ),
+  play: async ({ canvasElement }) => {
+    const page = within(canvasElement.ownerDocument.body);
+    const show = page.getByRole("button", { name: "Show Toast" });
+    await userEvent.click(show);
+    await page.findByText("This is a toast notification.");
+
+    // F6 jumps to the toast region without hunting for it with Tab. Tab then
+    // reaches the toast, then its Close button, and Enter dismisses it.
+    await userEvent.keyboard("{F6}");
+    await waitFor(() =>
+      expect(page.getByRole("region")).toContainElement(
+        document.activeElement as HTMLElement,
+      ),
+    );
+    await userEvent.tab();
+    await userEvent.tab();
+    const close = await page.findByRole("button", { name: "Close" });
+    await waitFor(() => expect(close).toHaveFocus());
+    await userEvent.keyboard("{Enter}");
+    await waitFor(() =>
+      expect(page.queryByText("This is a toast notification.")).toBeNull(),
+    );
+  },
+};
+
 export const Basic: Story = { render: () => <BasicExample /> };
 
 export const Usage: Story = { render: () => <UsageExample /> };

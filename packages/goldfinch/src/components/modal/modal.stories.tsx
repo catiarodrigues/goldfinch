@@ -57,6 +57,14 @@ export const KeyboardAndFocus: Story = {
       expect(dialog).toContainElement(document.activeElement as HTMLElement),
     );
 
+    // Focus is trapped: Tab and Shift+Tab never leave the open modal.
+    for (const key of ["{Tab}", "{Tab}", "{Shift>}{Tab}{/Shift}"]) {
+      await userEvent.keyboard(key);
+      await expect(dialog).toContainElement(
+        document.activeElement as HTMLElement,
+      );
+    }
+
     await userEvent.keyboard("{Escape}");
     await waitFor(() => expect(page.queryByRole("dialog")).toBeNull());
     await expect(trigger).toHaveFocus();
