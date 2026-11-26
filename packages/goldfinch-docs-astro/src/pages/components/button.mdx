@@ -72,10 +72,10 @@ There are four sizes: `xs`, `sm`, `base` (the default) and `lg`.
 ### Loading
 
 <ComponentExample title="Loading" code={loadingCode}>
-  <Loading />
+  <Loading client:visible />
 </ComponentExample>
 
-Set `loading` to show a spinner and disable the button.
+Set `loading` while an action runs. A spinner takes the icon's place before the label, and the button ignores clicks. It stays focusable, so someone who pressed Enter keeps their place on the page, and `aria-busy` tells screen readers it's working. Change the label too, such as "Save" to "Saving…", so the button says what's happening.
 
 <Callout type="info">
   The label stays visible next to the spinner while loading.

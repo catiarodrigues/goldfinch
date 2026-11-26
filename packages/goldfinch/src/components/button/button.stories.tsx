@@ -1,6 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button, type ButtonProps } from "./button";
-import { expect, spyOn, within, type MockInstance } from "storybook/test";
+import {
+  expect,
+  fn,
+  spyOn,
+  userEvent,
+  within,
+  type MockInstance,
+} from "storybook/test";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/button/basic";
 import SizesExample from "../../../../goldfinch-docs-astro/src/examples/button/sizes";
@@ -120,5 +127,32 @@ export const UnknownVariantFallsBack: Story = {
     }
     // Falls back to the default, secondary, look.
     await expect(button.className).toContain("bg-goldfinch-base");
+  },
+};
+
+const onSave = fn();
+
+export const LoadingKeepsFocus: Story = {
+  render: () => (
+    <Button variant="primary" loading onClick={onSave}>
+      Saving…
+    </Button>
+  ),
+  play: async ({ canvasElement }) => {
+    const button = within(canvasElement).getByRole("button", {
+      name: "Saving…",
+    });
+    onSave.mockClear();
+
+    // Busy and blocked, but still reachable and focusable by keyboard.
+    await expect(button).toHaveAttribute("aria-busy", "true");
+    await expect(button).toHaveAttribute("aria-disabled", "true");
+    await userEvent.tab();
+    await expect(button).toHaveFocus();
+
+    // Clicks and Enter do nothing while it loads.
+    await userEvent.click(button);
+    await userEvent.keyboard("{Enter}");
+    await expect(onSave).not.toHaveBeenCalled();
   },
 };
