@@ -1,7 +1,7 @@
 import { Tooltip } from "../tooltip";
 import { cn } from "../../utils/cn";
 import { IconContext } from "@phosphor-icons/react";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useMenuNavigation } from "./use-menu-navigation";
 
 /** MenuBar variant definitions (currently empty, reserved for future additions). */
@@ -41,12 +41,16 @@ const MenuOption = ({
   isActive,
   onClick,
   tooltip,
-}: MenuOptionProps) => {
+  tabIndex,
+  onFocus,
+}: MenuOptionProps & { tabIndex: number; onFocus: () => void }) => {
   const button = (
     <button
       data-goldfinch-component="MenuBar"
       data-goldfinch-part="option"
       aria-label={tooltip}
+      tabIndex={tabIndex}
+      onFocus={onFocus}
       className={cn(
         "relative -ml-px flex h-full w-11 cursor-pointer items-center justify-center rounded-md border-none bg-goldfinch-recessed transition-colors first:rounded-l-lg last:rounded-r-lg focus:z-3 focus:ring-goldfinch-focus/50 focus:outline-none focus-visible:z-3 focus-visible:ring-2 focus-visible:ring-goldfinch-brand",
         {
@@ -115,8 +119,18 @@ export const MenuBar = ({
   optionIds = false, // if option needs an extra unique ID
 }: MenuBarProps) => {
   const menuRef = useRef<HTMLElement | null>(null);
-
   useMenuNavigation({ menuRef, direction: "horizontal" });
+
+  // Roving tabindex: the bar is one Tab stop, and arrow keys move inside it.
+  // Tab lands on the active option first, then on whichever option had focus last.
+  const activeIndex = options.findIndex(
+    (option, index) => (optionIds ? option.id : index) === isActive,
+  );
+  const [focusIndex, setFocusIndex] = useState<number | null>(null);
+  const tabStop =
+    focusIndex !== null && focusIndex < options.length
+      ? focusIndex
+      : Math.max(activeIndex, 0);
 
   return (
     <nav
@@ -132,6 +146,8 @@ export const MenuBar = ({
           {...option}
           isActive={isActive}
           id={optionIds ? option.id : index}
+          tabIndex={index === tabStop ? 0 : -1}
+          onFocus={() => setFocusIndex(index)}
         />
       ))}
     </nav>

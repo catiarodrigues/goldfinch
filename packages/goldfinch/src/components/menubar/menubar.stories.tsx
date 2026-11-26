@@ -61,6 +61,19 @@ export const KeyboardNavigation: Story = {
       expect(canvas.getByRole("button", { name: "Settings" })).toHaveFocus(),
     );
 
+    // The bar is a single Tab stop: Shift+Tab leaves it from any button, and
+    // Tab comes back to the button used last.
+    await userEvent.tab({ shift: true });
+    await waitFor(() =>
+      expect(canvasElement).not.toContainElement(
+        document.activeElement as HTMLElement,
+      ),
+    );
+    await userEvent.tab();
+    await waitFor(() =>
+      expect(canvas.getByRole("button", { name: "Settings" })).toHaveFocus(),
+    );
+
     await userEvent.keyboard("{Enter}");
     await expect(onSettings).toHaveBeenCalledOnce();
   },
