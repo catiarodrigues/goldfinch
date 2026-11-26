@@ -4,8 +4,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-@custom-variant dark (&:where([data-mode="dark"], [data-mode="dark"] *));
-
 @theme {
   --font-sans:
     "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif,

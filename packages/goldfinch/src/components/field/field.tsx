@@ -46,13 +46,10 @@ export function fieldVariants({
     "has-[input[type=checkbox]]:grid-cols-[auto_1fr] has-[input[type=checkbox]]:items-center",
     "has-[[role=switch]]:grid-cols-[auto_1fr] has-[[role=switch]]:items-center",
 
-    // Control first: use flexbox with row-reverse to flip visual order without affecting text direction
-    // flex-row-reverse in LTR: Control→Label, in RTL: Label→Control (opposite of grid default)
-    controlFirst && [
-      "has-[input[type=checkbox]]:flex has-[input[type=checkbox]]:flex-row-reverse has-[input[type=checkbox]]:flex-wrap has-[input[type=checkbox]]:items-center",
-      "has-[[role=switch]]:flex has-[[role=switch]]:flex-row-reverse has-[[role=switch]]:flex-wrap has-[[role=switch]]:items-center",
-      "[&>label]:flex-1",
-    ],
+    // Control first: the same grid with the label moved after the control, so the
+    // description and error still take their own full-width rows below. (A reversed
+    // flex row put them beside the switch.) The grid still flips in RTL.
+    controlFirst && "[&>label]:order-1",
   );
 }
 
@@ -225,8 +222,8 @@ export function Field({
           <FieldBase.Description
             className={cn(
               "text-sm leading-snug text-goldfinch-subtle",
-              // Span full width in horizontal layout
-              "col-span-full",
+              // Own full-width row below the control and label
+              "order-last col-span-full",
               // Hidden while the error is showing
               fieldError && "group-data-[invalid]/field:hidden",
             )}
@@ -238,8 +235,8 @@ export function Field({
           <FieldBase.Error
             className={cn(
               "text-sm leading-snug text-goldfinch-danger",
-              // Span full width in horizontal layout
-              "col-span-full",
+              // Own full-width row below the control and label
+              "order-last col-span-full",
             )}
             match={fieldError.match}
           >

@@ -4,6 +4,8 @@ import { expect, userEvent, within } from "storybook/test";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/toggle/basic";
 import UsageExample from "../../../../goldfinch-docs-astro/src/examples/toggle/usage";
+import GroupExample from "../../../../goldfinch-docs-astro/src/examples/toggle/group";
+import SaveErrorExample from "../../../../goldfinch-docs-astro/src/examples/toggle/save-error";
 const meta: Meta<typeof Toggle> = {
   title: "Components/Toggle",
   component: Toggle,
@@ -48,3 +50,25 @@ export const SwitchOnAndOff: Story = {
 export const Basic: Story = { render: () => <BasicExample /> };
 
 export const Usage: Story = { render: () => <UsageExample /> };
+
+export const Group: Story = { render: () => <GroupExample /> };
+
+export const SaveFails: Story = {
+  render: () => <SaveErrorExample />,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const toggle = canvas.getByRole("switch", { name: "Weekly summary" });
+    await userEvent.click(toggle);
+    await expect(toggle).toHaveAttribute("aria-checked", "true");
+    await expect(toggle).toHaveAttribute("aria-busy", "true");
+    await expect(
+      await canvas.findByText(
+        "Couldn't save. Try again.",
+        {},
+        { timeout: 3000 },
+      ),
+    ).toBeVisible();
+    await expect(toggle).toHaveAttribute("aria-checked", "false");
+    await expect(toggle).not.toHaveAttribute("aria-busy");
+  },
+};

@@ -10,6 +10,10 @@ import ComponentExample from "../../components/docs/ComponentExample.astro";
 import Basic from "../../examples/toggle/basic.tsx";
 import basicCode from "../../examples/toggle/basic.tsx?raw";
 import usageCode from "../../examples/toggle/usage.tsx?raw";
+import Group from "../../examples/toggle/group.tsx";
+import groupCode from "../../examples/toggle/group.tsx?raw";
+import SaveError from "../../examples/toggle/save-error.tsx";
+import saveErrorCode from "../../examples/toggle/save-error.tsx?raw";
 
 A switch for a setting that's on or off.
 
@@ -39,18 +43,27 @@ import { Toggle } from "@catiarodrigues/goldfinch/components/toggle";
 
 Control it with `checked` and `onCheckedChange`, or set `defaultChecked` and leave it uncontrolled.
 
+### Group
+
 For several related switches, use:
 
 - `Toggle.Group`, which names the set with a `legend`
 - `Toggle.Item`, a labelled switch inside the group
 - `Toggle.Legend`, for a custom legend
 
-```tsx
-<Toggle.Group legend="Preferences">
-  <Toggle.Item label="Email notifications" />
-  <Toggle.Item label="SMS notifications" />
-</Toggle.Group>
-```
+Items in a group use the `neutral` variant, a softer grey, so no single switch stands out in the list. Set `variant` on the group or on one item to change it.
+
+<ComponentExample title="Group" code={groupCode}>
+  <Group client:visible />
+</ComponentExample>
+
+### When saving fails
+
+A toggle that saves to a server should move as soon as it's clicked and show that it's saving with `transitioning`. If the save fails, move it back to the saved position and explain with `error`. The track stays its usual colour: a red switch would read as a dangerous setting rather than a failed change.
+
+<ComponentExample title="Save fails" code={saveErrorCode}>
+  <SaveError client:visible />
+</ComponentExample>
 
 <Callout type="info">
   Always pair a Toggle with a visible label so users understand what setting it

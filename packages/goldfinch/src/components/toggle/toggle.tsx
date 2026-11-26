@@ -76,7 +76,10 @@ export function toggleVariants({
 export type ToggleSize = GoldfinchToggleSize;
 export type ToggleVariant = GoldfinchToggleVariant;
 
-const ToggleGroupContext = createContext<{ controlFirst: boolean }>({
+const ToggleGroupContext = createContext<{
+  controlFirst: boolean;
+  variant?: ToggleVariant;
+}>({
   controlFirst: true,
 });
 
@@ -84,7 +87,7 @@ export type ToggleProps = Omit<
   ButtonHTMLAttributes<HTMLButtonElement>,
   "children"
 > & {
-  /** `default` shows a blue track when on; `neutral` a grey one. */
+  /** `default` shows an ink track when on; `neutral` a softer grey one, for lists of several toggles. */
   variant?: ToggleVariant;
   /** Visible label. Wraps the toggle in a Field. */
   label?: ReactNode;
@@ -108,7 +111,7 @@ export type ToggleProps = Omit<
   disabled?: boolean;
   /** Called with the new state when the user flips the toggle. */
   onCheckedChange?: (checked: boolean) => void;
-  /** Marks the toggle as busy (`aria-busy`) while a change is being saved. */
+  /** Shows the toggle as saving: the knob dims and pulses, and `aria-busy` is set. */
   transitioning?: boolean;
 };
 
@@ -130,11 +133,14 @@ export interface ToggleGroupProps {
   disabled?: boolean;
   /** Places each switch before its label. Set `false` to put labels first. */
   controlFirst?: boolean;
+  /** Variant for every item that doesn't set its own. Groups default to `neutral` so no single switch stands out. */
+  variant?: ToggleVariant;
   /** Additional CSS classes merged via `cn()`. */
   className?: string;
 }
 
 export type ToggleItemProps = {
+  /** Overrides the group's variant for this item. */
   variant?: ToggleVariant;
   label: string;
   className?: string;
@@ -143,6 +149,7 @@ export type ToggleItemProps = {
   disabled?: boolean;
   onCheckedChange?: (checked: boolean) => void;
   size?: GoldfinchToggleSize;
+  /** Shows the toggle as saving: the knob dims and pulses, and `aria-busy` is set. */
   transitioning?: boolean;
 };
 
@@ -210,7 +217,7 @@ const ToggleBase = forwardRef<HTMLButtonElement, ToggleProps>(
               ? "bg-neutral-500 dark:bg-goldfinch-base ring-neutral-600 dark:ring-neutral-700"
               : "bg-neutral-150 dark:bg-goldfinch-base ring-goldfinch-hairline"
             : state.checked
-              ? "bg-blue-500 dark:bg-blue-600 ring-blue-600 dark:ring-blue-500"
+              ? "bg-goldfinch-contrast ring-goldfinch-contrast"
               : "bg-neutral-200 dark:bg-neutral-700 ring-neutral-300 dark:ring-neutral-600";
 
           const thumbColors = isNeutral
@@ -218,7 +225,7 @@ const ToggleBase = forwardRef<HTMLButtonElement, ToggleProps>(
               ? "bg-goldfinch-base dark:bg-neutral-400"
               : "bg-goldfinch-base dark:bg-neutral-850"
             : state.checked
-              ? "bg-goldfinch-base dark:bg-blue-300"
+              ? "bg-goldfinch-base"
               : "bg-goldfinch-base dark:bg-neutral-850";
 
           const trackClassName = cn(
@@ -240,6 +247,7 @@ const ToggleBase = forwardRef<HTMLButtonElement, ToggleProps>(
             thumbColors,
             "transition-all duration-150 ease-out motion-reduce:transition-none",
             state.checked ? s.slide : "left-0",
+            transitioning && "opacity-60 motion-safe:animate-pulse",
           );
 
           const role =
@@ -295,14 +303,16 @@ const ToggleItem = forwardRef<HTMLButtonElement, ToggleItemProps>(
       defaultChecked,
       disabled,
       size = "base",
-      variant = "default",
+      variant: itemVariant,
       label,
       onCheckedChange,
       transitioning,
     },
     ref,
   ) => {
-    const { controlFirst } = useContext(ToggleGroupContext);
+    const { controlFirst, variant: groupVariant } =
+      useContext(ToggleGroupContext);
+    const variant = itemVariant ?? groupVariant ?? "default";
 
     return (
       <label
@@ -354,7 +364,7 @@ const ToggleItem = forwardRef<HTMLButtonElement, ToggleItemProps>(
                 ? "bg-neutral-500 dark:bg-goldfinch-base ring-neutral-600 dark:ring-neutral-700"
                 : "bg-neutral-150 dark:bg-goldfinch-base ring-goldfinch-hairline"
               : state.checked
-                ? "bg-blue-500 dark:bg-blue-600 ring-blue-600 dark:ring-blue-500"
+                ? "bg-goldfinch-contrast ring-goldfinch-contrast"
                 : "bg-neutral-200 dark:bg-neutral-700 ring-neutral-300 dark:ring-neutral-600";
 
             const thumbColors = isNeutral
@@ -362,7 +372,7 @@ const ToggleItem = forwardRef<HTMLButtonElement, ToggleItemProps>(
                 ? "bg-goldfinch-base dark:bg-neutral-400"
                 : "bg-goldfinch-base dark:bg-neutral-850"
               : state.checked
-                ? "bg-goldfinch-base dark:bg-blue-300"
+                ? "bg-goldfinch-base"
                 : "bg-goldfinch-base dark:bg-neutral-850";
 
             const trackClassName = cn(
@@ -383,6 +393,7 @@ const ToggleItem = forwardRef<HTMLButtonElement, ToggleItemProps>(
               thumbColors,
               "transition-all duration-150 ease-out motion-reduce:transition-none",
               state.checked ? s.slide : "left-0",
+              transitioning && "opacity-60 motion-safe:animate-pulse",
             );
 
             const role = baseRole ?? "switch";
@@ -437,10 +448,11 @@ function ToggleGroup({
   description,
   disabled,
   controlFirst = true,
+  variant = "neutral",
   className,
 }: ToggleGroupProps) {
   return (
-    <ToggleGroupContext.Provider value={{ controlFirst }}>
+    <ToggleGroupContext.Provider value={{ controlFirst, variant }}>
       <Fieldset
         legend={legend}
         description={description}
