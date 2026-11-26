@@ -7,6 +7,8 @@ const description = frontmatter?.description || "";
 
 <DocLayout headings={headings}>
   <Fragment slot="head">
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
     <slot name="head" />
   </Fragment>
 

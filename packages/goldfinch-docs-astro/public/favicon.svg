@@ -1,1 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🐦</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .bird { fill: #000; }
+    @media (prefers-color-scheme: dark) { .bird { fill: #fff; } }
+  </style>
+  <g class="bird">
+    <circle cx="13.2" cy="10.4" r="6.4"/>
+    <path d="M9.4 7.2 L2.2 11.4 L9.4 14.6 Z"/>
+    <ellipse cx="17" cy="18.2" rx="8.6" ry="9.4" transform="rotate(-30 17 18.2)"/>
+    <path d="M20 23 L28.6 30.2 L24.6 31 L16.6 26 Z"/>
+  </g>
+</svg>
