@@ -52,6 +52,15 @@ export const KeyboardNavigation: Story = {
       expect(canvas.getByRole("button", { name: "Settings" })).toHaveFocus(),
     );
 
+    await userEvent.keyboard("{ArrowLeft}");
+    await waitFor(() =>
+      expect(canvas.getByRole("button", { name: "Search" })).toHaveFocus(),
+    );
+    await userEvent.keyboard("{ArrowRight}");
+    await waitFor(() =>
+      expect(canvas.getByRole("button", { name: "Settings" })).toHaveFocus(),
+    );
+
     await userEvent.keyboard("{Enter}");
     await expect(onSettings).toHaveBeenCalledOnce();
   },

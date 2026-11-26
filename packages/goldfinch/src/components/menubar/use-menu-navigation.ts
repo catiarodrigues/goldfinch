@@ -1,78 +1,42 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 
 type UseMenuNavigationProps = {
   menuRef: React.RefObject<HTMLElement | null>;
   direction?: "horizontal" | "vertical"; // Default: horizontal
 };
 
+const FOCUSABLE =
+  'a, button:not(:disabled), input, textarea, select, details, [tabindex]:not([tabindex="-1"])';
+
+/**
+ * Arrow keys move focus between the focusable elements inside `menuRef`,
+ * wrapping at the ends. The key event itself says which element has focus,
+ * and the elements are looked up on each key press, so options added later
+ * work too.
+ */
 export const useMenuNavigation = ({
   menuRef,
   direction = "horizontal",
 }: UseMenuNavigationProps) => {
-  const activeElementRef = useRef<HTMLElement | null>(null);
-
   useEffect(() => {
-    if (!menuRef.current) return;
+    const menu = menuRef.current;
+    if (!menu) return;
 
-    const focusableElements = Array.from(
-      menuRef.current.querySelectorAll(
-        'a, button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])',
-      ),
-    ) as HTMLElement[];
-
-    if (focusableElements.length === 0) return;
+    const forwardKey = direction === "horizontal" ? "ArrowRight" : "ArrowDown";
+    const backwardKey = direction === "horizontal" ? "ArrowLeft" : "ArrowUp";
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (!activeElementRef.current) return;
+      if (e.key !== forwardKey && e.key !== backwardKey) return;
+      const items = Array.from(menu.querySelectorAll<HTMLElement>(FOCUSABLE));
+      const current = items.indexOf(e.target as HTMLElement);
+      if (current === -1) return;
 
-      const currentIndex = focusableElements.indexOf(activeElementRef.current);
-      let nextIndex = currentIndex;
-
-      const isHorizontal = direction === "horizontal";
-      const forwardKey = isHorizontal ? "ArrowRight" : "ArrowDown";
-      const backwardKey = isHorizontal ? "ArrowLeft" : "ArrowUp";
-
-      if (e.key === forwardKey) {
-        e.preventDefault();
-        nextIndex = (currentIndex + 1) % focusableElements.length;
-      } else if (e.key === backwardKey) {
-        e.preventDefault();
-        nextIndex =
-          (currentIndex - 1 + focusableElements.length) %
-          focusableElements.length;
-      } else {
-        return;
-      }
-
-      const nextElement = focusableElements[nextIndex];
-      activeElementRef.current = nextElement;
-      nextElement.focus();
+      e.preventDefault();
+      const step = e.key === forwardKey ? 1 : -1;
+      items[(current + step + items.length) % items.length].focus();
     };
 
-    const addKeyListener = () =>
-      document.addEventListener("keydown", handleKeyDown);
-    const removeKeyListener = () =>
-      document.removeEventListener("keydown", handleKeyDown);
-
-    const handleFocusIn = () => {
-      activeElementRef.current = document.activeElement as HTMLElement;
-      addKeyListener();
-    };
-
-    const handleFocusOut = () => {
-      activeElementRef.current = null;
-      removeKeyListener();
-    };
-
-    // Capture the node so cleanup detaches from the one we attached to.
-    const menu = menuRef.current;
-    menu.addEventListener("focusin", handleFocusIn);
-    menu.addEventListener("focusout", handleFocusOut);
-
-    return () => {
-      menu.removeEventListener("focusin", handleFocusIn);
-      menu.removeEventListener("focusout", handleFocusOut);
-      removeKeyListener();
-    };
+    menu.addEventListener("keydown", handleKeyDown);
+    return () => menu.removeEventListener("keydown", handleKeyDown);
   }, [menuRef, direction]);
 };
