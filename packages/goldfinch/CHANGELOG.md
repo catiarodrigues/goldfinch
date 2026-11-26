@@ -1,5 +1,20 @@
 # @catiarodrigues/goldfinch
 
+## 1.4.0
+
+### Minor Changes
+
+- 16bf984: `TopNavigation` works on narrow screens and with links:
+  
+  - `TopNavigation.NavItem` takes `href` and renders a real link, using the `LinkProvider` component so router links work. `active` also sets `aria-current="page"`. Before, items were plain text that keyboard and screen reader users couldn't reach; items without `href` still render as before.
+  - When the bar is narrower than 42rem, the links collapse into a Menu button that opens them in a panel. The bar measures its own width, not the window's. Escape or choosing a link closes the panel. `TopNavigation.Nav` takes `label` (the landmark's name, "Main" by default) and `menuLabel` ("Menu").
+  
+  `Button` reads its variant, size and shape through `resolveVariant`, like the other components: an unknown value warns in development and falls back to the default instead of rendering an unstyled button.
+
+### Patch Changes
+
+- 7da6f60: `Button`'s `loading` state shows a spinner, as documented: it takes the icon's place before the label. Before, `loading` only disabled the button. A loading button now blocks clicks with `aria-disabled` instead of the `disabled` attribute, so it keeps keyboard focus, and sets `aria-busy`. Also fixed `loading` together with `disabled={false}` leaving the button clickable.
+
 ## 1.3.0
 
 ### Minor Changes
