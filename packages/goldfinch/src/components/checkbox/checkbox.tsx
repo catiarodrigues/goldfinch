@@ -24,7 +24,7 @@ export const GOLDFINCH_CHECKBOX_VARIANTS = {
   variant: {
     default: {
       classes:
-        "[&:focus-within>span]:ring-goldfinch-focus [&:hover>span]:ring-goldfinch-hairline",
+        "[&:focus-within>span]:ring-goldfinch-focus [&:hover>span]:ring-goldfinch-contrast/60",
       description: "Default checkbox appearance",
     },
     error: {
@@ -270,9 +270,9 @@ const CheckboxBase = forwardRef<HTMLButtonElement, CheckboxProps>(
           label && "mt-0.5",
           variant === "error"
             ? "ring-goldfinch-danger"
-            : "ring-goldfinch-hairline",
+            : "ring-goldfinch-control-edge",
           !disabled &&
-            "hover:ring-goldfinch-hairline focus:ring-2 focus:ring-goldfinch-focus focus-visible:ring-2 focus-visible:ring-goldfinch-brand",
+            "hover:ring-goldfinch-contrast/60 focus:ring-2 focus:ring-goldfinch-focus focus-visible:ring-2 focus-visible:ring-goldfinch-focus",
           "data-[checked]:bg-goldfinch-contrast data-[checked]:ring-goldfinch-contrast data-[indeterminate]:bg-goldfinch-contrast data-[indeterminate]:ring-goldfinch-contrast",
           disabled && "cursor-not-allowed opacity-50",
           className,
@@ -385,9 +385,9 @@ const CheckboxItem = forwardRef<HTMLButtonElement, CheckboxItemProps>(
               "peer relative mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border-0 bg-goldfinch-base ring after:absolute after:-inset-x-3 after:-inset-y-2",
               variant === "error"
                 ? "ring-goldfinch-danger"
-                : "ring-goldfinch-hairline",
+                : "ring-goldfinch-control-edge",
               !disabled &&
-                "group-hover:ring-goldfinch-hairline hover:ring-goldfinch-hairline focus:ring-2 focus:ring-goldfinch-focus focus-visible:ring-2 focus-visible:ring-goldfinch-brand",
+                "group-hover:ring-goldfinch-contrast/60 hover:ring-goldfinch-contrast/60 focus:ring-2 focus:ring-goldfinch-focus focus-visible:ring-2 focus-visible:ring-goldfinch-focus",
               "data-[checked]:bg-goldfinch-contrast data-[checked]:ring-goldfinch-contrast data-[indeterminate]:bg-goldfinch-contrast data-[indeterminate]:ring-goldfinch-contrast",
             )}
           >

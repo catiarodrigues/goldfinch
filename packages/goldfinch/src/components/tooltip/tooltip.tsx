@@ -55,7 +55,7 @@ export function tooltipVariants({
   return cn(
     // Base styles
     "flex origin-[var(--transform-origin)] flex-col rounded-md bg-goldfinch-base px-2.5 py-1.5 text-sm text-goldfinch-default",
-    "shadow-lg shadow-goldfinch-tip-shadow outline outline-1 outline-goldfinch-fill",
+    "shadow-lg ring ring-goldfinch-line",
     "transition-[transform,scale,opacity] duration-150 motion-reduce:duration-0",
     "data-[starting-style]:scale-90 data-[starting-style]:opacity-0",
     "data-[ending-style]:scale-90 data-[ending-style]:opacity-0",
@@ -196,7 +196,7 @@ export function Tooltip({
           <TooltipBase.Popup
             className={cn(
               "flex origin-[var(--transform-origin)] flex-col rounded-md bg-goldfinch-base px-2.5 py-1.5 text-sm text-goldfinch-default",
-              "shadow-lg shadow-goldfinch-tip-shadow outline outline-goldfinch-fill",
+              "shadow-lg ring ring-goldfinch-line",
               "transition-[transform,scale,opacity] duration-150 motion-reduce:duration-0",
               "data-[starting-style]:scale-90 data-[starting-style]:opacity-0",
               "data-[ending-style]:scale-90 data-[ending-style]:opacity-0",

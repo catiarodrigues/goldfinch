@@ -1531,7 +1531,7 @@ const SidebarTrigger = forwardRef<
       className={cn(
         "flex size-8.5 shrink-0 cursor-pointer items-center justify-center rounded-lg",
         "text-goldfinch-subtle hover:bg-(--sidebar-active-bg) hover:text-goldfinch-default",
-        "focus:outline-none focus-visible:ring-2 focus-visible:ring-goldfinch-brand focus-visible:ring-inset",
+        "focus:outline-none focus-visible:ring-2 focus-visible:ring-goldfinch-focus focus-visible:ring-inset",
         className,
       )}
       onClick={(e) => {

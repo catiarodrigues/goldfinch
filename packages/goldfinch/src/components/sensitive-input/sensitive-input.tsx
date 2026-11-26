@@ -390,7 +390,7 @@ export const SensitiveInput = forwardRef<HTMLInputElement, SensitiveInputProps>(
           aria-label={`${mode === "revealed" ? "Hide" : "Reveal"} ${valueName}`}
           tabIndex={showEyeButton ? 0 : -1}
           className={cn(
-            "absolute top-1/2 right-0 -translate-y-1/2 cursor-pointer text-goldfinch-subtle hover:text-goldfinch-default focus:text-goldfinch-default focus:ring-goldfinch-focus/50 focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-goldfinch-brand",
+            "absolute top-1/2 right-0 -translate-y-1/2 cursor-pointer text-goldfinch-subtle hover:text-goldfinch-default focus:text-goldfinch-default focus:ring-goldfinch-focus/50 focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-goldfinch-focus",
             // Defensive styles to prevent global CSS pollution (e.g., button { background: gray })
             "m-0 inline-flex h-auto min-h-0 items-center justify-center border-none bg-transparent p-0 shadow-none",
             // Match right padding from inputVariants
@@ -419,7 +419,7 @@ export const SensitiveInput = forwardRef<HTMLInputElement, SensitiveInputProps>(
             onKeyDown={(e) => e.stopPropagation()}
             aria-label={copied ? "Copied" : "Copy to clipboard"}
             className={cn(
-              "absolute -top-px right-2 -translate-y-full cursor-pointer rounded-t-md bg-goldfinch-brand px-2 py-0.5 text-xs text-goldfinch-inverse opacity-0 transition-opacity group-focus-within/container:opacity-100 group-hover/container:opacity-100 hover:brightness-120 focus:ring-goldfinch-focus/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-goldfinch-brand",
+              "absolute -top-px right-2 -translate-y-full cursor-pointer rounded-t-md bg-goldfinch-brand px-2 py-0.5 text-xs text-goldfinch-inverse opacity-0 transition-opacity group-focus-within/container:opacity-100 group-hover/container:opacity-100 hover:brightness-120 focus:ring-goldfinch-focus/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-goldfinch-focus",
               // Defensive styles to prevent global CSS pollution
               "m-0 h-auto min-h-0 border-none shadow-none",
             )}

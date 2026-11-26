@@ -29,7 +29,7 @@ export type RadioGroupChangeEventDetails =
 export const GOLDFINCH_RADIO_VARIANTS = {
   variant: {
     default: {
-      classes: "ring-goldfinch-hairline",
+      classes: "ring-goldfinch-control-edge",
       description: "Default radio appearance",
     },
     error: {
@@ -366,13 +366,13 @@ function _RadioItem<T = string>(
             value={value}
             disabled={disabled}
             className={cn(
-              "relative mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-0 bg-goldfinch-base ring ring-2 focus:ring-goldfinch-focus focus:outline-none focus-visible:ring-2 focus-visible:ring-goldfinch-brand",
+              "relative mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-0 bg-goldfinch-base ring ring-2 focus:ring-goldfinch-focus focus:outline-none focus-visible:ring-2 focus-visible:ring-goldfinch-focus",
               variant === "error"
                 ? "ring-goldfinch-danger"
-                : "ring-goldfinch-line",
+                : "ring-goldfinch-control-edge",
               !disabled &&
                 variant !== "error" &&
-                "group-hover:ring-goldfinch-hairline focus-visible:outline-offset-3",
+                "group-hover:ring-goldfinch-contrast/60 focus-visible:outline-offset-3",
               !disabled &&
                 variant === "error" &&
                 "focus-visible:outline-offset-3",
@@ -417,13 +417,13 @@ function _RadioItem<T = string>(
             "relative mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-0 bg-goldfinch-base ring after:absolute after:-inset-x-3 after:-inset-y-2 focus:outline-none",
             variant === "error"
               ? "ring-goldfinch-danger"
-              : "ring-goldfinch-line",
+              : "ring-goldfinch-control-edge",
             !disabled &&
               variant !== "error" &&
-              "group-hover:ring-goldfinch-hairline focus:ring-2 focus:ring-goldfinch-focus focus-visible:ring-2 focus-visible:ring-goldfinch-brand focus-visible:outline-offset-3",
+              "group-hover:ring-goldfinch-contrast/60 focus:ring-2 focus:ring-goldfinch-focus focus-visible:ring-2 focus-visible:ring-goldfinch-focus focus-visible:outline-offset-3",
             !disabled &&
               variant === "error" &&
-              "focus:ring-2 focus:ring-goldfinch-focus focus-visible:ring-2 focus-visible:ring-goldfinch-brand focus-visible:outline-offset-3",
+              "focus:ring-2 focus:ring-goldfinch-focus focus-visible:ring-2 focus-visible:ring-goldfinch-focus focus-visible:outline-offset-3",
             "data-[checked]:bg-goldfinch-contrast",
           )}
         >

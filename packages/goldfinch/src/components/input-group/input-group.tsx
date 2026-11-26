@@ -141,7 +141,7 @@ const Root = forwardRef<
         ? [
             "overflow-hidden",
             // Focus state must come AFTER inputVariants to override ring-goldfinch-line
-            "focus-within:ring-goldfinch-focus/50 focus-within:ring-[1.5px]",
+            "focus-within:ring-2 focus-within:ring-goldfinch-focus",
           ]
         : // isolate creates a new stacking context so z-index in children doesn't leak out
           "isolate overflow-visible ring-0 shadow-none",
@@ -206,8 +206,8 @@ const Root = forwardRef<
                 // Use a clean 1px CSS border instead of ring+shadow from inputVariants
                 // so the zone matches adjacent individual-mode buttons exactly.
                 "shadow-none ring-0",
-                "border border-goldfinch-line",
-                "focus-within:border-goldfinch-focus/50",
+                "border border-goldfinch-control-edge",
+                "focus-within:border-goldfinch-focus",
                 // z-[2] lifts above adjacent button's -ml-px overlap so focus border shows
                 "focus-within:z-2",
                 // Negative margin (not border-l-0) so the border is still paintable on focus

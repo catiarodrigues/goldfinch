@@ -42,6 +42,8 @@ When the operating system asks for reduced motion, Goldfinch turns off its movem
 
 Every text colour token meets 4.5:1 against the surface it's used on, in both modes, and the [Colors](/getting-started/colors) page lists each ratio. Badge fills, placeholder text and the destructive button were checked the same way. The one exception is `inactive`, used for disabled text and decorative marks such as breadcrumb separators. WCAG doesn't require contrast for disabled controls, so don't use it for text people need to read.
 
+The edges of form controls (inputs, selects, checkboxes, radios and toggles) use the `control-edge` token, which is at least 3:1 against the page in both modes, so people can see where a control is. Focus rings are 2px in the `focus` colour on every component.
+
 Status is never shown by colour alone: an error always comes with a message, and badges carry a word, not just a colour.
 
 ## How it's tested

@@ -23,12 +23,12 @@ export const GOLDFINCH_INPUT_VARIANTS = {
   },
   variant: {
     default: {
-      classes: "focus:ring-goldfinch-focus/50 focus:ring-[1.5px]",
+      classes: "focus:ring-2 focus:ring-goldfinch-focus",
       description: "Default input appearance",
     },
     error: {
       classes:
-        "!ring-goldfinch-danger focus:ring-goldfinch-danger/50 focus:ring-[1.5px]",
+        "!ring-goldfinch-danger focus:ring-2 focus:ring-goldfinch-danger",
       description: "Error state for validation failures",
     },
   },
@@ -74,7 +74,7 @@ export function inputVariants({
 }: GoldfinchInputVariantsProps = {}) {
   return cn(
     // Base styles
-    "border-0 bg-goldfinch-control text-goldfinch-default ring ring-goldfinch-line outline-none focus:outline-none",
+    "border-0 bg-goldfinch-control text-goldfinch-default ring ring-goldfinch-control-edge outline-none focus:outline-none",
     // Disabled state and placeholder styles (using vanilla CSS class for Chrome compatibility)
     "goldfinch-input-placeholder disabled:text-goldfinch-disabled",
     // Invalid state comes from Field (Base UI sets data-invalid on the control
@@ -95,15 +95,15 @@ export function inputVariants({
     // Focus state handling
     parentFocusIndicator &&
       (variant === "error"
-        ? "focus-within:ring-goldfinch-danger/50 focus-within:ring-[1.5px]"
+        ? "focus-within:ring-2 focus-within:ring-goldfinch-danger"
         : [
-            "focus-within:ring-goldfinch-focus/50 focus-within:ring-[1.5px]",
+            "focus-within:ring-2 focus-within:ring-goldfinch-focus",
             // Container whose inner control is invalid
-            "has-[[data-invalid]]:ring-goldfinch-danger has-[[data-invalid]]:focus-within:ring-goldfinch-danger/50",
+            "has-[[data-invalid]]:ring-goldfinch-danger has-[[data-invalid]]:focus-within:ring-goldfinch-danger",
           ]),
     focusIndicator &&
       (variant === "error"
-        ? "focus:ring-goldfinch-danger/50 focus:ring-[1.5px]"
-        : "focus:ring-goldfinch-focus/50 focus:ring-[1.5px] data-[invalid]:focus:ring-goldfinch-danger/50"),
+        ? "focus:ring-2 focus:ring-goldfinch-danger"
+        : "focus:ring-2 focus:ring-goldfinch-focus data-[invalid]:focus:ring-goldfinch-danger"),
   );
 }

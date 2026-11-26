@@ -201,6 +201,7 @@ function PaginationPageSize({
       {label && <span className="text-sm text-goldfinch-subtle">{label}</span>}
       <Select
         aria-label={labels.pageSize}
+        className="w-auto"
         value={value}
         onValueChange={(v) => onChange(v as number)}
       >
@@ -277,7 +278,7 @@ function PaginationControls({
             (pageSelector === "dropdown" ? (
               <Select
                 aria-label={labels.pageNumber}
-                className="rounded-none ring-goldfinch-hairline"
+                className="w-auto rounded-none ring-goldfinch-hairline"
                 value={page}
                 onValueChange={(value) => {
                   const num = value as number;

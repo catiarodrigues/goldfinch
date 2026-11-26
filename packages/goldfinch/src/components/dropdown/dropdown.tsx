@@ -70,7 +70,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
     className={cn(
       "flex cursor-default items-center rounded-sm text-base outline-hidden select-none", // base styles
       "px-2 py-1.5", // spacing
-      "focus:bg-goldfinch-tint focus:ring-goldfinch-focus/50 focus-visible:ring-2 focus-visible:ring-goldfinch-brand", // focus state
+      "focus:bg-goldfinch-tint focus:ring-goldfinch-focus/50 focus-visible:ring-2 focus-visible:ring-goldfinch-focus", // focus state
       "data-[state=open]:bg-goldfinch-tint", // open state
       inset && "pl-8", // conditional inset
       className,
@@ -113,7 +113,7 @@ const DropdownMenuContent = React.forwardRef<
         >
           <DropdownMenuPrimitive.Popup
             className={cn(
-              "overflow-hidden bg-goldfinch-control text-goldfinch-default", // background
+              "overflow-hidden bg-goldfinch-base text-goldfinch-default", // background
               "rounded-lg shadow-lg ring ring-goldfinch-line", // border part
               "min-w-36 p-1.5", // spacing
               className,
@@ -237,7 +237,7 @@ const DropdownMenuItem = React.forwardRef<
         data-goldfinch-component="DropdownMenu"
         data-goldfinch-part="item"
         className={cn(
-          "relative flex cursor-default items-center rounded-md px-2 py-1.5 text-base outline-hidden select-none focus:text-goldfinch-default focus:ring-goldfinch-focus/50 focus-visible:ring-2 focus-visible:ring-goldfinch-brand data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-goldfinch-overlay",
+          "relative flex cursor-default items-center rounded-md px-2 py-1.5 text-base outline-hidden select-none focus:text-goldfinch-default focus:ring-goldfinch-focus/50 focus-visible:ring-2 focus-visible:ring-goldfinch-focus data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-goldfinch-overlay",
           selected && "bg-goldfinch-tint",
           inset && "pl-8",
           dropdownVariants({ variant }),
@@ -304,7 +304,7 @@ const DropdownMenuLinkItem = React.forwardRef<
         data-goldfinch-part="link-item"
         className={cn(
           "relative flex cursor-default items-center rounded-md px-2 py-1.5 text-base outline-hidden select-none",
-          "focus:text-goldfinch-default focus:ring-goldfinch-focus/50 focus-visible:ring-2 focus-visible:ring-goldfinch-brand data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-goldfinch-overlay",
+          "focus:text-goldfinch-default focus:ring-goldfinch-focus/50 focus-visible:ring-2 focus-visible:ring-goldfinch-focus data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-goldfinch-overlay",
           "text-inherit no-underline",
           inset && "pl-8",
           dropdownVariants({ variant }),
@@ -330,7 +330,7 @@ const DropdownMenuCheckboxItem = React.forwardRef<
     data-goldfinch-component="DropdownMenu"
     data-goldfinch-part="checkbox-item"
     className={cn(
-      "relative flex cursor-default items-center rounded-sm py-1.5 pr-2 pl-8 text-base outline-hidden transition-colors select-none focus:bg-goldfinch-tint focus:text-goldfinch-default focus:ring-goldfinch-focus/50 focus-visible:ring-2 focus-visible:ring-goldfinch-brand data-disabled:pointer-events-none data-disabled:opacity-50",
+      "relative flex cursor-default items-center rounded-sm py-1.5 pr-2 pl-8 text-base outline-hidden transition-colors select-none focus:bg-goldfinch-tint focus:text-goldfinch-default focus:ring-goldfinch-focus/50 focus-visible:ring-2 focus-visible:ring-goldfinch-focus data-disabled:pointer-events-none data-disabled:opacity-50",
       className,
     )}
     checked={checked}

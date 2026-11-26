@@ -10,18 +10,21 @@ export const goldfinchButtonVariants = {
       "bg-goldfinch-base text-goldfinch-default ring ring-goldfinch-line hover:bg-goldfinch-tint",
     ghost: "text-goldfinch-default hover:bg-goldfinch-tint bg-transparent",
     outline:
-      "bg-transparent text-goldfinch-default ring ring-goldfinch-line hover:ring-goldfinch-focus/25",
-    destructive: "bg-goldfinch-danger-solid text-white",
+      "bg-transparent text-goldfinch-default ring ring-goldfinch-control-edge hover:bg-goldfinch-tint",
+    destructive:
+      "bg-goldfinch-danger-solid text-white hover:bg-goldfinch-danger-solid/90",
   },
+  // Heights and text sizes match Input, Select and Combobox at the same size,
+  // so a button lines up with the field next to it.
   size: {
-    xs: "px-2 py-1 text-xs rounded-md",
-    sm: "px-2.5 py-1 text-sm rounded-md",
-    base: "px-4 py-2 text-sm rounded-lg",
-    lg: "px-5 py-2.5 text-base rounded-lg",
+    xs: "h-5 px-2 text-xs rounded-md",
+    sm: "h-6.5 px-2.5 text-xs rounded-md",
+    base: "h-9 px-4 text-base rounded-lg",
+    lg: "h-10 px-5 text-base rounded-lg",
   },
   shape: {
     base: "",
-    square: "rounded-none",
+    square: "aspect-square px-0",
   },
 } as const;
 
@@ -81,8 +84,8 @@ export function Button({
   return (
     <BaseButton
       className={cn(
-        "inline-flex cursor-pointer items-center justify-center font-medium select-none",
-        "focus:outline-none focus-visible:ring-2 focus-visible:ring-goldfinch-focus/50",
+        "inline-flex shrink-0 cursor-pointer items-center justify-center font-medium whitespace-nowrap select-none",
+        "focus:outline-none focus-visible:ring-2 focus-visible:ring-goldfinch-focus",
         "disabled:cursor-not-allowed disabled:opacity-50",
         goldfinchButtonVariants.variant[variant],
         goldfinchButtonVariants.size[size],

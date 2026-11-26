@@ -215,10 +215,10 @@ const ToggleBase = forwardRef<HTMLButtonElement, ToggleProps>(
           const trackColors = isNeutral
             ? state.checked
               ? "bg-neutral-500 dark:bg-goldfinch-base ring-neutral-600 dark:ring-neutral-700"
-              : "bg-neutral-150 dark:bg-goldfinch-base ring-goldfinch-hairline"
+              : "bg-neutral-150 dark:bg-goldfinch-base ring-goldfinch-control-edge"
             : state.checked
               ? "bg-goldfinch-contrast ring-goldfinch-contrast"
-              : "bg-neutral-200 dark:bg-neutral-700 ring-neutral-300 dark:ring-neutral-600";
+              : "bg-neutral-200 dark:bg-neutral-700 ring-goldfinch-control-edge";
 
           const thumbColors = isNeutral
             ? state.checked
@@ -230,7 +230,7 @@ const ToggleBase = forwardRef<HTMLButtonElement, ToggleProps>(
 
           const trackClassName = cn(
             "relative inline-flex items-center ring cursor-pointer border-none p-0",
-            "focus:outline-none focus-visible:ring-2 focus-visible:ring-goldfinch-brand",
+            "focus:outline-none focus-visible:ring-2 focus-visible:ring-goldfinch-focus",
             "transition-colors duration-150 ease-out motion-reduce:transition-none",
             "disabled:cursor-not-allowed disabled:opacity-50",
             s.track,
@@ -362,10 +362,10 @@ const ToggleItem = forwardRef<HTMLButtonElement, ToggleItemProps>(
             const trackColors = isNeutral
               ? state.checked
                 ? "bg-neutral-500 dark:bg-goldfinch-base ring-neutral-600 dark:ring-neutral-700"
-                : "bg-neutral-150 dark:bg-goldfinch-base ring-goldfinch-hairline"
+                : "bg-neutral-150 dark:bg-goldfinch-base ring-goldfinch-control-edge"
               : state.checked
                 ? "bg-goldfinch-contrast ring-goldfinch-contrast"
-                : "bg-neutral-200 dark:bg-neutral-700 ring-neutral-300 dark:ring-neutral-600";
+                : "bg-neutral-200 dark:bg-neutral-700 ring-goldfinch-control-edge";
 
             const thumbColors = isNeutral
               ? state.checked
@@ -377,7 +377,7 @@ const ToggleItem = forwardRef<HTMLButtonElement, ToggleItemProps>(
 
             const trackClassName = cn(
               "relative inline-flex items-center ring cursor-pointer border-none p-0",
-              "focus:outline-none focus:ring-goldfinch-focus/50 focus-visible:ring-2 focus-visible:ring-goldfinch-brand",
+              "focus:outline-none focus:ring-goldfinch-focus/50 focus-visible:ring-2 focus-visible:ring-goldfinch-focus",
               "transition-colors duration-150 ease-out motion-reduce:transition-none",
               "disabled:cursor-not-allowed disabled:opacity-50",
               s.track,

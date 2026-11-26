@@ -153,18 +153,18 @@ export const Button = forwardRef<
           // (outline doesn't work because the base Button's `focus:outline-none`
           // sets `outline-style: none` which our outline-width/color can't override)
           !isIndividual &&
-            "focus-visible:ring-[1.5px] focus-visible:ring-goldfinch-focus/50",
+            "focus-visible:ring-2 focus-visible:ring-goldfinch-focus",
           // Individual mode: each button owns its own border and focus indicator
           isIndividual && [
             // Own border replaces the container's shared ring; force full height
-            "relative h-full! rounded-none border border-goldfinch-line ring-0 focus-visible:ring-0",
+            "relative h-full! rounded-none border border-goldfinch-control-edge ring-0 focus-visible:ring-0",
             "first:rounded-l-[inherit] last:rounded-r-[inherit]",
             // Negative margin (not border-l-0) so the border is still paintable on focus
             "not-first:-ml-px",
             "hover:z-1",
             // z-2 lifts above hovered siblings so focus border isn't clipped
             "focus:z-2",
-            "focus-visible:border-goldfinch-focus/50",
+            "focus-visible:border-goldfinch-focus",
             "disabled:bg-goldfinch-overlay disabled:text-goldfinch-inactive!",
           ],
           className,

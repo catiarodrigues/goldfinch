@@ -269,7 +269,7 @@ const TableResizeHandle = forwardRef<
         "cursor-col-resize touch-none select-none", // Prevent selection and touch events
         "absolute top-0 right-0", // Position the handle
         "m-0 bg-goldfinch-base p-0", // Override the stratus button styles
-        "focus-visible:ring-2 focus-visible:ring-goldfinch-brand", // Consistent keyboard focus styling
+        "focus-visible:ring-2 focus-visible:ring-goldfinch-focus", // Consistent keyboard focus styling
       )}
     >
       <span className="h-5 w-[2px] rounded bg-goldfinch-hairline" />

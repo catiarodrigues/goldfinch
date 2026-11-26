@@ -215,7 +215,7 @@ export function Tabs({
               });
             }}
             className={cn(
-              "relative z-2 flex items-center rounded bg-transparent whitespace-nowrap focus:ring-goldfinch-focus/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-goldfinch-brand",
+              "relative z-2 flex items-center rounded bg-transparent whitespace-nowrap focus:ring-goldfinch-focus/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-goldfinch-focus",
               isOverflowing
                 ? "cursor-grab active:cursor-grabbing"
                 : "cursor-pointer",

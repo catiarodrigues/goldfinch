@@ -26,7 +26,7 @@ import {
 export const GOLDFINCH_TOAST_VARIANTS = {
   root: {
     classes:
-      "rounded-lg border border-goldfinch-fill bg-goldfinch-control p-4 shadow-lg text-goldfinch-default",
+      "rounded-lg bg-goldfinch-base p-4 shadow-lg ring ring-goldfinch-line text-goldfinch-default",
     description: "Toast container with background, border, and shadow",
   },
   title: {

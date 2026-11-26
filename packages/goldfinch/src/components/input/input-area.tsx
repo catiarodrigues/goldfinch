@@ -54,6 +54,7 @@ export const InputArea = React.forwardRef<HTMLTextAreaElement, InputAreaProps>(
         ref={ref as React.Ref<HTMLInputElement>}
         render={<textarea />}
         className={cn(
+          "w-full",
           inputVariants({ size, variant, focusIndicator: true }),
           "h-auto py-2", // Input variant always comes with size, but it does not apply for textarea
           className,

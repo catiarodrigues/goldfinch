@@ -27,6 +27,9 @@
   /* Borders */
   --color-goldfinch-line: oklch(0% 0 0 / 0.1);
   --color-goldfinch-hairline: #e5e5e5;
+  /* Edge of a form control (input, select, checkbox, radio, toggle): >=3:1
+     against the surfaces it sits on, so the control can be found (WCAG 1.4.11). */
+  --color-goldfinch-control-edge: #8a8a8a;
 
   /* Shadows */
   --color-goldfinch-shadow-edge: oklch(0% 0 0 / 0.12);
@@ -106,6 +109,7 @@
     --color-goldfinch-brand-hover: #ffffff;
     --color-goldfinch-line: oklch(100% 0 0 / 0.15);
     --color-goldfinch-hairline: #333333;
+    --color-goldfinch-control-edge: #777777;
     --color-goldfinch-shadow-edge: oklch(100% 0 0 / 0.1);
     --color-goldfinch-shadow-drop: oklch(0% 0 0 / 0.3);
     --color-goldfinch-tip-shadow: transparent;

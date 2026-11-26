@@ -65,6 +65,8 @@ const InputRoot = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     <BaseInput
       ref={ref}
       className={cn(
+        // Fills its container, like every form control; set a width to size it.
+        "w-full",
         inputVariants({ size, variant, focusIndicator: true }),
         passwordManagerIgnore && "keeper-ignore",
         className,

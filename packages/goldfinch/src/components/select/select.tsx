@@ -88,8 +88,8 @@ export function selectVariants({
   size = GOLDFINCH_SELECT_DEFAULT_VARIANTS.size,
 }: GoldfinchSelectVariantsProps = {}) {
   return cn(
-    "inline-flex items-center justify-between font-normal",
-    "bg-goldfinch-base text-goldfinch-default ring ring-goldfinch-line hover:bg-goldfinch-tint",
+    "inline-flex w-full items-center justify-between font-normal",
+    "bg-goldfinch-base text-goldfinch-default ring ring-goldfinch-control-edge hover:bg-goldfinch-tint",
     selectSizeClasses[
       resolveVariantKey(
         selectSizeClasses,
@@ -97,9 +97,9 @@ export function selectVariants({
         GOLDFINCH_SELECT_DEFAULT_VARIANTS.size,
       )
     ],
-    "focus:opacity-100 focus:ring-goldfinch-focus/50 focus-visible:ring-inset *:in-focus:opacity-100",
+    "focus:opacity-100 focus:ring-2 focus:ring-goldfinch-focus focus-visible:ring-inset *:in-focus:opacity-100",
     // Invalid state comes from Field (Base UI sets data-invalid on the trigger)
-    "data-[invalid]:ring-goldfinch-danger data-[invalid]:focus:ring-goldfinch-danger/50",
+    "data-[invalid]:ring-goldfinch-danger data-[invalid]:focus:ring-goldfinch-danger",
   );
 }
 
@@ -606,7 +606,7 @@ function Option<T>({ children, value, disabled, className }: OptionProps<T>) {
       disabled={disabled}
       className={cn(
         "group mx-1.5 flex cursor-pointer items-center gap-2 rounded px-2 py-1.5 text-base outline-none",
-        "focus-visible:z-50 focus-visible:ring-2 focus-visible:ring-goldfinch-brand focus-visible:ring-inset",
+        "focus-visible:z-50 focus-visible:ring-2 focus-visible:ring-goldfinch-focus focus-visible:ring-inset",
         "data-highlighted:bg-goldfinch-tint data-[selected]:bg-goldfinch-tint",
         "data-[disabled]:pointer-events-none data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50",
         className,

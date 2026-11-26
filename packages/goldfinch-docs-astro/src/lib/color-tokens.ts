@@ -53,6 +53,8 @@ const PURPOSE: Record<string, string> = {
   "color-goldfinch-brand-hover": "Primary button on hover.",
   "color-goldfinch-line": "Border of raised surfaces that also cast a shadow.",
   "color-goldfinch-hairline": "Border of flat surfaces and dividers.",
+  "color-goldfinch-control-edge":
+    "Edge of form controls: inputs, selects, checkboxes, radios, toggles. At least 3:1 against the page.",
   "color-goldfinch-focus": "Focus ring.",
   "text-color-goldfinch-default": "Body text.",
   "text-color-goldfinch-strong": "Headings and emphasis.",

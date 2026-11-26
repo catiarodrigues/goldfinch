@@ -258,7 +258,7 @@ export const CopyToClipboard = forwardRef<HTMLDivElement, CopyToClipboardProps>(
         className={cn(
           "relative isolate overflow-hidden rounded-l-none rounded-r-[inherit] border-l! border-goldfinch-line! px-3 transition-all duration-200 motion-reduce:duration-0",
           "focus:ring-goldfinch-focus/50 focus:ring-inset",
-          "focus-visible:ring-2 focus-visible:ring-goldfinch-brand focus-visible:ring-inset",
+          "focus-visible:ring-2 focus-visible:ring-goldfinch-focus focus-visible:ring-inset",
         )}
         onClick={copyToClipboard}
         aria-label={copyAction}

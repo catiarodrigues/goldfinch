@@ -83,7 +83,7 @@ function toolbarControlClassName(className?: string) {
     "relative min-w-0 border-0 bg-transparent shadow-none ring-0 focus:z-2 focus-within:z-2 focus-visible:z-2",
     "rounded-none first:rounded-l-lg last:rounded-r-lg only:rounded-lg",
     "not-first:border-l not-first:border-goldfinch-line",
-    "focus:ring-goldfinch-focus/50 focus:ring-[1.5px] focus-visible:ring-2 focus-visible:ring-goldfinch-brand",
+    "focus:ring-goldfinch-focus/50 focus:ring-[1.5px] focus-visible:ring-2 focus-visible:ring-goldfinch-focus",
     className,
   );
 }

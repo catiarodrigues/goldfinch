@@ -52,7 +52,7 @@ const MenuOption = ({
       tabIndex={tabIndex}
       onFocus={onFocus}
       className={cn(
-        "relative -ml-px flex h-full w-11 cursor-pointer items-center justify-center rounded-md border-none bg-goldfinch-recessed transition-colors first:rounded-l-lg last:rounded-r-lg focus:z-3 focus:ring-goldfinch-focus/50 focus:outline-none focus-visible:z-3 focus-visible:ring-2 focus-visible:ring-goldfinch-brand",
+        "relative -ml-px flex h-full w-11 cursor-pointer items-center justify-center rounded-md border-none bg-goldfinch-recessed transition-colors first:rounded-l-lg last:rounded-r-lg focus:z-3 focus:ring-goldfinch-focus/50 focus:outline-none focus-visible:z-3 focus-visible:ring-2 focus-visible:ring-goldfinch-focus",
         {
           "z-2 bg-goldfinch-base shadow-xs transition-colors": isActive === id,
         },
@@ -135,7 +135,7 @@ export const MenuBar = ({
   return (
     <nav
       className={cn(
-        "isolate flex rounded-lg bg-goldfinch-recessed pl-px shadow-xs ring ring-goldfinch-line transition-colors",
+        "isolate inline-flex h-9 rounded-lg bg-goldfinch-recessed pl-px shadow-xs ring ring-goldfinch-line transition-colors",
         className,
       )}
       ref={menuRef}
