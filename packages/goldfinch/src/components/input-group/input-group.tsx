@@ -164,8 +164,7 @@ const Root = forwardRef<
       className,
     );
 
-    // Data attributes drive CSS selectors in goldfinch-binding.css (focus outline)
-    // and enable child components to query their parent's state.
+    // Data attributes expose the group's state to child components and to CSS selectors.
     const dataProps = {
       "data-slot": "input-group" as const,
       "data-focus-mode": focusMode,

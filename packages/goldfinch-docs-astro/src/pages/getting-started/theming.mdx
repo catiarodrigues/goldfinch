@@ -10,20 +10,24 @@ Every colour Goldfinch uses is a CSS custom property, so you can theme it by ove
 
 ## How it works
 
-The library defines tokens at three levels:
+Each token is defined once per mode:
 
-1. `@theme` registers the tokens with Tailwind, which creates utilities such as `bg-goldfinch-base`.
-2. `:root` sets the light-mode values.
-3. `[data-mode="dark"]` sets the dark-mode values.
+1. `@theme` holds the light value and registers the token with Tailwind, which creates utilities such as `bg-goldfinch-base`. Every token is also available as a CSS variable, such as `var(--color-goldfinch-base)`, whether or not a utility uses it.
+2. `[data-mode="dark"]` holds the dark value.
 
 ## Override a token
 
-To customize a color, redeclare the variable with higher specificity:
+To customize a colour, redeclare its variable in your own CSS. Set the dark value too: an override in `:root` alone also applies in dark mode.
 
 ```css
 :root {
   --color-goldfinch-brand: #2563eb;
   --color-goldfinch-brand-hover: #1d4ed8;
+}
+
+[data-mode="dark"] {
+  --color-goldfinch-brand: #93c5fd;
+  --color-goldfinch-brand-hover: #bfdbfe;
 }
 ```
 

@@ -2,9 +2,8 @@
  * Reads Goldfinch's colour tokens straight from the library stylesheet, so the
  * Colors page shows the values components actually use. Runs at build time.
  *
- * Groups and their order come from the comments in the `@theme` block; the
- * light and dark values come from the `:root` and `[data-mode="dark"]` blocks,
- * which are what the browser applies.
+ * Groups, their order and the light values come from the `@theme` block; the
+ * dark values from the `[data-mode="dark"]` block.
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -50,7 +49,6 @@ const PURPOSE: Record<string, string> = {
   "color-goldfinch-control": "Fill of form controls.",
   "color-goldfinch-interact": "Control border on hover.",
   "color-goldfinch-fill": "Neutral fills: progress tracks, skeletons.",
-  "color-goldfinch-fill-hover": "Neutral fill on hover.",
   "color-goldfinch-brand": "Primary button, progress bar, tab underline.",
   "color-goldfinch-brand-hover": "Primary button on hover.",
   "color-goldfinch-line": "Border of raised surfaces that also cast a shadow.",
@@ -94,11 +92,11 @@ function block(css: string, selector: string) {
 
 export function colorGroups(): ColorGroup[] {
   const css = fs.readFileSync(CSS, "utf8");
-  const light = block(css, ":root");
+  const light = block(css, "@theme static");
   const dark = block(css, '[data-mode="dark"]');
   const theme = css.slice(
-    css.indexOf("@theme {"),
-    css.indexOf("\n}", css.indexOf("@theme {")),
+    css.indexOf("@theme static {"),
+    css.indexOf("\n}", css.indexOf("@theme static {")),
   );
 
   const groups: ColorGroup[] = [];

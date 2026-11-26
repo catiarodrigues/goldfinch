@@ -211,8 +211,9 @@ requirement.
 
 ## Theming
 
-- Colors are CSS custom properties (`--color-goldfinch-*`), already light/dark aware via
-  `light-dark()` — don't hardcode hex colors when composing with Goldfinch components, use the
+- Colors are CSS custom properties (`--color-goldfinch-*`) with a light value and a dark value
+  (dark applies under `data-mode="dark"` on `<html>`, which Tailwind's `dark:` also follows) —
+  don't hardcode hex colors when composing with Goldfinch components, use the
   same tokens (`bg-goldfinch-base`, `text-goldfinch-subtle`, `border-goldfinch-hairline`, etc.)
   so custom markup matches.
 - Every component accepts `className`, merged safely via `tailwind-merge` — overriding a utility
