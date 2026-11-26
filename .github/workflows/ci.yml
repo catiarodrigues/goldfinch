@@ -96,3 +96,4 @@ jobs:
           workingDir: packages/goldfinch
           buildScriptName: build-storybook
           exitZeroOnChanges: true # changes need review in Chromatic, not a red build
+          onlyChanged: true # TurboSnap: snapshot only stories affected by the push, to stay within the free plan

@@ -70,7 +70,7 @@ goldfinch/
   `src/utils/resolve-variant.ts` once, fully, before touching any component's variant logic.
 - Testing is Storybook stories run through `@storybook/addon-vitest` in a real Chromium via
   Playwright — there are no `*.test.ts` files. Stories without a `play` function are still
-  exercised as render-smoke-tests. `pnpm exec playwright install` has to be run once locally
+  exercised as render-smoke-tests. `pnpm --filter @catiarodrigues/goldfinch exec playwright install chromium` has to be run once locally
   before `pnpm test` will pass. Every story is also an accessibility test, in light **and** dark
   mode: axe violations fail it (`a11y.test: "error"`, plus a preview `afterEach` that reruns
   the same check with `data-mode="dark"` in `.storybook/preview.tsx`; `preview.css` paints
@@ -180,7 +180,7 @@ pnpm lint                                                         # oxlint; warn
 pnpm format / pnpm format:check                                   # Prettier (sorts Tailwind classes)
 pnpm typecheck                                                    # tsc --noEmit for the library
 pnpm typecheck:docs                                               # builds the library, then tsc --noEmit for the docs site (it type-checks against dist/)
-pnpm test                                                         # story tests (interaction + a11y) in Chromium -- needs `pnpm exec playwright install` once
+pnpm test                                                         # story tests (interaction + a11y) in Chromium -- needs `pnpm --filter @catiarodrigues/goldfinch exec playwright install chromium` once
 pnpm changeset                                                    # record a user-facing change for the next release
 pnpm --filter @catiarodrigues/goldfinch storybook                     # Storybook dev server, port 6006
 pnpm --filter @catiarodrigues/goldfinch build-storybook                 # static Storybook build
