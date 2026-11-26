@@ -18,6 +18,7 @@ export const navigation: NavSection[] = [
       { title: "Colors", href: "/getting-started/colors" },
       { title: "Theming", href: "/getting-started/theming" },
       { title: "Accessibility", href: "/getting-started/accessibility" },
+      { title: "AI agents", href: "/getting-started/ai-agents" },
       { title: "Changelog", href: "/changelog" },
     ],
   },

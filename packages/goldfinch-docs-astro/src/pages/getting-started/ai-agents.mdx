@@ -1,0 +1,39 @@
+---
+title: AI agents
+description: Help coding agents use Goldfinch correctly with the skill that ships in the package.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+Coding agents often guess how a component library works, and with Goldfinch the guesses tend to go wrong in the same places: a prop-based API where Goldfinch uses compound parts like `Modal.Title`, a missing `@source` line that leaves every component unstyled, a red border added to a checkbox. Goldfinch ships a [Claude Code skill](https://code.claude.com/docs/en/skills) inside the npm package that covers these, so the agent reads the real API before writing code.
+
+## Install the skill
+
+Claude Code loads skills from your project's `.claude/skills` folder, not from `node_modules`, so copy it in once after installing Goldfinch:
+
+```bash
+mkdir -p .claude/skills
+cp -r node_modules/@catiarodrigues/goldfinch/.claude/skills/goldfinch .claude/skills/goldfinch
+```
+
+Commit the copy so everyone on the team gets it. Claude Code uses it whenever a task involves Goldfinch; you don't need to mention it in your prompt.
+
+The skill describes the version it shipped with. When you upgrade Goldfinch, run the copy again so the agent learns about new components and props.
+
+## What it covers
+
+- **Setup:** the Tailwind v4 requirement, and the two lines of CSS that import the styles and point Tailwind at the package.
+- **Imports:** the barrel and the per-component paths.
+- **Compound components:** the parts of every compound component, such as `Modal.Trigger` and `Select.Option`, with worked examples.
+- **Forms:** how `label`, `description` and `error` work, and that choice controls show errors by message alone.
+- **Toasts:** wrapping the app in `Toasty` and calling `useGoldfinchToastManager()` from a component inside it.
+- **Router links:** passing your router's `Link` through `LinkProvider`.
+- **Overlays in Shadow DOM:** `GoldfinchPortalProvider` for rendering popups into a custom container.
+- **Theming:** using the colour tokens instead of hard-coded colours.
+
+## Other agents
+
+The skill is a single Markdown file, so agents that don't support skills can still read it. Point to it from the file your agent does read, such as `AGENTS.md`:
+
+```md
+When building UI, follow .claude/skills/goldfinch/SKILL.md for how to use Goldfinch.
+```
