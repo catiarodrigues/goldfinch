@@ -1,0 +1,90 @@
+---
+/**
+ * Every colour token, grouped as in the library's @theme block, with its light
+ * and dark value side by side (see src/lib/color-tokens.ts). Swatches use the
+ * literal values, so both modes show whichever mode the page is in.
+ */
+import { colorGroups, contrast } from "../../lib/color-tokens";
+
+const groups = colorGroups();
+const all = new Map(groups.flatMap((g) => g.tokens).map((t) => [t.cssVar, t]));
+const modes = [
+  { name: "Light", key: "light" },
+  { name: "Dark", key: "dark" },
+] as const;
+const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+---
+
+{groups.map((group) => (
+  <section class="mt-10">
+    <h3 id={slug(group.title)}>{group.title}</h3>
+    {group.note && <p>{group.note}</p>}
+    <div class="not-prose overflow-x-auto rounded-lg border border-goldfinch-hairline">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-goldfinch-hairline bg-goldfinch-base">
+            <th class="px-4 py-2.5 text-left font-medium text-goldfinch-strong">
+              Token
+            </th>
+            {modes.map((m) => (
+              <th class="w-40 px-4 py-2.5 text-left font-medium text-goldfinch-strong">
+                {m.name}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {group.tokens.map((t) => (
+            <tr class="border-b border-goldfinch-hairline last:border-0">
+              <td class="px-4 py-3 align-top">
+                <code class="text-goldfinch-strong">{t.utility}</code>
+                <div class="mt-0.5 font-mono text-xs text-goldfinch-subtle">
+                  {t.cssVar}
+                </div>
+                {t.description && (
+                  <div class="mt-1 text-goldfinch-default">{t.description}</div>
+                )}
+              </td>
+              {modes.map((m) => {
+                const value = t[m.key];
+                const ground =
+                  t.kind === "text"
+                    ? all.get(t.on)![m.key]
+                    : all.get("--color-goldfinch-base")![m.key];
+                const ratio =
+                  t.kind === "text" ? contrast(value, ground) : undefined;
+                return (
+                  <td class="px-4 py-3 align-top">
+                    <div
+                      class="flex h-10 items-center justify-center rounded-md border border-goldfinch-hairline"
+                      style={`background:${ground}`}
+                    >
+                      {t.kind === "text" ? (
+                        <span
+                          class="text-base font-medium"
+                          style={`color:${value}`}
+                          aria-hidden="true"
+                        >
+                          Aa
+                        </span>
+                      ) : (
+                        <span
+                          class="h-6 w-[calc(100%-1rem)] rounded"
+                          style={`background:${value};box-shadow:inset 0 0 0 1px rgb(127 127 127 / 0.25)`}
+                        />
+                      )}
+                    </div>
+                    <div class="mt-1 font-mono text-xs break-all text-goldfinch-subtle">
+                      {value}
+                      {ratio && <span> · {ratio.toFixed(2)}:1</span>}
+                    </div>
+                  </td>
+                );
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+))}

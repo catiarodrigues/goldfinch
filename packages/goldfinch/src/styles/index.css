@@ -100,7 +100,7 @@
   --color-goldfinch-binding: light-dark(#000000, #ffffff);
   --color-goldfinch-component: light-dark(#000000, #ffffff);
 
-  /* Input placeholder - vanilla CSS */
+  /* Input placeholder */
   /* ≥4.5:1 (WCAG AA) on every control surface in both modes */
   --color-goldfinch-input-placeholder: light-dark(#707070, #949494);
 }

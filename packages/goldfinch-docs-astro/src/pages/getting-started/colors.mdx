@@ -1,0 +1,50 @@
+---
+title: Colors
+description: Goldfinch's colour tokens, their light and dark values, and how to use them.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+import ColorTokens from "../../components/docs/ColorTokens.astro";
+
+Goldfinch's colours are semantic tokens. Each one is named for its role, such as `base` for a surface or `subtle` for secondary text, and each has a light and a dark value. Components only use tokens, so switching modes or overriding a token changes every component at once.
+
+## Usage
+
+Use the token utilities in your own markup too, so it follows the same modes and overrides as the components:
+
+```tsx
+// Follows light and dark mode
+<p className="text-goldfinch-subtle">Last saved 2 minutes ago</p>
+
+// Stays grey in dark mode, and ignores your overrides
+<p className="text-neutral-500">Last saved 2 minutes ago</p>
+```
+
+Each colour token creates the usual Tailwind utilities: `bg-goldfinch-base`, `border-goldfinch-hairline`, `ring-goldfinch-focus` and so on. Text tokens create `text-` utilities only.
+
+## Ink and colour
+
+Goldfinch is black and white. Ink, near-black in light mode and near-white in dark mode, marks the primary action and every selected control: the primary button, checked checkboxes and radios, toggles that are on, the progress bar and the active tab.
+
+Colour is kept for status. Red means an error or a destructive action, green success, amber a warning. Because nothing else is coloured, a red message or a red border stands out without needing to be loud.
+
+## Dark mode
+
+Set `data-mode="dark"` on `<html>` to switch every token to its dark value. Tailwind's `dark:` variant follows the same attribute, not the operating system, so your app decides the mode in one place.
+
+```html
+<html data-mode="dark"></html>
+```
+
+## Tokens
+
+Each table shows a token's utility, its CSS variable, and its value in both modes. Text tokens also show their contrast against the base surface. Body text needs at least 4.5:1 to meet WCAG AA.
+
+<Callout type="info">
+  This list is read from the library's stylesheet when the docs are built, so it
+  always matches the version you're reading about. To change a value, see
+  [Theming](/getting-started/theming).
+</Callout>
+
+<ColorTokens />
