@@ -146,7 +146,7 @@ export function EmptyState({
             ) : (
               <CopyIcon
                 size={16}
-                className="text-goldfinch-inactive group-hover:text-goldfinch-brand"
+                className="text-goldfinch-subtle group-hover:text-goldfinch-brand"
               />
             )}
           </Button>
