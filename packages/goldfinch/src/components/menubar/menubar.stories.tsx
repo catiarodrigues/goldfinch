@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { MenuBar } from "./menubar";
-import { expect, fn, userEvent, within } from "storybook/test";
+import { expect, fn, userEvent, waitFor, within } from "storybook/test";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/menubar/basic";
-import { isChromatic } from "../../../.storybook/is-chromatic";
 import UsageExample from "../../../../goldfinch-docs-astro/src/examples/menubar/usage";
 const meta: Meta<typeof MenuBar> = {
   title: "Components/Menubar",
@@ -39,17 +38,19 @@ export const KeyboardNavigation: Story = {
     ],
   },
   play: async ({ canvasElement }) => {
-    if (isChromatic()) return; // needs real focus; tested in Vitest
     const canvas = within(canvasElement);
     onSettings.mockClear();
 
+    // Wait for focus to land before each key, as a person would.
     await userEvent.tab();
-    await expect(canvas.getByRole("button", { name: "Search" })).toHaveFocus();
+    await waitFor(() =>
+      expect(canvas.getByRole("button", { name: "Search" })).toHaveFocus(),
+    );
 
     await userEvent.keyboard("{ArrowRight}");
-    await expect(
-      canvas.getByRole("button", { name: "Settings" }),
-    ).toHaveFocus();
+    await waitFor(() =>
+      expect(canvas.getByRole("button", { name: "Settings" })).toHaveFocus(),
+    );
 
     await userEvent.keyboard("{Enter}");
     await expect(onSettings).toHaveBeenCalledOnce();

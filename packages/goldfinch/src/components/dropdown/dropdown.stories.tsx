@@ -4,7 +4,6 @@ import { Button } from "../button/button";
 import { expect, fn, userEvent, waitFor, within } from "storybook/test";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/dropdown/basic";
-import { isChromatic } from "../../../.storybook/is-chromatic";
 import UsageExample from "../../../../goldfinch-docs-astro/src/examples/dropdown/usage";
 const meta: Meta<typeof DropdownMenu> = {
   title: "Components/Dropdown",
@@ -46,28 +45,29 @@ export const KeyboardNavigation: Story = {
     </DropdownMenu>
   ),
   play: async ({ canvasElement }) => {
-    if (isChromatic()) return; // needs real focus; tested in Vitest
     // Popups render in a portal outside the story root.
     const page = within(canvasElement.ownerDocument.body);
     const trigger = page.getByRole("button", { name: "Actions" });
     onDuplicate.mockClear();
 
-    trigger.focus();
+    // Reach the trigger with Tab, as a keyboard user would, and wait for
+    // focus to land before each key.
+    await userEvent.tab();
+    await waitFor(() => expect(trigger).toHaveFocus());
     await userEvent.keyboard("{ArrowDown}");
-    await page.findByRole("menu");
     await waitFor(() =>
       expect(page.getByRole("menuitem", { name: "Edit" })).toHaveFocus(),
     );
 
     await userEvent.keyboard("{ArrowDown}");
-    await expect(
-      page.getByRole("menuitem", { name: "Duplicate" }),
-    ).toHaveFocus();
+    await waitFor(() =>
+      expect(page.getByRole("menuitem", { name: "Duplicate" })).toHaveFocus(),
+    );
     await userEvent.keyboard("{Enter}");
 
     await expect(onDuplicate).toHaveBeenCalledOnce();
     await waitFor(() => expect(page.queryByRole("menu")).toBeNull());
-    await expect(trigger).toHaveFocus();
+    await waitFor(() => expect(trigger).toHaveFocus());
   },
 };
 
@@ -104,7 +104,7 @@ export const EscapeAndTypeahead: Story = {
     // Escape closes the menu and returns focus to the trigger.
     await userEvent.keyboard("{Escape}");
     await waitFor(() => expect(page.queryByRole("menu")).toBeNull());
-    await expect(trigger).toHaveFocus();
+    await waitFor(() => expect(trigger).toHaveFocus());
   },
 };
 
