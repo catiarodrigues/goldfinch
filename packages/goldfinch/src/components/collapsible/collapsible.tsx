@@ -158,7 +158,7 @@ const CollapsibleDefaultTrigger = forwardRef<
       )}
     >
       {children}{" "}
-      <CaretDownIcon className="h-4 w-4 transition-transform [[data-panel-open]_&]:rotate-180" />
+      <CaretDownIcon className="h-4 w-4 transition-transform motion-reduce:transition-none [[data-panel-open]_&]:rotate-180" />
     </CollapsibleBase.Trigger>
   );
 });

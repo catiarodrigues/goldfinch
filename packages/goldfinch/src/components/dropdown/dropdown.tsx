@@ -116,12 +116,6 @@ const DropdownMenuContent = React.forwardRef<
               "overflow-hidden bg-goldfinch-control text-goldfinch-default", // background
               "rounded-lg shadow-lg ring ring-goldfinch-line", // border part
               "min-w-36 p-1.5", // spacing
-              "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95", // open animation
-              "data-[side=bottom]:slide-in-from-top-2", // bottom side animation
-              "data-[side=left]:slide-in-from-right-2", // left side animation
-              "data-[side=right]:slide-in-from-left-2", // right side animation
-              "data-[side=top]:slide-in-from-bottom-2", // top side animation
-              "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95", // close animation
               className,
             )}
           >

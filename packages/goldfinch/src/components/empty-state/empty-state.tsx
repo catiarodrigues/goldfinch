@@ -139,10 +139,7 @@ export function EmptyState({
             }}
           >
             {emptyStateCopied ? (
-              <CheckIcon
-                size={16}
-                className="animate-bounce-in text-goldfinch-success"
-              />
+              <CheckIcon size={16} className="text-goldfinch-success" />
             ) : (
               <CopyIcon
                 size={16}

@@ -172,6 +172,17 @@
   }
 }
 
+/* Reduced motion: stop the looping skeleton shimmer and the toast bump.
+   Component transitions handle it with motion-reduce: classes. */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton,
+  .skeleton-line,
+  .skeleton-line::after,
+  .animate-toast-bump {
+    animation: none;
+  }
+}
+
 /* Skeleton loading animation */
 @keyframes skeleton {
   0% {

@@ -4,8 +4,6 @@ description: What Goldfinch handles for you, how it's tested, and what's left to
 layout: ../../layouts/MdxDocLayout.astro
 ---
 
-import Callout from "../../components/docs/Callout.astro";
-
 Goldfinch aims for WCAG 2.2 AA. The interactive components are built on [Base UI](https://base-ui.com/), which handles keyboard support, focus and ARIA, and every component is tested against axe in light and dark mode before it ships.
 
 ## Keyboard and focus
@@ -36,6 +34,10 @@ Some changes happen without moving focus, so Goldfinch announces them through li
 - Pagination announces the new range of results.
 - Spinner has `role="status"`, so its label is read when it appears.
 
+## Motion
+
+When the operating system asks for reduced motion, Goldfinch turns off its movement: Modal, Popover, Tooltip and Toast appear and disappear without scaling or sliding, Toggle and Collapsible switch instantly, and skeletons stop shimmering. Spinner keeps turning, because the motion is what tells people something is loading.
+
 ## Colour and contrast
 
 Every text colour token meets 4.5:1 against the surface it's used on, in both modes, and the [Colors](/getting-started/colors) page lists each ratio. Badge fills, placeholder text and the destructive button were checked the same way. The one exception is `inactive`, used for disabled text and decorative marks such as breadcrumb separators. WCAG doesn't require contrast for disabled controls, so don't use it for text people need to read.
@@ -60,10 +62,3 @@ Goldfinch can't know your content, so a few things stay with your app:
 - Set `lang` on `<html>`, and give each page a unique `<title>`.
 - Keep heading levels in order across your page.
 - Write error messages that say how to fix the problem, such as "Enter an email like name@example.com" rather than "Invalid".
-
-<Callout type="warning">
-  Only Toggle and Sidebar turn off their animations when the operating system
-  asks for reduced motion. The fades and scales on Modal, Popover, Tooltip,
-  Toast and dropdown menus still play. If your users need that, add a
-  `prefers-reduced-motion` rule in your app until Goldfinch handles it.
-</Callout>

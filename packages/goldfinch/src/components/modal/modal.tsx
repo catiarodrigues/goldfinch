@@ -142,7 +142,7 @@ export function modalVariants({
 }: GoldfinchModalVariantsProps = {}) {
   return cn(
     // Base styles
-    "shadow-m ring ring-goldfinch-line fixed top-1/2 left-1/2 w-full sm:w-auto max-w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-xl bg-goldfinch-base text-goldfinch-default p-6 duration-150 data-ending-style:scale-90 data-ending-style:opacity-0 data-starting-style:scale-90 data-starting-style:opacity-0",
+    "shadow-m ring ring-goldfinch-line fixed top-1/2 left-1/2 w-full sm:w-auto max-w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-xl bg-goldfinch-base text-goldfinch-default p-6 duration-150 motion-reduce:duration-0 data-ending-style:scale-90 data-ending-style:opacity-0 data-starting-style:scale-90 data-starting-style:opacity-0",
     // Apply size from GOLDFINCH_MODAL_VARIANTS
     resolveVariant(
       GOLDFINCH_MODAL_VARIANTS.size,
@@ -194,7 +194,7 @@ function ModalContent({
 
   return (
     <BasePortal container={container}>
-      <BaseBackdrop className="fixed inset-0 bg-goldfinch-recessed opacity-80 transition-all duration-150 data-ending-style:opacity-0 data-starting-style:opacity-0" />
+      <BaseBackdrop className="fixed inset-0 bg-goldfinch-recessed opacity-80 transition-all duration-150 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:duration-0" />
       <Card
         render={<BasePopup />}
         className={cn(modalVariants({ size }), className)}

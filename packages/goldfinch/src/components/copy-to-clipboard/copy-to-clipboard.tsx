@@ -256,7 +256,7 @@ export const CopyToClipboard = forwardRef<HTMLDivElement, CopyToClipboardProps>(
         size={sizeConfig.buttonSize}
         variant="ghost"
         className={cn(
-          "relative isolate overflow-hidden rounded-l-none rounded-r-[inherit] border-l! border-goldfinch-line! px-3 transition-all duration-200",
+          "relative isolate overflow-hidden rounded-l-none rounded-r-[inherit] border-l! border-goldfinch-line! px-3 transition-all duration-200 motion-reduce:duration-0",
           "focus:ring-goldfinch-focus/50 focus:ring-inset",
           "focus-visible:ring-2 focus-visible:ring-goldfinch-brand focus-visible:ring-inset",
         )}
@@ -265,7 +265,7 @@ export const CopyToClipboard = forwardRef<HTMLDivElement, CopyToClipboardProps>(
       >
         <span
           className={cn(
-            "flex items-center gap-1 transition-all duration-200",
+            "flex items-center gap-1 transition-all duration-200 motion-reduce:duration-0",
             copied
               ? copyToClipboardAnimations.slide.animate
               : copyToClipboardAnimations.slide.initial,
@@ -275,7 +275,7 @@ export const CopyToClipboard = forwardRef<HTMLDivElement, CopyToClipboardProps>(
         </span>
         <span
           className={cn(
-            "flex items-center justify-center transition-all duration-200",
+            "flex items-center justify-center transition-all duration-200 motion-reduce:duration-0",
             copied
               ? copyToClipboardAnimations.slide.end
               : copyToClipboardAnimations.slide.animate,
