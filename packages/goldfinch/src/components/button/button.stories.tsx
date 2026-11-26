@@ -111,9 +111,13 @@ export const UnknownVariantFallsBack: Story = {
   ),
   play: async ({ canvasElement }) => {
     const button = within(canvasElement).getByRole("button", { name: "Save" });
-    await expect(warn).toHaveBeenCalledWith(
-      expect.stringContaining('Unknown variant "pirmary"'),
-    );
+    // The warning is development-only, like every Goldfinch dev check, so a
+    // production Storybook build (as Chromatic tests) doesn't log it.
+    if (process.env.NODE_ENV !== "production") {
+      await expect(warn).toHaveBeenCalledWith(
+        expect.stringContaining('Unknown variant "pirmary"'),
+      );
+    }
     // Falls back to the default, secondary, look.
     await expect(button.className).toContain("bg-goldfinch-base");
   },
