@@ -1,5 +1,14 @@
 # @catiarodrigues/goldfinch
 
+## 1.1.5
+
+### Patch Changes
+
+- 62eca50: `MenuBar`'s arrow keys (and `useMenuNavigation`) work however focus reaches the bar. They used to depend on a `focusin` event having fired first, so they could do nothing when focus was moved by script, and they listened for keys on the whole document while the bar had focus. They now listen on the bar itself and find its buttons on each key press, so options added after the first render are included.
+  
+  `MenuBar` is now a single Tab stop, like a toolbar: Tab moves into the bar and out again in one step, and the arrow keys move between its buttons. Tab lands on the active option first, then on the button used last. Before, every button was its own Tab stop.
+- 86050ae: Goldfinch respects the operating system's reduced-motion setting everywhere. `Modal`, `Popover`, `Tooltip`, `Toast`, `Collapsible`'s caret and `CopyToClipboard` now skip their transitions, and `SkeletonLine` and the toast bump stop animating. Before, only `Toggle` and `Sidebar` did. Also removed animation classes from `DropdownMenu` and `EmptyState` that never had any effect.
+
 ## 1.1.4
 
 ### Patch Changes
