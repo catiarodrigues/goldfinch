@@ -19,18 +19,26 @@ import { ViewTransitions } from "astro:transitions";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <slot name="head" />
 
-    <script>
+    <!-- Inline so it runs before the first paint. Astro replaces <html>'s
+         attributes on every navigation, so the mode is also set on the incoming
+         page before it's swapped in; otherwise dark mode flashes light. -->
+    <script is:inline>
       (function () {
-        var stored = localStorage.getItem("goldfinch-theme");
-        if (stored === "light" || stored === "dark") {
-          document.documentElement.dataset.mode = stored;
-        } else {
-          var prefersDark = window.matchMedia(
-            "(prefers-color-scheme: dark)",
-          ).matches;
-          document.documentElement.dataset.mode = prefersDark
-            ? "dark"
-            : "light";
+        function applyMode(doc) {
+          var stored = localStorage.getItem("goldfinch-theme");
+          doc.documentElement.dataset.mode =
+            stored === "light" || stored === "dark"
+              ? stored
+              : matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light";
+        }
+        applyMode(document);
+        if (!window.__goldfinchMode) {
+          window.__goldfinchMode = true;
+          document.addEventListener("astro:before-swap", function (event) {
+            applyMode(event.newDocument);
+          });
         }
       })();
     </script>

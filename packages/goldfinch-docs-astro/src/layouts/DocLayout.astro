@@ -7,9 +7,9 @@ const showToc = headings.length > 0;
 ---
 
 <MainLayout>
-  <div slot="head">
+  <Fragment slot="head">
     <slot name="head" />
-  </div>
+  </Fragment>
 
   <div class="flex">
     <SidebarNav client:load currentPath={currentPath} />

@@ -4,9 +4,9 @@ import Header from "../components/Header.astro";
 ---
 
 <BaseLayout>
-  <div slot="head">
+  <Fragment slot="head">
     <slot name="head" />
-  </div>
+  </Fragment>
   <Header />
   <slot />
 </BaseLayout>
