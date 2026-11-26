@@ -1,5 +1,6 @@
 import { Button as BaseButton } from "@base-ui/react/button";
 import { cn } from "../../utils/cn";
+import { resolveVariant } from "../../utils/resolve-variant";
 import type { ComponentProps, ReactNode } from "react";
 
 export const goldfinchButtonVariants = {
@@ -42,10 +43,12 @@ export function buttonVariants({
   size?: GoldfinchButtonSize;
   shape?: GoldfinchButtonShape;
 } = {}) {
+  // resolveVariant warns in dev and falls back when a value isn't one of the
+  // options, such as a typo or a value from untyped code.
   return cn(
-    goldfinchButtonVariants.variant[variant],
-    goldfinchButtonVariants.size[size],
-    shape && goldfinchButtonVariants.shape[shape],
+    resolveVariant(goldfinchButtonVariants.variant, variant, "secondary"),
+    resolveVariant(goldfinchButtonVariants.size, size, "base"),
+    shape && resolveVariant(goldfinchButtonVariants.shape, shape, "base"),
   );
 }
 
@@ -87,9 +90,7 @@ export function Button({
         "inline-flex shrink-0 cursor-pointer items-center justify-center font-medium whitespace-nowrap select-none",
         "focus:outline-none focus-visible:ring-2 focus-visible:ring-goldfinch-focus",
         "disabled:cursor-not-allowed disabled:opacity-50",
-        goldfinchButtonVariants.variant[variant],
-        goldfinchButtonVariants.size[size],
-        shape && goldfinchButtonVariants.shape[shape],
+        buttonVariants({ variant, size, shape }),
         className,
       )}
       disabled={props.disabled || loading}

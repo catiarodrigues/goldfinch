@@ -10,7 +10,7 @@ import Basic from "../../examples/top-navigation/basic.tsx";
 import basicCode from "../../examples/top-navigation/basic.tsx?raw";
 import usageCode from "../../examples/top-navigation/usage.tsx?raw";
 
-A top bar for app navigation, with a logo, navigation links and actions on the right.
+A top bar for app navigation, with a logo, navigation links and actions on the right. When the bar is narrow, the links move into a Menu button.
 
 ## Installation
 
@@ -33,16 +33,24 @@ import { TopNavigation } from "@catiarodrigues/goldfinch/components/top-navigati
 ## Example
 
 <ComponentExample title="TopNavigation" code={basicCode}>
-  <Basic />
+  <Basic client:visible />
 </ComponentExample>
 
-Use `TopNavigation.NavItem` with `active` for the current page. Actions are pushed to the right via `TopNavigation.Actions`.
+Give each `TopNavigation.NavItem` an `href`, and mark the current page with `active`, which also sets `aria-current="page"` for screen readers. Links render with the component from `LinkProvider`, so your router's `Link` works here as it does in Sidebar and Breadcrumbs. `TopNavigation.Actions` sits on the right.
+
+### Narrow screens
+
+When the bar is narrower than 42rem, the links collapse into a Menu button that opens them in a panel below the bar. The bar measures its own width, not the window's, so it also collapses inside a narrow column on a wide screen. Escape or choosing a link closes the panel. Resize the window to see it on the example above.
 
 ## API Reference
 
 ### TopNavigation
 
 <PropsTable of="TopNavigation" />
+
+### TopNavigation.Nav
+
+<PropsTable of="TopNavigation.Nav" />
 
 ### TopNavigation.NavItem
 

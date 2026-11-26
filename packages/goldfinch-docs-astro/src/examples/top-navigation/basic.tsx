@@ -9,9 +9,13 @@ export default function TopNavigationBasic() {
         </span>
       </TopNavigation.Logo>
       <TopNavigation.Nav>
-        <TopNavigation.NavItem active>Docs</TopNavigation.NavItem>
-        <TopNavigation.NavItem>Components</TopNavigation.NavItem>
-        <TopNavigation.NavItem>Blog</TopNavigation.NavItem>
+        <TopNavigation.NavItem href="#docs" active>
+          Docs
+        </TopNavigation.NavItem>
+        <TopNavigation.NavItem href="#components">
+          Components
+        </TopNavigation.NavItem>
+        <TopNavigation.NavItem href="#blog">Blog</TopNavigation.NavItem>
       </TopNavigation.Nav>
       <TopNavigation.Actions>
         <Button variant="ghost" size="sm">

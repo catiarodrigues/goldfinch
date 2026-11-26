@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Button } from "./button";
+import { Button, type ButtonProps } from "./button";
+import { expect, spyOn, within, type MockInstance } from "storybook/test";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/button/basic";
 import SizesExample from "../../../../goldfinch-docs-astro/src/examples/button/sizes";
@@ -96,3 +97,24 @@ export const Shape: Story = { render: () => <ShapeExample /> };
 export const Loading: Story = { render: () => <LoadingExample /> };
 
 export const Usage: Story = { render: () => <UsageExample /> };
+
+let warn: MockInstance<typeof console.warn>;
+
+export const UnknownVariantFallsBack: Story = {
+  // A typo, or a value from untyped code, shouldn't break the button.
+  beforeEach: () => {
+    warn = spyOn(console, "warn").mockImplementation(() => {});
+    return () => warn.mockRestore();
+  },
+  render: () => (
+    <Button variant={"pirmary" as ButtonProps["variant"]}>Save</Button>
+  ),
+  play: async ({ canvasElement }) => {
+    const button = within(canvasElement).getByRole("button", { name: "Save" });
+    await expect(warn).toHaveBeenCalledWith(
+      expect.stringContaining('Unknown variant "pirmary"'),
+    );
+    // Falls back to the default, secondary, look.
+    await expect(button.className).toContain("bg-goldfinch-base");
+  },
+};

@@ -191,7 +191,7 @@ function SaveButton() {
 
 ## Router integration
 
-`Link`, `Breadcrumbs`, and `Sidebar.MenuButton` render a plain `<a>` by default. To route through
+`Link`, `Breadcrumbs`, `Sidebar.MenuButton` and `TopNavigation.NavItem` (with `href`) render a plain `<a>` by default. To route through
 React Router / Next.js `Link` / etc. instead, wrap the app in `LinkProvider` once:
 
 ```tsx

@@ -7,8 +7,10 @@ export default function AppBar() {
         <span className="text-lg font-bold">MyApp</span>
       </TopNavigation.Logo>
       <TopNavigation.Nav>
-        <TopNavigation.NavItem active>Dashboard</TopNavigation.NavItem>
-        <TopNavigation.NavItem>Settings</TopNavigation.NavItem>
+        <TopNavigation.NavItem href="/dashboard" active>
+          Dashboard
+        </TopNavigation.NavItem>
+        <TopNavigation.NavItem href="/settings">Settings</TopNavigation.NavItem>
       </TopNavigation.Nav>
       <TopNavigation.Actions>
         <Button variant="ghost" size="sm">

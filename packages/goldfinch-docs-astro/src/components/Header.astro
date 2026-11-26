@@ -7,6 +7,24 @@ import goldfinchPackage from "../../../goldfinch/package.json";
 <header class="sticky top-0 z-30 flex items-center justify-between h-16 px-4 lg:px-8 border-b border-goldfinch-hairline bg-goldfinch-canvas/95 backdrop-blur-sm">
   <div class="flex items-center gap-3">
     <a href="/" class="flex items-center gap-2 no-underline">
+      <!-- The same finch as the favicon; currentColor follows the site's theme. -->
+      <svg
+        viewBox="0 0 32 32"
+        class="h-6 w-6 text-goldfinch-strong"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <circle cx="13.2" cy="10.4" r="6.4" />
+        <path d="M9.4 7.2 L2.2 11.4 L9.4 14.6 Z" />
+        <ellipse
+          cx="17"
+          cy="18.2"
+          rx="8.6"
+          ry="9.4"
+          transform="rotate(-30 17 18.2)"
+        />
+        <path d="M20 23 L28.6 30.2 L24.6 31 L16.6 26 Z" />
+      </svg>
       <span class="text-xl font-bold text-goldfinch-strong">Goldfinch</span>
       <span class="rounded-full bg-goldfinch-tint px-2 py-0.5 text-xs font-medium text-goldfinch-subtle">
         v{goldfinchPackage.version}
