@@ -19,6 +19,7 @@ export const navigation: NavSection[] = [
       { title: "Theming", href: "/getting-started/theming" },
       { title: "Accessibility", href: "/getting-started/accessibility" },
       { title: "AI agents", href: "/getting-started/ai-agents" },
+      { title: "Design decisions", href: "/getting-started/decisions" },
       { title: "Contributing", href: "/contributing" },
       { title: "Changelog", href: "/changelog" },
     ],

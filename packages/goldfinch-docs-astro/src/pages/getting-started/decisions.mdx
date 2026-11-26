@@ -1,0 +1,73 @@
+---
+title: Design decisions
+description: The choices behind Goldfinch, why they were made, and what they cost.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+This page records the main choices behind Goldfinch and what each one costs, so you can judge them before you depend on the library, and so later changes start from the original reasons.
+
+## Behaviour comes from Base UI
+
+The interactive components wrap [Base UI](https://base-ui.com/) primitives. Base UI handles keyboard support, focus management and ARIA; Goldfinch adds the styling, the API and its own conventions.
+
+Getting a combobox, a focus trap or a roving tabindex right is slow, specialised work, and the details change as browsers and screen readers do. Base UI is unstyled and maintained by people who do that work full time, which leaves Goldfinch free to spend its effort on design and API. In exchange, Goldfinch depends on Base UI's release cycle and follows its behaviour where the two disagree.
+
+Where Goldfinch writes behaviour itself, such as MenuBar's arrow keys and TopNavigation's menu, it's tested the same way as the rest.
+
+## Ink, and colour only for status
+
+Goldfinch is black and white. Ink marks the primary action and every selected control: the primary button, checked checkboxes and radios, toggles that are on, the progress bar and the active tab. Colour is kept for status: red for errors and destructive actions, green for success, amber for warnings.
+
+Several accent colours were tried, from sage to cobalt and a goldfinch yellow. Each made the interface louder without making it clearer, and each competed with a status colour: a green brand next to a green "Active" badge, or a gold button next to an amber warning. With no other colour on the page, a red message is easy to spot. Goldfinch looks neutral as a result, and a product that needs a brand colour sets one by overriding the tokens.
+
+## One token per role, defined once per mode
+
+Colours are semantic tokens named for their role, such as `base` for a surface or `subtle` for secondary text. Each is defined twice: its light value in Tailwind's `@theme`, and its dark value under `[data-mode="dark"]`.
+
+Tokens used to be defined three times, in `@theme` with `light-dark()` and in separate light and dark blocks. The copies drifted apart, and the warning text colour ended up with two different values. With one definition per mode they can't disagree, and the [Colors](/getting-started/colors) page is generated from the stylesheet, so it can't fall behind either.
+
+Dark mode follows `data-mode` on `<html>`, and Tailwind's `dark:` variant is redefined to follow the same attribute, so the app decides the mode in one place instead of the operating system deciding it. Support for multiple brands was considered and left out. No product needs it yet, and it would add a layer that every component pays for.
+
+## The stylesheet ships as Tailwind source
+
+Goldfinch's stylesheet is Tailwind source: `@import "tailwindcss"` plus the token definitions. The app's own Tailwind build generates the utilities and finds Goldfinch's classes through an `@source` line.
+
+Apps get one Tailwind build instead of two competing ones, with utilities only for the classes in use, and they can use Goldfinch's tokens in their own markup. The downside is a hard requirement: apps must use Tailwind v4, and forgetting the `@source` line leaves every component unstyled. The [installation](/getting-started/installation) guide starts with both lines for that reason.
+
+## Stories are the tests
+
+Goldfinch has no separate unit tests. Each component's Storybook stories run as tests in a real Chromium browser, through Vitest:
+
+- Every story must render and must pass axe twice, in light mode and in dark mode, because some contrast problems only appear in dark mode.
+- Interaction tests find elements by role and accessible name, so a missing label fails a test just like missing behaviour does.
+- Chromatic snapshots every story on every push and flags visual changes for review.
+
+A simulated DOM can't check real focus, layout or colour contrast, and many component bugs show up in exactly those places. Running the stories people browse also keeps the tests and the component's documentation in step. Browser tests are slower than unit tests, and some steps have to wait for what a person would wait for, such as a popup taking focus.
+
+## Docs that are generated from the code
+
+The parts of the docs that restate the code are generated from it. Each example is a single file: the docs page renders it and shows its source, and the component's stories import it, so every example in the docs is also tested. Props tables are read from the TypeScript types and their JSDoc. The Colors page reads the stylesheet, and the Changelog and Contributing pages render their Markdown files.
+
+Hand-written prop tables and pasted code blocks go stale without anyone noticing. Generated ones fail the docs build instead: a props table naming a component that isn't exported stops the build. The work moves into writing good JSDoc, which also shows up in editors.
+
+## Accessibility beyond what axe checks
+
+Automated checks like axe catch only a third to a half of accessibility problems. Goldfinch covers more of them with conventions and tests:
+
+- Form control edges are at least 3:1 against the page, and every component's focus ring is 2px in the `focus` colour.
+- Errors are text. Checkboxes, radios and toggles never turn red, because colour alone doesn't tell everyone something went wrong, and a red switch reads as a dangerous setting more than a failed save.
+- Keyboard behaviour is tested: arrow keys, Escape returning focus, typeahead, focus trapping and single Tab stops.
+- Motion stops when the operating system asks for reduced motion. Spinner keeps turning, because its motion is how it shows that something is loading.
+- A loading button stays focusable and is marked busy, so keyboard users keep their place.
+
+The [Accessibility](/getting-started/accessibility) page covers what this gives you and what's still up to your app.
+
+## Small APIs that grow when needed
+
+New components start with the smallest API that covers real use. Combobox takes `items` and a single value, with no multiple selection, async loading or custom option markup until something needs them. Compound components such as `Modal.Title` and `Select.Option` are used where the parts vary; elsewhere a prop does the job.
+
+Adding to an API later is a minor release, while taking something away is a breaking one, so each addition gets made on purpose. Early adopters sometimes have to ask for a feature instead of finding it.
+
+## Releases
+
+Every change someone using the package would notice comes with a changeset written for them. Releases follow semantic versioning: patches fix, minor versions add, and removing anything people use waits for a major version. The docs site builds from `main`, so it can describe a change shortly before the change is published to npm.
