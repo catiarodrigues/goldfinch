@@ -61,8 +61,9 @@ export const ButtonChildIsTheTrigger: Story = {
       "Open popover",
       "Hover me",
     ]) {
+      // findAll: the modal mounts into its portal just after the story renders.
       await expect(
-        page.getAllByRole("button", { name, hidden: true }),
+        await page.findAllByRole("button", { name, hidden: true }),
       ).toHaveLength(1);
     }
 

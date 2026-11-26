@@ -4,6 +4,7 @@ import { Button } from "../button/button";
 import { expect, fn, userEvent, waitFor, within } from "storybook/test";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/dropdown/basic";
+import { isChromatic } from "../../../.storybook/is-chromatic";
 import UsageExample from "../../../../goldfinch-docs-astro/src/examples/dropdown/usage";
 const meta: Meta<typeof DropdownMenu> = {
   title: "Components/Dropdown",
@@ -45,6 +46,7 @@ export const KeyboardNavigation: Story = {
     </DropdownMenu>
   ),
   play: async ({ canvasElement }) => {
+    if (isChromatic()) return; // needs real focus; tested in Vitest
     // Popups render in a portal outside the story root.
     const page = within(canvasElement.ownerDocument.body);
     const trigger = page.getByRole("button", { name: "Actions" });

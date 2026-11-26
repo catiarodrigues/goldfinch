@@ -3,6 +3,7 @@ import { MenuBar } from "./menubar";
 import { expect, fn, userEvent, within } from "storybook/test";
 
 import BasicExample from "../../../../goldfinch-docs-astro/src/examples/menubar/basic";
+import { isChromatic } from "../../../.storybook/is-chromatic";
 import UsageExample from "../../../../goldfinch-docs-astro/src/examples/menubar/usage";
 const meta: Meta<typeof MenuBar> = {
   title: "Components/Menubar",
@@ -38,6 +39,7 @@ export const KeyboardNavigation: Story = {
     ],
   },
   play: async ({ canvasElement }) => {
+    if (isChromatic()) return; // needs real focus; tested in Vitest
     const canvas = within(canvasElement);
     onSettings.mockClear();
 
