@@ -57,11 +57,13 @@ export const KeyboardAndFocus: Story = {
       expect(dialog).toContainElement(document.activeElement as HTMLElement),
     );
 
-    // Focus is trapped: Tab and Shift+Tab never leave the open modal.
+    // Focus is trapped: Tab and Shift+Tab never leave the open modal. At the
+    // edges, Tab lands on Base UI's invisible focus guard, which sends focus
+    // back inside a moment later, so wait for it.
     for (const key of ["{Tab}", "{Tab}", "{Shift>}{Tab}{/Shift}"]) {
       await userEvent.keyboard(key);
-      await expect(dialog).toContainElement(
-        document.activeElement as HTMLElement,
+      await waitFor(() =>
+        expect(dialog).toContainElement(document.activeElement as HTMLElement),
       );
     }
 
