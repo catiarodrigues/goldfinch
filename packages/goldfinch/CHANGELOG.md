@@ -1,5 +1,14 @@
 # @catiarodrigues/goldfinch
 
+## 1.1.4
+
+### Patch Changes
+
+- 311047c: `EmptyState`'s copy-command icon is easier to see: it uses the secondary text colour (5.5:1 in light mode, 5:1 in dark) instead of the disabled grey, which was 1.8:1, under the 3:1 WCAG asks of icons in a control.
+- 41e6e64: The stylesheet defines each colour token once per mode, a light value in `@theme` and a dark value under `[data-mode="dark"]`, instead of three times. Every token resolves to the same colour as before. Every token is still available as a CSS variable, including ones no utility uses.
+  
+  Removed three tokens that nothing used: `--color-goldfinch-fill-hover`, `--color-goldfinch-component` and `--color-goldfinch-binding`. If your own CSS referenced one, use the value it had: `#d9d9d9` (dark `#444444`) for `fill-hover`, and `#000000` (dark `#ffffff`) for the other two.
+
 ## 1.1.3
 
 ### Patch Changes
