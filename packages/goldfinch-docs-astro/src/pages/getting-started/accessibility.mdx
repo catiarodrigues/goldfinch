@@ -1,0 +1,69 @@
+---
+title: Accessibility
+description: What Goldfinch handles for you, how it's tested, and what's left to your app.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import Callout from "../../components/docs/Callout.astro";
+
+Goldfinch aims for WCAG 2.2 AA. The interactive components are built on [Base UI](https://base-ui.com/), which handles keyboard support, focus and ARIA, and every component is tested against axe in light and dark mode before it ships.
+
+## Keyboard and focus
+
+Base UI follows the [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/) for each pattern, so components behave the way keyboard and screen reader users expect:
+
+- Tabs, radio groups, menus and toolbars move between items with the arrow keys, and Tab moves out of the group.
+- Select and dropdown menus support typeahead: typing a letter jumps to the matching item.
+- Modal, Popover and dropdown menus keep focus inside while open, close with Escape, and return focus to the element that opened them.
+- Every focusable component shows a visible focus ring when it's reached with the keyboard.
+
+## Labels, descriptions and errors
+
+Form components wire up their own relationships, so you don't write `id`, `htmlFor` or `aria-describedby` by hand:
+
+- `label` is linked to its control, and clicking it focuses or toggles the control.
+- `description` and `error` are linked to the control with `aria-describedby`. While an error shows, the control is marked `aria-invalid`.
+- Checkbox, Radio and Toggle groups render a real `<fieldset>` and `<legend>`. To hide a legend visually, pass `className="sr-only"`; screen readers still announce it.
+
+Errors are shown as text. Choice controls (checkboxes, radios and toggles) never turn red, because colour alone doesn't tell everyone something went wrong; see [Toggle](/components/toggle) for the pattern when a save fails.
+
+## Announcements
+
+Some changes happen without moving focus, so Goldfinch announces them through live regions:
+
+- Toasts are announced when they appear.
+- CopyToClipboard and SensitiveInput announce when a value has been copied. SensitiveInput also announces when its value is hidden.
+- Pagination announces the new range of results.
+- Spinner has `role="status"`, so its label is read when it appears.
+
+## Colour and contrast
+
+Every text colour token meets 4.5:1 against the surface it's used on, in both modes, and the [Colors](/getting-started/colors) page lists each ratio. Badge fills, placeholder text and the destructive button were checked the same way. The one exception is `inactive`, used for disabled text and decorative marks such as breadcrumb separators. WCAG doesn't require contrast for disabled controls, so don't use it for text people need to read.
+
+Status is never shown by colour alone: an error always comes with a message, and badges carry a word, not just a colour.
+
+## How it's tested
+
+Every component has Storybook stories, and every story runs as a test in a real Chromium browser:
+
+- axe checks each story, and any violation fails the test. The check runs twice, once in light mode and once with `data-mode="dark"`, because contrast problems are often dark-only.
+- Interaction tests find elements by role and accessible name, such as `getByRole("switch", { name: "Weekly summary" })`, so a missing label fails the test.
+- Each docs example is also a story, so the code you copy from these pages has passed the same checks.
+
+CI runs these tests on every push.
+
+## What's up to you
+
+Goldfinch can't know your content, so a few things stay with your app:
+
+- Give icon-only buttons a name: `<Button aria-label="Close" icon={<XIcon />} />`.
+- Set `lang` on `<html>`, and give each page a unique `<title>`.
+- Keep heading levels in order across your page.
+- Write error messages that say how to fix the problem, such as "Enter an email like name@example.com" rather than "Invalid".
+
+<Callout type="warning">
+  Only Toggle and Sidebar turn off their animations when the operating system
+  asks for reduced motion. The fades and scales on Modal, Popover, Tooltip,
+  Toast and dropdown menus still play. If your users need that, add a
+  `prefers-reduced-motion` rule in your app until Goldfinch handles it.
+</Callout>
