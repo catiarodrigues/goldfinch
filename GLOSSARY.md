@@ -7,7 +7,7 @@ overlays and layout.
 
 **Form control**:
 A component a user enters or chooses a value with: Input, InputArea, SensitiveInput,
-InputGroup, Select, Checkbox, Radio, Toggle.
+InputGroup, Select, Combobox, Checkbox, Radio, Toggle.
 _Avoid_: input (when you mean any control), widget
 
 **Field**:

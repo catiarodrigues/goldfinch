@@ -84,6 +84,9 @@ export { default as PopoverDemo } from "../../examples/popover/basic";
 /* ---------- Radio ---------- */
 export { default as RadioDemo } from "../../examples/radio/basic";
 
+/* ---------- Combobox ---------- */
+export { default as ComboboxDemo } from "../../examples/combobox/basic";
+
 /* ---------- Select ---------- */
 export { default as SelectDemo } from "../../examples/select/basic";
 

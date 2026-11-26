@@ -87,6 +87,7 @@ import { Button } from "@catiarodrigues/goldfinch/components/button";
 | Card            | `components/card`              |
 | Checkbox        | `components/checkbox`          |
 | Collapsible     | `components/collapsible`       |
+| Combobox        | `components/combobox`          |
 | CopyToClipboard | `components/copy-to-clipboard` |
 | Dropdown        | `components/dropdown`          |
 | EmptyState      | `components/empty-state`       |

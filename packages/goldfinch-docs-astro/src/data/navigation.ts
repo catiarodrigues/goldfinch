@@ -33,6 +33,7 @@ export const navigation: NavSection[] = [
       { title: "Card", href: "/components/card" },
       { title: "Checkbox", href: "/components/checkbox" },
       { title: "Collapsible", href: "/components/collapsible" },
+      { title: "Combobox", href: "/components/combobox" },
       { title: "CopyToClipboard", href: "/components/copy-to-clipboard" },
       { title: "Dropdown", href: "/components/dropdown" },
       { title: "EmptyState", href: "/components/empty-state" },

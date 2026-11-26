@@ -142,6 +142,10 @@
       "types": "./dist/src/components/radio/index.d.ts",
       "import": "./dist/components/radio.mjs"
     },
+    "./components/combobox": {
+      "types": "./dist/src/components/combobox/index.d.ts",
+      "import": "./dist/components/combobox.mjs"
+    },
     "./components/select": {
       "types": "./dist/src/components/select/index.d.ts",
       "import": "./dist/components/select.mjs"

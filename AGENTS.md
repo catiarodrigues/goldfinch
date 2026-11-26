@@ -7,7 +7,7 @@ This file is _how the repo is put together_ and the stuff that's easy to acciden
 ## Overview
 
 A pnpm monorepo with two packages: `@catiarodrigues/goldfinch`, a React component library
-built on [Base UI](https://base-ui.com/) primitives and Tailwind CSS v4 (36 components), and
+built on [Base UI](https://base-ui.com/) primitives and Tailwind CSS v4 (37 components), and
 `@catiarodrigues/goldfinch-docs-astro`, an Astro docs site that consumes the library via
 `workspace:*` and renders one MDX page + live demo per component. The library is published
 to npm as `@catiarodrigues/goldfinch` (public scoped package) — see Publishing for what keeps

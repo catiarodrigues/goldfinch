@@ -107,6 +107,10 @@ export default defineConfig({
           "src/components/popover/index.ts",
         ),
         "components/radio": resolve(__dirname, "src/components/radio/index.ts"),
+        "components/combobox": resolve(
+          __dirname,
+          "src/components/combobox/index.ts",
+        ),
         "components/select": resolve(
           __dirname,
           "src/components/select/index.ts",

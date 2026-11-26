@@ -1,0 +1,59 @@
+---
+title: Combobox
+description: A text input that filters a list of options as you type.
+layout: ../../layouts/MdxDocLayout.astro
+---
+
+import PropsTable from "../../components/docs/PropsTable.astro";
+import ComponentExample from "../../components/docs/ComponentExample.astro";
+import Basic from "../../examples/combobox/basic.tsx";
+import basicCode from "../../examples/combobox/basic.tsx?raw";
+import Validation from "../../examples/combobox/validation.tsx";
+import validationCode from "../../examples/combobox/validation.tsx?raw";
+import usageCode from "../../examples/combobox/usage.tsx?raw";
+
+Picks one value from a list by typing to narrow it down. Use it instead of [Select](/components/select) when the list is long enough that people would rather type than scroll, such as countries or time zones.
+
+## Installation
+
+### Barrel
+
+```tsx
+import { Combobox } from "@catiarodrigues/goldfinch";
+```
+
+### Granular
+
+```tsx
+import { Combobox } from "@catiarodrigues/goldfinch/components/combobox";
+```
+
+## Usage
+
+<ComponentExample code={usageCode} />
+
+## Examples
+
+<ComponentExample title="Combobox" code={basicCode}>
+  <Basic client:visible />
+</ComponentExample>
+
+Pass `items` as strings, or as `{ value, label }` objects when the value you store differs from the text people see. `value` and `onValueChange` use the value, and `onValueChange` receives `null` when the choice is cleared. `emptyMessage` replaces the list when nothing matches.
+
+### Validation
+
+<ComponentExample title="Error" code={validationCode}>
+  <Validation client:visible />
+</ComponentExample>
+
+Like the other form controls, `error` marks the input invalid and shows the message below it.
+
+## Keyboard
+
+- Typing filters the list and opens it.
+- Arrow keys move through the matches, and Enter chooses one.
+- Escape closes the list and keeps focus in the input.
+
+## API Reference
+
+<PropsTable of="Combobox" />

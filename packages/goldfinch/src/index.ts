@@ -106,6 +106,8 @@ export type {
   RadioVariant,
 } from "./components/radio";
 export { Select } from "./components/select";
+export { Combobox } from "./components/combobox";
+export type { ComboboxProps, ComboboxItem } from "./components/combobox";
 export { SensitiveInput } from "./components/sensitive-input";
 export type { SensitiveInputProps } from "./components/sensitive-input";
 export {

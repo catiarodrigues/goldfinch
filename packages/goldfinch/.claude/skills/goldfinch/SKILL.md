@@ -6,7 +6,7 @@ description: Use when building or editing UI in a project that has @catiarodrigu
 # Goldfinch
 
 React component library on [Base UI](https://base-ui.com/) primitives + Tailwind CSS v4.
-36 components, accessible by default (ARIA, keyboard nav, focus management already handled —
+37 components, accessible by default (ARIA, keyboard nav, focus management already handled —
 don't add redundant `aria-*` unless overriding real custom behavior).
 
 ## Setup
@@ -126,7 +126,7 @@ children.
 ## Forms
 
 Pass `label`, `description` and `error` straight to the form control (Input, InputArea,
-SensitiveInput, InputGroup, Select, Checkbox, Toggle); it adds the Field around itself only when
+SensitiveInput, InputGroup, Select, Combobox, Checkbox, Toggle); it adds the Field around itself only when
 one of them is set. Groups (Checkbox.Group, Radio.Group, Toggle.Group) take `legend`,
 `description` and `error` the same way.
 
@@ -134,6 +134,19 @@ one of them is set. Groups (Checkbox.Group, Radio.Group, Toggle.Group) take `leg
 // react-hook-form: errors.x is an object, so pass its message
 <Input label="Email" description="We never share it." error={errors.email?.message} />
 <Radio.Group legend="Plan" error={errors.plan?.message}>…</Radio.Group>
+```
+
+Use `Combobox` instead of `Select` for long lists people would rather type to filter (countries,
+time zones). It takes `items` only, as strings or `{ value, label }` objects, and `value` /
+`onValueChange` use the item's `value` (`null` when cleared):
+
+```tsx
+<Combobox
+  label="Country"
+  items={[{ value: "pt", label: "Portugal" }]}
+  value={country}
+  onValueChange={setCountry}
+/>
 ```
 
 - **`error` is the field error.** A string is always shown and marks the field invalid
@@ -234,6 +247,7 @@ requirement.
 | Card            | `components/card`              |
 | Checkbox        | `components/checkbox`          |
 | Collapsible     | `components/collapsible`       |
+| Combobox        | `components/combobox`          |
 | CopyToClipboard | `components/copy-to-clipboard` |
 | Dropdown        | `components/dropdown`          |
 | EmptyState      | `components/empty-state`       |
